@@ -22,7 +22,7 @@
 @property (nonatomic) NSInteger twitterFollowers;
 @property (nonatomic, strong) NSURL *avatarUrl;
 @property (nonatomic, copy) NSString *username;
-@property (nonatomic) NSInteger *connectedUserId;
+@property (nonatomic) NSInteger connectedUserId;
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic, copy) NSString *dataFileName;
@@ -55,5 +55,7 @@
 @property (nonatomic) BOOL instUserHasLiked;
 @property (nonatomic, strong) NSURL *platformLink;
 @property (nonatomic, strong) NSArray *products;
+
++ (instancetype)photoFromDict:(NSDictionary *)dict inAlbum:(PXLAlbum *)album;
 
 @end
