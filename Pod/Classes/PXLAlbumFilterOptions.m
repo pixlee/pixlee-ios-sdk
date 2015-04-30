@@ -38,7 +38,7 @@
     
     NSData *optionsData = [NSJSONSerialization dataWithJSONObject:options options:0 error:nil];
     NSString *optionsString = [[NSString alloc] initWithData:optionsData encoding:NSUTF8StringEncoding];
-    return [optionsString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return optionsString;
 }
 
 @end
