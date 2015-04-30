@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 
-@interface PXLClient : NSObject
+@interface PXLClient : AFHTTPSessionManager
+
++ (instancetype)sharedClient;
 
 @end
