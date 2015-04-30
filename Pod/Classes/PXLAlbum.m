@@ -36,11 +36,34 @@
     return self;
 }
 
+- (void)setSortOptions:(PXLAlbumSortOptions *)sortOptions {
+    _sortOptions = sortOptions;
+    [self clearPhotosAndPages];
+}
+
+- (void)setFilterOptions:(PXLAlbumFilterOptions *)filterOptions {
+    _filterOptions = filterOptions;
+    [self clearPhotosAndPages];
+}
+
+- (void)clearPhotosAndPages {
+    self.photos = @[];
+    self.lastPageFetched = NSNotFound;
+    self.hasNextPage = YES;
+}
+
 - (NSURLSessionDataTask *)loadNextPageOfPhotos:(void (^)(NSArray *photos, NSError *error))completionBlock {
     static NSString * const PXLAlbumGETRequestString = @"albums/%@/photos";
     if (self.hasNextPage) {
         NSString *requestString = [NSString stringWithFormat:PXLAlbumGETRequestString, self.identifier];
-        return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
+        NSMutableDictionary *params = @{}.mutableCopy;
+        if (self.sortOptions) {
+            params[@"sort"] = [self.sortOptions urlParamString];
+        }
+        if (self.filterOptions) {
+            params[@"filter"] = [self.filterOptions urlParamString];
+        }
+        return [[PXLClient sharedClient] GET:requestString parameters:params success:^(NSURLSessionDataTask * __unused task, id responseObject) {
             NSArray *responsePhotos = responseObject[@"data"];
             NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
             self.lastPageFetched = [responseObject[@"page"] integerValue];

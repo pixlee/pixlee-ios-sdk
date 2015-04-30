@@ -18,6 +18,8 @@
 @property (nonatomic, readonly) NSArray *photos;
 @property (nonatomic, readonly) NSInteger lastPageFetched;
 @property (nonatomic, readonly) BOOL hasNextPage;
+
+// setting either of these properties clears the stored photos and the last page fetched.
 @property (nonatomic, strong) PXLAlbumSortOptions *sortOptions;
 @property (nonatomic, strong) PXLAlbumFilterOptions *filterOptions;
 
