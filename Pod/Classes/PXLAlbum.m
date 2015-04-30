@@ -32,6 +32,7 @@
     self.perPage = NSNotFound;
     self.lastPageFetched = NSNotFound;
     self.hasNextPage = YES;
+    self.photos = @[];
     return self;
 }
 
@@ -41,6 +42,13 @@
     return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
         NSArray *responsePhotos = responseObject[@"data"];
         NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
+        self.lastPageFetched = [responseObject[@"page"] integerValue];
+        self.hasNextPage = [responseObject[@"next"] boolValue];
+        if (photos) {
+            NSMutableArray *mutablePhotos = self.photos.mutableCopy;
+            [mutablePhotos addObjectsFromArray:photos];
+            self.photos = mutablePhotos;
+        }
         completionBlock(photos, nil);
     } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
         if (completionBlock) {
