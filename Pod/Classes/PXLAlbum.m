@@ -8,10 +8,14 @@
 
 #import "PXLAlbum.h"
 
+#import "PXLClient.h"
+#import "PXLPhoto.h"
+
 @interface PXLAlbum ()
 
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic) NSInteger lastPageFetched;
+@property (nonatomic) BOOL hasNextPage;
 
 @end
 
@@ -21,6 +25,26 @@
     PXLAlbum *album = [self new];
     album.identifier = identifier;
     return album;
+}
+
+- (instancetype)init {
+    self = [super init];
+    self.perPage = NSNotFound;
+    self.lastPageFetched = NSNotFound;
+    self.hasNextPage = YES;
+    return self;
+}
+
+- (NSURLSessionDataTask *)loadNextPageOfPhotos:(void (^)(NSArray *photos, NSError *error))completionBlock {
+    static NSString * const PXLAlbumGETRequestString = @"albums/%@/photos";
+    NSString *requestString = [NSString stringWithFormat:PXLAlbumGETRequestString, self.identifier];
+    return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
+        if (completionBlock) {
+            completionBlock(nil, error);
+        }
+    }];
 }
 
 @end

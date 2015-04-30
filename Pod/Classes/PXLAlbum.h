@@ -14,7 +14,9 @@
 @property (nonatomic) NSInteger perPage;
 @property (nonatomic, readonly) NSArray *photos;
 @property (nonatomic, readonly) NSInteger lastPageFetched;
+@property (nonatomic, readonly) BOOL hasNextPage;
 
 + (instancetype)albumWithIdentifier:(NSString *)identifier;
+- (NSURLSessionDataTask *)loadNextPageOfPhotos:(void (^)(NSArray *photos, NSError *error))completionBlock;
 
 @end

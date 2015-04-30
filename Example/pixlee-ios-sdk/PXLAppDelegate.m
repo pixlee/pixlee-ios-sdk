@@ -8,11 +8,19 @@
 
 #import "PXLAppDelegate.h"
 
+#import <pixlee-ios-sdk/PXLClient.h>
+#import <pixlee-ios-sdk/PXLAlbum.h>
+
 @implementation PXLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[PXLClient sharedClient] setApiKey:@"ye52amOyfyrMtIPYIkE"];
+    PXLAlbum *album = [PXLAlbum albumWithIdentifier:@"123254"];
+    [album loadNextPageOfPhotos:^(NSArray *photos, NSError *error) {
+        NSLog(@"%@", photos);
+    }];
     return YES;
 }
 							

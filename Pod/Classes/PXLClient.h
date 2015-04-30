@@ -12,5 +12,6 @@
 @interface PXLClient : AFHTTPSessionManager
 
 + (instancetype)sharedClient;
+- (void)setApiKey:(NSString *)apiKey;
 
 @end

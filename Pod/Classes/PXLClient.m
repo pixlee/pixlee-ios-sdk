@@ -8,6 +8,12 @@
 
 #import "PXLClient.h"
 
+@interface PXLClient ()
+
+@property (nonatomic, copy) NSString *_apiKey;
+
+@end
+
 @implementation PXLClient
 
 static NSString * const PXLClientBaseUrlString = @"https://distillery.pixlee.com/api/v2/";
@@ -21,6 +27,19 @@ static NSString * const PXLClientBaseUrlString = @"https://distillery.pixlee.com
     });
     
     return _sharedClient;
+}
+
+- (void)setApiKey:(NSString *)apiKey {
+    self._apiKey = apiKey;
+}
+
+- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    if (parameters == nil || [parameters isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *mutableParams = parameters ? ((NSDictionary *)parameters).mutableCopy : @{}.mutableCopy;
+        mutableParams[@"api_key"] = self._apiKey;
+        parameters = mutableParams;
+    }
+    return [super GET:URLString parameters:parameters success:success failure:failure];
 }
 
 @end
