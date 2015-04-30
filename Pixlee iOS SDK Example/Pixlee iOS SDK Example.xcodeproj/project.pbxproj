@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4BC676E11AF2A0D300E204C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC676E01AF2A0D300E204C7 /* main.m */; };
+		4BC676E41AF2A0D300E204C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC676E31AF2A0D300E204C7 /* AppDelegate.m */; };
+		4BC676E71AF2A0D300E204C7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC676E61AF2A0D300E204C7 /* ViewController.m */; };
+		4BC676EA1AF2A0D300E204C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC676E81AF2A0D300E204C7 /* Main.storyboard */; };
+		4BC676EC1AF2A0D300E204C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC676EB1AF2A0D300E204C7 /* Images.xcassets */; };
+		4BC676EF1AF2A0D300E204C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC676ED1AF2A0D300E204C7 /* LaunchScreen.xib */; };
+		4BC676FB1AF2A0D400E204C7 /* Pixlee_iOS_SDK_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC676FA1AF2A0D400E204C7 /* Pixlee_iOS_SDK_ExampleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BC676F51AF2A0D400E204C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BC676D31AF2A0D300E204C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BC676DA1AF2A0D300E204C7;
+			remoteInfo = "Pixlee iOS SDK Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4BC676DB1AF2A0D300E204C7 /* Pixlee iOS SDK Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixlee iOS SDK Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BC676DF1AF2A0D300E204C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC676E01AF2A0D300E204C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4BC676E21AF2A0D300E204C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4BC676E31AF2A0D300E204C7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4BC676E51AF2A0D300E204C7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4BC676E61AF2A0D300E204C7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4BC676E91AF2A0D300E204C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4BC676EB1AF2A0D300E204C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4BC676EE1AF2A0D300E204C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4BC676F41AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pixlee iOS SDK ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BC676F91AF2A0D400E204C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC676FA1AF2A0D400E204C7 /* Pixlee_iOS_SDK_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pixlee_iOS_SDK_ExampleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BC676D81AF2A0D300E204C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BC676F11AF2A0D400E204C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BC676D21AF2A0D300E204C7 = {
+			isa = PBXGroup;
+			children = (
+				4BC676DD1AF2A0D300E204C7 /* Pixlee iOS SDK Example */,
+				4BC676F71AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests */,
+				4BC676DC1AF2A0D300E204C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4BC676DC1AF2A0D300E204C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BC676DB1AF2A0D300E204C7 /* Pixlee iOS SDK Example.app */,
+				4BC676F41AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BC676DD1AF2A0D300E204C7 /* Pixlee iOS SDK Example */ = {
+			isa = PBXGroup;
+			children = (
+				4BC676E21AF2A0D300E204C7 /* AppDelegate.h */,
+				4BC676E31AF2A0D300E204C7 /* AppDelegate.m */,
+				4BC676E51AF2A0D300E204C7 /* ViewController.h */,
+				4BC676E61AF2A0D300E204C7 /* ViewController.m */,
+				4BC676E81AF2A0D300E204C7 /* Main.storyboard */,
+				4BC676EB1AF2A0D300E204C7 /* Images.xcassets */,
+				4BC676ED1AF2A0D300E204C7 /* LaunchScreen.xib */,
+				4BC676DE1AF2A0D300E204C7 /* Supporting Files */,
+			);
+			path = "Pixlee iOS SDK Example";
+			sourceTree = "<group>";
+		};
+		4BC676DE1AF2A0D300E204C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BC676DF1AF2A0D300E204C7 /* Info.plist */,
+				4BC676E01AF2A0D300E204C7 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BC676F71AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BC676FA1AF2A0D400E204C7 /* Pixlee_iOS_SDK_ExampleTests.m */,
+				4BC676F81AF2A0D400E204C7 /* Supporting Files */,
+			);
+			path = "Pixlee iOS SDK ExampleTests";
+			sourceTree = "<group>";
+		};
+		4BC676F81AF2A0D400E204C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BC676F91AF2A0D400E204C7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4BC676DA1AF2A0D300E204C7 /* Pixlee iOS SDK Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BC676FE1AF2A0D400E204C7 /* Build configuration list for PBXNativeTarget "Pixlee iOS SDK Example" */;
+			buildPhases = (
+				4BC676D71AF2A0D300E204C7 /* Sources */,
+				4BC676D81AF2A0D300E204C7 /* Frameworks */,
+				4BC676D91AF2A0D300E204C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pixlee iOS SDK Example";
+			productName = "Pixlee iOS SDK Example";
+			productReference = 4BC676DB1AF2A0D300E204C7 /* Pixlee iOS SDK Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4BC676F31AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BC677011AF2A0D400E204C7 /* Build configuration list for PBXNativeTarget "Pixlee iOS SDK ExampleTests" */;
+			buildPhases = (
+				4BC676F01AF2A0D400E204C7 /* Sources */,
+				4BC676F11AF2A0D400E204C7 /* Frameworks */,
+				4BC676F21AF2A0D400E204C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BC676F61AF2A0D400E204C7 /* PBXTargetDependency */,
+			);
+			name = "Pixlee iOS SDK ExampleTests";
+			productName = "Pixlee iOS SDK ExampleTests";
+			productReference = 4BC676F41AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4BC676D31AF2A0D300E204C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Pixlee Inc";
+				TargetAttributes = {
+					4BC676DA1AF2A0D300E204C7 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					4BC676F31AF2A0D400E204C7 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 4BC676DA1AF2A0D300E204C7;
+					};
+				};
+			};
+			buildConfigurationList = 4BC676D61AF2A0D300E204C7 /* Build configuration list for PBXProject "Pixlee iOS SDK Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4BC676D21AF2A0D300E204C7;
+			productRefGroup = 4BC676DC1AF2A0D300E204C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4BC676DA1AF2A0D300E204C7 /* Pixlee iOS SDK Example */,
+				4BC676F31AF2A0D400E204C7 /* Pixlee iOS SDK ExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4BC676D91AF2A0D300E204C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC676EA1AF2A0D300E204C7 /* Main.storyboard in Resources */,
+				4BC676EF1AF2A0D300E204C7 /* LaunchScreen.xib in Resources */,
+				4BC676EC1AF2A0D300E204C7 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BC676F21AF2A0D400E204C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BC676D71AF2A0D300E204C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC676E71AF2A0D300E204C7 /* ViewController.m in Sources */,
+				4BC676E41AF2A0D300E204C7 /* AppDelegate.m in Sources */,
+				4BC676E11AF2A0D300E204C7 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BC676F01AF2A0D400E204C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC676FB1AF2A0D400E204C7 /* Pixlee_iOS_SDK_ExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BC676F61AF2A0D400E204C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BC676DA1AF2A0D300E204C7 /* Pixlee iOS SDK Example */;
+			targetProxy = 4BC676F51AF2A0D400E204C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4BC676E81AF2A0D300E204C7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BC676E91AF2A0D300E204C7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4BC676ED1AF2A0D300E204C7 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BC676EE1AF2A0D300E204C7 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4BC676FC1AF2A0D400E204C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4BC676FD1AF2A0D400E204C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4BC676FF1AF2A0D400E204C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pixlee iOS SDK Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4BC677001AF2A0D400E204C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Pixlee iOS SDK Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4BC677021AF2A0D400E204C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Pixlee iOS SDK ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pixlee iOS SDK Example.app/Pixlee iOS SDK Example";
+			};
+			name = Debug;
+		};
+		4BC677031AF2A0D400E204C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Pixlee iOS SDK ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pixlee iOS SDK Example.app/Pixlee iOS SDK Example";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BC676D61AF2A0D300E204C7 /* Build configuration list for PBXProject "Pixlee iOS SDK Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BC676FC1AF2A0D400E204C7 /* Debug */,
+				4BC676FD1AF2A0D400E204C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BC676FE1AF2A0D400E204C7 /* Build configuration list for PBXNativeTarget "Pixlee iOS SDK Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BC676FF1AF2A0D400E204C7 /* Debug */,
+				4BC677001AF2A0D400E204C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4BC677011AF2A0D400E204C7 /* Build configuration list for PBXNativeTarget "Pixlee iOS SDK ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BC677021AF2A0D400E204C7 /* Debug */,
+				4BC677031AF2A0D400E204C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4BC676D31AF2A0D300E204C7 /* Project object */;
+}
