@@ -38,23 +38,28 @@
 
 - (NSURLSessionDataTask *)loadNextPageOfPhotos:(void (^)(NSArray *photos, NSError *error))completionBlock {
     static NSString * const PXLAlbumGETRequestString = @"albums/%@/photos";
-    NSString *requestString = [NSString stringWithFormat:PXLAlbumGETRequestString, self.identifier];
-    return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
-        NSArray *responsePhotos = responseObject[@"data"];
-        NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
-        self.lastPageFetched = [responseObject[@"page"] integerValue];
-        self.hasNextPage = [responseObject[@"next"] boolValue];
-        if (photos) {
-            NSMutableArray *mutablePhotos = self.photos.mutableCopy;
-            [mutablePhotos addObjectsFromArray:photos];
-            self.photos = mutablePhotos;
-        }
-        completionBlock(photos, nil);
-    } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
-        if (completionBlock) {
-            completionBlock(nil, error);
-        }
-    }];
+    if (self.hasNextPage) {
+        NSString *requestString = [NSString stringWithFormat:PXLAlbumGETRequestString, self.identifier];
+        return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
+            NSArray *responsePhotos = responseObject[@"data"];
+            NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
+            self.lastPageFetched = [responseObject[@"page"] integerValue];
+            self.hasNextPage = [responseObject[@"next"] boolValue];
+            if (photos) {
+                NSMutableArray *mutablePhotos = self.photos.mutableCopy;
+                [mutablePhotos addObjectsFromArray:photos];
+                self.photos = mutablePhotos;
+            }
+            completionBlock(photos, nil);
+        } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
+            if (completionBlock) {
+                completionBlock(nil, error);
+            }
+        }];
+    } else {
+        completionBlock(nil, nil);
+        return nil;
+    }
 }
 
 @end
