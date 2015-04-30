@@ -56,6 +56,7 @@
 @property (nonatomic, strong) NSURL *platformLink;
 @property (nonatomic, strong) NSArray *products;
 
++ (NSArray *)photosFromArray:(NSArray *)array inAlbum:(PXLAlbum *)album;
 + (instancetype)photoFromDict:(NSDictionary *)dict inAlbum:(PXLAlbum *)album;
 
 @end

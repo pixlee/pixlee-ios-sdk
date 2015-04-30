@@ -40,12 +40,8 @@
     NSString *requestString = [NSString stringWithFormat:PXLAlbumGETRequestString, self.identifier];
     return [[PXLClient sharedClient] GET:requestString parameters:nil success:^(NSURLSessionDataTask * __unused task, id responseObject) {
         NSArray *responsePhotos = responseObject[@"data"];
-        NSMutableArray *photos = @[].mutableCopy;
-        for (NSDictionary *photoDict in responsePhotos) {
-            PXLPhoto *photo = [PXLPhoto photoFromDict:photoDict inAlbum:self];
-            [photos addObject:photo];
-        }
-        NSLog(@"%@", responseObject);
+        NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
+        completionBlock(photos, nil);
     } failure:^(NSURLSessionDataTask * __unused task, NSError *error) {
         if (completionBlock) {
             completionBlock(nil, error);

@@ -12,7 +12,23 @@
 
 @implementation PXLPhoto
 
++ (NSArray *)photosFromArray:(NSArray *)array inAlbum:(PXLAlbum *)album {
+    NSMutableArray *photos = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        PXLPhoto *photo = [self photoFromDict:dict inAlbum:album];
+        [photos addObject:photo];
+    }
+    return photos;
+}
+
 + (instancetype)photoFromDict:(NSDictionary *)dict inAlbum:(PXLAlbum *)album {
+    NSMutableDictionary *filteredDict = dict.mutableCopy;
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[NSNull class]]) {
+            [filteredDict removeObjectForKey:key];
+        }
+    }];
+    dict = filteredDict;
     PXLPhoto *photo = [self new];
     photo.identifier = dict[@"id"];
     photo.photoTitle = dict[@"photo_title"];
@@ -22,7 +38,7 @@
         photo.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     }
     photo.taggedAt = [NSDate dateWithTimeIntervalSince1970:([dict[@"tagged_at"] doubleValue] / 1000)];
-    photo.emailAddress = [self valueOrNilFromDict:dict forKey:@"email_address"];
+    photo.emailAddress = dict[@"email_address"];
     photo.instagramFollowers = [dict[@"instagram_followers"] integerValue];
     photo.twitterFollowers = [dict[@"twitter_followers"] integerValue];
     photo.avatarUrl = [self nilSafeUrlFromDict:dict forKey:@"avatar_url"];
@@ -42,9 +58,9 @@
     photo.likeCount = [dict[@"like_count"] integerValue];
     photo.shareCount = [dict[@"share_count"] integerValue];
     photo.actionLink = [self nilSafeUrlFromDict:dict forKey:@"action_link"];
-    photo.actionLinkText = [self valueOrNilFromDict:dict forKey:@"action_link_text"];
-    photo.actionLinkTitle = [self valueOrNilFromDict:dict forKey:@"action_link_title"];
-    photo.actionLinkPhoto = [self valueOrNilFromDict:dict forKey:@"action_link_photo"];
+    photo.actionLinkText = dict[@"action_link_text"];
+    photo.actionLinkTitle = dict[@"action_link_title"];
+    photo.actionLinkPhoto = dict[@"action_link_photo"];
     photo.updatedAt = [NSDate dateWithTimeIntervalSince1970:([dict[@"updated_at"] doubleValue] / 1000)];
     photo.isStarred = [dict[@"is_starred"] boolValue];
     photo.approved = [dict[@"approved"] boolValue];
@@ -63,20 +79,16 @@
     return photo;
 }
 
-+ (id)valueOrNilFromDict:(NSDictionary *)dict forKey:(NSString *)key {
-    id value = dict[key];
-    if ([value isKindOfClass:[NSNull class]]) {
-        value = nil;
-    }
-    return value;
-}
-
 + (NSURL *)nilSafeUrlFromDict:(NSDictionary *)dict forKey:(NSString *)key {
     NSString *urlString = dict[@"key"];
     if (urlString) {
         return [NSURL URLWithString:urlString];
     }
     return nil;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<PXLPhoto:%@ %@>", self.identifier, self.title];
 }
 
 @end

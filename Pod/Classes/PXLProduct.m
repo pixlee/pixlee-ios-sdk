@@ -20,6 +20,13 @@
 }
 
 + (instancetype)productFromDictionary:(NSDictionary *)dict withPhoto:(PXLPhoto *)photo {
+    NSMutableDictionary *filteredDict = dict.mutableCopy;
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[NSNull class]]) {
+            [filteredDict removeObjectForKey:key];
+        }
+    }];
+    dict = filteredDict;
     PXLProduct *product = [self new];
     product.identifier = dict[@"id"];
     product.photo = photo;
@@ -30,22 +37,14 @@
     if (dict[@"image"]) {
         product.imageUrl = [NSURL URLWithString:dict[@"image"]];
     }
-    product.title = [self valueOrNilFromDict:dict forKey:@"title"];
-    product.sku = [self valueOrNilFromDict:dict forKey:@"sku"];
-    product.productDescription = [self valueOrNilFromDict:dict forKey:@"description"];
+    product.title = dict[@"title"];
+    product.sku = dict[@"sku"];
+    product.productDescription = dict[@"description"];
     return product;
 }
 
-+ (id)valueOrNilFromDict:(NSDictionary *)dict forKey:(NSString *)key {
-    id value = dict[key];
-    if ([value isKindOfClass:[NSNull class]]) {
-        value = nil;
-    }
-    return value;
-}
-
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Product:%@ %@>", self.identifier, self.title];
+    return [NSString stringWithFormat:@"<PXLProduct:%@ %@>", self.identifier, self.title];
 }
 
 @end
