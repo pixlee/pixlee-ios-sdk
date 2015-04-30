@@ -7,6 +7,7 @@
 //
 
 #import "PXLViewController.h"
+#import <pixlee-ios-sdk/PXLClient.h>
 
 @interface PXLViewController ()
 
