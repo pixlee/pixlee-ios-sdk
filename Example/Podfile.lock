@@ -29,6 +29,10 @@ PODS:
   - pixlee-ios-sdk (0.1.0):
     - AFNetworking (~> 2.5.3)
     - Masonry (~> 0.6.1)
+    - SDWebImage (~> 3.7.2)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - Specta (0.5.0)
 
 DEPENDENCIES:
@@ -48,7 +52,8 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
-  pixlee-ios-sdk: 2ea9e90d4bbaeb4c788cf61a5d1e2429e7ab3739
+  pixlee-ios-sdk: 6e8eb00498cd63a58d487602c3caeefdb4654aae
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
 COCOAPODS: 0.36.4

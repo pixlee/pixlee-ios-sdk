@@ -80,7 +80,7 @@
 }
 
 + (NSURL *)nilSafeUrlFromDict:(NSDictionary *)dict forKey:(NSString *)key {
-    NSString *urlString = dict[@"key"];
+    NSString *urlString = dict[key];
     if (urlString) {
         return [NSURL URLWithString:urlString];
     }
@@ -89,6 +89,23 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<PXLPhoto:%@ %@>", self.identifier, self.title];
+}
+
+- (NSURL *)photoUrlForSize:(PXLPhotoSize)photoSize {
+    switch (photoSize) {
+        case PXLPhotoSizeThumbnail:
+            return self.thumbnailUrl;
+            break;
+        case PXLPhotoSizeMedium:
+            return self.mediumUrl;
+            break;
+        case PXLPhotoSizeBig:
+            return self.bigUrl;
+            break;
+        default:
+            return nil;
+            break;
+    }
 }
 
 @end

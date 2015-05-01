@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef NS_ENUM(NSInteger, PXLPhotoSize) {
+    PXLPhotoSizeThumbnail,
+    PXLPhotoSizeMedium,
+    PXLPhotoSizeBig
+};
+
 @class PXLAlbum;
 
 @interface PXLPhoto : NSObject
@@ -58,5 +64,6 @@
 
 + (NSArray *)photosFromArray:(NSArray *)array inAlbum:(PXLAlbum *)album;
 + (instancetype)photoFromDict:(NSDictionary *)dict inAlbum:(PXLAlbum *)album;
+- (NSURL *)photoUrlForSize:(PXLPhotoSize)photoSize;
 
 @end

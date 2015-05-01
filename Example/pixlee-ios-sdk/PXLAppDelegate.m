@@ -17,17 +17,6 @@
 {
     // Override point for customization after application launch.
     [[PXLClient sharedClient] setApiKey:@"ye52amOyfyrMtIPYIkE"];
-    PXLAlbum *album = [PXLAlbum albumWithIdentifier:@"123254"];
-    PXLAlbumSortOptions *sortOptions = [PXLAlbumSortOptions new];
-    sortOptions.ascending = NO;
-    sortOptions.sortType = PXLAlbumSortTypePhotoRank;
-    PXLAlbumFilterOptions *filterOptions = [PXLAlbumFilterOptions new];
-    filterOptions.minInstagramFollowers = 0;
-    album.sortOptions = sortOptions;
-    album.filterOptions = filterOptions;
-    [album loadNextPageOfPhotos:^(NSArray *photos, NSError *error) {
-        NSLog(@"%@", photos);
-    }];
     return YES;
 }
 							

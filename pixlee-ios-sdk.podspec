@@ -36,4 +36,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'AFNetworking', '~> 2.5.3'
   s.dependency 'Masonry', '~> 0.6.1'
+  s.dependency 'SDWebImage', '~> 3.7.2'
 end

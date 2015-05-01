@@ -10,16 +10,18 @@
 
 #import "PXLAlbum.h"
 #import "PXLPhoto.h"
+#import "PXLPhotoCollectionViewCell.h"
 #import <Masonry/Masonry.h>
 
 @interface PXLAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *albumCollectionView;
-@property (nonatomic, strong) PXLAlbum *album;
 
 @end
 
 @implementation PXLAlbumViewController
+
+const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
 
 + (instancetype)albumViewControllerWithAlbumId:(NSString *)albumId {
     PXLAlbumViewController *albumVC = [self new];
@@ -42,10 +44,21 @@
     
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
     self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    self.albumCollectionView.dataSource = self;
+    self.albumCollectionView.delegate = self;
+    self.albumCollectionView.contentInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
+                                                             PXLAlbumViewControllerDefaultMargin,
+                                                             PXLAlbumViewControllerDefaultMargin,
+                                                             PXLAlbumViewControllerDefaultMargin);
     [self.view addSubview:self.albumCollectionView];
     [self.albumCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    [PXLPhotoCollectionViewCell registerWithCollectionView:self.albumCollectionView];
+    [self loadNextPageOfPhotos];
+}
+
+- (void)loadNextPageOfPhotos {
     [self.album loadNextPageOfPhotos:^(NSArray *photos, NSError *error) {
         if (photos.count) {
             NSMutableArray *indexPaths = @[].mutableCopy;
@@ -60,6 +73,10 @@
     }];
 }
 
+- (PXLPhoto *)photoAtIndexPath:(NSIndexPath *)indexPath {
+    return self.album.photos[indexPath.item];
+}
+
 #pragma mark - UICollectionViewDataSource Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -67,11 +84,16 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    PXLPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PXLPhotoCollectionViewCell defaultIdentifier] forIndexPath:indexPath];
+    cell.photoSize = PXLPhotoSizeMedium;
+    cell.photo = [self photoAtIndexPath:indexPath];
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100, 100);
+    CGFloat width = CGRectGetWidth(collectionView.bounds);
+    width = floor((width - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
+    return CGSizeMake(width, width);
 }
 
 @end
