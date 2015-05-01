@@ -13,6 +13,7 @@
 
 @interface PXLAlbum ()
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic) NSInteger lastPageFetched;
 @property (nonatomic) BOOL hasNextPage;
@@ -38,6 +39,11 @@ const NSInteger PXLAlbumDefaultPerPage = 30;
     self.photos = @[];
     self.loadingOperations = @{}.mutableCopy;
     return self;
+}
+
+- (void)setPerPage:(NSInteger)perPage {
+    _perPage = perPage;
+    [self clearPhotosAndPages];
 }
 
 - (void)setSortOptions:(PXLAlbumSortOptions *)sortOptions {

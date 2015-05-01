@@ -25,8 +25,7 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
 
 + (instancetype)albumViewControllerWithAlbumId:(NSString *)albumId {
     PXLAlbumViewController *albumVC = [self new];
-    PXLAlbum *album = [PXLAlbum new];
-    album.identifier = albumId;
+    PXLAlbum *album = [PXLAlbum albumWithIdentifier:albumId];
     albumVC.album = album;
     return albumVC;
 }
