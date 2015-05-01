@@ -22,12 +22,6 @@
 
 @implementation PXLAlbum
 
-// HOW TO DEAL WITH PAGING
-// 1. keep a dictionary of the loading operations keyed by page num
-// 2. when a loading op completes, fill in index gaps with blank PXLPhoto objects if necessary
-// 3. add photos to their correct indices
-// 4. keep track of loaded pages to prevent reloads
-
 const NSInteger PXLAlbumDefaultPerPage = 30;
 
 + (instancetype)albumWithIdentifier:(NSString *)identifier {
