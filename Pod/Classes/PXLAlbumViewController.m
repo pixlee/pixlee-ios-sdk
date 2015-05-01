@@ -96,4 +96,15 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
     return CGSizeMake(width, width);
 }
 
+#pragma mark - UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.albumCollectionView) {
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY >= scrollView.contentSize.height * 0.7) {
+            [self loadNextPageOfPhotos];
+        }
+    }
+}
+
 @end

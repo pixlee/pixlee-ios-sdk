@@ -63,6 +63,9 @@
         if (self.filterOptions) {
             params[@"filter"] = [self.filterOptions urlParamString];
         }
+        if (self.lastPageFetched != NSNotFound) {
+            params[@"page"] = @(self.lastPageFetched + 1);
+        }
         return [[PXLClient sharedClient] GET:requestString parameters:params success:^(NSURLSessionDataTask * __unused task, id responseObject) {
             NSArray *responsePhotos = responseObject[@"data"];
             NSArray *photos = [PXLPhoto photosFromArray:responsePhotos inAlbum:self];
@@ -71,6 +74,7 @@
             if (photos) {
                 NSMutableArray *mutablePhotos = self.photos.mutableCopy;
                 [mutablePhotos addObjectsFromArray:photos];
+                [mutablePhotos insertObjects:photos atIndexes:nil];
                 self.photos = mutablePhotos;
             }
             completionBlock(photos, nil);
