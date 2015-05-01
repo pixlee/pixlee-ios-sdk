@@ -8,30 +8,70 @@
 
 #import "PXLAlbumViewController.h"
 
-@interface PXLAlbumViewController ()
+#import "PXLAlbum.h"
+#import "PXLPhoto.h"
+#import <Masonry/Masonry.h>
+
+@interface PXLAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, strong) UICollectionView *albumCollectionView;
+@property (nonatomic, strong) PXLAlbum *album;
 
 @end
 
 @implementation PXLAlbumViewController
 
++ (instancetype)albumViewControllerWithAlbumId:(NSString *)albumId {
+    PXLAlbumViewController *albumVC = [self new];
+    PXLAlbum *album = [PXLAlbum new];
+    album.identifier = albumId;
+    albumVC.album = album;
+    return albumVC;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+    self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    [self.view addSubview:self.albumCollectionView];
+    [self.albumCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self.album loadNextPageOfPhotos:^(NSArray *photos, NSError *error) {
+        if (photos.count) {
+            NSMutableArray *indexPaths = @[].mutableCopy;
+            NSInteger firstIndex = [self.album.photos indexOfObject:[photos firstObject]];
+            [photos enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger itemNum = firstIndex + idx;
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemNum inSection:0];
+                [indexPaths addObject:indexPath];
+            }];
+            [self.albumCollectionView insertItemsAtIndexPaths:indexPaths];
+        }
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - UICollectionViewDataSource Methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.album.photos.count;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
-*/
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(100, 100);
+}
 
 @end

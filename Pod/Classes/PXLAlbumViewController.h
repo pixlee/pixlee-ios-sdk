@@ -10,4 +10,8 @@
 
 @interface PXLAlbumViewController : UIViewController
 
+@property (nonatomic, readonly) UICollectionView *albumCollectionView;
+
++ (instancetype)albumViewControllerWithAlbumId:(NSString *)albumId;
+
 @end
