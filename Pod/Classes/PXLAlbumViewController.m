@@ -13,10 +13,17 @@
 #import "PXLPhotoCollectionViewCell.h"
 #import <Masonry/Masonry.h>
 
+typedef NS_ENUM(NSInteger, PXLAlbumViewControllerDisplayMode) {
+    PXLAlbumViewControllerDisplayModeGrid,
+    PXLAlbumViewControllerDisplayModeList
+};
+
 @interface PXLAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *albumCollectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *gridLayout, *listLayout;
+@property (nonatomic) PXLAlbumViewControllerDisplayMode albumDisplayMode;
+@property (nonatomic, strong) UIButton *gridButton, *listButton;
 
 @end
 
@@ -34,33 +41,91 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
+        _albumDisplayMode = PXLAlbumViewControllerDisplayModeGrid;
     }
     return self;
 }
 
+- (void)setAlbumDisplayMode:(PXLAlbumViewControllerDisplayMode)albumDisplayMode {
+    if (albumDisplayMode != _albumDisplayMode) {
+        _albumDisplayMode = albumDisplayMode;
+        UICollectionViewFlowLayout *layoutToUse = self.albumDisplayMode == PXLAlbumViewControllerDisplayModeGrid ? self.gridLayout : self.listLayout;
+        [self.albumCollectionView setCollectionViewLayout:layoutToUse animated:YES];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupDisplayButtons];
+    [self setupCollectionView];
+    [self loadNextPageOfPhotos];
+}
+
+- (void)setupDisplayButtons {
     
+    const CGFloat kButtonTopMargin = 20;
+    const CGFloat kButtonHeight = 44;
+    
+    self.gridButton = [self displayButtonWithTitle:NSLocalizedString(@"Grid", nil) selector:@selector(displayButtonPressed:)];
+    [self.view addSubview:self.gridButton];
+    self.listButton = [self displayButtonWithTitle:NSLocalizedString(@"List", nil) selector:@selector(displayButtonPressed:)];
+    [self.view addSubview:self.listButton];
+    
+    self.gridButton.enabled = self.albumDisplayMode != PXLAlbumViewControllerDisplayModeGrid;
+    self.listButton.enabled = self.albumDisplayMode != PXLAlbumViewControllerDisplayModeList;
+    
+    [self.gridButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.top.equalTo(self.view.mas_top).with.offset(kButtonTopMargin);
+        make.right.equalTo(self.view.mas_centerX);
+        make.height.equalTo(@(kButtonHeight));
+    }];
+    [self.listButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_centerX);
+        make.top.equalTo(self.gridButton.mas_top);
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@(kButtonHeight));
+    }];
+}
+
+- (UIButton *)displayButtonWithTitle:(NSString *)title selector:(SEL)selector {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor = [UIColor whiteColor];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:self.view.tintColor forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+- (void)setupCollectionView {
     self.gridLayout = [UICollectionViewFlowLayout new];
     CGFloat cellWidth = CGRectGetWidth(self.view.bounds);
     cellWidth = floor((cellWidth - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
     self.gridLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
+    self.gridLayout.sectionInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
+                                                    PXLAlbumViewControllerDefaultMargin,
+                                                    PXLAlbumViewControllerDefaultMargin,
+                                                    PXLAlbumViewControllerDefaultMargin);
     self.listLayout = [UICollectionViewFlowLayout new];
     self.listLayout.itemSize = CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds));
-    self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.listLayout];
+    UICollectionViewFlowLayout *layoutToUse = self.albumDisplayMode == PXLAlbumViewControllerDisplayModeGrid ? self.gridLayout : self.listLayout;
+    self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layoutToUse];
+    self.albumCollectionView.backgroundColor = [UIColor whiteColor];
     self.albumCollectionView.dataSource = self;
     self.albumCollectionView.delegate = self;
-    self.albumCollectionView.contentInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
-                                                             PXLAlbumViewControllerDefaultMargin,
-                                                             PXLAlbumViewControllerDefaultMargin,
-                                                             PXLAlbumViewControllerDefaultMargin);
+//    self.albumCollectionView.contentInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
+//                                                             PXLAlbumViewControllerDefaultMargin,
+//                                                             PXLAlbumViewControllerDefaultMargin,
+//                                                             PXLAlbumViewControllerDefaultMargin);
     [self.view addSubview:self.albumCollectionView];
     [self.albumCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.equalTo(self.view.mas_left);
+        make.top.equalTo(self.gridButton.mas_bottom);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
     }];
     [PXLPhotoCollectionViewCell registerWithCollectionView:self.albumCollectionView];
-    [self loadNextPageOfPhotos];
 }
 
 - (void)loadNextPageOfPhotos {
@@ -80,6 +145,20 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
 
 - (PXLPhoto *)photoAtIndexPath:(NSIndexPath *)indexPath {
     return self.album.photos[indexPath.item];
+}
+
+#pragma mark - Button Actions
+
+- (void)displayButtonPressed:(UIButton *)button {
+    if (button == self.gridButton) {
+        self.gridButton.enabled = NO;
+        self.listButton.enabled = YES;
+        self.albumDisplayMode = PXLAlbumViewControllerDisplayModeGrid;
+    } else if (button == self.listButton) {
+        self.listButton.enabled = NO;
+        self.gridButton.enabled = YES;
+        self.albumDisplayMode = PXLAlbumViewControllerDisplayModeList;
+    }
 }
 
 #pragma mark - UICollectionViewDataSource Methods
