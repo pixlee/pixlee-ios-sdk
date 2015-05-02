@@ -65,6 +65,10 @@
  */
 + (instancetype)albumWithIdentifier:(NSString *)identifier;
 
+///---------------------
+/// @name Photo Loading
+///---------------------
+
 /**
  Loads the next page of photos from the server. Each page will only be loaded once.
  

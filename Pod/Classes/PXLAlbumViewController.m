@@ -16,6 +16,7 @@
 @interface PXLAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *albumCollectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *gridLayout, *listLayout;
 
 @end
 
@@ -41,8 +42,13 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-    self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    self.gridLayout = [UICollectionViewFlowLayout new];
+    CGFloat cellWidth = CGRectGetWidth(self.view.bounds);
+    cellWidth = floor((cellWidth - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
+    self.gridLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
+    self.listLayout = [UICollectionViewFlowLayout new];
+    self.listLayout.itemSize = CGSizeMake(CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds));
+    self.albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.listLayout];
     self.albumCollectionView.dataSource = self;
     self.albumCollectionView.delegate = self;
     self.albumCollectionView.contentInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
@@ -89,11 +95,11 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = CGRectGetWidth(collectionView.bounds);
-    width = floor((width - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
-    return CGSizeMake(width, width);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    CGFloat width = CGRectGetWidth(collectionView.bounds);
+//    width = floor((width - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
+//    return CGSizeMake(width, width);
+//}
 
 #pragma mark - UIScrollViewDelegate Methods
 
