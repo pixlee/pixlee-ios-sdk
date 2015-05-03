@@ -60,25 +60,25 @@
             make.height.equalTo(self.photoImageView.mas_width);
             make.center.equalTo(self.view);
         }];
+        [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.right.equalTo(self.dateLabel.mas_left);
+            make.bottom.equalTo(self.photoImageView.mas_top);
+        }];
+        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.usernameLabel.mas_right);
+            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
+            make.bottom.equalTo(self.photoImageView.mas_top);
+        }];
         [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view.mas_left).with.offset(kMargin);
             make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
             make.top.equalTo(self.photoImageView.mas_bottom);
         }];
-        [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
-            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
-            make.top.equalTo(self.sourceLabel.mas_bottom);
-        }];
-        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
-            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
-            make.top.equalTo(self.usernameLabel.mas_bottom);
-        }];
         [self.captionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view.mas_left).with.offset(kMargin);
             make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
-            make.top.equalTo(self.dateLabel.mas_bottom);
+            make.top.equalTo(self.sourceLabel.mas_bottom);
             make.bottom.equalTo(self.view.mas_bottom).with.offset(-kMargin);
         }];
     }
@@ -101,6 +101,7 @@
     [self.view addSubview:self.usernameLabel];
     
     self.dateLabel = [UILabel new];
+    self.dateLabel.textAlignment = NSTextAlignmentRight;
     [self.view addSubview:self.dateLabel];
     
     self.captionLabel = [UILabel new];
@@ -115,9 +116,9 @@
     [self.photoImageView sd_setImageWithURL:[photo photoUrlForSize:PXLPhotoSizeBig]];
     
     self.sourceLabel.text = photo.source ?: @"";
-    self.usernameLabel.text = photo.username ?: @"";
+    self.usernameLabel.text = photo.username ? [NSString stringWithFormat:@"@%@", photo.username] : @"";
     if (photo.updatedAt) {
-        self.dateLabel.text = [[[self class] dateFormatter] stringForTimeIntervalFromDate:photo.updatedAt toDate:[NSDate date]];
+        self.dateLabel.text = [[[self class] dateFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:photo.updatedAt];
     } else {
         self.dateLabel.text = @"";
     }
