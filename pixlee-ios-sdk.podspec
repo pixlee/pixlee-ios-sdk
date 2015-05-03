@@ -37,4 +37,5 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking', '~> 2.5.3'
   s.dependency 'Masonry', '~> 0.6.1'
   s.dependency 'SDWebImage', '~> 3.7.2'
+  s.dependency 'FormatterKit/TimeIntervalFormatter', '~> 1.8.0'
 end

@@ -114,10 +114,6 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
     self.albumCollectionView.backgroundColor = [UIColor whiteColor];
     self.albumCollectionView.dataSource = self;
     self.albumCollectionView.delegate = self;
-//    self.albumCollectionView.contentInset = UIEdgeInsetsMake(PXLAlbumViewControllerDefaultMargin,
-//                                                             PXLAlbumViewControllerDefaultMargin,
-//                                                             PXLAlbumViewControllerDefaultMargin,
-//                                                             PXLAlbumViewControllerDefaultMargin);
     [self.view addSubview:self.albumCollectionView];
     [self.albumCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
