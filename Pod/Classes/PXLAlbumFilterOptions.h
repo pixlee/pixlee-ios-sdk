@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ `PXLAlbumFilterOptions` is used to control how an album filters the photos it loads. Create an instance of this class and set it to an album to control the options available as properties of this class.
+ */
+
 @interface PXLAlbumFilterOptions : NSObject
 
 @property (nonatomic) NSUInteger minInstagramFollowers;
