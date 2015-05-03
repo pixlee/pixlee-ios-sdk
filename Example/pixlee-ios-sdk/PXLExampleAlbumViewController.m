@@ -18,8 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PXLAlbum *album = [PXLAlbum new];
-    album.identifier = @"123254";
+    PXLAlbum *album = [PXLAlbum albumWithIdentifier:@"123254"];
     self.album = album;
     [self loadNextPageOfPhotos];
 }

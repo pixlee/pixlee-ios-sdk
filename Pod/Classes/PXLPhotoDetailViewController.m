@@ -11,12 +11,14 @@
 #import "PXLPhoto.h"
 
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
+#import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PXLPhotoDetailViewController ()
 
 @property (nonatomic, strong) UIImageView *photoImageView;
 @property (nonatomic, strong) UILabel *sourceLabel, *usernameLabel, *dateLabel, *captionLabel;
+@property (nonatomic) BOOL hasInstalledViewConstraints;
 
 @end
 
@@ -48,7 +50,38 @@
 
 - (void)updateViewConstraints {
     
-    
+    if (!self.hasInstalledViewConstraints) {
+        self.hasInstalledViewConstraints = YES;
+        
+        const CGFloat kMargin = 15;
+        
+        [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(self.view.mas_width);
+            make.height.equalTo(self.photoImageView.mas_width);
+            make.center.equalTo(self.view);
+        }];
+        [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
+            make.top.equalTo(self.photoImageView.mas_bottom);
+        }];
+        [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
+            make.top.equalTo(self.sourceLabel.mas_bottom);
+        }];
+        [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
+            make.top.equalTo(self.usernameLabel.mas_bottom);
+        }];
+        [self.captionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
+            make.top.equalTo(self.dateLabel.mas_bottom);
+            make.bottom.equalTo(self.view.mas_bottom).with.offset(-kMargin);
+        }];
+    }
     
     [super updateViewConstraints];
 }
@@ -73,6 +106,8 @@
     self.captionLabel = [UILabel new];
     self.captionLabel.numberOfLines = 0;
     [self.view addSubview:self.captionLabel];
+    
+    [self.view setNeedsUpdateConstraints];
 }
 
 - (void)configureWithPhoto:(PXLPhoto *)photo {

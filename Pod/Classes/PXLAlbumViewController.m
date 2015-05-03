@@ -11,6 +11,7 @@
 #import "PXLAlbum.h"
 #import "PXLPhoto.h"
 #import "PXLPhotoCollectionViewCell.h"
+#import "PXLPhotoDetailViewController.h"
 #import <Masonry/Masonry.h>
 
 typedef NS_ENUM(NSInteger, PXLAlbumViewControllerDisplayMode) {
@@ -157,6 +158,13 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
     }
 }
 
+- (void)presentDetailVCForPhoto:(PXLPhoto *)photo {
+    PXLPhotoDetailViewController *detailVC = [PXLPhotoDetailViewController new];
+    detailVC.photo = photo;
+    UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:detailVC];
+    [self presentViewController:detailNav animated:YES completion:nil];
+}
+
 #pragma mark - UICollectionViewDataSource Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -170,11 +178,12 @@ const CGFloat PXLAlbumViewControllerDefaultMargin = 15;
     return cell;
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat width = CGRectGetWidth(collectionView.bounds);
-//    width = floor((width - 3 * PXLAlbumViewControllerDefaultMargin) / 2);
-//    return CGSizeMake(width, width);
-//}
+#pragma mark - UICollectionViewDelegate Methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PXLPhoto *photo = [self photoAtIndexPath:indexPath];
+    [self presentDetailVCForPhoto:photo];
+}
 
 #pragma mark - UIScrollViewDelegate Methods
 
