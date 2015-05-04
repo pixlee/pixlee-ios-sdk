@@ -4,13 +4,13 @@
 [![License](https://img.shields.io/cocoapods/l/pixlee-ios-sdk.svg?style=flat)](http://cocoapods.org/pods/pixlee-ios-sdk)
 [![Platform](https://img.shields.io/cocoapods/p/pixlee-ios-sdk.svg?style=flat)](http://cocoapods.org/pods/pixlee-ios-sdk)
 
-## Usage
+This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Getting Started
 
-## Requirements
+This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
 
-## Installation
+### Installation
 
 pixlee-ios-sdk is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -19,9 +19,11 @@ it, simply add the following line to your Podfile:
 pod "pixlee-ios-sdk"
 ```
 
-## Author
+### Example
 
-Tim Shi, timgshi@gmail.com
+To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `PXLAppDelegate.m` set `PXLClientAPIKey` to your API key (available from the Pixlee dashboard). Then in `PXLExampleAlbumViewController.m` set the album id that you wish to display as `PXLAlbumIdentifier`. 
+
+
 
 ## License
 

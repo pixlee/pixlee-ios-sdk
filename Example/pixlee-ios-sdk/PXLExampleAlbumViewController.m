@@ -16,9 +16,11 @@
 
 @implementation PXLExampleAlbumViewController
 
+static NSString * const PXLAlbumIdentifier = @"123254";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PXLAlbum *album = [PXLAlbum albumWithIdentifier:@"123254"];
+    PXLAlbum *album = [PXLAlbum albumWithIdentifier:PXLAlbumIdentifier];
     self.album = album;
     [self loadNextPageOfPhotos];
 }
