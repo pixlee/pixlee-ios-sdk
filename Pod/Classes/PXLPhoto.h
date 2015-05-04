@@ -9,7 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef NS_ENUM(NSInteger, PXLPhotoSize) {
+    PXLPhotoSizeThumbnail,
+    PXLPhotoSizeMedium,
+    PXLPhotoSizeBig
+};
+
 @class PXLAlbum;
+
+/**
+ `PXLPhoto` represents a photo object in the Pixlee API. `PXLPhoto` objects are created by their parent `PXLAlbum` when loaded from the server.
+ */
 
 @interface PXLPhoto : NSObject
 
@@ -56,7 +66,18 @@
 @property (nonatomic, strong) NSURL *platformLink;
 @property (nonatomic, strong) NSArray *products;
 
+/**
+ This function creates and returns an array of `PXLPhoto` objects when passed in an array that comes from the Pixlee API.
+ 
+ @param array The array object loaded from the Pixlee API.
+ @param album The parent album for the photos.
+ 
+ @return An array containing `PXLPhoto` objects.
+ */
 + (NSArray *)photosFromArray:(NSArray *)array inAlbum:(PXLAlbum *)album;
+
 + (instancetype)photoFromDict:(NSDictionary *)dict inAlbum:(PXLAlbum *)album;
+
+- (NSURL *)photoUrlForSize:(PXLPhotoSize)photoSize;
 
 @end

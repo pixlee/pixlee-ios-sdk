@@ -10,6 +10,10 @@
 
 @class PXLPhoto;
 
+/**
+ `PXLProduct` represents a product object in the Pixlee API. `PXLProduct` objects are created by their parent `PXLPhoto` when loaded from the server.
+ */
+
 @interface PXLProduct : NSObject
 
 @property (nonatomic, copy) NSString *identifier;

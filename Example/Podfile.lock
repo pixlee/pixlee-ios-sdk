@@ -25,8 +25,16 @@ PODS:
     - Expecta (~> 0.3)
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
+  - FormatterKit/TimeIntervalFormatter (1.8.0)
+  - Masonry (0.6.1)
   - pixlee-ios-sdk (0.1.0):
     - AFNetworking (~> 2.5.3)
+    - FormatterKit/TimeIntervalFormatter (~> 1.8.0)
+    - Masonry (~> 0.6.1)
+    - SDWebImage (~> 3.7.2)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - Specta (0.5.0)
 
 DEPENDENCIES:
@@ -45,7 +53,10 @@ SPEC CHECKSUMS:
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
-  pixlee-ios-sdk: 18370320eaf81f0470e5f302013c06d4545bf941
+  FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  pixlee-ios-sdk: edeab04048c697ebc1fa65693948f0f759ebbe0d
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.0
