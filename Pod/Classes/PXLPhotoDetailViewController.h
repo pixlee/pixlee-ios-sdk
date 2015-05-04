@@ -1,6 +1,6 @@
 //
 //  PXLPhotoDetailViewController.h
-//  Pods
+//  pixlee-ios-sdk
 //
 //  Created by Tim Shi on 5/3/15.
 //

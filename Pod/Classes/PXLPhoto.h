@@ -1,6 +1,6 @@
 //
 //  PXLPhoto.h
-//  Pods
+//  pixlee-ios-sdk
 //
 //  Created by Tim Shi on 4/30/15.
 //
