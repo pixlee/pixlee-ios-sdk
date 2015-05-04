@@ -35,7 +35,7 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
-  - Specta (0.5.0)
+  - Specta (1.0.0)
 
 DEPENDENCIES:
   - Expecta
@@ -57,6 +57,6 @@ SPEC CHECKSUMS:
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   pixlee-ios-sdk: edeab04048c697ebc1fa65693948f0f759ebbe0d
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
-  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+  Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
 
 COCOAPODS: 0.37.0
