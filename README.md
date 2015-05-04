@@ -35,7 +35,7 @@ If a user taps on a photo in the `PXLAlbumViewController`, we present a detail v
 * a timestamp showing when the photo was posted
 * the platform source of the photo (e.g. Instagram)
 * the photo's caption (if one is available)
-* any products associated with that photo
+* any products associated with that photo (displayed as a horizontal list of products)
 
 ### Example
 
