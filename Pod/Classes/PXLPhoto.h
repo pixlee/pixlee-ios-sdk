@@ -80,4 +80,6 @@ typedef NS_ENUM(NSInteger, PXLPhotoSize) {
 
 - (NSURL *)photoUrlForSize:(PXLPhotoSize)photoSize;
 
+- (UIImage *)sourceIconImage;
+
 @end

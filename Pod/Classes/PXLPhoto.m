@@ -108,4 +108,21 @@
     }
 }
 
+- (UIImage *)sourceIconImage {
+    if ([self.source isEqualToString:@"instagram"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/instagram"];
+    } else if ([self.source isEqualToString:@"facebook"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/facebook"];
+    } else if ([self.source isEqualToString:@"pinterest"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/pinterest"];
+    } else if ([self.source isEqualToString:@"tumblr"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/tumblr"];
+    } else if ([self.source isEqualToString:@"twitter"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/twitter"];
+    } else if ([self.source isEqualToString:@"vine"]) {
+        return [UIImage imageNamed:@"pixlee-ios-sdk.bundle/vine"];
+    }
+    return nil;
+}
+
 @end

@@ -16,7 +16,7 @@
 
 @interface PXLPhotoDetailViewController ()
 
-@property (nonatomic, strong) UIImageView *photoImageView;
+@property (nonatomic, strong) UIImageView *photoImageView, *sourceIconImageView;
 @property (nonatomic, strong) UILabel *sourceLabel, *usernameLabel, *dateLabel, *captionLabel;
 @property (nonatomic) BOOL hasInstalledViewConstraints;
 
@@ -54,14 +54,22 @@
         self.hasInstalledViewConstraints = YES;
         
         const CGFloat kMargin = 15;
+        const CGFloat kSourceIconHeight = 20;
+        const CGFloat kSourceIconMargin = 5;
         
         [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.view.mas_width);
             make.height.equalTo(self.photoImageView.mas_width);
             make.center.equalTo(self.view);
         }];
-        [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.sourceIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view.mas_left).with.offset(kMargin);
+            make.bottom.equalTo(self.photoImageView.mas_top);
+            make.height.equalTo(@(kSourceIconHeight));
+            make.width.equalTo(self.sourceIconImageView.mas_height);
+        }];
+        [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.sourceIconImageView.mas_right).with.offset(kSourceIconMargin);
             make.right.equalTo(self.dateLabel.mas_left);
             make.bottom.equalTo(self.photoImageView.mas_top);
         }];
@@ -94,6 +102,10 @@
     self.photoImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.photoImageView];
     
+    self.sourceIconImageView = [UIImageView new];
+    self.sourceIconImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:self.sourceIconImageView];
+    
     self.sourceLabel = [UILabel new];
     [self.view addSubview:self.sourceLabel];
     
@@ -114,6 +126,8 @@
 - (void)configureWithPhoto:(PXLPhoto *)photo {
     self.photoImageView.image = nil;
     [self.photoImageView sd_setImageWithURL:[photo photoUrlForSize:PXLPhotoSizeBig]];
+    
+    self.sourceIconImageView.image = [photo sourceIconImage];
     
     self.sourceLabel.text = photo.source ?: @"";
     self.usernameLabel.text = photo.username ? [NSString stringWithFormat:@"@%@", photo.username] : @"";
