@@ -46,6 +46,7 @@
     
     self.productImageView = [UIImageView new];
     self.productImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.productImageView.clipsToBounds = YES;
     [self.contentView addSubview:self.productImageView];
     
     self.actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -85,7 +86,7 @@
 
 - (void)configureWithProduct:(PXLProduct *)product {
     self.productImageView.image = nil;
-    [self.productImageView sd_setImageWithURL:product.link];
+    [self.productImageView sd_setImageWithURL:product.imageUrl];
     [self.actionButton setTitle:product.linkText forState:UIControlStateNormal];
 }
 

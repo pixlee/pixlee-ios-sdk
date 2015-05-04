@@ -9,15 +9,17 @@
 #import "PXLPhotoDetailViewController.h"
 
 #import "PXLPhoto.h"
+#import "PXLProductCollectionViewCell.h"
 
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
 #import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface PXLPhotoDetailViewController ()
+@interface PXLPhotoDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIImageView *photoImageView, *sourceIconImageView;
 @property (nonatomic, strong) UILabel *usernameLabel, *dateLabel, *captionLabel;
+@property (nonatomic, strong) UICollectionView *productCollectionView;
 @property (nonatomic) BOOL hasInstalledViewConstraints;
 
 @end
@@ -56,6 +58,7 @@
         const CGFloat kMargin = 15;
         const CGFloat kSourceIconHeight = 20;
         const CGFloat kSourceIconMargin = 5;
+        const CGFloat kProductCollectionViewHeight = 50;
         
         [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.view.mas_width);
@@ -82,7 +85,13 @@
             make.left.equalTo(self.view.mas_left).with.offset(kMargin);
             make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
             make.top.equalTo(self.photoImageView.mas_bottom);
-            make.bottom.lessThanOrEqualTo(self.view.mas_bottom).with.offset(-kMargin);
+            make.bottom.lessThanOrEqualTo(self.productCollectionView.mas_top).with.offset(-kMargin);
+        }];
+        [self.productCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.bottom.equalTo(self.view.mas_bottom);
+            make.height.equalTo(@(kProductCollectionViewHeight));
         }];
     }
     
@@ -110,7 +119,20 @@
     
     self.captionLabel = [UILabel new];
     self.captionLabel.numberOfLines = 0;
+    self.captionLabel.adjustsFontSizeToFitWidth = YES;
+    self.captionLabel.minimumScaleFactor = 0.5;
     [self.view addSubview:self.captionLabel];
+    
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.productCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    self.productCollectionView.dataSource = self;
+    self.productCollectionView.delegate = self;
+    self.productCollectionView.backgroundColor = [UIColor whiteColor];
+    self.productCollectionView.alwaysBounceHorizontal = YES;
+    self.productCollectionView.pagingEnabled = YES;
+    [PXLProductCollectionViewCell registerWithCollectionView:self.productCollectionView];
+    [self.view addSubview:self.productCollectionView];
     
     [self.view setNeedsUpdateConstraints];
 }
@@ -134,6 +156,31 @@
 
 - (void)doneButtonPressed {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)handleActionButtonPressedForProdcut:(PXLProduct *)product {
+    // Open the URL or deep link into app here.
+}
+
+#pragma mark - UICollectionViewDataSource Methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.photo.products.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    PXLProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PXLProductCollectionViewCell defaultIdentifier] forIndexPath:indexPath];
+    cell.product = self.photo.products[indexPath.item];
+    cell.actionButtonPressedForProduct = ^(PXLProduct *product) {
+        [self handleActionButtonPressedForProdcut:product];
+    };
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout Methods
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return collectionView.bounds.size;
 }
 
 @end
