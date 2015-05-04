@@ -17,7 +17,7 @@
 @interface PXLPhotoDetailViewController ()
 
 @property (nonatomic, strong) UIImageView *photoImageView, *sourceIconImageView;
-@property (nonatomic, strong) UILabel *sourceLabel, *usernameLabel, *dateLabel, *captionLabel;
+@property (nonatomic, strong) UILabel *usernameLabel, *dateLabel, *captionLabel;
 @property (nonatomic) BOOL hasInstalledViewConstraints;
 
 @end
@@ -78,16 +78,11 @@
             make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
             make.bottom.equalTo(self.photoImageView.mas_top);
         }];
-        [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left).with.offset(kMargin);
-            make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
-            make.top.equalTo(self.photoImageView.mas_bottom);
-        }];
         [self.captionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view.mas_left).with.offset(kMargin);
             make.right.equalTo(self.view.mas_right).with.offset(-kMargin);
-            make.top.equalTo(self.sourceLabel.mas_bottom);
-            make.bottom.equalTo(self.view.mas_bottom).with.offset(-kMargin);
+            make.top.equalTo(self.photoImageView.mas_bottom);
+            make.bottom.lessThanOrEqualTo(self.view.mas_bottom).with.offset(-kMargin);
         }];
     }
     
@@ -105,9 +100,6 @@
     self.sourceIconImageView = [UIImageView new];
     self.sourceIconImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.sourceIconImageView];
-    
-    self.sourceLabel = [UILabel new];
-    [self.view addSubview:self.sourceLabel];
     
     self.usernameLabel = [UILabel new];
     [self.view addSubview:self.usernameLabel];
@@ -129,7 +121,6 @@
     
     self.sourceIconImageView.image = [photo sourceIconImage];
     
-    self.sourceLabel.text = photo.source ?: @"";
     self.usernameLabel.text = photo.username ? [NSString stringWithFormat:@"@%@", photo.username] : @"";
     if (photo.updatedAt) {
         self.dateLabel.text = [[[self class] dateFormatter] stringForTimeIntervalFromDate:[NSDate date] toDate:photo.updatedAt];
