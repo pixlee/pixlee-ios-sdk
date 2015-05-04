@@ -1,28 +1,15 @@
-#
-# Be sure to run `pod lib lint pixlee-ios-sdk.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "pixlee-ios-sdk"
   s.version          = "0.1.0"
-  s.summary          = "A short description of pixlee-ios-sdk."
+  s.summary          = "A native Objective-C wrapper for the Pixlee album API."
   s.description      = <<-DESC
-                       An optional longer description of pixlee-ios-sdk
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/pixlee-ios-sdk"
+  s.homepage         = "https://bitbucket.org/pixlee/pixlee-ios-sdk"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Tim Shi" => "timgshi@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/pixlee-ios-sdk.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Awad Sayeed" => "awad@pixleeteam.com" }
+  s.source           = { :git => "https://timshi@bitbucket.org/pixlee/pixlee-ios-sdk.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -31,9 +18,6 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'pixlee-ios-sdk' => ['Pod/Assets/*.png']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'AFNetworking', '~> 2.5.3'
   s.dependency 'Masonry', '~> 0.6.1'
   s.dependency 'SDWebImage', '~> 3.7.2'
