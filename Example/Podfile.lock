@@ -55,7 +55,7 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
-  pixlee-ios-sdk: edeab04048c697ebc1fa65693948f0f759ebbe0d
+  pixlee-ios-sdk: 84cf94b5f30087e0d3b1c1609333f480e2dfdae2
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
 
