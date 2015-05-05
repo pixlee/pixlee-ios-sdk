@@ -111,6 +111,8 @@
     [self.view addSubview:self.sourceIconImageView];
     
     self.usernameLabel = [UILabel new];
+    self.usernameLabel.adjustsFontSizeToFitWidth = YES;
+    self.usernameLabel.minimumScaleFactor = 0.5;
     [self.view addSubview:self.usernameLabel];
     
     self.dateLabel = [UILabel new];
