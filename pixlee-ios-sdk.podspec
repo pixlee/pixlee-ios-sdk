@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started.
                        DESC
-  s.homepage         = "httpshttps://github.com/pixlee/pixlee-ios"
+  s.homepage         = "https://github.com/pixlee/pixlee-ios"
   s.license          = 'MIT'
   s.author           = { "Awad Sayeed" => "awad@pixleeteam.com" }
   s.source           = { :git => "https://github.com/pixlee/pixlee-ios.git", :tag => s.version.to_s }
