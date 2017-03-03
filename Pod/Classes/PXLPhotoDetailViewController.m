@@ -8,6 +8,7 @@
 
 #import "PXLPhotoDetailViewController.h"
 
+#import "PXLProduct.h"
 #import "PXLPhoto.h"
 #import "PXLProductCollectionViewCell.h"
 
@@ -161,7 +162,11 @@
 }
 
 - (void)handleActionButtonPressedForProdcut:(PXLProduct *)product {
-    // Open the URL or deep link into app here.
+    if (product.link) {
+        const NSString *url = [product.link.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [[UIApplication sharedApplication] openURL: [[NSURL alloc] initWithString:url]];
+    }
+
 }
 
 #pragma mark - UICollectionViewDataSource Methods
