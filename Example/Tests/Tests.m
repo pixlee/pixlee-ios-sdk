@@ -3,7 +3,6 @@
 //  pixlee-ios-sdkTests
 //
 //  Created by Tim Shi on 04/30/2015.
-//  Copyright (c) 2014 Tim Shi. All rights reserved.
 //
 
 SpecBegin(InitialSpecs)
