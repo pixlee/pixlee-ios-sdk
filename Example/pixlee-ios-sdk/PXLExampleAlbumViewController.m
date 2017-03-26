@@ -18,6 +18,7 @@
 @implementation PXLExampleAlbumViewController
 
 #warning Replace with your Pixlee album identifier.
+
 static NSString * const PXLAlbumIdentifier = @"<YOUR ALBUM IDENTIFIER HERE>";
 
 - (void)viewDidLoad {
