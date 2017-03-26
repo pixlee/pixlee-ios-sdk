@@ -7,8 +7,8 @@
 
 #import "PXLAppDelegate.h"
 
-#import <pixlee-ios-sdk/PXLClient.h>
-#import <pixlee-ios-sdk/PXLAlbum.h>
+#import "pixlee-ios-sdk/PXLClient.h"
+#import "pixlee-ios-sdk/PXLAlbum.h"
 
 @implementation PXLAppDelegate
 
