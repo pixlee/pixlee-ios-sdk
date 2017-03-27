@@ -41,7 +41,9 @@ If a user taps on a photo in the `PXLAlbumViewController`, we present a detail v
 
 ### Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `PXLAppDelegate.m` set `PXLClientAPIKey` to your API key (available from the Pixlee dashboard). Then in `PXLExampleAlbumViewController.m` set the album id that you wish to display as `PXLAlbumIdentifier`. Run the project and you should see a grid of photos from that album.
+To run the example project, clone the repo, and run `pod update` from the Example directory first. Then in `PXLAppDelegate.m` set `PXLClientAPIKey` to your API key (available from the Pixlee dashboard). Then in `PXLExampleAlbumViewController.m` set the album id that you wish to display as `PXLAlbumIdentifier`.
+
+To run the project, open pixlee-ios-sdk.xcworkspace in Xcode.  Run the project and you should see a grid of photos from that album.
 
 ## License
 
