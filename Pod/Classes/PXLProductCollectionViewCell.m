@@ -86,8 +86,9 @@
 
 - (void)configureWithProduct:(PXLProduct *)product {
     self.productImageView.image = nil;
-    [self.productImageView sd_setImageWithURL:product.imageUrl];
-    [self.actionButton setTitle:product.linkText forState:UIControlStateNormal];
+    const NSString *url = [product.imageUrl.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self.productImageView sd_setImageWithURL:[[NSURL alloc] initWithString:url]];
+    [self.actionButton setTitle:[product.linkText stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forState:UIControlStateNormal];
 }
 
 - (void)actionButtonPressed {

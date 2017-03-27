@@ -1,10 +1,14 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'pixlee-ios-sdk', :exclusive => true do
+platform :ios, '8.0'
+inhibit_all_warnings!
+use_frameworks!
+
+target 'pixlee-ios-sdk' do
   pod "pixlee-ios-sdk", :path => "../"
 end
 
-target 'Tests', :exclusive => true do
+target 'Tests' do
   pod "pixlee-ios-sdk", :path => "../"
 
   pod 'Specta'

@@ -3,14 +3,13 @@
 //  pixlee-ios-sdk
 //
 //  Created by Tim Shi on 04/30/2015.
-//  Copyright (c) 2014 Tim Shi. All rights reserved.
 //
 
 #import "PXLExampleAlbumViewController.h"
-#import <pixlee-ios-sdk/PXLAlbum.h>
-#import <pixlee-ios-sdk/PXLAlbumFilterOptions.h>
-#import <pixlee-ios-sdk/PXLAlbumSortOptions.h>
-#import <pixlee-ios-sdk/PXLClient.h>
+#import "pixlee-ios-sdk/PXLAlbum.h"
+#import "pixlee-ios-sdk/PXLAlbumFilterOptions.h"
+#import "pixlee-ios-sdk/PXLAlbumSortOptions.h"
+#import "pixlee-ios-sdk/PXLClient.h"
 
 @interface PXLExampleAlbumViewController ()
 
@@ -19,6 +18,7 @@
 @implementation PXLExampleAlbumViewController
 
 #warning Replace with your Pixlee album identifier.
+
 static NSString * const PXLAlbumIdentifier = @"<YOUR ALBUM IDENTIFIER HERE>";
 
 - (void)viewDidLoad {
