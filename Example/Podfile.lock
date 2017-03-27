@@ -47,7 +47,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   pixlee-ios-sdk:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
