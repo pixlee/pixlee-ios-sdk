@@ -47,7 +47,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   pixlee-ios-sdk:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   FormatterKit: 4b8f29acc9b872d5d12a63efb560661e8f2e1b98
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  pixlee-ios-sdk: be8653196f7f1c323ee0f1c58c823e39e4bdd36e
+  pixlee-ios-sdk: cb7e176ea2e66f031fbdd21bbc99dde5b4f89193
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Specta: f506f3a8361de16bc0dcf3b17b75e269072ba465
 

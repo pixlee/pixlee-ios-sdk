@@ -6,10 +6,10 @@
 //
 
 #import "PXLExampleAlbumViewController.h"
-#import "pixlee-ios-sdk/PXLAlbum.h"
-#import "pixlee-ios-sdk/PXLAlbumFilterOptions.h"
-#import "pixlee-ios-sdk/PXLAlbumSortOptions.h"
-#import "pixlee-ios-sdk/PXLClient.h"
+#import <pixlee_ios_sdk/PXLAlbum.h>
+#import <pixlee_ios_sdk/PXLAlbumFilterOptions.h>
+#import <pixlee_ios_sdk/PXLAlbumSortOptions.h>
+#import <pixlee_ios_sdk/PXLClient.h>
 
 @interface PXLExampleAlbumViewController ()
 
