@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0513F598A53011E9B5233E3C /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81F03C83E381FF82A04AA98 /* Pods_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -17,29 +16,102 @@
 		6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F59F195388D20070C39A /* Main_iPhone.storyboard */; };
 		6003F5A7195388D20070C39A /* PXLExampleAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* PXLExampleAlbumViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
-		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
-		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		76ED54F51E88709700B7E8F2 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ED54F31E88709700B7E8F2 /* Default-568h.png */; };
 		76ED54F61E88709700B7E8F2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76ED54F41E88709700B7E8F2 /* Default-568h@2x.png */; };
-		8C6B7A3516DDED36D948985E /* Pods_pixlee_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD80F2E9551ECC55DEA11D0C /* Pods_pixlee_ios_sdk.framework */; };
+		CDB401E11E89CF060098CBF2 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DD1E89CF060098CBF2 /* WebImage.framework */; };
+		CDB401E21E89CF060098CBF2 /* WebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DD1E89CF060098CBF2 /* WebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401E31E89CF060098CBF2 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DE1E89CF060098CBF2 /* Masonry.framework */; };
+		CDB401E41E89CF060098CBF2 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DE1E89CF060098CBF2 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401E51E89CF060098CBF2 /* FormatterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DF1E89CF060098CBF2 /* FormatterKit.framework */; };
+		CDB401E61E89CF060098CBF2 /* FormatterKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401DF1E89CF060098CBF2 /* FormatterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401E71E89CF070098CBF2 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401E01E89CF060098CBF2 /* AFNetworking.framework */; };
+		CDB401E81E89CF070098CBF2 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDB401E01E89CF060098CBF2 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401EB1E89D0190098CBF2 /* WebImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB401DD1E89CF060098CBF2 /* WebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401EC1E89D0190098CBF2 /* Masonry.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB401DE1E89CF060098CBF2 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401ED1E89D0190098CBF2 /* FormatterKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB401DF1E89CF060098CBF2 /* FormatterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB401EE1E89D0190098CBF2 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB401E01E89CF060098CBF2 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CDB4022C1E89D49E0098CBF2 /* PXLAlbum.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402181E89D49E0098CBF2 /* PXLAlbum.h */; };
+		CDB4022D1E89D49E0098CBF2 /* PXLAlbum.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402191E89D49E0098CBF2 /* PXLAlbum.m */; };
+		CDB4022E1E89D49E0098CBF2 /* PXLAlbumFilterOptions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021A1E89D49E0098CBF2 /* PXLAlbumFilterOptions.h */; };
+		CDB4022F1E89D49E0098CBF2 /* PXLAlbumFilterOptions.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021B1E89D49E0098CBF2 /* PXLAlbumFilterOptions.m */; };
+		CDB402301E89D49E0098CBF2 /* PXLAlbumSortOptions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021C1E89D49E0098CBF2 /* PXLAlbumSortOptions.h */; };
+		CDB402311E89D49E0098CBF2 /* PXLAlbumSortOptions.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021D1E89D49E0098CBF2 /* PXLAlbumSortOptions.m */; };
+		CDB402321E89D49E0098CBF2 /* PXLAlbumViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021E1E89D49E0098CBF2 /* PXLAlbumViewController.h */; };
+		CDB402331E89D49E0098CBF2 /* PXLAlbumViewController.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4021F1E89D49E0098CBF2 /* PXLAlbumViewController.m */; };
+		CDB402341E89D49E0098CBF2 /* PXLClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402201E89D49E0098CBF2 /* PXLClient.h */; };
+		CDB402351E89D49E0098CBF2 /* PXLClient.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402211E89D49E0098CBF2 /* PXLClient.m */; };
+		CDB402361E89D49E0098CBF2 /* PXLPhoto.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402221E89D49E0098CBF2 /* PXLPhoto.h */; };
+		CDB402371E89D49E0098CBF2 /* PXLPhoto.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402231E89D49E0098CBF2 /* PXLPhoto.m */; };
+		CDB402381E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402241E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.h */; };
+		CDB402391E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402251E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.m */; };
+		CDB4023A1E89D49E0098CBF2 /* PXLPhotoDetailViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402261E89D49E0098CBF2 /* PXLPhotoDetailViewController.h */; };
+		CDB4023B1E89D49E0098CBF2 /* PXLPhotoDetailViewController.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402271E89D49E0098CBF2 /* PXLPhotoDetailViewController.m */; };
+		CDB4023C1E89D49E0098CBF2 /* PXLProduct.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402281E89D49E0098CBF2 /* PXLProduct.h */; };
+		CDB4023D1E89D49E0098CBF2 /* PXLProduct.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB402291E89D49E0098CBF2 /* PXLProduct.m */; };
+		CDB4023E1E89D49E0098CBF2 /* PXLProductCollectionViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4022A1E89D49E0098CBF2 /* PXLProductCollectionViewCell.h */; };
+		CDB4023F1E89D49E0098CBF2 /* PXLProductCollectionViewCell.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDB4022B1E89D49E0098CBF2 /* PXLProductCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6003F5B3195388D20070C39A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6003F582195388D10070C39A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = "pixlee-ios-sdk";
+/* Begin PBXCopyFilesBuildPhase section */
+		CDB401E91E89CF070098CBF2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDB401E61E89CF060098CBF2 /* FormatterKit.framework in Embed Frameworks */,
+				CDB401E81E89CF070098CBF2 /* AFNetworking.framework in Embed Frameworks */,
+				CDB401E41E89CF060098CBF2 /* Masonry.framework in Embed Frameworks */,
+				CDB401E21E89CF060098CBF2 /* WebImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXContainerItemProxy section */
+		CDB401EA1E89D0000098CBF2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDB401EB1E89D0190098CBF2 /* WebImage.framework in CopyFiles */,
+				CDB401EC1E89D0190098CBF2 /* Masonry.framework in CopyFiles */,
+				CDB401ED1E89D0190098CBF2 /* FormatterKit.framework in CopyFiles */,
+				CDB401EE1E89D0190098CBF2 /* AFNetworking.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB402171E89D46E0098CBF2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				CDB4022C1E89D49E0098CBF2 /* PXLAlbum.h in CopyFiles */,
+				CDB4022D1E89D49E0098CBF2 /* PXLAlbum.m in CopyFiles */,
+				CDB4022E1E89D49E0098CBF2 /* PXLAlbumFilterOptions.h in CopyFiles */,
+				CDB4022F1E89D49E0098CBF2 /* PXLAlbumFilterOptions.m in CopyFiles */,
+				CDB402301E89D49E0098CBF2 /* PXLAlbumSortOptions.h in CopyFiles */,
+				CDB402311E89D49E0098CBF2 /* PXLAlbumSortOptions.m in CopyFiles */,
+				CDB402321E89D49E0098CBF2 /* PXLAlbumViewController.h in CopyFiles */,
+				CDB402331E89D49E0098CBF2 /* PXLAlbumViewController.m in CopyFiles */,
+				CDB402341E89D49E0098CBF2 /* PXLClient.h in CopyFiles */,
+				CDB402351E89D49E0098CBF2 /* PXLClient.m in CopyFiles */,
+				CDB402361E89D49E0098CBF2 /* PXLPhoto.h in CopyFiles */,
+				CDB402371E89D49E0098CBF2 /* PXLPhoto.m in CopyFiles */,
+				CDB402381E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.h in CopyFiles */,
+				CDB402391E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.m in CopyFiles */,
+				CDB4023A1E89D49E0098CBF2 /* PXLPhotoDetailViewController.h in CopyFiles */,
+				CDB4023B1E89D49E0098CBF2 /* PXLPhotoDetailViewController.m in CopyFiles */,
+				CDB4023C1E89D49E0098CBF2 /* PXLProduct.h in CopyFiles */,
+				CDB4023D1E89D49E0098CBF2 /* PXLProduct.m in CopyFiles */,
+				CDB4023E1E89D49E0098CBF2 /* PXLProductCollectionViewCell.h in CopyFiles */,
+				CDB4023F1E89D49E0098CBF2 /* PXLProductCollectionViewCell.m in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0BA85044A41BAB3C90AA442D /* Pods-pixlee-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixlee-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixlee-ios-sdk/Pods-pixlee-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
-		2DD1F6E39119C95E597D0880 /* Pods-pixlee-ios-sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixlee-ios-sdk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixlee-ios-sdk/Pods-pixlee-ios-sdk.debug.xcconfig"; sourceTree = "<group>"; };
 		3D42D05E9CF56B6AF5E7889D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		45AEEBF9D775409A654175E3 /* pixlee-ios-sdk.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "pixlee-ios-sdk.podspec"; path = "../pixlee-ios-sdk.podspec"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* pixlee-ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pixlee-ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +128,6 @@
 		6003F5A5195388D20070C39A /* PXLExampleAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLExampleAlbumViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* PXLExampleAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLExampleAlbumViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -64,10 +135,78 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		76ED54F31E88709700B7E8F2 /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
 		76ED54F41E88709700B7E8F2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		949CEAB7CD53FE340DC0ABB9 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		9B6F2F7361D33A7DEB3A350B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C81F03C83E381FF82A04AA98 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD80F2E9551ECC55DEA11D0C /* Pods_pixlee_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixlee_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB401911E89CB1C0098CBF2 /* carthage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = carthage.h; sourceTree = "<group>"; };
+		CDB401921E89CB1C0098CBF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDB4019E1E89CB1C0098CBF2 /* carthageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carthageTests.swift; sourceTree = "<group>"; };
+		CDB401A01E89CB1C0098CBF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDB401AD1E89CC7B0098CBF2 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = ../Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
+		CDB401AE1E89CC7B0098CBF2 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
+		CDB401AF1E89CC7B0098CBF2 /* FormatterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormatterKit.framework; path = ../Carthage/Build/iOS/FormatterKit.framework; sourceTree = "<group>"; };
+		CDB401B01E89CC7B0098CBF2 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		CDB401B51E89CCA50098CBF2 /* PXLAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLAlbum.h; sourceTree = "<group>"; };
+		CDB401B61E89CCA50098CBF2 /* PXLAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLAlbum.m; sourceTree = "<group>"; };
+		CDB401B71E89CCA50098CBF2 /* PXLAlbumFilterOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLAlbumFilterOptions.h; sourceTree = "<group>"; };
+		CDB401B81E89CCA50098CBF2 /* PXLAlbumFilterOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLAlbumFilterOptions.m; sourceTree = "<group>"; };
+		CDB401B91E89CCA50098CBF2 /* PXLAlbumSortOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLAlbumSortOptions.h; sourceTree = "<group>"; };
+		CDB401BA1E89CCA50098CBF2 /* PXLAlbumSortOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLAlbumSortOptions.m; sourceTree = "<group>"; };
+		CDB401BB1E89CCA50098CBF2 /* PXLAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLAlbumViewController.h; sourceTree = "<group>"; };
+		CDB401BC1E89CCA50098CBF2 /* PXLAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLAlbumViewController.m; sourceTree = "<group>"; };
+		CDB401BD1E89CCA50098CBF2 /* PXLClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLClient.h; sourceTree = "<group>"; };
+		CDB401BE1E89CCA50098CBF2 /* PXLClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLClient.m; sourceTree = "<group>"; };
+		CDB401BF1E89CCA50098CBF2 /* PXLPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLPhoto.h; sourceTree = "<group>"; };
+		CDB401C01E89CCA50098CBF2 /* PXLPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLPhoto.m; sourceTree = "<group>"; };
+		CDB401C11E89CCA50098CBF2 /* PXLPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB401C21E89CCA50098CBF2 /* PXLPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		CDB401C31E89CCA50098CBF2 /* PXLPhotoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLPhotoDetailViewController.h; sourceTree = "<group>"; };
+		CDB401C41E89CCA50098CBF2 /* PXLPhotoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLPhotoDetailViewController.m; sourceTree = "<group>"; };
+		CDB401C51E89CCA50098CBF2 /* PXLProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLProduct.h; sourceTree = "<group>"; };
+		CDB401C61E89CCA50098CBF2 /* PXLProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLProduct.m; sourceTree = "<group>"; };
+		CDB401C71E89CCA50098CBF2 /* PXLProductCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXLProductCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB401C81E89CCA50098CBF2 /* PXLProductCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PXLProductCollectionViewCell.m; sourceTree = "<group>"; };
+		CDB401DD1E89CF060098CBF2 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebImage.framework; sourceTree = "<group>"; };
+		CDB401DE1E89CF060098CBF2 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Masonry.framework; sourceTree = "<group>"; };
+		CDB401DF1E89CF060098CBF2 /* FormatterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FormatterKit.framework; sourceTree = "<group>"; };
+		CDB401E01E89CF060098CBF2 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
+		CDB401EF1E89D43D0098CBF2 /* PXLAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbum.h; path = ../Pod/Classes/PXLAlbum.h; sourceTree = "<group>"; };
+		CDB401F01E89D43D0098CBF2 /* PXLAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbum.m; path = ../Pod/Classes/PXLAlbum.m; sourceTree = "<group>"; };
+		CDB401F11E89D43D0098CBF2 /* PXLAlbumFilterOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumFilterOptions.h; path = ../Pod/Classes/PXLAlbumFilterOptions.h; sourceTree = "<group>"; };
+		CDB401F21E89D43D0098CBF2 /* PXLAlbumFilterOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumFilterOptions.m; path = ../Pod/Classes/PXLAlbumFilterOptions.m; sourceTree = "<group>"; };
+		CDB401F31E89D43D0098CBF2 /* PXLAlbumSortOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumSortOptions.h; path = ../Pod/Classes/PXLAlbumSortOptions.h; sourceTree = "<group>"; };
+		CDB401F41E89D43D0098CBF2 /* PXLAlbumSortOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumSortOptions.m; path = ../Pod/Classes/PXLAlbumSortOptions.m; sourceTree = "<group>"; };
+		CDB401F51E89D43D0098CBF2 /* PXLAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumViewController.h; path = ../Pod/Classes/PXLAlbumViewController.h; sourceTree = "<group>"; };
+		CDB401F61E89D43D0098CBF2 /* PXLAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumViewController.m; path = ../Pod/Classes/PXLAlbumViewController.m; sourceTree = "<group>"; };
+		CDB401F71E89D43D0098CBF2 /* PXLClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLClient.h; path = ../Pod/Classes/PXLClient.h; sourceTree = "<group>"; };
+		CDB401F81E89D43D0098CBF2 /* PXLClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLClient.m; path = ../Pod/Classes/PXLClient.m; sourceTree = "<group>"; };
+		CDB401F91E89D43D0098CBF2 /* PXLPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhoto.h; path = ../Pod/Classes/PXLPhoto.h; sourceTree = "<group>"; };
+		CDB401FA1E89D43D0098CBF2 /* PXLPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhoto.m; path = ../Pod/Classes/PXLPhoto.m; sourceTree = "<group>"; };
+		CDB401FB1E89D43D0098CBF2 /* PXLPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhotoCollectionViewCell.h; path = ../Pod/Classes/PXLPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB401FC1E89D43D0098CBF2 /* PXLPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhotoCollectionViewCell.m; path = ../Pod/Classes/PXLPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		CDB401FD1E89D43D0098CBF2 /* PXLPhotoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhotoDetailViewController.h; path = ../Pod/Classes/PXLPhotoDetailViewController.h; sourceTree = "<group>"; };
+		CDB401FE1E89D43D0098CBF2 /* PXLPhotoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhotoDetailViewController.m; path = ../Pod/Classes/PXLPhotoDetailViewController.m; sourceTree = "<group>"; };
+		CDB401FF1E89D43D0098CBF2 /* PXLProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLProduct.h; path = ../Pod/Classes/PXLProduct.h; sourceTree = "<group>"; };
+		CDB402001E89D43D0098CBF2 /* PXLProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLProduct.m; path = ../Pod/Classes/PXLProduct.m; sourceTree = "<group>"; };
+		CDB402011E89D43D0098CBF2 /* PXLProductCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLProductCollectionViewCell.h; path = ../Pod/Classes/PXLProductCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB402021E89D43D0098CBF2 /* PXLProductCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLProductCollectionViewCell.m; path = ../Pod/Classes/PXLProductCollectionViewCell.m; sourceTree = "<group>"; };
+		CDB402181E89D49E0098CBF2 /* PXLAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbum.h; path = ../Pod/Classes/PXLAlbum.h; sourceTree = "<group>"; };
+		CDB402191E89D49E0098CBF2 /* PXLAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbum.m; path = ../Pod/Classes/PXLAlbum.m; sourceTree = "<group>"; };
+		CDB4021A1E89D49E0098CBF2 /* PXLAlbumFilterOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumFilterOptions.h; path = ../Pod/Classes/PXLAlbumFilterOptions.h; sourceTree = "<group>"; };
+		CDB4021B1E89D49E0098CBF2 /* PXLAlbumFilterOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumFilterOptions.m; path = ../Pod/Classes/PXLAlbumFilterOptions.m; sourceTree = "<group>"; };
+		CDB4021C1E89D49E0098CBF2 /* PXLAlbumSortOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumSortOptions.h; path = ../Pod/Classes/PXLAlbumSortOptions.h; sourceTree = "<group>"; };
+		CDB4021D1E89D49E0098CBF2 /* PXLAlbumSortOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumSortOptions.m; path = ../Pod/Classes/PXLAlbumSortOptions.m; sourceTree = "<group>"; };
+		CDB4021E1E89D49E0098CBF2 /* PXLAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLAlbumViewController.h; path = ../Pod/Classes/PXLAlbumViewController.h; sourceTree = "<group>"; };
+		CDB4021F1E89D49E0098CBF2 /* PXLAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLAlbumViewController.m; path = ../Pod/Classes/PXLAlbumViewController.m; sourceTree = "<group>"; };
+		CDB402201E89D49E0098CBF2 /* PXLClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLClient.h; path = ../Pod/Classes/PXLClient.h; sourceTree = "<group>"; };
+		CDB402211E89D49E0098CBF2 /* PXLClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLClient.m; path = ../Pod/Classes/PXLClient.m; sourceTree = "<group>"; };
+		CDB402221E89D49E0098CBF2 /* PXLPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhoto.h; path = ../Pod/Classes/PXLPhoto.h; sourceTree = "<group>"; };
+		CDB402231E89D49E0098CBF2 /* PXLPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhoto.m; path = ../Pod/Classes/PXLPhoto.m; sourceTree = "<group>"; };
+		CDB402241E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhotoCollectionViewCell.h; path = ../Pod/Classes/PXLPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB402251E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhotoCollectionViewCell.m; path = ../Pod/Classes/PXLPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		CDB402261E89D49E0098CBF2 /* PXLPhotoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLPhotoDetailViewController.h; path = ../Pod/Classes/PXLPhotoDetailViewController.h; sourceTree = "<group>"; };
+		CDB402271E89D49E0098CBF2 /* PXLPhotoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLPhotoDetailViewController.m; path = ../Pod/Classes/PXLPhotoDetailViewController.m; sourceTree = "<group>"; };
+		CDB402281E89D49E0098CBF2 /* PXLProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLProduct.h; path = ../Pod/Classes/PXLProduct.h; sourceTree = "<group>"; };
+		CDB402291E89D49E0098CBF2 /* PXLProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLProduct.m; path = ../Pod/Classes/PXLProduct.m; sourceTree = "<group>"; };
+		CDB4022A1E89D49E0098CBF2 /* PXLProductCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXLProductCollectionViewCell.h; path = ../Pod/Classes/PXLProductCollectionViewCell.h; sourceTree = "<group>"; };
+		CDB4022B1E89D49E0098CBF2 /* PXLProductCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXLProductCollectionViewCell.m; path = ../Pod/Classes/PXLProductCollectionViewCell.m; sourceTree = "<group>"; };
 		FFF475F72534B13280281929 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,47 +215,93 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB401E51E89CF060098CBF2 /* FormatterKit.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
+				CDB401E71E89CF070098CBF2 /* AFNetworking.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
+				CDB401E31E89CF060098CBF2 /* Masonry.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				8C6B7A3516DDED36D948985E /* Pods_pixlee_ios_sdk.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6003F5AB195388D20070C39A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
-				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
-				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				0513F598A53011E9B5233E3C /* Pods_Tests.framework in Frameworks */,
+				CDB401E11E89CF060098CBF2 /* WebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F014FE4E3DD391B3F94DC9D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9B6F2F7361D33A7DEB3A350B /* Pods-Tests.debug.xcconfig */,
-				949CEAB7CD53FE340DC0ABB9 /* Pods-Tests.release.xcconfig */,
-				2DD1F6E39119C95E597D0880 /* Pods-pixlee-ios-sdk.debug.xcconfig */,
-				0BA85044A41BAB3C90AA442D /* Pods-pixlee-ios-sdk.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				CDB402181E89D49E0098CBF2 /* PXLAlbum.h */,
+				CDB402191E89D49E0098CBF2 /* PXLAlbum.m */,
+				CDB4021A1E89D49E0098CBF2 /* PXLAlbumFilterOptions.h */,
+				CDB4021B1E89D49E0098CBF2 /* PXLAlbumFilterOptions.m */,
+				CDB4021C1E89D49E0098CBF2 /* PXLAlbumSortOptions.h */,
+				CDB4021D1E89D49E0098CBF2 /* PXLAlbumSortOptions.m */,
+				CDB4021E1E89D49E0098CBF2 /* PXLAlbumViewController.h */,
+				CDB4021F1E89D49E0098CBF2 /* PXLAlbumViewController.m */,
+				CDB402201E89D49E0098CBF2 /* PXLClient.h */,
+				CDB402211E89D49E0098CBF2 /* PXLClient.m */,
+				CDB402221E89D49E0098CBF2 /* PXLPhoto.h */,
+				CDB402231E89D49E0098CBF2 /* PXLPhoto.m */,
+				CDB402241E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.h */,
+				CDB402251E89D49E0098CBF2 /* PXLPhotoCollectionViewCell.m */,
+				CDB402261E89D49E0098CBF2 /* PXLPhotoDetailViewController.h */,
+				CDB402271E89D49E0098CBF2 /* PXLPhotoDetailViewController.m */,
+				CDB402281E89D49E0098CBF2 /* PXLProduct.h */,
+				CDB402291E89D49E0098CBF2 /* PXLProduct.m */,
+				CDB4022A1E89D49E0098CBF2 /* PXLProductCollectionViewCell.h */,
+				CDB4022B1E89D49E0098CBF2 /* PXLProductCollectionViewCell.m */,
+				CDB401EF1E89D43D0098CBF2 /* PXLAlbum.h */,
+				CDB401F01E89D43D0098CBF2 /* PXLAlbum.m */,
+				CDB401F11E89D43D0098CBF2 /* PXLAlbumFilterOptions.h */,
+				CDB401F21E89D43D0098CBF2 /* PXLAlbumFilterOptions.m */,
+				CDB401F31E89D43D0098CBF2 /* PXLAlbumSortOptions.h */,
+				CDB401F41E89D43D0098CBF2 /* PXLAlbumSortOptions.m */,
+				CDB401F51E89D43D0098CBF2 /* PXLAlbumViewController.h */,
+				CDB401F61E89D43D0098CBF2 /* PXLAlbumViewController.m */,
+				CDB401F71E89D43D0098CBF2 /* PXLClient.h */,
+				CDB401F81E89D43D0098CBF2 /* PXLClient.m */,
+				CDB401F91E89D43D0098CBF2 /* PXLPhoto.h */,
+				CDB401FA1E89D43D0098CBF2 /* PXLPhoto.m */,
+				CDB401FB1E89D43D0098CBF2 /* PXLPhotoCollectionViewCell.h */,
+				CDB401FC1E89D43D0098CBF2 /* PXLPhotoCollectionViewCell.m */,
+				CDB401FD1E89D43D0098CBF2 /* PXLPhotoDetailViewController.h */,
+				CDB401FE1E89D43D0098CBF2 /* PXLPhotoDetailViewController.m */,
+				CDB401FF1E89D43D0098CBF2 /* PXLProduct.h */,
+				CDB402001E89D43D0098CBF2 /* PXLProduct.m */,
+				CDB402011E89D43D0098CBF2 /* PXLProductCollectionViewCell.h */,
+				CDB402021E89D43D0098CBF2 /* PXLProductCollectionViewCell.m */,
+				CDB401DD1E89CF060098CBF2 /* WebImage.framework */,
+				CDB401DE1E89CF060098CBF2 /* Masonry.framework */,
+				CDB401DF1E89CF060098CBF2 /* FormatterKit.framework */,
+				CDB401E01E89CF060098CBF2 /* AFNetworking.framework */,
+				CDB401B51E89CCA50098CBF2 /* PXLAlbum.h */,
+				CDB401B61E89CCA50098CBF2 /* PXLAlbum.m */,
+				CDB401B71E89CCA50098CBF2 /* PXLAlbumFilterOptions.h */,
+				CDB401B81E89CCA50098CBF2 /* PXLAlbumFilterOptions.m */,
+				CDB401B91E89CCA50098CBF2 /* PXLAlbumSortOptions.h */,
+				CDB401BA1E89CCA50098CBF2 /* PXLAlbumSortOptions.m */,
+				CDB401BB1E89CCA50098CBF2 /* PXLAlbumViewController.h */,
+				CDB401BC1E89CCA50098CBF2 /* PXLAlbumViewController.m */,
+				CDB401BD1E89CCA50098CBF2 /* PXLClient.h */,
+				CDB401BE1E89CCA50098CBF2 /* PXLClient.m */,
+				CDB401BF1E89CCA50098CBF2 /* PXLPhoto.h */,
+				CDB401C01E89CCA50098CBF2 /* PXLPhoto.m */,
+				CDB401C11E89CCA50098CBF2 /* PXLPhotoCollectionViewCell.h */,
+				CDB401C21E89CCA50098CBF2 /* PXLPhotoCollectionViewCell.m */,
+				CDB401C31E89CCA50098CBF2 /* PXLPhotoDetailViewController.h */,
+				CDB401C41E89CCA50098CBF2 /* PXLPhotoDetailViewController.m */,
+				CDB401C51E89CCA50098CBF2 /* PXLProduct.h */,
+				CDB401C61E89CCA50098CBF2 /* PXLProduct.m */,
+				CDB401C71E89CCA50098CBF2 /* PXLProductCollectionViewCell.h */,
+				CDB401C81E89CCA50098CBF2 /* PXLProductCollectionViewCell.m */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* pixlee-ios-sdk */,
 				6003F5B5195388D20070C39A /* Tests */,
+				CDB401901E89CB1C0098CBF2 /* carthage */,
+				CDB4019D1E89CB1C0098CBF2 /* carthageTests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				1F014FE4E3DD391B3F94DC9D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				6003F58A195388D20070C39A /* pixlee-ios-sdk.app */,
-				6003F5AE195388D20070C39A /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,12 +316,14 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDB401AD1E89CC7B0098CBF2 /* WebImage.framework */,
+				CDB401AE1E89CC7B0098CBF2 /* Masonry.framework */,
+				CDB401AF1E89CC7B0098CBF2 /* FormatterKit.framework */,
+				CDB401B01E89CC7B0098CBF2 /* AFNetworking.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				C81F03C83E381FF82A04AA98 /* Pods_Tests.framework */,
-				DD80F2E9551ECC55DEA11D0C /* Pods_pixlee_ios_sdk.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,6 +384,24 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		CDB401901E89CB1C0098CBF2 /* carthage */ = {
+			isa = PBXGroup;
+			children = (
+				CDB401911E89CB1C0098CBF2 /* carthage.h */,
+				CDB401921E89CB1C0098CBF2 /* Info.plist */,
+			);
+			path = carthage;
+			sourceTree = "<group>";
+		};
+		CDB4019D1E89CB1C0098CBF2 /* carthageTests */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4019E1E89CB1C0098CBF2 /* carthageTests.swift */,
+				CDB401A01E89CB1C0098CBF2 /* Info.plist */,
+			);
+			path = carthageTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -215,13 +419,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "pixlee-ios-sdk" */;
 			buildPhases = (
-				954909917A5CE0B2A28EDDA8 /* [CP] Check Pods Manifest.lock */,
+				CDB402171E89D46E0098CBF2 /* CopyFiles */,
+				CDB401EA1E89D0000098CBF2 /* CopyFiles */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				95885A161B590ECF56F9DA5D /* [CP] Embed Pods Frameworks */,
-				89F627CAE44FCAF8F7D0972B /* [CP] Copy Pods Resources */,
 				764BA7F61E8869F600CAEC69 /* Headers */,
+				CDB401E91E89CF070098CBF2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,27 +436,6 @@
 			productReference = 6003F58A195388D20070C39A /* pixlee-ios-sdk.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6003F5AD195388D20070C39A /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				5E36493019137E4926E4233A /* [CP] Check Pods Manifest.lock */,
-				6003F5AA195388D20070C39A /* Sources */,
-				6003F5AB195388D20070C39A /* Frameworks */,
-				6003F5AC195388D20070C39A /* Resources */,
-				556FCA47408025C9187497ED /* [CP] Embed Pods Frameworks */,
-				6241178468E95D0D6BBDA190 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6003F5B4195388D20070C39A /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = "pixlee-ios-sdkTests";
-			productReference = 6003F5AE195388D20070C39A /* Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,14 +443,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PXL;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tim Shi";
-				TargetAttributes = {
-					6003F5AD195388D20070C39A = {
-						LastSwiftMigration = 0820;
-						TestTargetID = 6003F589195388D20070C39A;
-					};
-				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "pixlee-ios-sdk" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -283,7 +461,6 @@
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* pixlee-ios-sdk */,
-				6003F5AD195388D20070C39A /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,108 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6003F5AC195388D20070C39A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		556FCA47408025C9187497ED /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E36493019137E4926E4233A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6241178468E95D0D6BBDA190 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89F627CAE44FCAF8F7D0972B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixlee-ios-sdk/Pods-pixlee-ios-sdk-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		954909917A5CE0B2A28EDDA8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		95885A161B590ECF56F9DA5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixlee-ios-sdk/Pods-pixlee-ios-sdk-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6003F586195388D20070C39A /* Sources */ = {
@@ -415,23 +491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6003F5AA195388D20070C39A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* pixlee-ios-sdk */;
-			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6003F596195388D20070C39A /* InfoPlist.strings */ = {
@@ -537,14 +597,18 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DD1F6E39119C95E597D0880 /* Pods-pixlee-ios-sdk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pixlee-ios-sdk/pixlee-ios-sdk-Prefix.pch";
 				INFOPLIST_FILE = "pixlee-ios-sdk/pixlee-ios-sdk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -553,63 +617,23 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BA85044A41BAB3C90AA442D /* Pods-pixlee-ios-sdk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pixlee-ios-sdk/pixlee-ios-sdk-Prefix.pch";
 				INFOPLIST_FILE = "pixlee-ios-sdk/pixlee-ios-sdk-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "65ae6e91-64c4-4925-bd75-2036d79b4f37";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		6003F5C3195388D20070C39A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B6F2F7361D33A7DEB3A350B /* Pods-Tests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pixlee-ios-sdk.app/pixlee-ios-sdk";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		6003F5C4195388D20070C39A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 949CEAB7CD53FE340DC0ABB9 /* Pods-Tests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/pixlee-ios-sdk.app/pixlee-ios-sdk";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -630,15 +654,6 @@
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
 				6003F5C1195388D20070C39A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6003F5C3195388D20070C39A /* Debug */,
-				6003F5C4195388D20070C39A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
