@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		004290F1516B5898890992DD /* Pods_PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB455E980071AEFEB35C84B /* Pods_PixleeSDK.framework */; };
+		F2E30E6223D784CC00CDD977 /* PXLProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E4923D784CB00CDD977 /* PXLProduct.swift */; };
+		F2E30E6323D784CC00CDD977 /* PXLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E4A23D784CB00CDD977 /* PXLClient.swift */; };
+		F2E30E6423D784CC00CDD977 /* PXLAnalyitcsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E4B23D784CB00CDD977 /* PXLAnalyitcsService.swift */; };
+		F2E30E6523D784CC00CDD977 /* SwiftCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E4D23D784CB00CDD977 /* SwiftCrypto.swift */; };
+		F2E30E6623D784CC00CDD977 /* PXLAnalyticsEventAddCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E4F23D784CB00CDD977 /* PXLAnalyticsEventAddCart.swift */; };
+		F2E30E6723D784CC00CDD977 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5023D784CB00CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */; };
+		F2E30E6823D784CC00CDD977 /* PXLAnalyitcsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5123D784CB00CDD977 /* PXLAnalyitcsEvent.swift */; };
+		F2E30E6923D784CC00CDD977 /* PXLAnalyticsEventOpenedWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5223D784CB00CDD977 /* PXLAnalyticsEventOpenedWidget.swift */; };
+		F2E30E6A23D784CC00CDD977 /* PXLAnalyticsEventActionClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5323D784CB00CDD977 /* PXLAnalyticsEventActionClicked.swift */; };
+		F2E30E6B23D784CC00CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5423D784CB00CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */; };
+		F2E30E6C23D784CC00CDD977 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5523D784CB00CDD977 /* PXLAnalyticsEventConvertedPhoto.swift */; };
+		F2E30E6D23D784CC00CDD977 /* PXLAlbumFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5623D784CB00CDD977 /* PXLAlbumFilterOptions.swift */; };
+		F2E30E6E23D784CC00CDD977 /* PXLPhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5823D784CC00CDD977 /* PXLPhotoResponseDTO.swift */; };
+		F2E30E6F23D784CC00CDD977 /* PXLProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5923D784CC00CDD977 /* PXLProductDTO.swift */; };
+		F2E30E7023D784CC00CDD977 /* PXLAlbumNexPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5A23D784CC00CDD977 /* PXLAlbumNexPageResponseDTO.swift */; };
+		F2E30E7123D784CC00CDD977 /* PXLAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5B23D784CC00CDD977 /* PXLAlbum.swift */; };
+		F2E30E7223D784CC00CDD977 /* PXLProductConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5D23D784CC00CDD977 /* PXLProductConverter.swift */; };
+		F2E30E7323D784CC00CDD977 /* PXLPhotoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5E23D784CC00CDD977 /* PXLPhotoConverter.swift */; };
+		F2E30E7423D784CC00CDD977 /* PXLApiRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E5F23D784CC00CDD977 /* PXLApiRequests.swift */; };
+		F2E30E7523D784CC00CDD977 /* PXLPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E6023D784CC00CDD977 /* PXLPhoto.swift */; };
+		F2E30E7623D784CC00CDD977 /* PXLAlbumSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30E6123D784CC00CDD977 /* PXLAlbumSortOptions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F2E30E3D23D7841900CDD977 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A21451E15E4F385A6783E3E /* Pods-PixleeSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixleeSDK.debug.xcconfig"; path = "Target Support Files/Pods-PixleeSDK/Pods-PixleeSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		4730E0D15642FCDC2294B57B /* Pods-pixlee_api.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixlee_api.release.xcconfig"; path = "Target Support Files/Pods-pixlee_api/Pods-pixlee_api.release.xcconfig"; sourceTree = "<group>"; };
+		64C46AFE6CF2C42EF69BE6EB /* Pods-PixleeSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixleeSDK.release.xcconfig"; path = "Target Support Files/Pods-PixleeSDK/Pods-PixleeSDK.release.xcconfig"; sourceTree = "<group>"; };
+		6BB455E980071AEFEB35C84B /* Pods_PixleeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixleeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98432CCF3EB41D27278B2BD6 /* Pods-pixlee_api.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixlee_api.debug.xcconfig"; path = "Target Support Files/Pods-pixlee_api/Pods-pixlee_api.debug.xcconfig"; sourceTree = "<group>"; };
+		F2E30E3F23D7841900CDD977 /* libPixleeSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPixleeSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2E30E4923D784CB00CDD977 /* PXLProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProduct.swift; sourceTree = "<group>"; };
+		F2E30E4A23D784CB00CDD977 /* PXLClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLClient.swift; sourceTree = "<group>"; };
+		F2E30E4B23D784CB00CDD977 /* PXLAnalyitcsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyitcsService.swift; sourceTree = "<group>"; };
+		F2E30E4D23D784CB00CDD977 /* SwiftCrypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftCrypto.swift; sourceTree = "<group>"; };
+		F2E30E4F23D784CB00CDD977 /* PXLAnalyticsEventAddCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventAddCart.swift; sourceTree = "<group>"; };
+		F2E30E5023D784CB00CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedLightBox.swift; sourceTree = "<group>"; };
+		F2E30E5123D784CB00CDD977 /* PXLAnalyitcsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyitcsEvent.swift; sourceTree = "<group>"; };
+		F2E30E5223D784CB00CDD977 /* PXLAnalyticsEventOpenedWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedWidget.swift; sourceTree = "<group>"; };
+		F2E30E5323D784CB00CDD977 /* PXLAnalyticsEventActionClicked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventActionClicked.swift; sourceTree = "<group>"; };
+		F2E30E5423D784CB00CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventLoadMoreClicked.swift; sourceTree = "<group>"; };
+		F2E30E5523D784CB00CDD977 /* PXLAnalyticsEventConvertedPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventConvertedPhoto.swift; sourceTree = "<group>"; };
+		F2E30E5623D784CB00CDD977 /* PXLAlbumFilterOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumFilterOptions.swift; sourceTree = "<group>"; };
+		F2E30E5823D784CC00CDD977 /* PXLPhotoResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLPhotoResponseDTO.swift; sourceTree = "<group>"; };
+		F2E30E5923D784CC00CDD977 /* PXLProductDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProductDTO.swift; sourceTree = "<group>"; };
+		F2E30E5A23D784CC00CDD977 /* PXLAlbumNexPageResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumNexPageResponseDTO.swift; sourceTree = "<group>"; };
+		F2E30E5B23D784CC00CDD977 /* PXLAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbum.swift; sourceTree = "<group>"; };
+		F2E30E5D23D784CC00CDD977 /* PXLProductConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProductConverter.swift; sourceTree = "<group>"; };
+		F2E30E5E23D784CC00CDD977 /* PXLPhotoConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLPhotoConverter.swift; sourceTree = "<group>"; };
+		F2E30E5F23D784CC00CDD977 /* PXLApiRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLApiRequests.swift; sourceTree = "<group>"; };
+		F2E30E6023D784CC00CDD977 /* PXLPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLPhoto.swift; sourceTree = "<group>"; };
+		F2E30E6123D784CC00CDD977 /* PXLAlbumSortOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumSortOptions.swift; sourceTree = "<group>"; };
+		F2E30E7823D7854500CDD977 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2E30E3C23D7841900CDD977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				004290F1516B5898890992DD /* Pods_PixleeSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		932064CFF5264AB2BF810B18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BB455E980071AEFEB35C84B /* Pods_PixleeSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7C58796B20A2C53F14DD197 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A21451E15E4F385A6783E3E /* Pods-PixleeSDK.debug.xcconfig */,
+				64C46AFE6CF2C42EF69BE6EB /* Pods-PixleeSDK.release.xcconfig */,
+				98432CCF3EB41D27278B2BD6 /* Pods-pixlee_api.debug.xcconfig */,
+				4730E0D15642FCDC2294B57B /* Pods-pixlee_api.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F2E30E3623D7841900CDD977 = {
+			isa = PBXGroup;
+			children = (
+				F2E30E4123D7841900CDD977 /* Classes */,
+				F2E30E4023D7841900CDD977 /* Products */,
+				D7C58796B20A2C53F14DD197 /* Pods */,
+				932064CFF5264AB2BF810B18 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F2E30E4023D7841900CDD977 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E3F23D7841900CDD977 /* libPixleeSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2E30E4123D7841900CDD977 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E4E23D784CB00CDD977 /* AnalyticsEvents */,
+				F2E30E5C23D784CC00CDD977 /* Converters */,
+				F2E30E5723D784CC00CDD977 /* DTOs */,
+				F2E30E4C23D784CB00CDD977 /* Helpers */,
+				F2E30E5B23D784CC00CDD977 /* PXLAlbum.swift */,
+				F2E30E5623D784CB00CDD977 /* PXLAlbumFilterOptions.swift */,
+				F2E30E6123D784CC00CDD977 /* PXLAlbumSortOptions.swift */,
+				F2E30E4B23D784CB00CDD977 /* PXLAnalyitcsService.swift */,
+				F2E30E5F23D784CC00CDD977 /* PXLApiRequests.swift */,
+				F2E30E4A23D784CB00CDD977 /* PXLClient.swift */,
+				F2E30E6023D784CC00CDD977 /* PXLPhoto.swift */,
+				F2E30E4923D784CB00CDD977 /* PXLProduct.swift */,
+				F2E30E7723D7853300CDD977 /* Resources */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F2E30E4C23D784CB00CDD977 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E4D23D784CB00CDD977 /* SwiftCrypto.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F2E30E4E23D784CB00CDD977 /* AnalyticsEvents */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E4F23D784CB00CDD977 /* PXLAnalyticsEventAddCart.swift */,
+				F2E30E5023D784CB00CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */,
+				F2E30E5123D784CB00CDD977 /* PXLAnalyitcsEvent.swift */,
+				F2E30E5223D784CB00CDD977 /* PXLAnalyticsEventOpenedWidget.swift */,
+				F2E30E5323D784CB00CDD977 /* PXLAnalyticsEventActionClicked.swift */,
+				F2E30E5423D784CB00CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */,
+				F2E30E5523D784CB00CDD977 /* PXLAnalyticsEventConvertedPhoto.swift */,
+			);
+			path = AnalyticsEvents;
+			sourceTree = "<group>";
+		};
+		F2E30E5723D784CC00CDD977 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E5823D784CC00CDD977 /* PXLPhotoResponseDTO.swift */,
+				F2E30E5923D784CC00CDD977 /* PXLProductDTO.swift */,
+				F2E30E5A23D784CC00CDD977 /* PXLAlbumNexPageResponseDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		F2E30E5C23D784CC00CDD977 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E5D23D784CC00CDD977 /* PXLProductConverter.swift */,
+				F2E30E5E23D784CC00CDD977 /* PXLPhotoConverter.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		F2E30E7723D7853300CDD977 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2E30E7823D7854500CDD977 /* ImageAssets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2E30E3E23D7841900CDD977 /* PixleeSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2E30E4623D7841900CDD977 /* Build configuration list for PBXNativeTarget "PixleeSDK" */;
+			buildPhases = (
+				88C5F816DF547415B41B3DAD /* [CP] Check Pods Manifest.lock */,
+				F2E30E3B23D7841900CDD977 /* Sources */,
+				F2E30E3C23D7841900CDD977 /* Frameworks */,
+				F2E30E3D23D7841900CDD977 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PixleeSDK;
+			productName = PixleeSDK;
+			productReference = F2E30E3F23D7841900CDD977 /* libPixleeSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2E30E3723D7841900CDD977 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Pixlee;
+				TargetAttributes = {
+					F2E30E3E23D7841900CDD977 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = F2E30E3A23D7841900CDD977 /* Build configuration list for PBXProject "PixleeSDK" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2E30E3623D7841900CDD977;
+			productRefGroup = F2E30E4023D7841900CDD977 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2E30E3E23D7841900CDD977 /* PixleeSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88C5F816DF547415B41B3DAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PixleeSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2E30E3B23D7841900CDD977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E30E6823D784CC00CDD977 /* PXLAnalyitcsEvent.swift in Sources */,
+				F2E30E7423D784CC00CDD977 /* PXLApiRequests.swift in Sources */,
+				F2E30E6623D784CC00CDD977 /* PXLAnalyticsEventAddCart.swift in Sources */,
+				F2E30E7523D784CC00CDD977 /* PXLPhoto.swift in Sources */,
+				F2E30E7123D784CC00CDD977 /* PXLAlbum.swift in Sources */,
+				F2E30E6A23D784CC00CDD977 /* PXLAnalyticsEventActionClicked.swift in Sources */,
+				F2E30E6923D784CC00CDD977 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
+				F2E30E6223D784CC00CDD977 /* PXLProduct.swift in Sources */,
+				F2E30E6D23D784CC00CDD977 /* PXLAlbumFilterOptions.swift in Sources */,
+				F2E30E6723D784CC00CDD977 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
+				F2E30E6F23D784CC00CDD977 /* PXLProductDTO.swift in Sources */,
+				F2E30E7323D784CC00CDD977 /* PXLPhotoConverter.swift in Sources */,
+				F2E30E6C23D784CC00CDD977 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
+				F2E30E6423D784CC00CDD977 /* PXLAnalyitcsService.swift in Sources */,
+				F2E30E6523D784CC00CDD977 /* SwiftCrypto.swift in Sources */,
+				F2E30E6E23D784CC00CDD977 /* PXLPhotoResponseDTO.swift in Sources */,
+				F2E30E7023D784CC00CDD977 /* PXLAlbumNexPageResponseDTO.swift in Sources */,
+				F2E30E6323D784CC00CDD977 /* PXLClient.swift in Sources */,
+				F2E30E6B23D784CC00CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */,
+				F2E30E7223D784CC00CDD977 /* PXLProductConverter.swift in Sources */,
+				F2E30E7623D784CC00CDD977 /* PXLAlbumSortOptions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F2E30E4423D7841900CDD977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Pixlee.pixlee-sdk";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2E30E4523D7841900CDD977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Pixlee.pixlee-sdk";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2E30E4723D7841900CDD977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A21451E15E4F385A6783E3E /* Pods-PixleeSDK.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2E30E4823D7841900CDD977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64C46AFE6CF2C42EF69BE6EB /* Pods-PixleeSDK.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2E30E3A23D7841900CDD977 /* Build configuration list for PBXProject "PixleeSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2E30E4423D7841900CDD977 /* Debug */,
+				F2E30E4523D7841900CDD977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2E30E4623D7841900CDD977 /* Build configuration list for PBXNativeTarget "PixleeSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2E30E4723D7841900CDD977 /* Debug */,
+				F2E30E4823D7841900CDD977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2E30E3723D7841900CDD977 /* Project object */;
+}
