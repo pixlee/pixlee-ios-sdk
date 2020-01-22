@@ -1,0 +1,6 @@
+framework module PixleeSDK {
+  umbrella header "PixleeSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

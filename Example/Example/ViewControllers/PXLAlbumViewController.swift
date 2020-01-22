@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import pixlee_api
+import PixleeSDK
 enum PXLAlbumViewControllerDisplayDisplayMode {
     case grid
     case list

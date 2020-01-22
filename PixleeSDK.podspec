@@ -29,10 +29,10 @@ Pod::Spec.new do |spec|
     spec.source           = { :git => 'https://github.com/pixlee/pixlee-ios-sdk.git', :tag => spec.version.to_s}
 
     spec.ios.deployment_target = '12.0'
+    spec.swift_version = '5.0'
 
     spec.source_files = 'Classes/**/*{swift}'
     
     spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
-
-     spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
+    spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
 end
