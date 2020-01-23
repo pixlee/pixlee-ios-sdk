@@ -13,7 +13,7 @@ public struct PXLProduct {
     public let linkText: String?
     public let link: URL?
     public let imageUrl: URL?
-    public let title: String
-    public let sku: String
-    public let productDescription: String
+    public let title: String?
+    public let sku: String?
+    public let productDescription: String?
 }

@@ -26,10 +26,10 @@ public struct PXLPhoto {
     public let instagramFollowers: Int?
     public let twitterFollowers: Int?
     public let avatarUrl: URL?
-    public let username: String
-    public let connectedUserId: Int
-    public let source: String
-    public let contentType: String
+    public let username: String?
+    public let connectedUserId: Int?
+    public let source: String?
+    public let contentType: String?
     public let dataFileName: String?
     public let mediumUrl: URL?
     public let bigUrl: URL?

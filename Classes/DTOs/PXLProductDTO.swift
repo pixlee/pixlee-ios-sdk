@@ -11,22 +11,23 @@ import Foundation
 // MARK: - Product
 
 struct PXLProductDTO: Codable {
-    let id, productAlbumPhotoID, photoID, albumID: Int
+    let id: Int
+    let productAlbumPhotoID: Int
+    let photoID: Int
+    let albumID: Int
     let linkText: String?
-    let link: String
-    let image: String
-    let imageThumb, imageThumbSquare: String
-    let title, sku, productDescription: String
+    let link: String?
+    let image: String?
+    let imageThumb, imageThumbSquare: String?
+    let title, sku, productDescription: String?
     let price: Double?
     let stock: Int?
     let currency: String?
     let category: [Int]?
-//    let extraUrls: JSONAny?
     let customCtaPhoto: String?
     let linkValid: Bool?
-//    let totalReviews, averageRating, datcOverride: JSONNull?
-    let reviewsInfo: PXLReviewsInfo
-    let productRegionLinks: [PXLProductRegionLink]
+    let reviewsInfo: PXLReviewsInfo?
+    let productRegionLinks: [PXLProductRegionLink]?
     let productTaggedAt: Int?
 
     enum CodingKeys: String, CodingKey {
@@ -41,12 +42,8 @@ struct PXLProductDTO: Codable {
         case title, sku
         case productDescription = "description"
         case price, stock, currency, category
-//        case extraUrls = "extra_urls"
         case customCtaPhoto = "custom_cta_photo"
         case linkValid = "link_valid"
-//        case totalReviews = "total_reviews"
-//        case averageRating = "average_rating"
-//        case datcOverride = "datc_override"
         case reviewsInfo = "reviews_info"
         case productRegionLinks = "product_region_links"
         case productTaggedAt = "product_tagged_at"
@@ -56,10 +53,10 @@ struct PXLProductDTO: Codable {
 // MARK: - ProductRegionLink
 
 struct PXLProductRegionLink: Codable {
-    let url: String
-    let regionName: String
-    let regionIsDefault: Bool
-    let regionStock: Int
+    let url: String?
+    let regionName: String?
+    let regionIsDefault: Bool?
+    let regionStock: Int?
 
     enum CodingKeys: String, CodingKey {
         case url

@@ -22,11 +22,27 @@ class PXLPhotoConverter {
     }
 
     func convertPhotoDTOToPhoto(dto: PXLPhotoDTO) -> PXLPhoto {
+        var taggedAt: Date?
+        if let tagged = dto.taggedAt {
+            taggedAt = Date(timeIntervalSince1970: TimeInterval(tagged / 1000))
+        }
+        var sourceURL: URL?
+        if let sourceUrl = dto.sourceURL {
+            sourceURL = URL(string: sourceUrl)
+        }
+        var updatedAt: Date?
+        if let updated = dto.updatedAt {
+            updatedAt = Date(timeIntervalSince1970: TimeInterval(updated / 1000))
+        }
+        var platformLink: URL?
+        if let platform = dto.platformLink {
+            platformLink = URL(string: platform)
+        }
         return PXLPhoto(id: dto.id,
                         photoTitle: dto.photoTitle ?? "",
                         latitude: dto.latitude,
                         longitude: dto.longitude,
-                        taggedAt: Date(timeIntervalSince1970: TimeInterval(dto.taggedAt / 1000)),
+                        taggedAt: taggedAt,
                         emailAddress: dto.emailAddress,
                         instagramFollowers: dto.instagramFollowers,
                         twitterFollowers: dto.twitterFollowers,
@@ -39,7 +55,7 @@ class PXLPhotoConverter {
                         mediumUrl: dto.mediumURL != nil ? URL(string: dto.mediumURL!) : nil,
                         bigUrl: dto.bigURL != nil ? URL(string: dto.bigURL!) : nil,
                         thumbnailUrl: dto.thumbnailURL != nil ? URL(string: dto.thumbnailURL!) : nil,
-                        sourceUrl: URL(string: dto.sourceURL),
+                        sourceUrl: sourceURL,
                         mediaId: dto.mediaID,
                         existIn: dto.existIn,
                         collectTerm: dto.collectTerm,
@@ -51,7 +67,7 @@ class PXLPhotoConverter {
                         actionLinkText: dto.actionLinkText,
                         actionLinkTitle: dto.actionLinkText,
                         actionLinkPhoto: dto.actionLinkPhoto,
-                        updatedAt: Date(timeIntervalSince1970: TimeInterval(dto.updatedAt / 1000)),
+                        updatedAt: updatedAt,
                         isStarred: dto.isStarred,
                         approved: dto.approved,
                         archived: dto.archived,
@@ -63,7 +79,7 @@ class PXLPhotoConverter {
                         hasPermission: dto.hasPermission,
                         awaitingPermission: dto.awaitingPermission,
                         instUserHasLiked: dto.socialUserHasLiked,
-                        platformLink: URL(string: dto.platformLink),
+                        platformLink: platformLink,
                         products: dto.products.map({ (productDto) -> PXLProduct in
                             productConverter.convertProductDTOtoProduct(dto: productDto)
                         }),

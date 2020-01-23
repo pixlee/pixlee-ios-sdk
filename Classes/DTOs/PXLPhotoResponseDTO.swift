@@ -21,53 +21,50 @@ struct PXLPhotoDTO: Codable {
     let id: Int
     let photoTitle: String?
     let latitude, longitude: Double?
-    let taggedAt: Int
+    let taggedAt: Int?
     let emailAddress: String?
-    let instagramFollowers: Int
+    let instagramFollowers: Int?
     let twitterFollowers: Int?
     let avatarURL: String?
-    let userName: String
-    let connectedUserID: Int
-    let source: String
-    let contentType: String
+    let userName: String?
+    let connectedUserID: Int?
+    let source: String?
+    let contentType: String?
     let dataFileName: String?
     let mediumURL, bigURL, thumbnailURL: String?
-    let sourceURL: String
+    let sourceURL: String?
     let mediaID: String?
-    let existIn: Int
+    let existIn: Int?
     let collectTerm: String?
-    let albumPhotoID, likeCount, shareCount: Int
+    let albumPhotoID: Int
+    let likeCount, shareCount, unreadCount: Int
     let actionLink, actionLinkText, actionLinkTitle, actionLinkPhoto: String?
-    let updatedAt: Int
+    let updatedAt: Int?
     let isStarred, approved, archived, isFlagged: Bool
-    let albumID, unreadCount: Int
+    let albumID: Int
     let collectMethod: String?
-    let title: String
+    let title: String?
     let messaged: Bool?
     let hasPermission, awaitingPermission, socialUserHasLiked: Bool
-    let platformLink: String
-//    let customOrder: JSONNull?
+    let platformLink: String?
     let hasHeavyPermission, awaitingHeavyPermission: Bool
     let permissionedAt: Int?
-//    let heavyPermissionedAt, permissionedByUserID: JSONNull?
     let locality, country: String?
     let isScheduled: Bool?
     let scheduler: String?
     let engagementRate: Double?
-//    let notes: JSONNull?
-    let markedAsSpam: Bool
-    let uploaderAdditionalFields: PXLUploaderAdditionalFields
-    let isInfluencer: Bool
-    let submitterLink, altText: String
-    let boundingBoxProducts: [BoundingBoxProduct]
-    let tagAlbumIDS: [Int]
+    let markedAsSpam: Bool?
+    let uploaderAdditionalFields: PXLUploaderAdditionalFields?
+    let isInfluencer: Bool?
+    let submitterLink, altText: String?
+    let boundingBoxProducts: [BoundingBoxProduct]?
+    let tagAlbumIDS: [Int]?
     let mentions: [String]?
-    let nativeLikes, nativeComments, nativeRetweets, nativeFavorites: Int
-    let nativeShares, nativeFollowers: Int
+    let nativeLikes, nativeComments, nativeRetweets, nativeFavorites: Int?
+    let nativeShares, nativeFollowers: Int?
     let language: String?
     let deletedAt: Int?
-    let connectedUserSocialID: String
-//    let subtype: JSONNull?
+    let connectedUserSocialID: String?
     let narrowDistrict: String?
     let createdAt, approvedOnDate: Int
     let taggedUsernames: [String]
@@ -116,17 +113,13 @@ struct PXLPhotoDTO: Codable {
         case awaitingPermission = "awaiting_permission"
         case socialUserHasLiked = "social_user_has_liked"
         case platformLink = "platform_link"
-//        case customOrder = "custom_order"
         case hasHeavyPermission = "has_heavy_permission"
         case awaitingHeavyPermission = "awaiting_heavy_permission"
         case permissionedAt = "permissioned_at"
-//        case heavyPermissionedAt = "heavy_permissioned_at"
-//        case permissionedByUserID = "permissioned_by_user_id"
         case locality, country
         case isScheduled = "is_scheduled"
         case scheduler
         case engagementRate = "engagement_rate"
-//        case notes
         case markedAsSpam = "marked_as_spam"
         case uploaderAdditionalFields = "uploader_additional_fields"
         case isInfluencer = "is_influencer"
@@ -144,7 +137,6 @@ struct PXLPhotoDTO: Codable {
         case language
         case deletedAt = "deleted_at"
         case connectedUserSocialID = "connected_user_social_id"
-//        case subtype
         case narrowDistrict = "narrow_district"
         case createdAt = "created_at"
         case approvedOnDate = "approved_on_date"
