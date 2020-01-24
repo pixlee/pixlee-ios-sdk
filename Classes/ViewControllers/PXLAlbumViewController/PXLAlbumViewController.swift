@@ -53,7 +53,7 @@ public class PXLAlbumViewController: UIViewController {
                 }
                 self.collectionView.reloadData()
 
-                viewModel.album.triggerEventOpenedWidget(widget: "widgetke") { _ in
+                viewModel.album.triggerEventOpenedWidget(widget: "horizontal") { _ in
                     print("Logged")
                 }
             }
