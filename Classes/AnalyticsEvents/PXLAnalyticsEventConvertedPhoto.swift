@@ -8,16 +8,34 @@
 
 import UIKit
 
+public struct PXLAnalyitcsCartContents {
+    let price: String
+    let productSKU: String
+    let quantity: Int
+
+    public init(price: String, productSKU: String, quantity: Int) {
+        self.price = price
+        self.productSKU = productSKU
+        self.quantity = quantity
+    }
+
+    var dictionaryRepresentation: [String: Any] {
+        return ["price": price,
+                "product_sku": productSKU,
+                "quantity": quantity]
+    }
+}
+
 public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
-    let cartContents: [Int]
-    let cartTotal: Int
+    let cartContents: [PXLAnalyitcsCartContents]
+    let cartTotal: Double
     let cartTotalQuantity: Int
     let orderId: Int?
     let currency: String?
 
     public var eventName = "conversion"
 
-    public init(cartContents: [Int], cartTotal: Int, cartTotalQuantity: Int, orderId: Int? = nil, currency: String? = nil) {
+    public init(cartContents: [PXLAnalyitcsCartContents], cartTotal: Double, cartTotalQuantity: Int, orderId: Int? = nil, currency: String? = nil) {
         self.cartContents = cartContents
         self.cartTotal = cartTotal
         self.cartTotalQuantity = cartTotalQuantity
@@ -28,7 +46,10 @@ public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
     public var logParameters: [String: Any] {
         let udid = UIDevice.current.identifierForVendor?.uuidString ?? "Unknown udid"
 
-        var parameters: [String: Any] = ["cart_contents": cartContents,
+        let cartContentsDictArray = cartContents.map({ (cartContent) -> [String: Any] in
+            cartContent.dictionaryRepresentation
+        })
+        var parameters: [String: Any] = ["cart_contents": cartContentsDictArray,
                                          "cart_total_quantity": cartTotalQuantity,
                                          "cart_total": cartTotal,
                                          "platform": "ios",
