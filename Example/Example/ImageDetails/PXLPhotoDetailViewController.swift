@@ -10,7 +10,7 @@ import Nuke
 import UIKit
 import PixleeSDK
 
-class ImageDetailsViewController: UIViewController {
+class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -68,7 +68,7 @@ class ImageDetailsViewController: UIViewController {
     }
 }
 
-extension ImageDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.products?.count ?? 0
     }
@@ -90,7 +90,7 @@ extension ImageDetailsViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-extension ImageDetailsViewController: UICollectionViewDelegateFlowLayout {
+extension PXLPhotoDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
     }

@@ -40,7 +40,7 @@ class PXLAlbumViewController: UIViewController {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { _, error in
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { photos, error in
                 guard error == nil else {
                     print("There was an error during the loading \(String(describing: error))")
                     return
@@ -92,7 +92,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageDetailsVC = ImageDetailsViewController(nibName: "ImageDetailsViewController", bundle: nil)
+        let imageDetailsVC = PXLPhotoDetailViewController(nibName: "ImageDetailsViewController", bundle: nil)
         let navController = UINavigationController(rootViewController: imageDetailsVC)
 
         imageDetailsVC.viewModel = viewModel?.album.photos[indexPath.row]
