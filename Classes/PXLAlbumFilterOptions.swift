@@ -140,11 +140,11 @@ public struct PXLAlbumFilterOptions: Codable {
     var urlParamString: String? {
         var options = [String: Any]()
         if let minInstagramFollowers = minInstagramFollowers {
-            options["min_instagram_followers"] = minInstagramFollowers
+            options["min_instagram_followers"] = "\(minInstagramFollowers)"
         }
 
         if let minTwitterFollowers = minTwitterFollowers {
-            options["min_twitter_followers"] = minTwitterFollowers
+            options["min_twitter_followers"] = "\(minTwitterFollowers)"
         }
 
         if let flagDeniedPhotos = flagDeniedPhotos, flagDeniedPhotos {
@@ -188,36 +188,36 @@ public struct PXLAlbumFilterOptions: Codable {
         }
 
         if let filterBySubcaption = self.filterBySubcaption {
-            options["filter_by_subcaption"] = filterBySubcaption
+            options["filter_by_subcaption"] = "\(filterBySubcaption)"
         }
 
         if let submittedDateStart = submittedDateStart {
-            options["submitted_date_start"] = submittedDateStart.timeIntervalSince1970
+            options["submitted_date_start"] = "\(submittedDateStart.timeIntervalSince1970)"
         }
 
         if let submittedDateEnd = submittedDateEnd {
-            options["submitted_date_end"] = submittedDateEnd.timeIntervalSince1970
+            options["submitted_date_end"] = "\(submittedDateEnd.timeIntervalSince1970)"
         }
 
         if let inCategories = inCategories {
-            options["in_categories"] = inCategories
+            options["in_categories"] = "\(inCategories)"
         }
 
         if let computerVision = computerVision {
-            options["computer_vision"] = computerVision
+            options["computer_vision"] = "\(computerVision)"
         }
         if let filterByLocation = filterByLocation {
-            options["filter_by_location"] = filterByLocation
+            options["filter_by_location"] = "\(filterByLocation)"
         }
         if let filterByUserhandle = filterByUserhandle {
-            options["filter_by_userhandle"] = filterByUserhandle
+            options["filter_by_userhandle"] = "\(filterByUserhandle)"
         }
         if let filterByRadius = filterByRadius {
-            options["filter_by_radius"] = filterByRadius
+            options["filter_by_radius"] = "\(filterByRadius)"
         }
 
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: options, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: options, options: [])
 
             if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
                 return JSONString

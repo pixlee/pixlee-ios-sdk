@@ -58,7 +58,7 @@ public struct PXLAlbumSortOptions: Codable {
         }
 
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: options, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: options, options: [])
 
             if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
                 return JSONString

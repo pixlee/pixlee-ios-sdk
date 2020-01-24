@@ -14,12 +14,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //        #warning Replace with your Pixlee API key.
         PXLClient.sharedClient.apiKey = "ccWQFNExi4gQjyNYpOEf"
         //        #warning Replace with your Secret Key if you are making POST requests.
         PXLClient.sharedClient.secretKey = "b3b38f4322877060b2e4f390fd"
 
+        album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
+        album.sortOptions = PXLAlbumSortOptions(sortType: .Recency, ascending: false)
+        
         // Get one photo example
         _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "354400866") { newPhoto, error in
             guard error == nil else {
@@ -42,10 +44,13 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: nil)
+    
         albumVC.viewModel = PXLAlbumViewModel(album: album)
         showViewController(VC: albumVC)
     }
