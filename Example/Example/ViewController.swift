@@ -19,17 +19,16 @@ class ViewController: UIViewController {
         //        #warning Replace with your Secret Key if you are making POST requests.
         PXLClient.sharedClient.secretKey = "b3b38f4322877060b2e4f390fd"
 
-        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
-
-        let dateString = "20190101"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let date = dateFormatter.date(from: dateString)
-
-        filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
-
-        PXLAlbumFilterOptions(submittedDateStart: date)
-        album.filterOptions = filterOptions
+//        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
+//        let dateString = "20190101"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyyMMdd"
+//        let date = dateFormatter.date(from: dateString)
+//
+//        filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
+//
+//        PXLAlbumFilterOptions(submittedDateStart: date)
+//        album.filterOptions = filterOptions
         album.sortOptions = PXLAlbumSortOptions(sortType: .random, ascending: false)
 
         // Get one photo example
@@ -58,8 +57,7 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: nil)
-        albumVC.viewModel = PXLAlbumViewModel(album: album)
+        let albumVC = PXLAlbumViewController.viewControllerForAlbum(album:album)
         showViewController(VC: albumVC)
     }
 

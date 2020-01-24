@@ -24,6 +24,9 @@
   "dependencies": {
     "Alamofire": [
       "~> 5.0.0-rc.3"
+    ],
+    "Nuke": [
+      "~> 8.4.0"
     ]
   },
   "swift_version": "5.0"

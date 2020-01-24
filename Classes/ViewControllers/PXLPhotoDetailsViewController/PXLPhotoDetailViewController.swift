@@ -8,9 +8,14 @@
 
 import Nuke
 import UIKit
-import PixleeSDK
 
-class PXLPhotoDetailViewController: UIViewController {
+public class PXLPhotoDetailViewController: UIViewController {
+    public static func viewControllerForPhoto(photo: PXLPhoto) -> PXLPhotoDetailViewController {
+        let bundle = Bundle(for: PXLPhotoDetailViewController.self)
+        let imageDetailsVC = PXLPhotoDetailViewController(nibName: "PXLPhotoDetailViewController", bundle: bundle)
+        imageDetailsVC.viewModel = photo
+        return imageDetailsVC
+    }
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -20,7 +25,7 @@ class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-    var viewModel: PXLPhoto? {
+    public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
@@ -38,11 +43,11 @@ class PXLPhotoDetailViewController: UIViewController {
                 dateLabel.text = ""
             }
 
-            self.sourceImageView.image = viewModel.sourceIconImage
+            sourceImageView.image = viewModel.sourceIconImage
         }
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         setupCollectionView()
@@ -69,11 +74,11 @@ class PXLPhotoDetailViewController: UIViewController {
 }
 
 extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.products?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLProductCell.defaultIdentifier, for: indexPath) as! PXLProductCell
 
         cell.viewModel = viewModel?.products?[indexPath.row]
@@ -83,7 +88,7 @@ extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionVi
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let product = viewModel?.products?[indexPath.item] {
             handleProductPressed(product: product)
         }
@@ -91,7 +96,7 @@ extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionVi
 }
 
 extension PXLPhotoDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
     }
 }

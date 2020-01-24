@@ -10,9 +10,6 @@
 		2146AA63DEA854F748B84E2A /* Pods_ExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DF01205A5126F0A0E4D097 /* Pods_ExampleTests.framework */; };
 		94C0640BECA3DF31E9641762 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642CA3B960C93EE246734429 /* Pods_Example.framework */; };
 		D8055AF6EAC69FBAD1A5E855 /* Pods_Example_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F3B826D6EC765702835B7 /* Pods_Example_ExampleUITests.framework */; };
-		F228094323CFA56A00B1E77C /* PXLAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228094123CFA56A00B1E77C /* PXLAlbumViewController.swift */; };
-		F228094423CFA56A00B1E77C /* PXLAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F228094223CFA56A00B1E77C /* PXLAlbumViewController.xib */; };
-		F228094723CFACE000B1E77C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228094623CFACE000B1E77C /* DateExtension.swift */; };
 		F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F423C65BBE0091E324 /* AppDelegate.swift */; };
 		F24D42F723C65BBE0091E324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F623C65BBE0091E324 /* SceneDelegate.swift */; };
 		F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F823C65BBE0091E324 /* ViewController.swift */; };
@@ -21,13 +18,6 @@
 		F24D430123C65BBF0091E324 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24D42FF23C65BBF0091E324 /* LaunchScreen.storyboard */; };
 		F24D430C23C65BC00091E324 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D430B23C65BC00091E324 /* ExampleTests.swift */; };
 		F24D431723C65BC00091E324 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D431623C65BC00091E324 /* ExampleUITests.swift */; };
-		F25A2BD223CF952500D0D6D2 /* PXLProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A2BD023CF952500D0D6D2 /* PXLProductCell.swift */; };
-		F25A2BD323CF952500D0D6D2 /* PXLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25A2BD123CF952500D0D6D2 /* PXLProductCell.xib */; };
-		F272622323D1C6D7000EB947 /* PXLAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F272622223D1C6D7000EB947 /* PXLAlbumViewModel.swift */; };
-		F2F8337323CB86BE0072641B /* PXLPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8337123CB86BE0072641B /* PXLPhotoDetailViewController.swift */; };
-		F2F8337423CB86BE0072641B /* PXLPhotoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F8337223CB86BE0072641B /* PXLPhotoDetailViewController.xib */; };
-		F2F8337823CB8F750072641B /* PXLImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8337623CB8F750072641B /* PXLImageCell.swift */; };
-		F2F8337923CB8F750072641B /* PXLImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F8337723CB8F750072641B /* PXLImageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +47,6 @@
 		A014A7C4C477C418F331B7C8 /* Pods-Example-ExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8DF01205A5126F0A0E4D097 /* Pods_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAC9142E4ADF433F94D5960 /* Pods-Example-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F228094123CFA56A00B1E77C /* PXLAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewController.swift; sourceTree = "<group>"; };
-		F228094223CFA56A00B1E77C /* PXLAlbumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PXLAlbumViewController.xib; sourceTree = "<group>"; };
-		F228094623CFACE000B1E77C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F24D42F123C65BBE0091E324 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24D42F423C65BBE0091E324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F24D42F623C65BBE0091E324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,13 +61,6 @@
 		F24D431223C65BC00091E324 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24D431623C65BC00091E324 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		F24D431823C65BC00091E324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F25A2BD023CF952500D0D6D2 /* PXLProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLProductCell.swift; sourceTree = "<group>"; };
-		F25A2BD123CF952500D0D6D2 /* PXLProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PXLProductCell.xib; sourceTree = "<group>"; };
-		F272622223D1C6D7000EB947 /* PXLAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewModel.swift; sourceTree = "<group>"; };
-		F2F8337123CB86BE0072641B /* PXLPhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLPhotoDetailViewController.swift; sourceTree = "<group>"; };
-		F2F8337223CB86BE0072641B /* PXLPhotoDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PXLPhotoDetailViewController.xib; sourceTree = "<group>"; };
-		F2F8337623CB8F750072641B /* PXLImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PXLImageCell.swift; path = Example/Cells/PXLImageCell.swift; sourceTree = SOURCE_ROOT; };
-		F2F8337723CB8F750072641B /* PXLImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PXLImageCell.xib; path = Example/Cells/PXLImageCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,24 +114,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F228094523CFA56F00B1E77C /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				F272622223D1C6D7000EB947 /* PXLAlbumViewModel.swift */,
-				F228094123CFA56A00B1E77C /* PXLAlbumViewController.swift */,
-				F228094223CFA56A00B1E77C /* PXLAlbumViewController.xib */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		F228094823CFACE900B1E77C /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				F228094623CFACE000B1E77C /* DateExtension.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		F24D42E823C65BBE0091E324 = {
 			isa = PBXGroup;
 			children = (
@@ -180,10 +142,6 @@
 				F24D42F423C65BBE0091E324 /* AppDelegate.swift */,
 				F24D42F623C65BBE0091E324 /* SceneDelegate.swift */,
 				F24D42F823C65BBE0091E324 /* ViewController.swift */,
-				F228094523CFA56F00B1E77C /* ViewControllers */,
-				F2F8337523CB86C30072641B /* ImageDetails */,
-				F2A0960E23CB784500071640 /* Cells */,
-				F228094823CFACE900B1E77C /* Utils */,
 				F24D42FA23C65BBE0091E324 /* Main.storyboard */,
 				F24D42FD23C65BBF0091E324 /* Assets.xcassets */,
 				F24D42FF23C65BBF0091E324 /* LaunchScreen.storyboard */,
@@ -208,26 +166,6 @@
 				F24D431823C65BC00091E324 /* Info.plist */,
 			);
 			path = ExampleUITests;
-			sourceTree = "<group>";
-		};
-		F2A0960E23CB784500071640 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				F2F8337623CB8F750072641B /* PXLImageCell.swift */,
-				F2F8337723CB8F750072641B /* PXLImageCell.xib */,
-				F25A2BD023CF952500D0D6D2 /* PXLProductCell.swift */,
-				F25A2BD123CF952500D0D6D2 /* PXLProductCell.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		F2F8337523CB86C30072641B /* ImageDetails */ = {
-			isa = PBXGroup;
-			children = (
-				F2F8337123CB86BE0072641B /* PXLPhotoDetailViewController.swift */,
-				F2F8337223CB86BE0072641B /* PXLPhotoDetailViewController.xib */,
-			);
-			path = ImageDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,12 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24D430123C65BBF0091E324 /* LaunchScreen.storyboard in Resources */,
-				F2F8337923CB8F750072641B /* PXLImageCell.xib in Resources */,
 				F24D42FE23C65BBF0091E324 /* Assets.xcassets in Resources */,
-				F2F8337423CB86BE0072641B /* PXLPhotoDetailViewController.xib in Resources */,
-				F25A2BD323CF952500D0D6D2 /* PXLProductCell.xib in Resources */,
 				F24D42FC23C65BBE0091E324 /* Main.storyboard in Resources */,
-				F228094423CFA56A00B1E77C /* PXLAlbumViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,15 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F228094723CFACE000B1E77C /* DateExtension.swift in Sources */,
-				F2F8337823CB8F750072641B /* PXLImageCell.swift in Sources */,
-				F2F8337323CB86BE0072641B /* PXLPhotoDetailViewController.swift in Sources */,
-				F25A2BD223CF952500D0D6D2 /* PXLProductCell.swift in Sources */,
 				F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */,
-				F228094323CFA56A00B1E77C /* PXLAlbumViewController.swift in Sources */,
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
 				F24D42F723C65BBE0091E324 /* SceneDelegate.swift in Sources */,
-				F272622323D1C6D7000EB947 /* PXLAlbumViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

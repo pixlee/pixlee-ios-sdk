@@ -35,4 +35,5 @@ Pod::Spec.new do |spec|
     
     spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
     spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
+    spec.dependency 'Nuke', '~> 8.4.0'
 end

@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F27CCFE523DB54C6007CF85A /* PXLAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CCFDF23DB54C6007CF85A /* PXLAlbumViewController.swift */; };
+		F27CCFE623DB54C6007CF85A /* PXLAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CCFE023DB54C6007CF85A /* PXLAlbumViewController.xib */; };
+		F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CCFE123DB54C6007CF85A /* PXLAlbumViewModel.swift */; };
+		F27CCFE823DB54C6007CF85A /* PXLPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CCFE323DB54C6007CF85A /* PXLPhotoDetailViewController.swift */; };
+		F27CCFE923DB54C6007CF85A /* PXLPhotoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CCFE423DB54C6007CF85A /* PXLPhotoDetailViewController.xib */; };
+		F27CD00423DB5825007CF85A /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27CCFFB23DB5804007CF85A /* Nuke.framework */; };
+		F27CD02323DB595E007CF85A /* PXLImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CD01F23DB595E007CF85A /* PXLImageCell.xib */; };
+		F27CD02423DB595E007CF85A /* PXLImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CD02023DB595E007CF85A /* PXLImageCell.swift */; };
+		F27CD02523DB595E007CF85A /* PXLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CD02123DB595E007CF85A /* PXLProductCell.xib */; };
+		F27CD02623DB595E007CF85A /* PXLProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CD02223DB595E007CF85A /* PXLProductCell.swift */; };
+		F27CD02823DB596A007CF85A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CD02723DB596A007CF85A /* DateExtension.swift */; };
 		F2E30F0F23D8F70800CDD977 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */; };
 		F2E30F1423D8F70800CDD977 /* PixleeSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F1323D8F70800CDD977 /* PixleeSDKTests.swift */; };
 		F2E30F1623D8F70800CDD977 /* PixleeSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E30F0823D8F70800CDD977 /* PixleeSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +47,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F27CCFFA23DB5804007CF85A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C9174901BAE99EE004A7905;
+			remoteInfo = Nuke;
+		};
+		F27CCFFC23DB5804007CF85A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C7C06771BCA882A00089D7F;
+			remoteInfo = "Nuke Unit Tests";
+		};
+		F27CCFFE23DB5804007CF85A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C4F8FDF22E4B6ED0070ECFD;
+			remoteInfo = "Nuke Thread Safety Tests";
+		};
+		F27CD00023DB5804007CF85A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C8D7BE81D9DC02B00D12EB7;
+			remoteInfo = "Nuke Performance Tests";
+		};
+		F27CD00223DB5804007CF85A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C8D7BD01D9DBF1600D12EB7;
+			remoteInfo = "Nuke Tests Host";
+		};
 		F2E30F1023D8F70800CDD977 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F2E30EFC23D8F70800CDD977 /* Project object */;
@@ -95,6 +141,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F27CCFDF23DB54C6007CF85A /* PXLAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewController.swift; sourceTree = "<group>"; };
+		F27CCFE023DB54C6007CF85A /* PXLAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLAlbumViewController.xib; sourceTree = "<group>"; };
+		F27CCFE123DB54C6007CF85A /* PXLAlbumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewModel.swift; sourceTree = "<group>"; };
+		F27CCFE323DB54C6007CF85A /* PXLPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLPhotoDetailViewController.swift; sourceTree = "<group>"; };
+		F27CCFE423DB54C6007CF85A /* PXLPhotoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLPhotoDetailViewController.xib; sourceTree = "<group>"; };
+		F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nuke.xcodeproj; path = Carthage/Checkouts/Nuke/Nuke.xcodeproj; sourceTree = "<group>"; };
+		F27CD01F23DB595E007CF85A /* PXLImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLImageCell.xib; sourceTree = "<group>"; };
+		F27CD02023DB595E007CF85A /* PXLImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLImageCell.swift; sourceTree = "<group>"; };
+		F27CD02123DB595E007CF85A /* PXLProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLProductCell.xib; sourceTree = "<group>"; };
+		F27CD02223DB595E007CF85A /* PXLProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProductCell.swift; sourceTree = "<group>"; };
+		F27CD02723DB596A007CF85A /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixleeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E30F0823D8F70800CDD977 /* PixleeSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixleeSDK.h; sourceTree = "<group>"; };
 		F2E30F0923D8F70800CDD977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F27CD00423DB5825007CF85A /* Nuke.framework in Frameworks */,
 				F2E30F6A23D8F77E00CDD977 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +204,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F27CCFDD23DB54C6007CF85A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F27CCFDE23DB54C6007CF85A /* PXLAlbumViewController */,
+				F27CCFE223DB54C6007CF85A /* PXLPhotoDetailsViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F27CCFDE23DB54C6007CF85A /* PXLAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F27CD01E23DB595E007CF85A /* Cells */,
+				F27CCFDF23DB54C6007CF85A /* PXLAlbumViewController.swift */,
+				F27CCFE023DB54C6007CF85A /* PXLAlbumViewController.xib */,
+				F27CCFE123DB54C6007CF85A /* PXLAlbumViewModel.swift */,
+			);
+			path = PXLAlbumViewController;
+			sourceTree = "<group>";
+		};
+		F27CCFE223DB54C6007CF85A /* PXLPhotoDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F27CCFE323DB54C6007CF85A /* PXLPhotoDetailViewController.swift */,
+				F27CCFE423DB54C6007CF85A /* PXLPhotoDetailViewController.xib */,
+			);
+			path = PXLPhotoDetailsViewController;
+			sourceTree = "<group>";
+		};
+		F27CCFEC23DB5804007CF85A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F27CCFFB23DB5804007CF85A /* Nuke.framework */,
+				F27CCFFD23DB5804007CF85A /* Nuke Unit Tests.xctest */,
+				F27CCFFF23DB5804007CF85A /* Nuke Thread Safety Tests.xctest */,
+				F27CD00123DB5804007CF85A /* Nuke Performance Tests.xctest */,
+				F27CD00323DB5804007CF85A /* Nuke Tests Host.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F27CD01E23DB595E007CF85A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F27CD01F23DB595E007CF85A /* PXLImageCell.xib */,
+				F27CD02023DB595E007CF85A /* PXLImageCell.swift */,
+				F27CD02123DB595E007CF85A /* PXLProductCell.xib */,
+				F27CD02223DB595E007CF85A /* PXLProductCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F2E30EFB23D8F70800CDD977 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +263,7 @@
 				F2E30F1223D8F70800CDD977 /* PixleeSDKTests */,
 				F2E30F0623D8F70800CDD977 /* Products */,
 				F2E30F5123D8F76000CDD977 /* Alamofire.xcodeproj */,
+				F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */,
 				F2E30F6923D8F77E00CDD977 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -188,6 +299,7 @@
 		F2E30F1F23D8F73200CDD977 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F27CCFDD23DB54C6007CF85A /* ViewControllers */,
 				F2E30F2023D8F73200CDD977 /* PXLAnalyitcsService.swift */,
 				F2E30F2123D8F73200CDD977 /* PXLProduct.swift */,
 				F2E30F2223D8F73200CDD977 /* PXLAlbumFilterOptions.swift */,
@@ -249,6 +361,7 @@
 		F2E30F3823D8F73200CDD977 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F27CD02723DB596A007CF85A /* DateExtension.swift */,
 				F2E30F3923D8F73200CDD977 /* SwiftCrypto.swift */,
 			);
 			path = Helpers;
@@ -359,6 +472,10 @@
 					ProductGroup = F2E30F5223D8F76000CDD977 /* Products */;
 					ProjectRef = F2E30F5123D8F76000CDD977 /* Alamofire.xcodeproj */;
 				},
+				{
+					ProductGroup = F27CCFEC23DB5804007CF85A /* Products */;
+					ProjectRef = F27CCFEB23DB5804007CF85A /* Nuke.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -369,6 +486,41 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		F27CCFFB23DB5804007CF85A /* Nuke.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nuke.framework;
+			remoteRef = F27CCFFA23DB5804007CF85A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F27CCFFD23DB5804007CF85A /* Nuke Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Nuke Unit Tests.xctest";
+			remoteRef = F27CCFFC23DB5804007CF85A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F27CCFFF23DB5804007CF85A /* Nuke Thread Safety Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Nuke Thread Safety Tests.xctest";
+			remoteRef = F27CCFFE23DB5804007CF85A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F27CD00123DB5804007CF85A /* Nuke Performance Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Nuke Performance Tests.xctest";
+			remoteRef = F27CD00023DB5804007CF85A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F27CD00323DB5804007CF85A /* Nuke Tests Host.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Nuke Tests Host.app";
+			remoteRef = F27CD00223DB5804007CF85A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		F2E30F5C23D8F76000CDD977 /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -425,7 +577,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F27CD02523DB595E007CF85A /* PXLProductCell.xib in Resources */,
+				F27CD02323DB595E007CF85A /* PXLImageCell.xib in Resources */,
+				F27CCFE923DB54C6007CF85A /* PXLPhotoDetailViewController.xib in Resources */,
 				F2E30F3E23D8F73200CDD977 /* ImageAssets.xcassets in Resources */,
+				F27CCFE623DB54C6007CF85A /* PXLAlbumViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,12 +600,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E30F4323D8F73200CDD977 /* PXLPhotoResponseDTO.swift in Sources */,
+				F27CCFE823DB54C6007CF85A /* PXLPhotoDetailViewController.swift in Sources */,
 				F2E30F4423D8F73200CDD977 /* PXLProductDTO.swift in Sources */,
 				F2E30F4F23D8F73200CDD977 /* SwiftCrypto.swift in Sources */,
+				F27CD02423DB595E007CF85A /* PXLImageCell.swift in Sources */,
+				F27CCFE523DB54C6007CF85A /* PXLAlbumViewController.swift in Sources */,
 				F2E30F4123D8F73200CDD977 /* PXLPhotoConverter.swift in Sources */,
 				F2E30F4223D8F73200CDD977 /* PXLAlbum.swift in Sources */,
 				F2E30F3D23D8F73200CDD977 /* PXLAlbumFilterOptions.swift in Sources */,
 				F2E30F4023D8F73200CDD977 /* PXLProductConverter.swift in Sources */,
+				F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */,
 				F2E30F4D23D8F73200CDD977 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
 				F2E30F4723D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift in Sources */,
 				F2E30F4523D8F73200CDD977 /* PXLAlbumNexPageResponseDTO.swift in Sources */,
@@ -461,6 +621,8 @@
 				F2E30F3F23D8F73200CDD977 /* PXLPhoto.swift in Sources */,
 				F2E30F4A23D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
 				F2E30F4623D8F73200CDD977 /* PXLAlbumSortOptions.swift in Sources */,
+				F27CD02823DB596A007CF85A /* DateExtension.swift in Sources */,
+				F27CD02623DB595E007CF85A /* PXLProductCell.swift in Sources */,
 				F2E30F4923D8F73200CDD977 /* PXLAnalyitcsEvent.swift in Sources */,
 				F2E30F4823D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
 				F2E30F4E23D8F73200CDD977 /* PXLApiRequests.swift in Sources */,

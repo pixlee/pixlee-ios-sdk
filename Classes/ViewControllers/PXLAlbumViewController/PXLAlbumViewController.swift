@@ -7,13 +7,19 @@
 //
 
 import UIKit
-import PixleeSDK
 enum PXLAlbumViewControllerDisplayDisplayMode {
     case grid
     case list
 }
 
-class PXLAlbumViewController: UIViewController {
+public class PXLAlbumViewController: UIViewController {
+    public static func viewControllerForAlbum(album: PXLAlbum) -> PXLAlbumViewController {
+        let bundle = Bundle(for: PXLAlbumViewController.self)
+        let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: bundle)
+        albumVC.viewModel = PXLAlbumViewModel(album: album)
+        return albumVC
+    }
+
     let defaultMargin: CGFloat = 15
 
     @IBOutlet var layoutSwitcher: UISegmentedControl!
@@ -36,23 +42,21 @@ class PXLAlbumViewController: UIViewController {
         albumDisplayMode = layoutSwitcher.selectedSegmentIndex == 0 ? .list : .grid
     }
 
-    var viewModel: PXLAlbumViewModel? {
+    public var viewModel: PXLAlbumViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { photos, error in
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { _, error in
                 guard error == nil else {
                     print("There was an error during the loading \(String(describing: error))")
                     return
                 }
                 self.collectionView.reloadData()
             }
-
-            viewModel.openedWidget("my new widget")
         }
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         setupCollectionView()
@@ -72,18 +76,19 @@ class PXLAlbumViewController: UIViewController {
 
         collectionView.setCollectionViewLayout(layoutToUse, animated: false)
 
+        let bundle = Bundle(for: PXLImageCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "PXLImageCell", bundle: nil), forCellWithReuseIdentifier: PXLImageCell.defaultIdentifier)
+        collectionView.register(UINib(nibName: "PXLImageCell", bundle: bundle), forCellWithReuseIdentifier: PXLImageCell.defaultIdentifier)
     }
 }
 
 extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.album.photos.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLImageCell.defaultIdentifier, for: indexPath) as! PXLImageCell
 
         cell.viewModel = viewModel?.album.photos[indexPath.row]
@@ -91,22 +96,20 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageDetailsVC = PXLPhotoDetailViewController(nibName: "ImageDetailsViewController", bundle: nil)
-        let navController = UINavigationController(rootViewController: imageDetailsVC)
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let photo = viewModel?.album.photos[indexPath.row] {
+            let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
 
-        imageDetailsVC.viewModel = viewModel?.album.photos[indexPath.row]
-
-        present(navController, animated: true) {
+            let navController = UINavigationController(rootViewController: photoDetailVC)
+            present(navController, animated: true, completion: nil)
         }
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
             let offset = scrollView.contentOffset.y + scrollView.frame.height
             if offset > scrollView.contentSize.height * 0.7 {
                 if let viewModel = viewModel {
-                    viewModel.loadMore()
                     _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { photos, error in
                         guard error == nil else {
                             print("Error while loading images:\(String(describing: error))")

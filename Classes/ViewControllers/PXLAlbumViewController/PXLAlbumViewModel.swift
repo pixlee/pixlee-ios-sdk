@@ -7,27 +7,31 @@
 //
 
 import Foundation
-import PixleeSDK
-struct PXLAlbumViewModel {
-    var album: PXLAlbum
+public struct PXLAlbumViewModel {
+    public var album: PXLAlbum
 
-    var photos: [PXLPhoto] {
+    public var photos: [PXLPhoto] {
         album.photos
     }
 
+    public init(album: PXLAlbum) {
+        self.album = album
+    }
+
     func loadMore() {
-        _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: album)) { error in
+        _ = album.triggerEventLoadMoreTapped(completionHandler: { error in
             if let error = error {
                 print("🛑 Error during analyitcs call:\(error)")
             }
-        }
+            print("Logged")
+        })
     }
 
     func openedWidget(_ widget: String) {
-        _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: widget)) { error in
+        _ = album.triggerEventOpenedWidget(widget: widget, completionHandler: { error in
             if let error = error {
                 print("🛑 Error during analyitcs call:\(error)")
             }
-        }
+        })
     }
 }
