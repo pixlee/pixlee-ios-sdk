@@ -9,27 +9,27 @@
 import Foundation
 
 public enum PXLAlbumSortType: Int, Codable {
-    case None
-    case Recency
-    case Random
-    case PixleeShares
-    case PixleeLikes
-    case Popularity
-    case Dynamic
+    case none
+    case recency
+    case random
+    case pixleeShares
+    case pixleeLikes
+    case popularity
+    case dynamic
 
     var key: String {
         switch self {
-        case .Recency:
+        case .recency:
             return "recency"
-        case .Random:
+        case .random:
             return "random"
-        case .PixleeShares:
+        case .pixleeShares:
             return "pixlee_shares"
-        case .PixleeLikes:
+        case .pixleeLikes:
             return "pixlee_likes"
-        case .Popularity:
+        case .popularity:
             return "popularity"
-        case .Dynamic:
+        case .dynamic:
             return "dynamic"
         default:
             return ""
@@ -53,7 +53,7 @@ public struct PXLAlbumSortOptions: Codable {
         } else {
             options["desc"] = true
         }
-        if sortType != .None {
+        if sortType != .none {
             options[sortType.key] = true
         }
 
