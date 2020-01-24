@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 //
 //        PXLAlbumFilterOptions(submittedDateStart: date)
 //        album.filterOptions = filterOptions
-        album.sortOptions = PXLAlbumSortOptions(sortType: .random, ascending: false)
+        album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
 
         // Get one photo example
         _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "353880700") { newPhoto, error in

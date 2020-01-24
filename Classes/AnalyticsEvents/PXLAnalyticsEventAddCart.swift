@@ -31,7 +31,6 @@ public struct PXLAnalyticsEventAddCart: PXLAnalyticsEvent {
                                          "price": price,
                                          "platform": "ios",
                                          "uid": udid,
-                                         "distinct_user_hash": udid,
                                          "fingerprint": udid]
         if let currency = currency {
             parameters["currency"] = currency
