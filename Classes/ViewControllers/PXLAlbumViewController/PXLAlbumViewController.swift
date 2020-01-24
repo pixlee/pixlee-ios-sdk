@@ -99,7 +99,6 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let photo = viewModel?.album.photos[indexPath.row] {
             let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
-
             let navController = UINavigationController(rootViewController: photoDetailVC)
             present(navController, animated: true, completion: nil)
         }

@@ -33,7 +33,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 ### Including Pixlee SDK With Carthage 
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
-1. Run `carthage update`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
+1. Run `bin/setup`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
 1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
 
@@ -175,16 +175,15 @@ Additionally, you can control how an album loads its data using `PXLAlbumFilterO
 
 Once an album has loaded photos from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a photo available through the Pixlee API and offers several image url sizes depending on your needs.
 
-To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. Create a `PXLAlbumViewModel` object with your using your `PXLAlbum`.
+To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
 Example of showing the ViewController
 ```
-let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: nil)
-albumVC.viewModel = PXLAlbumViewModel(album: album)
+let albumVC = PXLAlbumViewController.viewControllerForAlbum(album:album)
 showViewController(VC: albumVC)
 ```
 The album view controller is set up to automatically load more pages of photos as the user scrolls, giving it an infinite scroll effect.
 
-If a user taps on a photo in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController` and setting its `viewModel` property. The photo detail view is configured to display:
+If a user taps on a photo in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController.viewControllerForPhot` and providing  the `PXLPhoto` instance property. The photo detail view is configured to display:
 * the large photo
 * the username of the poster
 * a timestamp showing when the photo was posted
@@ -193,12 +192,9 @@ If a user taps on a photo in the `PXLAlbumViewController`, we present a detail v
 * any products associated with that photo (displayed as a horizontal list of products)
 Example of loading the detailViewController
 ```
-let imageDetailsVC = PXLPhotoDetailViewController(nibName: "ImageDetailsViewController", bundle: nil)
-let navController = UINavigationController(rootViewController: imageDetailsVC)
-
-imageDetailsVC.viewModel = viewModel?.album.photos[indexPath.row]
-
-present(navController, animated: true) {
+    let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
+    let navController = UINavigationController(rootViewController: photoDetailVC)
+    present(navController, animated: true, completion: nil)
 ```
 
 ### Analytics
@@ -337,7 +333,7 @@ Coming soon, until that please use the Obj-C SDK to upload an image.
 
 ### Example
 
-To run the example project, clone the repo, and run `pos install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
+To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
 
 To run the project, open `Example.xcworkspace` in Xcode.
 
