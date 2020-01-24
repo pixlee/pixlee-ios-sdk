@@ -123,4 +123,12 @@ public struct PXLPhoto {
             return nil
         }
     }
+
+    public func triggerEventActionClicked(actionLink: String, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventActionClicked(photo: self, actionLink: actionLink), completionHandler: completionHandler)
+    }
+
+    public func triggerEventOpenedLightbox(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: self), completionHandler: completionHandler)
+    }
 }

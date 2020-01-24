@@ -271,205 +271,75 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 #### Notes
 It's important to trigger this event after the LoadNextPage event
 ```
-    PXLAlbum *album = [PXLAlbum albumWithSkuIdentifier:PXLSkuAlbumIdentifier];
-    
-    
+    let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
     // If you are using api/v2/album/sku_from
     // Refer to pixlee_sdk PXLAbum.h
-    [self.album loadNextPageOfPhotosFromSku:^(NSArray *photos, NSError *error){
-    //It's important to trigger these events after the LoadNextPage event
+    PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { _, _ in
+        //It's important to trigger these events after the LoadNextPage event
         
         //EVENT opened:widget refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-        [self.album triggerEventOpenedWidget:@"horizontal" callback:^(NSError *error) {
-            NSLog(@"logged");
-        }];
-
-    }];
-
-
+        album.triggerEventOpenedWidget(widget: "horizontal") { _ in
+            print("Logged")
+        }
+    }
 ```
 #### Example User Clicks on the Pixlee Widget
 ```
-       // photo being the PXLPhoto that been clicked 
-    PXLPhoto *photo = photo
-    
-       //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
+    // photo being the PXLPhoto that been clicked
+    let photo:PXLPhoto = photoFromSomewhere
 
-     [photo triggerEventOpenedLightbox:^(NSError *error) {
-            NSLog(@"logged");
-     }];
-
+    //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
+    photo.triggerEventOpenedLightbox { (error) in
+        print("Logged") 
+    }
 
 ```
 
 #### Example User make an action after clicking on an Item 
 ```
-[PXLPhoto getPhotoWithId:@"299469263" callback:^(PXLPhoto *photo, NSError *error) {
-    
-
-    PXLProduct *p = [photo.products objectAtIndex:0];
-    NSString *url = [p.link.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"%@",url);
-
-    [photo triggerEventActionClicked:url callback:^(NSError *error) {
-    NSLog(@"triggered");
-    }];
-
-}];
-
+    PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPhoto, error in
+        guard error == nil else {
+            print("Error during load of image with Id \(String(describing: error))")
+            return
+        }
+        guard let photo = newPhoto else {
+            print("cannot find photo")
+            return
+        }
+        print("New Photo: \(photo.albumPhotoId)")
+        if let product = photo.products?.first, let url = product.link?.absoluteString {
+            photo.triggerEventActionClicked(actionLink: url) { _ in
+                print("triggered")
+            }
+        }
+    }
 ```
 
 #### Example User click Load more
 ```
-[self.album loadNextPageOfPhotosFromSku:^(NSArray *photos, NSError *error){
-NSLog(@"%@",error);
-if (photos.count) {
-    NSMutableArray *indexPaths = @[].mutableCopy;
-    NSInteger firstIndex = [self.album.photos indexOfObject:[photos firstObject]];
-    NSLog(@"%@", [self.album.photos objectAtIndex:0]);
-    [photos enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSInteger itemNum = firstIndex + idx;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemNum inSection:0];
-        [indexPaths addObject:indexPath];
-    }];
-    [self.albumCollectionView insertItemsAtIndexPaths:indexPaths];
-}
-
-
-[self.album triggerEventLoadMoreClicked:^(NSError *error) {
-NSLog(@"logged");
-}];
-
-
-
-
-}];
+    let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
+    // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
+    // If you are using api/v2/album/sku_from
+    // Refer to pixlee_sdk PXLAbum.h
+    PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { _, _ in
+        /
+        album.triggerEventLoadMoreTapped { (error) in
+            print("logged")
+        }
+    }
 
 ```
 #### Uploading an Image to an album
 
-To upload an Image to an album use the class function uploadImage available on PXLALbum class. Do not forget to set your PXLCLIENTSECRETKEY. 
-
-```
-
-///---------------------
-/// @name Initialization
-///---------------------
-
-/**
- Creates and returns an album with the specified sku identifier.
- 
- @param photo_uri image url.albumId is the Pixlee id to upload the image. email the user email. Username of the user uploading the email. approved photo state. connected_user_id optional. callback function.
- 
- @return A new `PXLAlbum` object.
- */
-+ (NSURLSessionDataTask *)uploadImage:(NSNumber *)albumId :(NSString *)title :(NSString *)email :(NSString *)username  :(NSString *)photo_uri :(BOOL *)approved :(NSString *)connected_user_id callback:(void (^)(NSError *))completionBlock;
-```
-
-
-
-
-### Setup Swift Project with Carthage
-
-If you are trying to use the Objective-C Pixlee API with a Swift project please follow these steps, you can also view the sample project available at ~example_swift/:
-
-1. Create a Cartfile that lists the frameworks you’d like to use in your project.
-1. Run `carthage update`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
-1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
-
-
-
-
-### Adding Pixlee_SDK headers to Swift 
-1. Add a bridging_header.h to your current project, follow these steps to create one https://developer.apple.com/documentation/swift/imported_c_and_objective-c_apis/importing_objective-c_into_swift
-1. Import the Pixlee sdk header files like this
-
-```
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
-
-#import <pixlee_sdk/PXLPhoto.h>
-#import <pixlee_sdk/PXLAlbumFilterOptions.h>
-#import <pixlee_sdk/PXLAlbumSortOptions.h>
-#import <pixlee_sdk/PXLClient.h>
-#import <pixlee_sdk/PXLAlbum.h>
-
-```
-
-1. These files are now accessible across all your Swift code and can be use the same way as before.
-
-### Swift example
-
-To load an album from a sku number you can run the following Swift code, please check the example_swift project directory:
-```
-let album: PXLAlbum = PXLAlbum(skuIdentifier: PXLSkuAlbumIdentifier)
-let filterOptions:PXLAlbumFilterOptions = PXLAlbumFilterOptions()
-album.filterOptions = filterOptions
-
-// Create and set sort options on the album.
-let sortOptions = PXLAlbumSortOptions()
-sortOptions.sortType = PXLAlbumSortType.random
-sortOptions.ascending = true
-album.sortOptions = sortOptions
-album.perPage = 1
-
-album.loadNextPageOfPhotos(fromSku:  { photos, error in
-if let error = error {
-print("\(error)")
-}
-print(type(of: photos))
-if photos?.count != nil {
-//                var indexPaths: [AnyHashable] = []
-//                var firstIndex: Int? = nil
-if let arr = photos as? Array<PXLPhoto> {
-for p in arr{
-print(p.cdnLargeUrl)
-
-}
-print(arr)
-}
-
-}
-
-})
-```
-### Swift Unit tests
-
-To run the tests please go the swift_example project and run the tests on xcode.
-Note: Do not forget to set the secret_key and api_key before running the tests.
-
-#### Swift type casting 
-
-Unfortunately the type casting is not fully working when using Objective-C libraries. You will have to cast the return object from the Pixlee API manually like so ``` let arr = photos as? Array<PXLPhoto>```
-
-Check the snipet of code for a full version: 
-
-```
-album.loadNextPageOfPhotos(fromSku:  { photos, error in
-if let error = error {
-print("\(error)")
-}
-print(type(of: photos)) # Optional<Array<Any>>
-if let arr = photos as? Array<PXLPhoto> {
-
-}
-})
-
-```
-
-
-### Important 
-If you are using Xcode 10, the new build system doesn't work with the example project. A temporary workaround seems to be switching to the legacy build system by going to (in Xcode) File -> Workspace Settings -> Build System -> Legacy Build System. But compiling with the CLI still doesnt work.
+Coming soon, until that please use the Obj-C SDK to upload an image. 
 
 
 ### Example
 
-To run the example project, clone the repo, and run `carthage update` from the Example directory first. Then in `PXLAppDelegate.m` set `PXLClientAPIKey` to your API key (available from the Pixlee dashboard). Then in `PXLExampleAlbumViewController.m` set the album id that you wish to display as `PXLAlbumIdentifier`.
+To run the example project, clone the repo, and run `pos install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
 
-To run the project, open example.xcodeproj in Xcode.
+To run the project, open `Example.xcworkspace` in Xcode.
 
 Run the project and you should see a grid of photos from that album.
 

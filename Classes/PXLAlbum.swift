@@ -75,4 +75,12 @@ public class PXLAlbum {
                         sortOptions: sortOptions,
                         filterOptions: filterOptions)
     }
+
+    public func triggerEventOpenedWidget(widget: String, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
+    }
+
+    public func triggerEventLoadMoreTapped(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: self), completionHandler: completionHandler)
+    }
 }

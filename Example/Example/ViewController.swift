@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         album.sortOptions = PXLAlbumSortOptions(sortType: .random, ascending: false)
 
         // Get one photo example
-        _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "354400866") { newPhoto, error in
+        _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPhoto, error in
             guard error == nil else {
                 print("Error during load of image with Id \(String(describing: error))")
                 return
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
                 return
             }
             print("New Photo: \(photo.albumPhotoId)")
+            
             _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: photo)) { error in
                 if let error = error {
                     print("🛑 Error during analyitcs call:\(error)")
