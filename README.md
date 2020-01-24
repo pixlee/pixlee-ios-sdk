@@ -2,45 +2,33 @@
 
 This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started.
 
-## Dependencies
-
-Due to a current issue with the AFNetworking library, compilation of the application currently requires XCode 10 or lower.
-
-If compiling with XCode 11 or higher, these two environment variables must be set before running carthage:
-
-
-`CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO`
-
-`GCC_TREAT_WARNINGS_AS_ERRORS = NO`
-
-Then, carthage build and carthage update commands can proceed.
-
 ## Getting Started
 
 This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
 
 ### SDK
 
-Before accessing the Pixlee API, you must initialize the `PXLClient`. To set the API key, call `setApiKey:` on `[PXLClient sharedClient]`. You can then use that singleton instance to make calls against the Pixlee API.
+Before accessing the Pixlee API, you must initialize the `PXLClient`. To set the API key, what can be set with the  `apiKey` property on `PXLClient.sharedClient`. You can then use that singleton instance to make calls against the Pixlee API.
 
 To load the photos in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
 
-If you are retriving the content for one album you'll want to use the `PXLAlbum` class. Create an instance by calling `[PXLAlbum albumWithIdentifier:<ALBUM ID HERE>]`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos. An album will load its photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn.
+If you are retriving the content for one album you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(identifier: <ALBUM ID HERE>)`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
+You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
 
 
 ### Including Pixlee SDK with Cocoapods
 1. install and setup cocoapods with your projects https://guides.cocoapods.org/using/getting-started.html
-1. Add https://cocoapods.org/pods/pixlee_api to your Podfile by adding 
+1. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
 ```
 
 target 'MyApp' do
-  pod 'pixlee_api', '~> 1.74.32' (Replace with current version, you can find the current version at https://github.com/pixlee/ios-sdk-carthage/releases)
+  pod 'PixleeSDK', '~> 2.0.0' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
 end
 
 ```
 1. Run Pod install
 
-If you are using swift there is one more step to do please refer to the swift section or contact us support@pixleeteam.com
+If you are using Objective-C in your porject and don't want to add a framework based on swift you can use our deprecated library: https://github.com/pixlee/ios-sdk-carthage/releases 
 
 ### Including Pixlee SDK With Carthage 
 ##### If you're building for iOS, tvOS, or watchOS
@@ -113,42 +101,38 @@ dynamic - Our "secret sauce" -- a special sort that highlights high performance 
 //These parameters are examples. Please adjust, add or remove them during implementation.
 //=========================================================
 
-//Create an Instance of Album with the sku Identifier
-PXLAlbum *album = [PXLAlbum albumWithIdentifier:PXLSkuAlbumIdentifier];
+//Create an Instance of Album with the Identifier
+let album = PXLAlbum(identifier: PXLAlbumIdentifier)
 
 // Create and set filter options on the album.
-PXLAlbumFilterOptions *filterOptions = [PXLAlbumFilterOptions new];
+album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
 
-
-NSString *dateStr = @"20190101";
-// Convert string to date object
-NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-[dateFormat setDateFormat:@"yyyyMMdd"];
-NSDate *date = [dateFormat dateFromString:dateStr];  
-filterOptions.submittedDateStart = date; 
-
+let dateString = "20190101"
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "yyyyMMdd"
+let date = dateFormatter.date(from: dateString)
+filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
 
 //These parameters are examples. Please adjust, add or remove them during implementation.
 album.filterOptions = filterOptions;
 
 // Create and set sort options on the album.
-PXLAlbumSortOptions *sortOptions = [PXLAlbumSortOptions new];
-sortOptions.sortType = PXLAlbumSortTypeRandom;
-album.sortOptions = sortOptions;
+album.sortOptions = PXLAlbumSortOptions(sortType: .Recency, ascending: false)
 album.perPage = 100;
 
-[album loadNextPageOfPhotos:^(NSArray *photos, NSError *error) {
-    NSLog(@"%@",error);
-    if (photos.count) {
-        NSMutableArray *indexPaths = @[].mutableCopy;
-        NSInteger firstIndex = [album.photos indexOfObject:[photos firstObject]];
-        NSLog(@"%@", [album.photos objectAtIndex:0]);
+PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+    guard error == nil else {
+        print("There was an error during the loading \(String(describing: error))")
+        return
     }
-}];
+    //Use your photos array here
+    print("New photos loaded: \(photos)")
+}
 
 ```
 
-If you are retriving the content for a sku you'll want to use the `PXLAlbum` class. Create an instance by calling `[PXLAlbum albumWithSkuIdentifier:<SKU ID HERE>]`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotosFromSku:` to load photos. An album will load its photos as pages, and calling `loadNextPageOfPhotosFromSku:` successively will load each page in turn.
+If you are retriving the content for a sku you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(sku:<SKU ID HERE>)`.  As the same as with identifier, you can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
+You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
 
 ### Example
 ```
@@ -158,120 +142,130 @@ If you are retriving the content for a sku you'll want to use the `PXLAlbum` cla
 //=========================================================
 
 
-//Create an Instance of Album with the sku Identifier
-PXLAlbum *album = [PXLAlbum albumWithSkuIdentifier:PXLSkuAlbumIdentifier];
+//Create an Instance of Album with the SKU Identifier
+let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
 
 // Create and set filter options on the album.
-PXLAlbumFilterOptions *filterOptions = [PXLAlbumFilterOptions new];
-
-
-
-NSString *dateStr = @"20190101";
-// Convert string to date object
-NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-[dateFormat setDateFormat:@"yyyyMMdd"];
-NSDate *date = [dateFormat dateFromString:dateStr];  
-filterOptions.submittedDateStart = date; 
-
+let dateString = "20190101"
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "yyyyMMdd"
+let date = dateFormatter.date(from: dateString)
+filterOptions = PXLAlbumFilterOptions(submittedDateStart: date)
 
 //These parameters are examples. Please adjust, add or remove them during implementation.
 album.filterOptions = filterOptions;
 
 // Create and set sort options on the album.
-PXLAlbumSortOptions *sortOptions = [PXLAlbumSortOptions new];
-sortOptions.sortType = PXLAlbumSortTypeRandom;
-album.sortOptions = sortOptions;
+album.sortOptions = PXLAlbumSortOptions(sortType: .random, ascending: false)
 album.perPage = 100;
 
-[album loadNextPageOfPhotosFromSku:^(NSArray *photos, NSError *error) {
-    NSLog(@"%@",error);
-    if (photos.count) {
-        NSMutableArray *indexPaths = @[].mutableCopy;
-        NSInteger firstIndex = [album.photos indexOfObject:[photos firstObject]];
-        NSLog(@"%@", [album.photos objectAtIndex:0]);
+PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+    guard error == nil else {
+        print("There was an error during the loading \(String(describing: error))")
+        return
     }
-}];
+    //Use your photos array here
+    print("New photos loaded: \(photos)")
+}
 
 ```
 ### Notes
 
-Additionally, you can control how an album loads its data using `PXLAlbumFilterOptions` and `PXLAlbumSortOptions`. To use these, create a new instance with `[PXLAlbumFilterOptions new]` or `[PXLAlbumSortOptions new]`, set the necessary properties, and then set those objects to the `filterOptions` and `sortOptions` properties on your album. Make sure to set these before calling `loadNextPageOfPhotos:`.
+Additionally, you can control how an album loads its data using `PXLAlbumFilterOptions` and `PXLAlbumSortOptions`. To use these, create a new instance with `PXLAlbumFilterOptions()` or `PXLAlbumSortOptions(sortType:SortType, ascending:Boolean)`, set the necessary properties, and then set those objects to the `filterOptions` and `sortOptions` properties on your album. Make sure to set these before calling `loadNextPageOfPhotosForAlbum:`.
 
 Once an album has loaded photos from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a photo available through the Pixlee API and offers several image url sizes depending on your needs.
 
-To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. Use `albumViewControllerWithAlbumId:` to create an instance or set the `album` property if you need to create an instance through other means. Once the album has been set, you can call `loadNextPageOfPhotos` to start the loading process. The album view controller is set up to automatically load more pages of photos as the user scrolls, giving it an infinite scroll effect.
+To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. Create a `PXLAlbumViewModel` object with your using your `PXLAlbum`.
+Example of showing the ViewController
+```
+let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: nil)
+albumVC.viewModel = PXLAlbumViewModel(album: album)
+showViewController(VC: albumVC)
+```
+The album view controller is set up to automatically load more pages of photos as the user scrolls, giving it an infinite scroll effect.
 
-If a user taps on a photo in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController` and setting its `photo` property. The photo detail view is configured to display:
+If a user taps on a photo in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController` and setting its `viewModel` property. The photo detail view is configured to display:
 * the large photo
 * the username of the poster
 * a timestamp showing when the photo was posted
 * the platform source of the photo (e.g. Instagram)
 * the photo's caption (if one is available)
 * any products associated with that photo (displayed as a horizontal list of products)
+Example of loading the detailViewController
+```
+let imageDetailsVC = PXLPhotoDetailViewController(nibName: "ImageDetailsViewController", bundle: nil)
+let navController = UINavigationController(rootViewController: imageDetailsVC)
+
+imageDetailsVC.viewModel = viewModel?.album.photos[indexPath.row]
+
+present(navController, animated: true) {
+```
 
 ### Analytics
-
+If you would like to make analyitcs calls you can use our analyitcs service `PXLAnalyitcsService`. What is a singleton, you can reach it as `PXLAnalyitcsService.sharedAnalytics`.
+To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analyitcs service's `logEvent` method. 
 The following events are supported by the sdk:
 ```
-Add to Cart : Call this whenever and wherever an add to cart event happens
-User Completes Checkout: Call this whenever a user completes a checkout and makes a purchase
-User Visits a Page with a Pixlee Widget: Call this whenever a user visits a page which as a Pixlee Widget on it
-User Clicks on the Pixlee Widget : Call this whenever a user clicks on an item in the Pixlee widget
-PXLAlbums →  Load More: Call this whenever a user clicks 'Load More' button on the widget
+Add to Cart (PXLAnalyticsEventActionClicked): Call this whenever and wherever an add to cart event happens
+User Completes Checkout (PXLAnalyticsEventConvertedPhoto): Call this whenever a user completes a checkout and makes a purchase
+User Visits a Page with a Pixlee Widget (PXLAnalyticsEventOpenedLightBox): Call this whenever a user visits a page which as a Pixlee Widget on it
+User Clicks on the Pixlee Widget (PXLAnalyticsEventOpenedWidget): Call this whenever a user clicks on an item in the Pixlee widget
+PXLAlbums:  Load More (PXLAnalyticsEventLoadMoreClicked): Call this whenever a user clicks 'Load More' button on the widget
 
-PXLPhoto → Action Link Clicked: Call this whenever a user make an action after clicking on an item in the Pixlee widget
+PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenever a user make an action after clicking on an item in the Pixlee widget
 
 ```
 #### Example Add to Cart
 ```
-
-    //Setup some constants
-    static NSString * const currency = @"USD";
-    //Product 1 example
-    static NSString * const product_sku = @"SL-BENJ";
-    static NSString * const price = @"13.00";
-    NSNumber * const quantity = @2;
-    
-    
-    //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    [PXLAnalytics triggerEventAddCart:product_sku :quantity :price :currency callback:^(NSError *error) {
-        NSLog(@"logged");
-    }];
+    let currency = "USD"
+    let productSKU = "SL-BENJ"
+    let quantity = 2
+    let price = "13.0"
+    let event = PXLAnalyticsEventAddCart(sku: productSKU,
+                                         quantity: quantity,
+                                         price: price,
+                                         currency: currency)
+                                         
+     //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
+    PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: event) { error in
+        guard error == nil else {
+            print("There was an error \(error)")
+            return
+        }
+        print("Logged")
+    }
 ```
 #### User Completes Checkout
 ```
-    //Setup some constants
-    static NSString * const currency = @"USD";
-    //Product 1 example
-    static NSString * const product_sku = @"SL-BENJ";
-    static NSString * const price = @"13.00";
-    NSNumber * const quantity = @2;
-    //product 2 example
-    static NSString * const product_sku2 = @"AD-1324S";
-    static NSString * const price2 = @"53.07";
-    NSNumber * const quantity2 = @5;
-    
-    NSMutableDictionary *cart1 = [[NSMutableDictionary alloc]initWithCapacity:10];
-    [cart1 setObject:price forKey:@"price"];
-    [cart1 setObject:product_sku forKey:@"product_sku"];
-    [cart1 setObject:quantity forKey:@"quantity"];
-    NSMutableDictionary *cart2 = [[NSMutableDictionary alloc]initWithCapacity:10];
-    [cart2 setObject:price2 forKey:@"price"];
-    [cart2 setObject:product_sku2 forKey:@"product_sku"];
-    [cart2 setObject:quantity2 forKey:@"quantity"];
-    
-    NSNumber *  quantity_total = @7;
-    NSNumber * const order_id = @234232;
-    NSNumber * const cart_total = @18.00;
-    
-    NSMutableArray *cart_contents =[NSMutableArray arrayWithObjects:cart1,cart2,nil];
-    
-    
-    
-     //EVENT converted:photo refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    [PXLAnalytics triggerEventConvertedPhoto:cart_contents :cart_total :quantity_total :order_id :currency callback:^(NSError *error) {
-        NSLog(@"logged");
-    }];
+    // Setup some constants
+    let currency = "USD"
+    // Product 1 example
+    let productSKU = "SL-BENJ"
+    let price = "13.0"
+    let quantity = 2
+    // product 2 example
+    let productSKU2 = "AD-1324S"
+    let price2 = "5.0"
+    let quantity2 = 5
+
+    let cart1 = PXLAnalyitcsCartContents(price: price, productSKU: productSKU, quantity: quantity)
+    let cart2 = PXLAnalyitcsCartContents(price: price2, productSKU: productSKU2, quantity: quantity2)
+    let quantityTotal = 7
+    let orderId = 234232
+    let cartTotal = 18.0
+
+    let cartContents = [cart1, cart2]
+
+    //EVENT converted:photo refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
+    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
+
+    PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: event) { error in
+        guard error == nil else {
+            print("There was an error \(error)")
+            return
+        }
+        print("Logged")
+    }
 ```
 #### Example User Visits a Page with a Pixlee Widget
 #### Notes
