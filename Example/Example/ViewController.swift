@@ -6,8 +6,8 @@
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
-import UIKit
 import PixleeSDK
+import UIKit
 
 class ViewController: UIViewController {
     let album = PXLAlbum(identifier: "5984962")
@@ -19,9 +19,19 @@ class ViewController: UIViewController {
         //        #warning Replace with your Secret Key if you are making POST requests.
         PXLClient.sharedClient.secretKey = "b3b38f4322877060b2e4f390fd"
 
-        album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
-        album.sortOptions = PXLAlbumSortOptions(sortType: .Recency, ascending: false)
-        
+        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
+
+        let dateString = "20190101"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let date = dateFormatter.date(from: dateString)
+
+        filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
+
+        PXLAlbumFilterOptions(submittedDateStart: date)
+        album.filterOptions = filterOptions
+        album.sortOptions = PXLAlbumSortOptions(sortType: .random, ascending: false)
+
         // Get one photo example
         _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "354400866") { newPhoto, error in
             guard error == nil else {
@@ -38,19 +48,16 @@ class ViewController: UIViewController {
                     print("🛑 Error during analyitcs call:\(error)")
                 }
             }
-            _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventActionClicked(photo: photo, actionLink: "Linkecske")) { (error) in
+            _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventActionClicked(photo: photo, actionLink: "Linkecske")) { error in
                 if let error = error {
                     print("🛑 Error during analyitcs call:\(error)")
                 }
             }
         }
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: nil)
-    
         albumVC.viewModel = PXLAlbumViewModel(album: album)
         showViewController(VC: albumVC)
     }
