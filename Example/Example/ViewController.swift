@@ -42,17 +42,17 @@ class ViewController: UIViewController {
                 return
             }
             print("New Photo: \(photo.albumPhotoId)")
-            
-            _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: photo)) { error in
-                if let error = error {
-                    print("🛑 Error during analyitcs call:\(error)")
-                }
+           
+            _ = photo.triggerEventOpenedLightbox { (error) in
+                print("Opened lightbox logged")
             }
-            _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventActionClicked(photo: photo, actionLink: "Linkecske")) { error in
-                if let error = error {
-                    print("🛑 Error during analyitcs call:\(error)")
-                }
-            }
+            _ = photo.triggerEventActionClicked(actionLink: "actionLink", completionHandler: { (error) in
+                print("Action link click logged")
+            })
+        }
+        
+        _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: "Example Widget")) { (error) in
+            print("Example opened analytics logged")
         }
     }
 
