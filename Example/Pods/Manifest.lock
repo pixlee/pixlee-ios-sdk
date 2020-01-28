@@ -6,12 +6,12 @@ PODS:
     - Nuke (~> 8.4.0)
 
 DEPENDENCIES:
-  - Nuke
   - PixleeSDK (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+  trunk:
     - Nuke
 
 EXTERNAL SOURCES:
@@ -23,6 +23,6 @@ SPEC CHECKSUMS:
   Nuke: fa6f784c4f7e1c0f9313668510186c68b7af2509
   PixleeSDK: 0d56c72d5fd1e84ba1517450b530f9864f5b9d2c
 
-PODFILE CHECKSUM: 08cec392ed49b1bce24861e5bf323b1f1a812f30
+PODFILE CHECKSUM: 9fcadd8d6a95fd37a19efc0937c316d7185eea5a
 
 COCOAPODS: 1.8.4

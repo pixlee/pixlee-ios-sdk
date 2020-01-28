@@ -620,7 +620,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09709C7B56523FEF6ADF2C49 /* Pods-ExampleTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HRLMQGMGT;
@@ -643,7 +642,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E545E1A5E7B8ADBE31AF7FD /* Pods-ExampleTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HRLMQGMGT;
@@ -666,7 +664,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A014A7C4C477C418F331B7C8 /* Pods-Example-ExampleUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HRLMQGMGT;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
@@ -687,7 +684,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCAC9142E4ADF433F94D5960 /* Pods-Example-ExampleUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HRLMQGMGT;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
