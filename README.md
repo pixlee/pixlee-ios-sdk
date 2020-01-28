@@ -50,7 +50,6 @@ Carthage is a decentralized dependency manager that builds your dependencies and
   ```
   $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
   $(SRCROOT)/Carthage/Build/iOS/Nuke.framework
-  $(SRCROOT)/Carthage/Build/iOS/PixleeSDK.framework
   ```
   This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
 
