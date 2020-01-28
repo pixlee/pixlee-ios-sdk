@@ -8,13 +8,32 @@
 
 import UIKit
 
+public enum PXLWidgetType {
+    case photowall
+    case horizontal
+    case other(customValue: String)
+
+    var key: String {
+        switch self {
+        case .photowall:
+            return "photowall"
+        case .horizontal:
+            return "horizontal"
+        case let .other(customValue):
+            return customValue
+        }
+    }
+}
+
 public struct PXLAnalyticsEventOpenedWidget: PXLAnalyticsEvent {
     let album: PXLAlbum
-    let widget: String
+
+    // For example: "photowall", "horizontal", etc..
+    let widget: PXLWidgetType
 
     public var eventName = "openedWidget"
 
-    public init(album: PXLAlbum, widget: String) {
+    public init(album: PXLAlbum, widget: PXLWidgetType) {
         self.album = album
         self.widget = widget
     }
@@ -22,7 +41,7 @@ public struct PXLAnalyticsEventOpenedWidget: PXLAnalyticsEvent {
     public var logParameters: [String: Any] {
         let udid = UIDevice.current.identifierForVendor?.uuidString ?? "Unknown udid"
 
-        var parameters: [String: Any] = ["widget": widget,
+        var parameters: [String: Any] = ["widget": widget.key,
                                          "platform": "ios",
                                          "uid": udid]
         if let identifier = album.identifier {

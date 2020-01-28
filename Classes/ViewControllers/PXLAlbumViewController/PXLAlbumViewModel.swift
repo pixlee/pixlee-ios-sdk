@@ -27,7 +27,7 @@ public struct PXLAlbumViewModel {
         })
     }
 
-    func openedWidget(_ widget: String) {
+    func openedWidget(_ widget: PXLWidgetType) {
         _ = album.triggerEventOpenedWidget(widget: widget, completionHandler: { error in
             if let error = error {
                 print("🛑 Error during analyitcs call:\(error)")

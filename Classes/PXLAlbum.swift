@@ -76,7 +76,7 @@ public class PXLAlbum {
                         filterOptions: filterOptions)
     }
 
-    public func triggerEventOpenedWidget(widget: String, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+    public func triggerEventOpenedWidget(widget: PXLWidgetType, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
         return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
     }
 

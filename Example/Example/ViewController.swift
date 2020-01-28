@@ -51,7 +51,7 @@ class ViewController: UIViewController {
             })
         }
         
-        _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: "Example Widget")) { (error) in
+        _ = PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { (error) in
             print("Example opened analytics logged")
         }
     }
