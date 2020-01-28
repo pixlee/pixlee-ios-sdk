@@ -28,7 +28,6 @@ public enum PXLWidgetType {
 public struct PXLAnalyticsEventOpenedWidget: PXLAnalyticsEvent {
     let album: PXLAlbum
 
-    // For example: "photowall", "horizontal", etc..
     let widget: PXLWidgetType
 
     public var eventName = "openedWidget"

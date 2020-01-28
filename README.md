@@ -275,7 +275,7 @@ It's important to trigger this event after the LoadNextPage event
         //It's important to trigger these events after the LoadNextPage event
         
         //EVENT opened:widget refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-        album.triggerEventOpenedWidget(widget: "horizontal") { _ in
+        album.triggerEventOpenedWidget(widget: .horizontal) { _ in
             print("Logged")
         }
     }
