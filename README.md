@@ -31,6 +31,10 @@ end
 If you are using Objective-C in your porject and don't want to add a framework based on swift you can use our deprecated library: https://github.com/pixlee/ios-sdk-carthage/releases 
 
 ### Including Pixlee SDK With Carthage 
+Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
+
+```github "pixlee/pixlee-ios-sdk" "2.0.0"```
+
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
 1. Run `bin/setup`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
@@ -44,9 +48,9 @@ If you are using Objective-C in your porject and don't want to add a framework b
   and add the paths to the frameworks you want to use under “Input Files”, e.g.:
 
   ```
-  $(SRCROOT)/Carthage/Build/iOS/Box.framework
-  $(SRCROOT)/Carthage/Build/iOS/Result.framework
-  $(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework
+  $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
+  $(SRCROOT)/Carthage/Build/iOS/Nuke.framework
+  $(SRCROOT)/Carthage/Build/iOS/PixleeSDK.framework
   ```
   This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
 
