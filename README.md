@@ -251,7 +251,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let cart2 = PXLAnalyitcsCartContents(price: price2, productSKU: productSKU2, quantity: quantity2)
     let quantityTotal = 7
     let orderId = 234232
-    let cartTotal = 18.0
+    let cartTotal = "18.0"
 
     let cartContents = [cart1, cart2]
 

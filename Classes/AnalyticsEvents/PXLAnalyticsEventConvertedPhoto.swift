@@ -28,14 +28,14 @@ public struct PXLAnalyitcsCartContents {
 
 public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
     let cartContents: [PXLAnalyitcsCartContents]
-    let cartTotal: Double
+    let cartTotal: String
     let cartTotalQuantity: Int
     let orderId: String?
     let currency: String?
 
     public var eventName = "conversion"
 
-    public init(cartContents: [PXLAnalyitcsCartContents], cartTotal: Double, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil) {
+    public init(cartContents: [PXLAnalyitcsCartContents], cartTotal: String, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil) {
         self.cartContents = cartContents
         self.cartTotal = cartTotal
         self.cartTotalQuantity = cartTotalQuantity
