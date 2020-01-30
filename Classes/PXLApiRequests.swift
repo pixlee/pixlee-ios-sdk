@@ -16,6 +16,8 @@ class PXLApiRequests {
     var apiKey: String?
     var secretKey: String?
 
+    var disableCaching: Bool = false
+
     private func defaultGetParameters() -> [String: Any] {
         guard let apiKey = apiKey else {
             assertionFailure("Your Pixlee API key must be set before making API calls.")
@@ -23,7 +25,7 @@ class PXLApiRequests {
         }
         return ["api_key": apiKey]
     }
-    
+
     private func defaultPostParameters() -> [String: Any] {
         guard let apiKey = apiKey else {
             assertionFailure("Your Pixlee API key must be set before making API calls.")
@@ -82,7 +84,7 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
 
-            let request = try PXLApiRequests.urlRequest(.get, url, parameters: params)
+            let request = try urlRequest(.get, url, parameters: params)
             return request
         } catch {
             fatalError("Worng url request")
@@ -111,7 +113,7 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
 
-            let request = try PXLApiRequests.urlRequest(.get, url, parameters: params)
+            let request = try urlRequest(.get, url, parameters: params)
             return request
         } catch {
             fatalError("Worng url request")
@@ -122,7 +124,7 @@ class PXLApiRequests {
         let url = baseURL + "media/\(photoAlbumId)"
         do {
             let params = defaultGetParameters()
-            let request = try PXLApiRequests.urlRequest(.get, url, parameters: params)
+            let request = try urlRequest(.get, url, parameters: params)
             return request
         } catch {
             fatalError("Worng url request")
@@ -131,11 +133,11 @@ class PXLApiRequests {
 
     func postLogAnalyticsEvent(_ event: PXLAnalyticsEvent) -> URLRequest {
         let url = analyitcsBaseURL + event.eventName
-        
+
         do {
-            let parameters = defaultPostParameters().reduce(into: event.logParameters) { (r, e) in r[e.0] = e.1 }
+            let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
             let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
-            let request = try PXLApiRequests.urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
+            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
             return request
         } catch {
             fatalError("Worng url request")
@@ -144,11 +146,11 @@ class PXLApiRequests {
 }
 
 extension PXLApiRequests {
-    private static func urlRequest(_ method: Alamofire.HTTPMethod,
-                                   _ url: URLConvertible,
-                                   parameters: [String: Any]? = nil,
-                                   encoding: ParameterEncoding = URLEncoding.default,
-                                   headers: [String: String]? = nil)
+    private func urlRequest(_ method: Alamofire.HTTPMethod,
+                            _ url: URLConvertible,
+                            parameters: [String: Any]? = nil,
+                            encoding: ParameterEncoding = URLEncoding.default,
+                            headers: [String: String]? = nil)
         throws -> Foundation.URLRequest {
         var mutableURLRequest = Foundation.URLRequest(url: try url.asURL())
         mutableURLRequest.httpMethod = method.rawValue
@@ -161,6 +163,10 @@ extension PXLApiRequests {
 
         if let parameters = parameters {
             mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
+        }
+
+        if disableCaching {
+            mutableURLRequest.cachePolicy = .reloadIgnoringCacheData
         }
 
         return mutableURLRequest

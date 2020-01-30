@@ -199,6 +199,8 @@ Example of loading the detailViewController
     let navController = UINavigationController(rootViewController: photoDetailVC)
     present(navController, animated: true, completion: nil)
 ```
+### Caching
+We seen issues with the phones caching the requests. So if you want you can disable the caching with setting on the `PXLClient`'s `disableCaching` property to `true`.  
 
 ### Analytics
 If you would like to make analyitcs calls you can use our analyitcs service `PXLAnalyitcsService`. What is a singleton, you can reach it as `PXLAnalyitcsService.sharedAnalytics`.
