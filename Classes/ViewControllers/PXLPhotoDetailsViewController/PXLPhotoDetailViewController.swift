@@ -59,7 +59,8 @@ public class PXLPhotoDetailViewController: UIViewController {
         productCollectionView.setCollectionViewLayout(layout, animated: false)
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
-        productCollectionView.register(UINib(nibName: "PXLProductCell", bundle: nil), forCellWithReuseIdentifier: PXLProductCell.defaultIdentifier)
+        let bundle = Bundle(for: PXLImageCell.self)
+        productCollectionView.register(UINib(nibName: "PXLProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLProductCell.defaultIdentifier)
     }
 
     @objc func doneButtonPressed() {
