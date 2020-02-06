@@ -1,13 +1,28 @@
-# pixlee-ios-sdk-carthage
+# pixlee-ios-sdk
 
-This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started.
+This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
 
-## Getting Started
+# Table of Content
+- [About the SDK](#About-the-SDK)
+- [Get Started with Demo App](#Get-Started-with-Demo-App)
+- [Add the SDK to your App](#Add-the-SDK-to-your-App)
+    - [Option 1: using Cocoapods](#Option-1:-using-Cocoapods)
+    - [Option 2: using Carthage](#Option-2:-using-Carthage)
+        - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
+- [Network API Caching](#Network-API-Caching)
+- [Filtering and Sorting](#Filtering-and-Sorting)
+- [Analytics](#Analytics)
+    - [Add to Cart](#Add-to-Cart)
+    - [Conversion](#Conversion)
+    - [Opended Widget](#Opended-Widget)
+    - [Opened Lightbox](#Opened-Lightbox)
+    - [Action Click](#Action-Click)
+    - [Load More](#Load-More)
+- [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
+- [Troubleshooting](#Troubleshooting)
+- [License](#License)
 
-This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
-
-### SDK
-
+# About the SDK
 Before accessing the Pixlee API, you must initialize the `PXLClient`. To set the API key, what can be set with the  `apiKey` property on `PXLClient.sharedClient`. You can then use that singleton instance to make calls against the Pixlee API.
 
 To load the photos in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
@@ -15,50 +30,61 @@ To load the photos in an album there are two methods https://developers.pixlee.c
 If you are retriving the content for one album you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(identifier: <ALBUM ID HERE>)`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
 You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
 
+# Get Started with Demo App
+1. open **Example** folder in terminal.
+2. run this command. ( Don't have Pod installed on your computer? [Please look in to this link to install Pod before doing this](https://guides.cocoapods.org/using/getting-started.html) )
+    ```
+    pod install
+    ```
+3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
+4. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
 
-### Including Pixlee SDK with Cocoapods
+# Add the SDK to your App
+You can choose one of these two options to add the SDK to your app.
+### Option 1: using Cocoapods
 1. install and setup cocoapods with your projects https://guides.cocoapods.org/using/getting-started.html
-1. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
-```
+2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
+    ```
+    target 'MyApp' do
+      pod 'PixleeSDK', '~> 2.0.0' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+    end
+    ```
+3. Run Pod install
 
-target 'MyApp' do
-  pod 'PixleeSDK', '~> 2.0.0' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
-end
+If you are using Objective-C in your porject and don't want to add a framework based on swift you can use our deprecated library: https://github.com/pixlee/ios-sdk-carthage 
 
-```
-1. Run Pod install
+### Option 2: Using Carthage 
+- Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
-If you are using Objective-C in your porject and don't want to add a framework based on swift you can use our deprecated library: https://github.com/pixlee/ios-sdk-carthage/releases 
-
-### Including Pixlee SDK With Carthage 
-Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
-
-```github "pixlee/pixlee-ios-sdk" "2.0.0"```
-
+    ```
+    github "pixlee/pixlee-ios-sdk" "2.0.0"
+    ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
 1. Run `bin/setup`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
 1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
+    ```
+    sh
+    /usr/local/bin/carthage copy-frameworks
+    ```
+    and add the paths to the frameworks you want to use under “Input Files”, e.g.:
 
-  ```sh
-  /usr/local/bin/carthage copy-frameworks
-  ```
+    ```
+    $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
+    $(SRCROOT)/Carthage/Build/iOS/Nuke.framework
+    ```
+    This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
 
-  and add the paths to the frameworks you want to use under “Input Files”, e.g.:
+    With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
 
-  ```
-  $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
-  $(SRCROOT)/Carthage/Build/iOS/Nuke.framework
-  ```
-  This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
+    When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
 
-With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
-
-When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
+## Network API Caching
+We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).  
 
 
-### Filtering and Sorting
+## Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
 As of now, the following filters are supported by SDK:
@@ -96,7 +122,7 @@ popularity - Popularity of the content on its native platform.
 dynamic - Our "secret sauce" -- a special sort that highlights high performance content and updates according to the continued performance of live content.
 ```
 
-### Example
+#### Example
 
 ```
 
@@ -137,7 +163,7 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
 If you are retriving the content for a sku you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(sku:<SKU ID HERE>)`.  As the same as with identifier, you can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
 You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
 
-### Example
+#### Example
 ```
 
 //=========================================================
@@ -172,7 +198,7 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
 }
 
 ```
-### Notes
+#### Notes
 
 Additionally, you can control how an album loads its data using `PXLAlbumFilterOptions` and `PXLAlbumSortOptions`. To use these, create a new instance with `PXLAlbumFilterOptions()` or `PXLAlbumSortOptions(sortType:SortType, ascending:Boolean)`, set the necessary properties, and then set those objects to the `filterOptions` and `sortOptions` properties on your album. Make sure to set these before calling `loadNextPageOfPhotosForAlbum:`.
 
@@ -199,10 +225,8 @@ Example of loading the detailViewController
     let navController = UINavigationController(rootViewController: photoDetailVC)
     present(navController, animated: true, completion: nil)
 ```
-### Caching
-We seen issues with the phones caching the requests. So if you want you can disable the caching with setting on the `PXLClient`'s `disableCaching` property to `true`.  
 
-### Analytics
+## Analytics
 If you would like to make analyitcs calls you can use our analyitcs service `PXLAnalyitcsService`. What is a singleton, you can reach it as `PXLAnalyitcsService.sharedAnalytics`.
 To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analyitcs service's `logEvent` method. 
 The following events are supported by the sdk:
@@ -216,7 +240,7 @@ PXLAlbums:  Load More (PXLAnalyticsEventLoadMoreClicked): Call this whenever a u
 PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenever a user make an action after clicking on an item in the Pixlee widget
 
 ```
-#### Example Add to Cart
+#### Add to Cart
 ```
     let currency = "USD"
     let productSKU = "SL-BENJ"
@@ -236,7 +260,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### User Completes Checkout
+#### Conversion
 ```
     // Setup some constants
     let currency = "USD"
@@ -268,8 +292,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### Example User Visits a Page with a Pixlee Widget
-#### Notes
+#### Opended Widget
 It's important to trigger this event after the LoadNextPage event
 ```
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
@@ -285,7 +308,7 @@ It's important to trigger this event after the LoadNextPage event
         }
     }
 ```
-#### Example User Clicks on the Pixlee Widget
+#### Opened Lightbox
 ```
     // photo being the PXLPhoto that been clicked
     let photo:PXLPhoto = photoFromSomewhere
@@ -297,7 +320,7 @@ It's important to trigger this event after the LoadNextPage event
 
 ```
 
-#### Example User make an action after clicking on an Item 
+#### Action Click 
 ```
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPhoto, error in
         guard error == nil else {
@@ -317,7 +340,7 @@ It's important to trigger this event after the LoadNextPage event
     }
 ```
 
-#### Example User click Load more
+#### Load More
 ```
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
@@ -331,12 +354,9 @@ It's important to trigger this event after the LoadNextPage event
     }
 
 ```
-#### Uploading an Image to an album
-
+## Uploading an Image to an album
 Coming soon, until that please use the Obj-C SDK to upload an image. 
-
-
-### Example
+#### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
 

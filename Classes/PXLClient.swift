@@ -29,7 +29,7 @@ public class PXLClient {
         }
     }
 
-    public var disableCaching: Bool = false {
+    public var disableCaching: Bool = true {
         didSet {
             apiRequests.disableCaching = disableCaching
         }
