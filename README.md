@@ -37,7 +37,15 @@ You can load the photos via the `PXLClient`, You just have to use the `loadNextP
     pod install
     ```
 3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
-4. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
+4. Edit Environment Variables
+    - Click here
+        - <img src="doc/img/edit_scheme.png" width="200">
+    - Add these 4 in Run> Arguments> Environment Variables 
+        - PIXLEE_API_KEY: "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
+        - PIXLEE_SECRET_KEY: "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
+        - PIXLEE_ALBUM_ID: "replace with your own value"  (find here: https://app.pixlee.com/app#albums)
+        - PIXLEE_PHOTO_ALBUM_ID: "replace with your own value" (you should get this by calling **GET album api** or **GET from_sku API**)
+5. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
 
 # Add the SDK to your App
 You can choose one of these two options to add the SDK to your app.
