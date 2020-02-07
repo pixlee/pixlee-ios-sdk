@@ -1,5 +1,5 @@
 //
-//  PXLOpenedLightBoxAnalyitcsEvent.swift
+//  PXLOpenedLightBoxAnalyticsEvent.swift
 //  Example
 //
 //  Created by Csaba Toth on 2020. 01. 20..

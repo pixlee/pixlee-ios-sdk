@@ -1,5 +1,5 @@
 //
-//  PXLAnalyitcsService.swift
+//  PXLAnalyticsService.swift
 //  Example
 //
 //  Created by Csaba Toth on 2020. 01. 20..
@@ -9,8 +9,8 @@
 import Alamofire
 import Foundation
 
-public class PXLAnalyitcsService {
-    public static var sharedAnalyitcs = PXLAnalyitcsService()
+public class PXLAnalyticsService {
+    public static var sharedAnalytics = PXLAnalyticsService()
 
     private var client: PXLClient
 
@@ -24,6 +24,6 @@ public class PXLAnalyitcsService {
     }
 }
 
-public struct PXLAnalyitcsError: Error {
+public struct PXLAnalyticsError: Error {
     let reason: String
 }

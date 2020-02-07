@@ -21,7 +21,7 @@ public struct PXLAlbumViewModel {
     func loadMore() {
         _ = album.triggerEventLoadMoreTapped(completionHandler: { error in
             if let error = error {
-                print("🛑 Error during analyitcs call:\(error)")
+                print("🛑 Error during analytics call:\(error)")
             }
             print("Logged")
         })
@@ -30,7 +30,7 @@ public struct PXLAlbumViewModel {
     func openedWidget(_ widget: PXLWidgetType) {
         _ = album.triggerEventOpenedWidget(widget: widget, completionHandler: { error in
             if let error = error {
-                print("🛑 Error during analyitcs call:\(error)")
+                print("🛑 Error during analytics call:\(error)")
             }
         })
     }

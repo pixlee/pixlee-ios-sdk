@@ -227,8 +227,8 @@ Example of loading the detailViewController
 ```
 
 ## Analytics
-If you would like to make analyitcs calls you can use our analyitcs service `PXLAnalyitcsService`. What is a singleton, you can reach it as `PXLAnalyitcsService.sharedAnalytics`.
-To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analyitcs service's `logEvent` method. 
+If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
+To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analytics service's `logEvent` method. 
 The following events are supported by the sdk:
 ```
 Add to Cart (PXLAnalyticsEventActionClicked): Call this whenever and wherever an add to cart event happens
@@ -252,7 +252,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
                                          currency: currency)
                                          
      //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: event) { error in
+    PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
         guard error == nil else {
             print("There was an error \(error)")
             return
@@ -273,8 +273,8 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let price2 = "5.0"
     let quantity2 = 5
 
-    let cart1 = PXLAnalyitcsCartContents(price: price, productSKU: productSKU, quantity: quantity)
-    let cart2 = PXLAnalyitcsCartContents(price: price2, productSKU: productSKU2, quantity: quantity2)
+    let cart1 = PXLAnalyticsCartContents(price: price, productSKU: productSKU, quantity: quantity)
+    let cart2 = PXLAnalyticsCartContents(price: price2, productSKU: productSKU2, quantity: quantity2)
     let quantityTotal = 7
     let orderId = 234232
     let cartTotal = "18.0"
@@ -284,7 +284,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     //EVENT converted:photo refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
     let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
 
-    PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: event) { error in
+    PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
         guard error == nil else {
             print("There was an error \(error)")
             return

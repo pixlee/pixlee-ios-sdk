@@ -1,5 +1,5 @@
 //
-//  PXLAnalyitcsEvent.swift
+//  PXLAnalyticsEvent.swift
 //  Example
 //
 //  Created by Csaba Toth on 2020. 01. 20..

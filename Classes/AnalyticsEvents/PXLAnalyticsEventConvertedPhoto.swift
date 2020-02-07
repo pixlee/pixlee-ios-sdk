@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct PXLAnalyitcsCartContents {
+public struct PXLAnalyticsCartContents {
     let price: String
     let productSKU: String
     let quantity: Int
@@ -27,7 +27,7 @@ public struct PXLAnalyitcsCartContents {
 }
 
 public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
-    let cartContents: [PXLAnalyitcsCartContents]
+    let cartContents: [PXLAnalyticsCartContents]
     let cartTotal: String
     let cartTotalQuantity: Int
     let orderId: String?
@@ -35,7 +35,7 @@ public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
 
     public var eventName = "conversion"
 
-    public init(cartContents: [PXLAnalyitcsCartContents], cartTotal: String, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil) {
+    public init(cartContents: [PXLAnalyticsCartContents], cartTotal: String, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil) {
         self.cartContents = cartContents
         self.cartTotal = cartTotal
         self.cartTotalQuantity = cartTotalQuantity

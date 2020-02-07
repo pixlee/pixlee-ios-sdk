@@ -77,10 +77,10 @@ public class PXLAlbum {
     }
 
     public func triggerEventOpenedWidget(widget: PXLWidgetType, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
+        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
     }
 
     public func triggerEventLoadMoreTapped(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyitcsService.sharedAnalyitcs.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: self), completionHandler: completionHandler)
+        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: self), completionHandler: completionHandler)
     }
 }

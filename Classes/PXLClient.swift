@@ -145,9 +145,9 @@ public class PXLClient {
                 if let jsonDict = json as? [String: Any], let status = jsonDict["status"] as? String, status == "OK" {
                     completionHandler(nil)
                 } else if let jsonDict = json as? [String: Any], let error = jsonDict["error"] as? String {
-                    completionHandler(PXLAnalyitcsError(reason: error))
+                    completionHandler(PXLAnalyticsError(reason: error))
                 } else {
-                    completionHandler(PXLAnalyitcsError(reason: "Invalid response"))
+                    completionHandler(PXLAnalyticsError(reason: "Invalid response"))
                 }
                 break
             case let .failure(error):

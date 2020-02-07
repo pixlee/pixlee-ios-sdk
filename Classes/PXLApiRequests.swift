@@ -11,7 +11,7 @@ import Foundation
 
 class PXLApiRequests {
     private let baseURL: String = "https://distillery.pixlee.com/api/v2/"
-    private let analyitcsBaseURL: String = "https://inbound-analytics.pixlee.com/events/"
+    private let analyticsBaseURL: String = "https://inbound-analytics.pixlee.com/events/"
 
     var apiKey: String?
     var secretKey: String?
@@ -132,7 +132,7 @@ class PXLApiRequests {
     }
 
     func postLogAnalyticsEvent(_ event: PXLAnalyticsEvent) -> URLRequest {
-        let url = analyitcsBaseURL + event.eventName
+        let url = analyticsBaseURL + event.eventName
 
         do {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
