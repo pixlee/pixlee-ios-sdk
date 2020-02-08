@@ -33,7 +33,7 @@ public class PXLPhotoDetailViewController: UIViewController {
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: imageView)
             }
-            titleLabel.text = (viewModel.title != nil) ? viewModel.title : ""
+            titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
 
             usernameLabel.text = viewModel.username
 
