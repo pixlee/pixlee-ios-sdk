@@ -1,18 +1,20 @@
-source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '13.0'
 
-platform :ios, '8.0'
-inhibit_all_warnings!
-use_frameworks!
+target 'Example' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-target 'pixlee-ios-sdk' do
-  pod "pixlee-ios-sdk", :path => "../"
-end
+  # Pods for Example
+  pod 'PixleeSDK', :path => "../"
 
-target 'Tests' do
-  pod "pixlee-ios-sdk", :path => "../"
 
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'FBSnapshotTestCase'
-  pod 'Expecta+Snapshots'
+  target 'ExampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ExampleUITests' do
+    # Pods for testing
+  end
+
 end
