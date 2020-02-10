@@ -49,7 +49,7 @@ You can load the photos via the `PXLClient`, You just have to use the `loadNextP
 
 # Add the SDK to your App
 You can choose one of these two options to add the SDK to your app.
-### Option 1: using Cocoapods
+### Option 1: Using Cocoapods
 1. install and setup cocoapods with your projects https://guides.cocoapods.org/using/getting-started.html
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
