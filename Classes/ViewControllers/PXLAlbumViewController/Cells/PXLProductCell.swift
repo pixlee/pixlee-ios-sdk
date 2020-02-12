@@ -8,7 +8,7 @@
 
 import Nuke
 import UIKit
-import PixleeSDK
+
 class PXLProductCell: UICollectionViewCell {
     static var defaultIdentifier = "PXLProductCell"
 
