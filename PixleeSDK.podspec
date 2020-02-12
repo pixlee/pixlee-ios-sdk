@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "PixleeSDK"
-  spec.version      = "2.0.0"
+  spec.version      = "2.1.0"
   spec.summary      = "An API Wrapper for Pixlee API"
 
     spec.description      = <<-DESC
