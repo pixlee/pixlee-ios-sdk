@@ -18,10 +18,14 @@
 		F27CD02523DB595E007CF85A /* PXLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CD02123DB595E007CF85A /* PXLProductCell.xib */; };
 		F27CD02623DB595E007CF85A /* PXLProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CD02223DB595E007CF85A /* PXLProductCell.swift */; };
 		F27CD02823DB596A007CF85A /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CD02723DB596A007CF85A /* DateExtension.swift */; };
+		F2832B0C23F3E025004B62C0 /* PXLErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B0B23F3E025004B62C0 /* PXLErrorDTO.swift */; };
+		F2832B0E23F3E033004B62C0 /* PXLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B0D23F3E033004B62C0 /* PXLError.swift */; };
+		F2832B1023F3E04B004B62C0 /* PXLAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B0F23F3E04B004B62C0 /* PXLAnalyticsEvent.swift */; };
+		F2832B1223F3E062004B62C0 /* PXLAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B1123F3E062004B62C0 /* PXLAnalyticsService.swift */; };
+		F2832B1423F3E19F004B62C0 /* PXLPlainErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B1323F3E19F004B62C0 /* PXLPlainErrorDTO.swift */; };
 		F2E30F0F23D8F70800CDD977 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */; };
 		F2E30F1423D8F70800CDD977 /* PixleeSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F1323D8F70800CDD977 /* PixleeSDKTests.swift */; };
 		F2E30F1623D8F70800CDD977 /* PixleeSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E30F0823D8F70800CDD977 /* PixleeSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F2E30F3B23D8F73200CDD977 /* PXLAnalyitcsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F2023D8F73200CDD977 /* PXLAnalyitcsService.swift */; };
 		F2E30F3C23D8F73200CDD977 /* PXLProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F2123D8F73200CDD977 /* PXLProduct.swift */; };
 		F2E30F3D23D8F73200CDD977 /* PXLAlbumFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F2223D8F73200CDD977 /* PXLAlbumFilterOptions.swift */; };
 		F2E30F3E23D8F73200CDD977 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E30F2423D8F73200CDD977 /* ImageAssets.xcassets */; };
@@ -35,7 +39,6 @@
 		F2E30F4623D8F73200CDD977 /* PXLAlbumSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F2E23D8F73200CDD977 /* PXLAlbumSortOptions.swift */; };
 		F2E30F4723D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3023D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift */; };
 		F2E30F4823D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3123D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */; };
-		F2E30F4923D8F73200CDD977 /* PXLAnalyitcsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3223D8F73200CDD977 /* PXLAnalyitcsEvent.swift */; };
 		F2E30F4A23D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3323D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift */; };
 		F2E30F4B23D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3423D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift */; };
 		F2E30F4C23D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F3523D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */; };
@@ -152,13 +155,17 @@
 		F27CD02123DB595E007CF85A /* PXLProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLProductCell.xib; sourceTree = "<group>"; };
 		F27CD02223DB595E007CF85A /* PXLProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProductCell.swift; sourceTree = "<group>"; };
 		F27CD02723DB596A007CF85A /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		F2832B0B23F3E025004B62C0 /* PXLErrorDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLErrorDTO.swift; sourceTree = "<group>"; };
+		F2832B0D23F3E033004B62C0 /* PXLError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLError.swift; sourceTree = "<group>"; };
+		F2832B0F23F3E04B004B62C0 /* PXLAnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEvent.swift; sourceTree = "<group>"; };
+		F2832B1123F3E062004B62C0 /* PXLAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsService.swift; sourceTree = "<group>"; };
+		F2832B1323F3E19F004B62C0 /* PXLPlainErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLPlainErrorDTO.swift; sourceTree = "<group>"; };
 		F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixleeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E30F0823D8F70800CDD977 /* PixleeSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixleeSDK.h; sourceTree = "<group>"; };
 		F2E30F0923D8F70800CDD977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2E30F0E23D8F70800CDD977 /* PixleeSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixleeSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E30F1323D8F70800CDD977 /* PixleeSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeSDKTests.swift; sourceTree = "<group>"; };
 		F2E30F1523D8F70800CDD977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2E30F2023D8F73200CDD977 /* PXLAnalyitcsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyitcsService.swift; sourceTree = "<group>"; };
 		F2E30F2123D8F73200CDD977 /* PXLProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLProduct.swift; sourceTree = "<group>"; };
 		F2E30F2223D8F73200CDD977 /* PXLAlbumFilterOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumFilterOptions.swift; sourceTree = "<group>"; };
 		F2E30F2423D8F73200CDD977 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
@@ -172,7 +179,6 @@
 		F2E30F2E23D8F73200CDD977 /* PXLAlbumSortOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumSortOptions.swift; sourceTree = "<group>"; };
 		F2E30F3023D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventAddCart.swift; sourceTree = "<group>"; };
 		F2E30F3123D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedLightBox.swift; sourceTree = "<group>"; };
-		F2E30F3223D8F73200CDD977 /* PXLAnalyitcsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyitcsEvent.swift; sourceTree = "<group>"; };
 		F2E30F3323D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedWidget.swift; sourceTree = "<group>"; };
 		F2E30F3423D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventActionClicked.swift; sourceTree = "<group>"; };
 		F2E30F3523D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventLoadMoreClicked.swift; sourceTree = "<group>"; };
@@ -300,8 +306,8 @@
 			isa = PBXGroup;
 			children = (
 				F27CCFDD23DB54C6007CF85A /* ViewControllers */,
-				F2E30F2023D8F73200CDD977 /* PXLAnalyitcsService.swift */,
 				F2E30F2123D8F73200CDD977 /* PXLProduct.swift */,
+				F2832B1123F3E062004B62C0 /* PXLAnalyticsService.swift */,
 				F2E30F2223D8F73200CDD977 /* PXLAlbumFilterOptions.swift */,
 				F2E30F2323D8F73200CDD977 /* Resources */,
 				F2E30F2523D8F73200CDD977 /* PXLPhoto.swift */,
@@ -313,6 +319,7 @@
 				F2E30F3723D8F73200CDD977 /* PXLApiRequests.swift */,
 				F2E30F3823D8F73200CDD977 /* Helpers */,
 				F2E30F3A23D8F73200CDD977 /* PXLClient.swift */,
+				F2832B0D23F3E033004B62C0 /* PXLError.swift */,
 			);
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
@@ -339,7 +346,9 @@
 			children = (
 				F2E30F2B23D8F73200CDD977 /* PXLPhotoResponseDTO.swift */,
 				F2E30F2C23D8F73200CDD977 /* PXLProductDTO.swift */,
+				F2832B0B23F3E025004B62C0 /* PXLErrorDTO.swift */,
 				F2E30F2D23D8F73200CDD977 /* PXLAlbumNexPageResponseDTO.swift */,
+				F2832B1323F3E19F004B62C0 /* PXLPlainErrorDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -347,9 +356,9 @@
 		F2E30F2F23D8F73200CDD977 /* AnalyticsEvents */ = {
 			isa = PBXGroup;
 			children = (
+				F2832B0F23F3E04B004B62C0 /* PXLAnalyticsEvent.swift */,
 				F2E30F3023D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift */,
 				F2E30F3123D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */,
-				F2E30F3223D8F73200CDD977 /* PXLAnalyitcsEvent.swift */,
 				F2E30F3323D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift */,
 				F2E30F3423D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift */,
 				F2E30F3523D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */,
@@ -599,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2832B1423F3E19F004B62C0 /* PXLPlainErrorDTO.swift in Sources */,
 				F2E30F4323D8F73200CDD977 /* PXLPhotoResponseDTO.swift in Sources */,
 				F27CCFE823DB54C6007CF85A /* PXLPhotoDetailViewController.swift in Sources */,
 				F2E30F4423D8F73200CDD977 /* PXLProductDTO.swift in Sources */,
@@ -612,19 +622,21 @@
 				F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */,
 				F2E30F4D23D8F73200CDD977 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
 				F2E30F4723D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift in Sources */,
+				F2832B0C23F3E025004B62C0 /* PXLErrorDTO.swift in Sources */,
 				F2E30F4523D8F73200CDD977 /* PXLAlbumNexPageResponseDTO.swift in Sources */,
 				F2E30F5023D8F73200CDD977 /* PXLClient.swift in Sources */,
 				F2E30F3C23D8F73200CDD977 /* PXLProduct.swift in Sources */,
-				F2E30F3B23D8F73200CDD977 /* PXLAnalyitcsService.swift in Sources */,
 				F2E30F4B23D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift in Sources */,
 				F2E30F4C23D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */,
+				F2832B1223F3E062004B62C0 /* PXLAnalyticsService.swift in Sources */,
 				F2E30F3F23D8F73200CDD977 /* PXLPhoto.swift in Sources */,
 				F2E30F4A23D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
 				F2E30F4623D8F73200CDD977 /* PXLAlbumSortOptions.swift in Sources */,
 				F27CD02823DB596A007CF85A /* DateExtension.swift in Sources */,
 				F27CD02623DB595E007CF85A /* PXLProductCell.swift in Sources */,
-				F2E30F4923D8F73200CDD977 /* PXLAnalyitcsEvent.swift in Sources */,
+				F2832B0E23F3E033004B62C0 /* PXLError.swift in Sources */,
 				F2E30F4823D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
+				F2832B1023F3E04B004B62C0 /* PXLAnalyticsEvent.swift in Sources */,
 				F2E30F4E23D8F73200CDD977 /* PXLApiRequests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
