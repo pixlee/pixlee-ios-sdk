@@ -34,9 +34,9 @@ class ViewController: UIViewController {
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
         // Get one photo example
-        var albumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-        if let albumId = albumId {
-            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: albumId) { newPhoto, error in
+        var photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
+        if let photoAlbumId = photoAlbumId {
+            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
                 guard error == nil else {
                     print("Error during load of image with Id \(String(describing: error))")
                     return

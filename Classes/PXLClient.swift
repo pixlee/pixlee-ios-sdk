@@ -48,8 +48,9 @@ public class PXLClient {
                 completionHandler?(photo, nil)
 
             case let .failure(error):
-                print("Error: \(error)")
-                completionHandler?(nil, error)
+                let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
+                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                completionHandler?(nil, handledError)
             }
         }
     }
@@ -72,7 +73,7 @@ public class PXLClient {
                             print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
                             completionHandler(photos, nil)
                         } else if let error = error, let completionHandler = completionHandler {
-                            print("Error: \(error)")
+                            print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
                             completionHandler(nil, error)
                         }
                     }
@@ -98,7 +99,7 @@ public class PXLClient {
                             print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
                             completionHandler(photos, nil)
                         } else if let error = error, let completionHandler = completionHandler {
-                            print("Error: \(error)")
+                            print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
                             completionHandler(nil, error)
                         }
                     }
@@ -119,7 +120,7 @@ public class PXLClient {
         }
     }
 
-    private func handleAlbumResponse(_ response: DataResponse<PXLAlbumNextPageResponse, AFError>, album: PXLAlbum) -> (newPhotos: [PXLPhoto]?, error: AFError?) {
+    private func handleAlbumResponse(_ response: DataResponse<PXLAlbumNextPageResponse, AFError>, album: PXLAlbum) -> (newPhotos: [PXLPhoto]?, error: PXLError?) {
         switch response.result {
         case let .success(responseDTO):
             if album.lastPageFetched == NSNotFound || responseDTO.page > album.lastPageFetched {
@@ -133,8 +134,9 @@ public class PXLClient {
 
             return (newPhotos, nil)
         case let .failure(error):
-            print("Error: \(error)")
-            return (nil, error)
+            let handledError = getErrorFromResponse(responseData: response.data, error: error)
+            print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+            return (nil, handledError)
         }
     }
 
@@ -151,10 +153,29 @@ public class PXLClient {
                 }
                 break
             case let .failure(error):
-                print("error: \(error)")
-                completionHandler(error)
+                let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
+                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                completionHandler(handledError)
                 break
             }
         }
+    }
+
+    func getErrorFromResponse(responseData: Data?, error: Error?) -> PXLError {
+        if let data = responseData {
+            let decoder = JSONDecoder()
+            do {
+                let errorDto = try decoder.decode(PXLErrorDTO.self, from: data)
+                return PXLError(code: errorDto.status, message: errorDto.message, externalError: nil)
+            } catch {
+                if let serializationError = error as? AFError {
+                    return PXLError(code: 502, message: "Response serialization error", externalError: serializationError)
+                }
+
+                return PXLError(code: 1000, message: "Unknown error", externalError: error)
+            }
+        }
+
+        return PXLError(code: 502, message: "Invalid response error", externalError: error)
     }
 }
