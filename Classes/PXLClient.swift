@@ -168,11 +168,24 @@ public class PXLClient {
                 let errorDto = try decoder.decode(PXLErrorDTO.self, from: data)
                 return PXLError(code: errorDto.status, message: errorDto.message, externalError: nil)
             } catch {
-                if let serializationError = error as? AFError {
-                    return PXLError(code: 502, message: "Response serialization error", externalError: serializationError)
-                }
+                do {
+                    let errorDto = try decoder.decode(PXLPlainErrorDTO.self, from: data)
+                    if let status = errorDto.status, let statusCode = Int(status) {
+                        return PXLError(code: statusCode, message: errorDto.error, externalError: nil)
+                    }
+                    return PXLError(code: 1001, message: errorDto.error, externalError: nil)
+                } catch {
+                    do {
+                        let errorDto = try decoder.decode(String.self, from: data)
+                        return PXLError(code: 1002, message: errorDto, externalError: nil)
+                    } catch {
+                        if let serializationError = error as? AFError {
+                            return PXLError(code: 502, message: "Response serialization error", externalError: serializationError)
+                        }
 
-                return PXLError(code: 1000, message: "Unknown error", externalError: error)
+                        return PXLError(code: 1000, message: "Unknown error", externalError: error)
+                    }
+                }
             }
         }
 
