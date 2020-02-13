@@ -44,7 +44,7 @@ You can load the photos via the `PXLClient`, You just have to use the `loadNextP
         - PIXLEE_API_KEY: "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
         - PIXLEE_SECRET_KEY: "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
         - PIXLEE_ALBUM_ID: "replace with your own value"  (find here: https://app.pixlee.com/app#albums)
-        - PIXLEE_PHOTO_ALBUM_ID: "replace with your own value" (you should get this by calling **GET album api** or **GET from_sku API**)
+        - PIXLEE_PHOTO_ALBUM_ID: "replace with your own value" (you should get this by calling **[GET album api](https://developers.pixlee.com/reference#get-approved-content-from-album)** or **[GET from_sku API](https://developers.pixlee.com/reference#get-approved-content-for-product)**)
 5. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
 
 # Add the SDK to your App
