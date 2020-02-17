@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PXLAlbumViewController" customModule="Example" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="heN-Od-d8z" id="LmH-lJ-RfR"/>
+                <outlet property="layoutSwitcher" destination="fki-Y5-AHI" id="YD5-gL-Deh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fki-Y5-AHI">
+                    <rect key="frame" x="163.5" y="60" width="87" height="32"/>
+                    <segments>
+                        <segment title="list"/>
+                        <segment title="grid"/>
+                    </segments>
+                    <connections>
+                        <action selector="layoutSwitchChanged:" destination="-1" eventType="valueChanged" id="OSj-56-rry"/>
+                    </connections>
+                </segmentedControl>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="heN-Od-d8z">
+                    <rect key="frame" x="0.0" y="107" width="414" height="769"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KWc-Le-dae">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="heN-Od-d8z" firstAttribute="top" secondItem="fki-Y5-AHI" secondAttribute="bottom" constant="16" id="0fa-Yr-5rf"/>
+                <constraint firstItem="fki-Y5-AHI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="FLi-pd-9qG"/>
+                <constraint firstAttribute="trailing" secondItem="heN-Od-d8z" secondAttribute="trailing" id="NUk-dH-Qx2"/>
+                <constraint firstAttribute="bottom" secondItem="heN-Od-d8z" secondAttribute="bottom" constant="20" symbolic="YES" id="V3A-Nw-qLK"/>
+                <constraint firstItem="fki-Y5-AHI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="h0t-hG-SdU"/>
+                <constraint firstItem="heN-Od-d8z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u9q-fu-hLm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="115"/>
+        </view>
+    </objects>
+</document>

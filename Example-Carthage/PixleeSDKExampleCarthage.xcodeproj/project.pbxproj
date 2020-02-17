@@ -1,0 +1,659 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F234645623FAA34B002A67B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234645523FAA34B002A67B9 /* AppDelegate.swift */; };
+		F234645823FAA34B002A67B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234645723FAA34B002A67B9 /* SceneDelegate.swift */; };
+		F234645A23FAA34B002A67B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234645923FAA34B002A67B9 /* ViewController.swift */; };
+		F234645D23FAA34B002A67B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F234645B23FAA34B002A67B9 /* Main.storyboard */; };
+		F234645F23FAA34C002A67B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F234645E23FAA34C002A67B9 /* Assets.xcassets */; };
+		F234646223FAA34C002A67B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F234646023FAA34C002A67B9 /* LaunchScreen.storyboard */; };
+		F234646D23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234646C23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.swift */; };
+		F234647823FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F234647723FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.swift */; };
+		F234648823FAA4B6002A67B9 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F234648723FAA4B6002A67B9 /* Nuke.framework */; };
+		F234648A23FAA4BC002A67B9 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F234648923FAA4BC002A67B9 /* PixleeSDK.framework */; };
+		F234648C23FAA4C2002A67B9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F234648B23FAA4C2002A67B9 /* Alamofire.framework */; };
+		F234649023FAA58B002A67B9 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F234648B23FAA4C2002A67B9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F234649123FAA58C002A67B9 /* PixleeSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F234648923FAA4BC002A67B9 /* PixleeSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F234649223FAA58C002A67B9 /* Nuke.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F234648723FAA4B6002A67B9 /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F234646923FAA34C002A67B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F234644A23FAA34B002A67B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F234645123FAA34B002A67B9;
+			remoteInfo = PixleeSDKExampleCarthage;
+		};
+		F234647423FAA34C002A67B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F234644A23FAA34B002A67B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F234645123FAA34B002A67B9;
+			remoteInfo = PixleeSDKExampleCarthage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F234648F23FAA574002A67B9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F234649023FAA58B002A67B9 /* Alamofire.framework in CopyFiles */,
+				F234649123FAA58C002A67B9 /* PixleeSDK.framework in CopyFiles */,
+				F234649223FAA58C002A67B9 /* Nuke.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F234645223FAA34B002A67B9 /* PixleeSDKExampleCarthage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixleeSDKExampleCarthage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F234645523FAA34B002A67B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F234645723FAA34B002A67B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F234645923FAA34B002A67B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F234645C23FAA34B002A67B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F234645E23FAA34C002A67B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F234646123FAA34C002A67B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F234646323FAA34C002A67B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F234646823FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixleeSDKExampleCarthageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F234646C23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeSDKExampleCarthageTests.swift; sourceTree = "<group>"; };
+		F234646E23FAA34C002A67B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F234647323FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixleeSDKExampleCarthageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F234647723FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeSDKExampleCarthageUITests.swift; sourceTree = "<group>"; };
+		F234647923FAA34C002A67B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F234648723FAA4B6002A67B9 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = SOURCE_ROOT; };
+		F234648923FAA4BC002A67B9 /* PixleeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PixleeSDK.framework; path = Carthage/Build/iOS/PixleeSDK.framework; sourceTree = SOURCE_ROOT; };
+		F234648B23FAA4C2002A67B9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F234644F23FAA34B002A67B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F234648A23FAA4BC002A67B9 /* PixleeSDK.framework in Frameworks */,
+				F234648823FAA4B6002A67B9 /* Nuke.framework in Frameworks */,
+				F234648C23FAA4C2002A67B9 /* Alamofire.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234646523FAA34C002A67B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234647023FAA34C002A67B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F234644923FAA34B002A67B9 = {
+			isa = PBXGroup;
+			children = (
+				F234645423FAA34B002A67B9 /* PixleeSDKExampleCarthage */,
+				F234646B23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests */,
+				F234647623FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests */,
+				F234645323FAA34B002A67B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F234645323FAA34B002A67B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F234645223FAA34B002A67B9 /* PixleeSDKExampleCarthage.app */,
+				F234646823FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.xctest */,
+				F234647323FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F234645423FAA34B002A67B9 /* PixleeSDKExampleCarthage */ = {
+			isa = PBXGroup;
+			children = (
+				F234645523FAA34B002A67B9 /* AppDelegate.swift */,
+				F234645723FAA34B002A67B9 /* SceneDelegate.swift */,
+				F234645923FAA34B002A67B9 /* ViewController.swift */,
+				F234645B23FAA34B002A67B9 /* Main.storyboard */,
+				F234645E23FAA34C002A67B9 /* Assets.xcassets */,
+				F234646023FAA34C002A67B9 /* LaunchScreen.storyboard */,
+				F234646323FAA34C002A67B9 /* Info.plist */,
+				F234648B23FAA4C2002A67B9 /* Alamofire.framework */,
+				F234648923FAA4BC002A67B9 /* PixleeSDK.framework */,
+				F234648723FAA4B6002A67B9 /* Nuke.framework */,
+			);
+			path = PixleeSDKExampleCarthage;
+			sourceTree = "<group>";
+		};
+		F234646B23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests */ = {
+			isa = PBXGroup;
+			children = (
+				F234646C23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.swift */,
+				F234646E23FAA34C002A67B9 /* Info.plist */,
+			);
+			path = PixleeSDKExampleCarthageTests;
+			sourceTree = "<group>";
+		};
+		F234647623FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F234647723FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.swift */,
+				F234647923FAA34C002A67B9 /* Info.plist */,
+			);
+			path = PixleeSDKExampleCarthageUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F234645123FAA34B002A67B9 /* PixleeSDKExampleCarthage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F234647C23FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthage" */;
+			buildPhases = (
+				F234644E23FAA34B002A67B9 /* Sources */,
+				F234644F23FAA34B002A67B9 /* Frameworks */,
+				F234645023FAA34B002A67B9 /* Resources */,
+				F234648E23FAA52A002A67B9 /* Add carthage frameworks */,
+				F234648F23FAA574002A67B9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PixleeSDKExampleCarthage;
+			productName = PixleeSDKExampleCarthage;
+			productReference = F234645223FAA34B002A67B9 /* PixleeSDKExampleCarthage.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F234646723FAA34C002A67B9 /* PixleeSDKExampleCarthageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F234647F23FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthageTests" */;
+			buildPhases = (
+				F234646423FAA34C002A67B9 /* Sources */,
+				F234646523FAA34C002A67B9 /* Frameworks */,
+				F234646623FAA34C002A67B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F234646A23FAA34C002A67B9 /* PBXTargetDependency */,
+			);
+			name = PixleeSDKExampleCarthageTests;
+			productName = PixleeSDKExampleCarthageTests;
+			productReference = F234646823FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F234647223FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F234648223FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthageUITests" */;
+			buildPhases = (
+				F234646F23FAA34C002A67B9 /* Sources */,
+				F234647023FAA34C002A67B9 /* Frameworks */,
+				F234647123FAA34C002A67B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F234647523FAA34C002A67B9 /* PBXTargetDependency */,
+			);
+			name = PixleeSDKExampleCarthageUITests;
+			productName = PixleeSDKExampleCarthageUITests;
+			productReference = F234647323FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F234644A23FAA34B002A67B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Pixlee;
+				TargetAttributes = {
+					F234645123FAA34B002A67B9 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					F234646723FAA34C002A67B9 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = F234645123FAA34B002A67B9;
+					};
+					F234647223FAA34C002A67B9 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = F234645123FAA34B002A67B9;
+					};
+				};
+			};
+			buildConfigurationList = F234644D23FAA34B002A67B9 /* Build configuration list for PBXProject "PixleeSDKExampleCarthage" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F234644923FAA34B002A67B9;
+			productRefGroup = F234645323FAA34B002A67B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F234645123FAA34B002A67B9 /* PixleeSDKExampleCarthage */,
+				F234646723FAA34C002A67B9 /* PixleeSDKExampleCarthageTests */,
+				F234647223FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F234645023FAA34B002A67B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F234646223FAA34C002A67B9 /* LaunchScreen.storyboard in Resources */,
+				F234645F23FAA34C002A67B9 /* Assets.xcassets in Resources */,
+				F234645D23FAA34B002A67B9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234646623FAA34C002A67B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234647123FAA34C002A67B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F234648E23FAA52A002A67B9 /* Add carthage frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Nuke.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PixleeSDK.framework",
+			);
+			name = "Add carthage frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F234644E23FAA34B002A67B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F234645A23FAA34B002A67B9 /* ViewController.swift in Sources */,
+				F234645623FAA34B002A67B9 /* AppDelegate.swift in Sources */,
+				F234645823FAA34B002A67B9 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234646423FAA34C002A67B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F234646D23FAA34C002A67B9 /* PixleeSDKExampleCarthageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F234646F23FAA34C002A67B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F234647823FAA34C002A67B9 /* PixleeSDKExampleCarthageUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F234646A23FAA34C002A67B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F234645123FAA34B002A67B9 /* PixleeSDKExampleCarthage */;
+			targetProxy = F234646923FAA34C002A67B9 /* PBXContainerItemProxy */;
+		};
+		F234647523FAA34C002A67B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F234645123FAA34B002A67B9 /* PixleeSDKExampleCarthage */;
+			targetProxy = F234647423FAA34C002A67B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F234645B23FAA34B002A67B9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F234645C23FAA34B002A67B9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F234646023FAA34C002A67B9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F234646123FAA34C002A67B9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F234647A23FAA34C002A67B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F234647B23FAA34C002A67B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F234647D23FAA34C002A67B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = PixleeSDKExampleCarthage/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F234647E23FAA34C002A67B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = PixleeSDKExampleCarthage/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F234648023FAA34C002A67B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				INFOPLIST_FILE = PixleeSDKExampleCarthageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixleeSDKExampleCarthage.app/PixleeSDKExampleCarthage";
+			};
+			name = Debug;
+		};
+		F234648123FAA34C002A67B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				INFOPLIST_FILE = PixleeSDKExampleCarthageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixleeSDKExampleCarthage.app/PixleeSDKExampleCarthage";
+			};
+			name = Release;
+		};
+		F234648323FAA34C002A67B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				INFOPLIST_FILE = PixleeSDKExampleCarthageUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PixleeSDKExampleCarthage;
+			};
+			name = Debug;
+		};
+		F234648423FAA34C002A67B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HRLMQGMGT;
+				INFOPLIST_FILE = PixleeSDKExampleCarthageUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = PXL.PixleeSDKExampleCarthageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PixleeSDKExampleCarthage;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F234644D23FAA34B002A67B9 /* Build configuration list for PBXProject "PixleeSDKExampleCarthage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F234647A23FAA34C002A67B9 /* Debug */,
+				F234647B23FAA34C002A67B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F234647C23FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F234647D23FAA34C002A67B9 /* Debug */,
+				F234647E23FAA34C002A67B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F234647F23FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F234648023FAA34C002A67B9 /* Debug */,
+				F234648123FAA34C002A67B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F234648223FAA34C002A67B9 /* Build configuration list for PBXNativeTarget "PixleeSDKExampleCarthageUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F234648323FAA34C002A67B9 /* Debug */,
+				F234648423FAA34C002A67B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F234644A23FAA34B002A67B9 /* Project object */;
+}
