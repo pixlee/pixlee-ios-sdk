@@ -16,24 +16,22 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "PixleeSDK"
-  spec.version      = "2.0.1"
+  spec.version      = "2.0.3"
   spec.summary      = "An API Wrapper for Pixlee API"
 
-    spec.description      = <<-DESC
-  TODO: Add long description of the pod here.
-                         DESC
+  spec.description      = "This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used."
 
-    spec.homepage         = 'https://github.com/pixlee/pixlee-ios-sdk.git'
-    spec.license          = { :type => 'MIT', :file => 'LICENSE' }
-    spec.author           = { 'Sungjun Hong' => 'sungjun@pixleeteam.com' }
-    spec.source           = { :git => 'https://github.com/pixlee/pixlee-ios-sdk.git', :tag => spec.version.to_s}
+  spec.homepage         = 'https://github.com/pixlee/pixlee-ios-sdk.git'
+  spec.license          = { :type => 'MIT', :file => 'LICENSE' }
+  spec.author           = { 'Sungjun Hong' => 'sungjun@pixleeteam.com' }
+  spec.source           = { :git => 'https://github.com/pixlee/pixlee-ios-sdk.git', :tag => spec.version.to_s}
 
-    spec.ios.deployment_target = '12.0'
-    spec.swift_version = '5.0'
+  spec.ios.deployment_target = '10.0'
+  spec.swift_version = '5.0'
 
-    spec.source_files = 'Classes/**/*{swift}'
+  spec.source_files = 'Classes/**/*{swift}'
     
-    spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
-    spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
-    spec.dependency 'Nuke', '~> 8.4.0'
+  spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+  spec.dependency 'Alamofire', '~> 5.0.0-rc.3'
+  spec.dependency 'Nuke', '~> 8.4.0'
 end
