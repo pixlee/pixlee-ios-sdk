@@ -39,7 +39,7 @@ You can load the photos via the `PXLClient`, You just have to use the `loadNextP
 3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
 4. Edit Environment Variables
     - Click here
-        - <img src="doc/img/edit_scheme.png" width="200">
+        - <img src="doc/img/edit_scheme.png" width="50%">
     - Add these 4 in Run> Arguments> Environment Variables 
         - PIXLEE_API_KEY: "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
         - PIXLEE_SECRET_KEY: "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
