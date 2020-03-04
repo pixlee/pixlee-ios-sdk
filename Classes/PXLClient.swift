@@ -36,19 +36,20 @@ public class PXLClient {
     }
 
     public func getPhotoWithPhotoAlbumId(photoAlbumId: String, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
-        return AF.request(apiRequests.getPhotoWithPhotoAlbumId(photoAlbumId)).responseDecodable { (response: DataResponse<PXLPhotoResponseDTO, AFError>) in
-
-//            if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
-//                print("responseJson: \(responseJSONString)")
-//            }
-
-            switch response.result {
-            case let .success(responseDTO):
-                let photo = self.photoConverter.convertPhotoDTOToPhoto(dto: responseDTO.data)
-                completionHandler?(photo, nil)
-
-            case let .failure(error):
-                let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
+        return Alamofire.request(apiRequests.getPhotoWithPhotoAlbumId(photoAlbumId)).responseData { resultData in
+            if let data = resultData.data {
+                do {
+                    let decoder = JSONDecoder()
+                    let resultDTO = try decoder.decode(PXLPhotoResponseDTO.self, from: data)
+                    let photo = self.photoConverter.convertPhotoDTOToPhoto(dto: resultDTO.data)
+                    completionHandler?(photo, nil)
+                } catch let error {
+                    let handledError = self.getErrorFromResponse(responseData: data, error: error)
+                    print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                    completionHandler?(nil, handledError)
+                }
+            } else {
+                let handledError = self.getErrorFromResponse(responseData: nil, error: nil)
                 print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
                 completionHandler?(nil, handledError)
             }
@@ -65,16 +66,28 @@ public class PXLClient {
                 }
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
-                    let request = AF.request(apiRequests.loadNextAlbumPage(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
-
-                        let (photos, error) = self.handleAlbumResponse(response, album: album)
-
-                        if let photos = photos, let completionHandler = completionHandler {
-                            print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
-                            completionHandler(photos, nil)
-                        } else if let error = error, let completionHandler = completionHandler {
-                            print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
-                            completionHandler(nil, error)
+                    let request = Alamofire.request(apiRequests.loadNextAlbumPage(album: album)).responseData { resultData in
+                        if let data = resultData.data {
+                            do {
+                                let decoder = JSONDecoder()
+                                let resultDTO = try decoder.decode(PXLAlbumNextPageResponse.self, from: data)
+                                let (photos, error) = self.handleAlbumResponse(resultDTO, album: album)
+                                if let photos = photos, let completionHandler = completionHandler {
+                                    print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
+                                    completionHandler(photos, nil)
+                                } else if let error = error, let completionHandler = completionHandler {
+                                    print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
+                                    completionHandler(nil, error)
+                                }
+                            } catch let error {
+                                let handledError = self.getErrorFromResponse(responseData: data, error: error)
+                                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                                completionHandler?(nil, handledError)
+                            }
+                        } else {
+                            let handledError = self.getErrorFromResponse(responseData: nil, error: nil)
+                            print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                            completionHandler?(nil, handledError)
                         }
                     }
                     requestsForAlbum[nextPage] = request
@@ -91,16 +104,28 @@ public class PXLClient {
                 }
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
-                    let request = AF.request(apiRequests.loadNextAlbumPageWithSKU(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
-
-                        let (photos, error) = self.handleAlbumResponse(response, album: album)
-
-                        if let photos = photos, let completionHandler = completionHandler {
-                            print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
-                            completionHandler(photos, nil)
-                        } else if let error = error, let completionHandler = completionHandler {
-                            print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
-                            completionHandler(nil, error)
+                    let request = Alamofire.request(apiRequests.loadNextAlbumPageWithSKU(album: album)).responseData { resultData in
+                        if let data = resultData.data {
+                            do {
+                                let decoder = JSONDecoder()
+                                let resultDTO = try decoder.decode(PXLAlbumNextPageResponse.self, from: data)
+                                let (photos, error) = self.handleAlbumResponse(resultDTO, album: album)
+                                if let photos = photos, let completionHandler = completionHandler {
+                                    print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
+                                    completionHandler(photos, nil)
+                                } else if let error = error, let completionHandler = completionHandler {
+                                    print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
+                                    completionHandler(nil, error)
+                                }
+                            } catch let error {
+                                let handledError = self.getErrorFromResponse(responseData: data, error: error)
+                                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                                completionHandler?(nil, handledError)
+                            }
+                        } else {
+                            let handledError = self.getErrorFromResponse(responseData: nil, error: nil)
+                            print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                            completionHandler?(nil, handledError)
                         }
                     }
                     requestsForAlbum[nextPage] = request
@@ -120,43 +145,32 @@ public class PXLClient {
         }
     }
 
-    private func handleAlbumResponse(_ response: DataResponse<PXLAlbumNextPageResponse, AFError>, album: PXLAlbum) -> (newPhotos: [PXLPhoto]?, error: PXLError?) {
-        switch response.result {
-        case let .success(responseDTO):
-            if album.lastPageFetched == NSNotFound || responseDTO.page > album.lastPageFetched {
-                album.lastPageFetched = responseDTO.page
-            }
-            album.hasNextPage = responseDTO.next
-
-            let newPhotos = photoConverter.convertPhotoDTOsToPhotos(photoDtos: responseDTO.data)
-
-            album.photos.append(contentsOf: newPhotos)
-
-            return (newPhotos, nil)
-        case let .failure(error):
-            let handledError = getErrorFromResponse(responseData: response.data, error: error)
-            print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
-            return (nil, handledError)
+    private func handleAlbumResponse(_ responseDTO: PXLAlbumNextPageResponse, album: PXLAlbum) -> (newPhotos: [PXLPhoto]?, error: PXLError?) {
+        if album.lastPageFetched == NSNotFound || responseDTO.page > album.lastPageFetched {
+            album.lastPageFetched = responseDTO.page
         }
+        album.hasNextPage = responseDTO.next
+
+        let newPhotos = photoConverter.convertPhotoDTOsToPhotos(photoDtos: responseDTO.data)
+
+        album.photos.append(contentsOf: newPhotos)
+
+        return (newPhotos, nil)
     }
 
     public func logAnalyticsEvent(event: PXLAnalyticsEvent, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return AF.request(apiRequests.postLogAnalyticsEvent(event)).responseJSON { response in
-            switch response.result {
-            case let .success(json):
-                if let jsonDict = json as? [String: Any], let status = jsonDict["status"] as? String, status == "OK" {
-                    completionHandler(nil)
-                } else if let jsonDict = json as? [String: Any], let error = jsonDict["error"] as? String {
-                    completionHandler(PXLAnalyticsError(reason: error))
-                } else {
-                    completionHandler(PXLAnalyticsError(reason: "Invalid response"))
-                }
-                break
-            case let .failure(error):
+        return Alamofire.request(apiRequests.postLogAnalyticsEvent(event)).responseJSON { response in
+            if let error = response.error {
                 let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
                 print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
                 completionHandler(handledError)
-                break
+
+            } else if let jsonDict = response.result.value as? [String: Any], let status = jsonDict["status"] as? String, status == "OK" {
+                completionHandler(nil)
+            } else if let jsonDict = response.result.value as? [String: Any], let error = jsonDict["error"] as? String {
+                completionHandler(PXLAnalyticsError(reason: error))
+            } else {
+                completionHandler(PXLAnalyticsError(reason: "Invalid response"))
             }
         }
     }
