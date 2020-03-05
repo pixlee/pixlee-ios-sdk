@@ -54,7 +54,7 @@ You can choose one of these two options to add the SDK to your app.
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
     target 'MyApp' do
-      pod 'PixleeSDK', '~> 1.9.0' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+      pod 'PixleeSDK', '~> 1.9' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
     end
     ```
 3. Run Pod install
