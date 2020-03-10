@@ -22,7 +22,6 @@ public class PXLAlbumViewController: UIViewController {
 
     let defaultMargin: CGFloat = 15
 
-    @IBOutlet var addPhotoButton: UIButton!
     @IBOutlet var layoutSwitcher: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
 
@@ -37,31 +36,6 @@ public class PXLAlbumViewController: UIViewController {
         didSet {
             collectionView.setCollectionViewLayout(layoutToUse, animated: true)
         }
-    }
-
-    @IBAction func addPhotoTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "What source do you want to use?", message: nil, preferredStyle: .actionSheet)
-
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            let vc = UIImagePickerController()
-            vc.sourceType = .camera
-            vc.allowsEditing = true
-            vc.delegate = self
-            self.present(vc, animated: true)
-        }))
-
-        alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            let vc = UIImagePickerController()
-            vc.sourceType = .savedPhotosAlbum
-            vc.allowsEditing = true
-            vc.delegate = self
-            self.present(vc, animated: true)
-        }))
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-        }))
-
-        present(alertController, animated: true)
     }
 
     @IBAction func layoutSwitchChanged(_ sender: Any) {
@@ -164,19 +138,5 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
                 }
             }
         }
-    }
-}
-
-extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true)
-
-        guard let image = info[.editedImage] as? UIImage else {
-            print("No image found")
-            return
-        }
-
-        // print out the image size as a test
-        print(image.size)
     }
 }
