@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PXLAlbumViewController" customModule="Example" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PXLAlbumViewController" customModule="PixleeSDK" customModuleProvider="target">
             <connections>
+                <outlet property="addPhotoButton" destination="aVa-KF-mxs" id="PKe-ws-ZWn"/>
                 <outlet property="collectionView" destination="heN-Od-d8z" id="LmH-lJ-RfR"/>
                 <outlet property="layoutSwitcher" destination="fki-Y5-AHI" id="YD5-gL-Deh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -39,10 +41,19 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVa-KF-mxs">
+                    <rect key="frame" x="326" y="60.5" width="72" height="30"/>
+                    <state key="normal" title="Add Photo"/>
+                    <connections>
+                        <action selector="addPhotoTapped:" destination="-1" eventType="touchUpInside" id="vk0-YX-ZGT"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="heN-Od-d8z" firstAttribute="top" secondItem="fki-Y5-AHI" secondAttribute="bottom" constant="16" id="0fa-Yr-5rf"/>
+                <constraint firstItem="aVa-KF-mxs" firstAttribute="centerY" secondItem="fki-Y5-AHI" secondAttribute="centerY" id="6M2-N8-VS7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aVa-KF-mxs" secondAttribute="trailing" constant="16" id="D6H-eR-WEv"/>
                 <constraint firstItem="fki-Y5-AHI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="FLi-pd-9qG"/>
                 <constraint firstAttribute="trailing" secondItem="heN-Od-d8z" secondAttribute="trailing" id="NUk-dH-Qx2"/>
                 <constraint firstAttribute="bottom" secondItem="heN-Od-d8z" secondAttribute="bottom" constant="20" symbolic="YES" id="V3A-Nw-qLK"/>
