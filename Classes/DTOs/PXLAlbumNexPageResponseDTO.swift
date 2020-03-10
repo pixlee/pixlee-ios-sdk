@@ -43,7 +43,8 @@ struct BoundingBoxProduct: Codable {
 // MARK: - ReviewsInfo
 
 struct PXLReviewsInfo: Codable {
-    let numReviews, averageRating: Int
+    let numReviews: Int
+    let averageRating: Double
     let reviews: [PXLReview]
 
     enum CodingKeys: String, CodingKey {
