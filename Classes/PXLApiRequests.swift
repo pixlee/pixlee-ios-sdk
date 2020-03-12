@@ -39,11 +39,7 @@ class PXLApiRequests {
 
         assert(apiKey != nil, "Your Pixlee API Key must be set before making API calls.")
 
-        var newParameters = parameters
-
-        if let apiKey = apiKey {
-            newParameters["API_KEY"] = "\(apiKey)"
-        }
+        let newParameters = parameters
 
         httpHeaders["Content-Type"] = "application/json"
         httpHeaders["Accept"] = "application/json"
@@ -51,11 +47,15 @@ class PXLApiRequests {
         assert(secretKey != nil, "Your Pixlee Secret Key must be set before making API calls.")
         if let secret = self.secretKey {
             if let parametersData = try? JSONSerialization.data(withJSONObject: newParameters, options: []), let jsonParameters = String(data: parametersData, encoding: String.Encoding.utf8) {
-                let signedParameters = jsonParameters.hmac(algorithm: .SHA1, key: secret)
-                let timestamp = Date().timeIntervalSinceNow
+                let cleanedJSON = jsonParameters.replacingOccurrences(of: "\\", with: "")
+                let signedParameters = cleanedJSON.hmac(algorithm: .SHA1, key: secret)
+                let timestamp = Date().timeIntervalSince1970
 
-                httpHeaders["Signature"] = signedParameters
-                httpHeaders["X-Authorization-Timestamp"] = "\(timestamp)"
+                if let hexString = signedParameters.data(using: .bytesHexLiteral)?.base64EncodedString(){
+                    print(hexString)
+                    httpHeaders["Signature"] = hexString
+                    httpHeaders["X-Authorization-Timestamp"] = "\(timestamp)"
+                }
             }
         }
 
@@ -136,11 +136,59 @@ class PXLApiRequests {
 
         do {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
-            let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
-            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
+//            let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default)
             return request
         } catch {
             fatalError("Worng url request")
+        }
+    }
+
+    func addMedia(_ newMedia: PXLNewImage) {
+        if let apiKey = apiKey {
+            let url = baseURL + "media/file?api_key=\(apiKey)"
+
+            do {
+                let parameters = newMedia.parameters
+                let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+
+                let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+
+                var url = url
+                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+
+                print("Url: \(url), \n headers: \(postHeaders), jsonString:\(jsonString)")
+
+                if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
+                    Alamofire.upload(multipartFormData: { multipartFormData in
+                        multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
+                        multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
+                    }, usingThreshold: UInt64(), to: url, method: .post, headers: postHeaders) { result in
+                        switch result {
+                        case .success(let upload, _, _):
+                            print("the status code is :")
+
+                            upload.uploadProgress(closure: { _ in
+                                print("something")
+                            })
+
+                            upload.responseJSON { response in
+                                print("the resopnse code is : \(response.response?.statusCode)")
+                                print("the response is : \(response)")
+                            }
+                            break
+                        case let .failure(encodingError):
+                            print("the error is  : \(encodingError.localizedDescription)")
+                            break
+                        }
+                    }
+                }
+                return
+            } catch {
+                fatalError("Worng url request")
+            }
         }
     }
 }
@@ -170,5 +218,43 @@ extension PXLApiRequests {
         }
 
         return mutableURLRequest
+    }
+}
+
+extension String {
+    /// Expanded encoding
+    ///
+    /// - bytesHexLiteral: Hex string of bytes
+    /// - base64: Base64 string
+    enum ExpandedEncoding {
+        /// Hex string of bytes
+        case bytesHexLiteral
+        /// Base64 string
+        case base64
+    }
+
+    /// Convert to `Data` with expanded encoding
+    ///
+    /// - Parameter encoding: Expanded encoding
+    /// - Returns: data
+    func data(using encoding: ExpandedEncoding) -> Data? {
+        switch encoding {
+        case .bytesHexLiteral:
+            guard count % 2 == 0 else { return nil }
+            var data = Data()
+            var byteLiteral = ""
+            for (index, character) in enumerated() {
+                if index % 2 == 0 {
+                    byteLiteral = String(character)
+                } else {
+                    byteLiteral.append(character)
+                    guard let byte = UInt8(byteLiteral, radix: 16) else { return nil }
+                    data.append(byte)
+                }
+            }
+            return data
+        case .base64:
+            return Data(base64Encoded: self)
+        }
     }
 }
