@@ -22,6 +22,8 @@ public class PXLAlbumViewController: UIViewController {
 
     let defaultMargin: CGFloat = 15
 
+    @IBOutlet var loadingIndicatorWidth: NSLayoutConstraint!
+    @IBOutlet var loadingIndicator: UIView!
     @IBOutlet var addPhotoButton: UIButton!
     @IBOutlet var layoutSwitcher: UISegmentedControl!
     @IBOutlet var collectionView: UICollectionView!
@@ -90,6 +92,8 @@ public class PXLAlbumViewController: UIViewController {
         super.viewDidLoad()
 
         setupCollectionView()
+        loadingIndicator.layer.cornerRadius = 2
+        loadingIndicator.isHidden = true
     }
 
     func setupCollectionView() {
@@ -110,6 +114,19 @@ public class PXLAlbumViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PXLImageCell", bundle: bundle), forCellWithReuseIdentifier: PXLImageCell.defaultIdentifier)
+    }
+
+    func applyUploadPercentage(_ percentage: Double) {
+        loadingIndicator.isHidden = percentage < 0.05
+        loadingIndicatorWidth.constant = CGFloat(percentage * 72)
+        view.layoutIfNeeded()
+        if percentage >= 0.99 {
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.loadingIndicator.isHidden = true
+                }
+            }
+        }
     }
 }
 
@@ -176,10 +193,32 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
             return
         }
 
-        if let albumIdentifier = viewModel?.album.identifier, let albumID = Int(albumIdentifier)  {
-            PXLClient.sharedClient.uploadPhoto(photo: PXLNewImage(image: image, albumId:albumID, title: "Theodore", email: "csaba@bitraptors.com", username: "csacsi", approved: true, connectedUserId: nil, productSKUs: nil, connectedUser: nil))
+        if let albumIdentifier = viewModel?.album.identifier, let albumID = Int(albumIdentifier) {
+            PXLClient.sharedClient.uploadPhoto(photo:
+                PXLNewImage(image: image, albumId: albumID, title: "Sample image name", email: "csaba@bitraptors.com", username: "csacsi", approved: true, connectedUserId: nil, productSKUs: nil, connectedUser: nil),
+                progress: { percentage in
+                    self.applyUploadPercentage(percentage)
+                },
+                uploadRequest: { uploadReqest in
+
+                    let doYouWantToCancelTheRequest = false
+                    if doYouWantToCancelTheRequest {
+                        uploadReqest?.cancel()
+                    }
+                },
+                completion: { photoId, userId, error in
+                    guard error == nil else {
+                        print("🛑 Error while uploading image :\(error?.localizedDescription)")
+                        return
+                    }
+
+                    guard let photoId = photoId, let userId = userId else {
+                        print("🛑 Don't have photo or userid")
+                        return
+                    }
+                    print("⭐️ Upload completed: photoID:\(photoId), userId:\(userId)")
+                }
+            )
         }
-        // print out the image size as a test
-        print(image.size)
     }
 }
