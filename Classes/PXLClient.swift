@@ -174,6 +174,10 @@ public class PXLClient {
             }
         }
     }
+    
+    public func uploadPhoto(photo:PXLNewImage){
+        self.apiRequests.addMedia(photo)
+    }
 
     func getErrorFromResponse(responseData: Data?, error: Error?) -> PXLError {
         if let data = responseData {

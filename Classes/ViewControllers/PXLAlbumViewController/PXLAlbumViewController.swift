@@ -176,6 +176,9 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
             return
         }
 
+        if let albumIdentifier = viewModel?.album.identifier, let albumID = Int(albumIdentifier)  {
+            PXLClient.sharedClient.uploadPhoto(photo: PXLNewImage(image: image, albumId:albumID, title: "Theodore", email: "csaba@bitraptors.com", username: "csacsi", approved: true, connectedUserId: nil, productSKUs: nil, connectedUser: nil))
+        }
         // print out the image size as a test
         print(image.size)
     }
