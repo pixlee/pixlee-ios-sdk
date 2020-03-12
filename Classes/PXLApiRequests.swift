@@ -51,8 +51,7 @@ class PXLApiRequests {
                 let signedParameters = cleanedJSON.hmac(algorithm: .SHA1, key: secret)
                 let timestamp = Date().timeIntervalSince1970
 
-                if let hexString = signedParameters.data(using: .bytesHexLiteral)?.base64EncodedString(){
-                    print(hexString)
+                if let hexString = signedParameters.data(using: .bytesHexLiteral)?.base64EncodedString() {
                     httpHeaders["Signature"] = hexString
                     httpHeaders["X-Authorization-Timestamp"] = "\(timestamp)"
                 }
@@ -136,15 +135,15 @@ class PXLApiRequests {
 
         do {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
-//            let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
-            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default)
+            let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
             return request
         } catch {
             fatalError("Worng url request")
         }
     }
 
-    func addMedia(_ newMedia: PXLNewImage) {
+    func addMedia(_ newMedia: PXLNewImage, progress: @escaping (Double) -> Void, uploadRequest: @escaping (UploadRequest?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
         if let apiKey = apiKey {
             let url = baseURL + "media/file?api_key=\(apiKey)"
 
@@ -159,8 +158,6 @@ class PXLApiRequests {
                 var url = url
                 url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
-                print("Url: \(url), \n headers: \(postHeaders), jsonString:\(jsonString)")
-
                 if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
                     Alamofire.upload(multipartFormData: { multipartFormData in
                         multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
@@ -168,26 +165,33 @@ class PXLApiRequests {
                     }, usingThreshold: UInt64(), to: url, method: .post, headers: postHeaders) { result in
                         switch result {
                         case .success(let upload, _, _):
-                            print("the status code is :")
 
-                            upload.uploadProgress(closure: { _ in
-                                print("something")
+                            upload.uploadProgress(closure: { progressDone in
+                                progress(progressDone.fractionCompleted)
                             })
 
                             upload.responseJSON { response in
-                                print("the resopnse code is : \(response.response?.statusCode)")
-                                print("the response is : \(response)")
+                                if let statusCode = response.response?.statusCode {
+                                    if statusCode == 200 {
+                                        if let dict = response.result.value as? [String: Any], let photoId = dict["album_photo_id"] as? String, let userId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(userId) {
+                                            completion(photoID, userID, nil)
+                                        }
+                                    } else {
+                                        completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: nil))
+                                    }
+                                }
                             }
+                            uploadRequest(upload)
                             break
                         case let .failure(encodingError):
-                            print("the error is  : \(encodingError.localizedDescription)")
+                            completion(nil, nil, encodingError)
+
                             break
                         }
                     }
                 }
-                return
             } catch {
-                fatalError("Worng url request")
+                completion(nil, nil, PXLError(code: 1002, message: "Worng url request", externalError: nil))
             }
         }
     }
@@ -218,43 +222,5 @@ extension PXLApiRequests {
         }
 
         return mutableURLRequest
-    }
-}
-
-extension String {
-    /// Expanded encoding
-    ///
-    /// - bytesHexLiteral: Hex string of bytes
-    /// - base64: Base64 string
-    enum ExpandedEncoding {
-        /// Hex string of bytes
-        case bytesHexLiteral
-        /// Base64 string
-        case base64
-    }
-
-    /// Convert to `Data` with expanded encoding
-    ///
-    /// - Parameter encoding: Expanded encoding
-    /// - Returns: data
-    func data(using encoding: ExpandedEncoding) -> Data? {
-        switch encoding {
-        case .bytesHexLiteral:
-            guard count % 2 == 0 else { return nil }
-            var data = Data()
-            var byteLiteral = ""
-            for (index, character) in enumerated() {
-                if index % 2 == 0 {
-                    byteLiteral = String(character)
-                } else {
-                    byteLiteral.append(character)
-                    guard let byte = UInt8(byteLiteral, radix: 16) else { return nil }
-                    data.append(byte)
-                }
-            }
-            return data
-        case .base64:
-            return Data(base64Encoded: self)
-        }
     }
 }

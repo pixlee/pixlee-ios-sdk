@@ -160,9 +160,9 @@ public class PXLClient {
             }
         }
     }
-    
-    public func uploadPhoto(photo:PXLNewImage){
-        self.apiRequests.addMedia(photo)
+
+    public func uploadPhoto(photo: PXLNewImage, progress: @escaping (Double) -> Void, uploadRequest: @escaping (UploadRequest?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
+        return apiRequests.addMedia(photo, progress: progress, uploadRequest: uploadRequest, completion: completion)
     }
 
     func getErrorFromResponse(responseData: Data?, error: Error?) -> PXLError {
