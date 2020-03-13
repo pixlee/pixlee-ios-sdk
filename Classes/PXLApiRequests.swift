@@ -39,11 +39,7 @@ class PXLApiRequests {
 
         assert(apiKey != nil, "Your Pixlee API Key must be set before making API calls.")
 
-        var newParameters = parameters
-
-        if let apiKey = apiKey {
-            newParameters["API_KEY"] = "\(apiKey)"
-        }
+        let newParameters = parameters
 
         httpHeaders["Content-Type"] = "application/json"
         httpHeaders["Accept"] = "application/json"
@@ -51,11 +47,14 @@ class PXLApiRequests {
         assert(secretKey != nil, "Your Pixlee Secret Key must be set before making API calls.")
         if let secret = self.secretKey {
             if let parametersData = try? JSONSerialization.data(withJSONObject: newParameters, options: []), let jsonParameters = String(data: parametersData, encoding: String.Encoding.utf8) {
-                let signedParameters = jsonParameters.hmac(algorithm: .SHA1, key: secret)
-                let timestamp = Date().timeIntervalSinceNow
+                let cleanedJSON = jsonParameters.replacingOccurrences(of: "\\", with: "")
+                let signedParameters = cleanedJSON.hmac(algorithm: .SHA1, key: secret)
+                let timestamp = Date().timeIntervalSince1970
 
-                httpHeaders["Signature"] = signedParameters
-                httpHeaders["X-Authorization-Timestamp"] = "\(timestamp)"
+                if let hexString = signedParameters.data(using: .bytesHexLiteral)?.base64EncodedString() {
+                    httpHeaders["Signature"] = hexString
+                    httpHeaders["X-Authorization-Timestamp"] = "\(timestamp)"
+                }
             }
         }
 
@@ -141,6 +140,59 @@ class PXLApiRequests {
             return request
         } catch {
             fatalError("Worng url request")
+        }
+    }
+
+    func addMedia(_ newMedia: PXLNewImage, progress: @escaping (Double) -> Void, uploadRequest: @escaping (UploadRequest?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
+        if let apiKey = apiKey {
+            let url = baseURL + "media/file?api_key=\(apiKey)"
+
+            do {
+                let parameters = newMedia.parameters
+                let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+
+                let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+
+                var url = url
+                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+
+                if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
+                    Alamofire.upload(multipartFormData: { multipartFormData in
+                        multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
+                        multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
+                    }, usingThreshold: UInt64(), to: url, method: .post, headers: postHeaders) { result in
+                        switch result {
+                        case .success(let upload, _, _):
+
+                            upload.uploadProgress(closure: { progressDone in
+                                progress(progressDone.fractionCompleted)
+                            })
+
+                            upload.responseJSON { response in
+                                if let statusCode = response.response?.statusCode {
+                                    if statusCode == 200 {
+                                        if let dict = response.result.value as? [String: Any], let photoId = dict["album_photo_id"] as? String, let userId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(userId) {
+                                            completion(photoID, userID, nil)
+                                        }
+                                    } else {
+                                        completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: nil))
+                                    }
+                                }
+                            }
+                            uploadRequest(upload)
+                            break
+                        case let .failure(encodingError):
+                            completion(nil, nil, encodingError)
+
+                            break
+                        }
+                    }
+                }
+            } catch {
+                completion(nil, nil, PXLError(code: 1002, message: "Worng url request", externalError: nil))
+            }
         }
     }
 }
