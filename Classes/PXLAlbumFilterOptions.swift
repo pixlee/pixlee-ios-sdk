@@ -8,10 +8,39 @@
 
 import Foundation
 
-public struct PXLAlbumFilterOptions: Codable {
+public enum PXLContentSource {
+    case instagram_feed
+    case instagram_story
+    case twitter
+    case facebook
+    case api
+    case desktop
+    case email
+    var key: String {
+        switch self {
+        case .instagram_feed:
+            return "instagram_feed"
+        case .instagram_story:
+            return "instagram_story"
+        case .twitter:
+            return "twitter"
+        case .facebook:
+            return "facebook"
+        case .api:
+            return "api"
+        case .desktop:
+            return "desktop"
+        case .email:
+            return "email"
+        }
+    }
+}
+
+
+public struct PXLAlbumFilterOptions {
     public let minInstagramFollowers: Int?
     public let minTwitterFollowers: Int?
-    public let contentSource: [String]?
+    public let contentSource: [PXLContentSource]?
     public let contentType: [String]?
     public let inCategories: [Int]?
     public let filterBySubcaption: String?
@@ -81,7 +110,7 @@ public struct PXLAlbumFilterOptions: Codable {
 
     public init(minInstagramFollowers: Int? = nil,
                 minTwitterFollowers: Int? = nil,
-                contentSource: [String]? = nil,
+                contentSource: [PXLContentSource]? = nil,
                 contentType: [String]? = nil,
                 inCategories: [Int]? = nil,
                 filterBySubcaption: String? = nil,
@@ -199,7 +228,7 @@ public struct PXLAlbumFilterOptions: Codable {
                                      flagHasActionLink: flagHasActionLink)
     }
 
-    public func changeContentSource(newContentSource: [String]?) -> PXLAlbumFilterOptions {
+    public func changeContentSource(newContentSource: [PXLContentSource]?) -> PXLAlbumFilterOptions {
         return PXLAlbumFilterOptions(minInstagramFollowers: minInstagramFollowers,
                                      minTwitterFollowers: minTwitterFollowers,
                                      contentSource: newContentSource,
@@ -551,8 +580,19 @@ public struct PXLAlbumFilterOptions: Codable {
             options["has_action_link"] = hasActionLink
         }
 
-        if let contentSource = contentSource {
-            options["content_source"] = contentSource
+        if let contentSource = self.contentSource {
+            var array:[String] = []
+            var isInstagramAdded = false
+            for source in contentSource{
+                array.append(source.key)
+                if !isInstagramAdded &&
+                    (source.key=="instagram_feed" || source.key=="instagram_story") {
+                    isInstagramAdded = true
+                    array.append("instagram")
+                }
+            }
+            
+            options["content_source"] = array
         }
 
         if let contentType = self.contentType {
