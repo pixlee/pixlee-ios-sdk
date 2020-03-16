@@ -20,16 +20,14 @@ class ViewController: UIViewController {
         //        #warning In Environment Variables, replace with your Secret Key if you are making POST requests.
         PXLClient.sharedClient.secretKey = ProcessInfo.processInfo.environment["PIXLEE_SECRET_KEY"]
 
-        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed])
-//        let dateString = "20190101"
+        //        let dateString = "20190101"
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "yyyyMMdd"
 //        let date = dateFormatter.date(from: dateString)
-//
-//        filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
-//
-//        PXLAlbumFilterOptions(submittedDateStart: date)
-        album.filterOptions = filterOptions
+        
+//        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
+//        album.filterOptions = filterOptions
+        
         album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums

@@ -8,36 +8,18 @@
 
 import Foundation
 
-public enum PXLContentSource {
-    case instagram_feed
-    case instagram_story
-    case twitter
-    case facebook
-    case api
-    case desktop
-    case email
-    var key: String {
-        switch self {
-        case .instagram_feed:
-            return "instagram_feed"
-        case .instagram_story:
-            return "instagram_story"
-        case .twitter:
-            return "twitter"
-        case .facebook:
-            return "facebook"
-        case .api:
-            return "api"
-        case .desktop:
-            return "desktop"
-        case .email:
-            return "email"
-        }
-    }
+public enum PXLContentSource :String, Codable{
+    case instagram_feed = "instagram_feed"
+    case instagram_story = "instagram_story"
+    case twitter = "twitter"
+    case facebook = "facebook"
+    case api = "api"
+    case desktop = "desktop"
+    case email = "email"
 }
 
 
-public struct PXLAlbumFilterOptions {
+public struct PXLAlbumFilterOptions :Codable{
     public let minInstagramFollowers: Int?
     public let minTwitterFollowers: Int?
     public let contentSource: [PXLContentSource]?
@@ -584,9 +566,9 @@ public struct PXLAlbumFilterOptions {
             var array:[String] = []
             var isInstagramAdded = false
             for source in contentSource{
-                array.append(source.key)
+                array.append(source.rawValue)
                 if !isInstagramAdded &&
-                    (source.key=="instagram_feed" || source.key=="instagram_story") {
+                    (source == PXLContentSource.instagram_feed || source == PXLContentSource.instagram_story) {
                     isInstagramAdded = true
                     array.append("instagram")
                 }
