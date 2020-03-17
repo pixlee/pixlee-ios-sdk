@@ -10,15 +10,15 @@ import PixleeSDK
 import UIKit
 
 class ViewController: UIViewController {
-    let album = PXLAlbum(identifier: "5984962")
+    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
         //        #warning  Environment Variables, replace with your Pixlee API key.
-        PXLClient.sharedClient.apiKey = "cbWQFNExi4gQjyNYpOEf"
+        PXLClient.sharedClient.apiKey = ProcessInfo.processInfo.environment["PIXLEE_API_KEY"]
         //        #warning In Environment Variables, replace with your Secret Key if you are making POST requests.
-        PXLClient.sharedClient.secretKey = "b4b38f4322877060b2e4f390fd"
+        PXLClient.sharedClient.secretKey = ProcessInfo.processInfo.environment["PIXLEE_SECRET_KEY"]
 
         //        let dateString = "20190101"
 //        let dateFormatter = DateFormatter()

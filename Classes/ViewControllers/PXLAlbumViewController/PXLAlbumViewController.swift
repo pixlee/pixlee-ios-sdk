@@ -213,10 +213,10 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
                     }
 
                     guard let photoId = photoId, let connectedUserId = connectedUserId else {
-                        print("🛑 Don't have photo or userid")
+                        print("🛑 Don't have photo or connectedUserID")
                         return
                     }
-                    print("⭐️ Upload completed: photoID:\(photoId), userId:\(connectedUserId)")
+                    print("⭐️ Upload completed: photoID:\(photoId), connectedUserID:\(connectedUserId)")
                 }
             )
         }

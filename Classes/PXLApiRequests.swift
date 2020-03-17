@@ -170,7 +170,7 @@ class PXLApiRequests {
                             if statusCode == 200 {
                                 switch responseJSON.result {
                                 case let .success(result):
-                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let userId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(userId) {
+                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(connectedUserId) {
                                         completion(photoID, userID, nil)
                                     }
                                 case let .failure(err):
