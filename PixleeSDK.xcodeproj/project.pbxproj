@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F23F5D072420C44C000E3351 /* PXLNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23F5CFA2420C44C000E3351 /* PXLNewImage.swift */; };
+		F23F5D092420C465000E3351 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23F5D082420C465000E3351 /* StringExtension.swift */; };
 		F27CCFE523DB54C6007CF85A /* PXLAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CCFDF23DB54C6007CF85A /* PXLAlbumViewController.swift */; };
 		F27CCFE623DB54C6007CF85A /* PXLAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CCFE023DB54C6007CF85A /* PXLAlbumViewController.xib */; };
 		F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CCFE123DB54C6007CF85A /* PXLAlbumViewModel.swift */; };
@@ -144,6 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F23F5CFA2420C44C000E3351 /* PXLNewImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLNewImage.swift; sourceTree = "<group>"; };
+		F23F5D082420C465000E3351 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F27CCFDF23DB54C6007CF85A /* PXLAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewController.swift; sourceTree = "<group>"; };
 		F27CCFE023DB54C6007CF85A /* PXLAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PXLAlbumViewController.xib; sourceTree = "<group>"; };
 		F27CCFE123DB54C6007CF85A /* PXLAlbumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewModel.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				F2E30F2E23D8F73200CDD977 /* PXLAlbumSortOptions.swift */,
 				F2E30F2F23D8F73200CDD977 /* AnalyticsEvents */,
 				F2E30F3723D8F73200CDD977 /* PXLApiRequests.swift */,
+				F23F5CFA2420C44C000E3351 /* PXLNewImage.swift */,
 				F2E30F3823D8F73200CDD977 /* Helpers */,
 				F2E30F3A23D8F73200CDD977 /* PXLClient.swift */,
 				F2832B0D23F3E033004B62C0 /* PXLError.swift */,
@@ -370,6 +375,7 @@
 		F2E30F3823D8F73200CDD977 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F23F5D082420C465000E3351 /* StringExtension.swift */,
 				F27CD02723DB596A007CF85A /* DateExtension.swift */,
 				F2E30F3923D8F73200CDD977 /* SwiftCrypto.swift */,
 			);
@@ -612,11 +618,13 @@
 				F2E30F4323D8F73200CDD977 /* PXLPhotoResponseDTO.swift in Sources */,
 				F27CCFE823DB54C6007CF85A /* PXLPhotoDetailViewController.swift in Sources */,
 				F2E30F4423D8F73200CDD977 /* PXLProductDTO.swift in Sources */,
+				F23F5D092420C465000E3351 /* StringExtension.swift in Sources */,
 				F2E30F4F23D8F73200CDD977 /* SwiftCrypto.swift in Sources */,
 				F27CD02423DB595E007CF85A /* PXLImageCell.swift in Sources */,
 				F27CCFE523DB54C6007CF85A /* PXLAlbumViewController.swift in Sources */,
 				F2E30F4123D8F73200CDD977 /* PXLPhotoConverter.swift in Sources */,
 				F2E30F4223D8F73200CDD977 /* PXLAlbum.swift in Sources */,
+				F23F5D072420C44C000E3351 /* PXLNewImage.swift in Sources */,
 				F2E30F3D23D8F73200CDD977 /* PXLAlbumFilterOptions.swift in Sources */,
 				F2E30F4023D8F73200CDD977 /* PXLProductConverter.swift in Sources */,
 				F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */,

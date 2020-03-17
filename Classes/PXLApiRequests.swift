@@ -153,42 +153,41 @@ class PXLApiRequests {
 
                 let jsonString = String(data: jsonData, encoding: .utf8)!
 
-                let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+                let postHeaders = HTTPHeaders(self.postHeaders(headers: [:], parameters: parameters))
 
                 var url = url
                 url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
                 if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
-                    Alamofire.upload(multipartFormData: { multipartFormData in
+                    uploadRequest(AF.upload(multipartFormData: { multipartFormData in
                         multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
                         multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
-                    }, usingThreshold: UInt64(), to: url, method: .post, headers: postHeaders) { result in
-                        switch result {
-                        case .success(let upload, _, _):
-
-                            upload.uploadProgress(closure: { progressDone in
-                                progress(progressDone.fractionCompleted)
-                            })
-
-                            upload.responseJSON { response in
-                                if let statusCode = response.response?.statusCode {
-                                    if statusCode == 200 {
-                                        if let dict = response.result.value as? [String: Any], let photoId = dict["album_photo_id"] as? String, let userId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(userId) {
-                                            completion(photoID, userID, nil)
-                                        }
-                                    } else {
-                                        completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: nil))
+                    }, to: url, headers: postHeaders).uploadProgress(queue: .main, closure: { progressDone in
+                        print("Upload progress done: \(progressDone.fractionCompleted)")
+                        progress(progressDone.fractionCompleted)
+                    }).responseJSON(completionHandler: { responseJSON in
+                        if let statusCode = responseJSON.response?.statusCode {
+                            if statusCode == 200 {
+                                switch responseJSON.result {
+                                case let .success(result):
+                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let userId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let userID = Int(userId) {
+                                        completion(photoID, userID, nil)
                                     }
+                                case let .failure(err):
+                                    print("Failure")
+                                    completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: err))
                                 }
                             }
-                            uploadRequest(upload)
-                            break
-                        case let .failure(encodingError):
-                            completion(nil, nil, encodingError)
-
-                            break
                         }
-                    }
+                    }).response { response in
+                        switch response.result {
+                        case let .success(resut):
+                            print("upload success")
+                        case let .failure(err):
+                            print("upload err: \(err)")
+                            completion(nil, nil, err)
+                        }
+                    })
                 }
             } catch {
                 completion(nil, nil, PXLError(code: 1002, message: "Worng url request", externalError: nil))
