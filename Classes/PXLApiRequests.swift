@@ -190,7 +190,7 @@ class PXLApiRequests {
                     })
                 }
             } catch {
-                completion(nil, nil, PXLError(code: 1002, message: "Worng url request", externalError: nil))
+                completion(nil, nil, PXLError(code: 1002, message: "Wrong url request", externalError: nil))
             }
         }
     }

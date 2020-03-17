@@ -206,17 +206,17 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
                         uploadReqest?.cancel()
                     }
                 },
-                completion: { photoId, userId, error in
+                completion: { photoId, connectedUserId, error in
                     guard error == nil else {
                         print("🛑 Error while uploading image :\(error?.localizedDescription)")
                         return
                     }
 
-                    guard let photoId = photoId, let userId = userId else {
+                    guard let photoId = photoId, let connectedUserId = connectedUserId else {
                         print("🛑 Don't have photo or userid")
                         return
                     }
-                    print("⭐️ Upload completed: photoID:\(photoId), userId:\(userId)")
+                    print("⭐️ Upload completed: photoID:\(photoId), userId:\(connectedUserId)")
                 }
             )
         }
