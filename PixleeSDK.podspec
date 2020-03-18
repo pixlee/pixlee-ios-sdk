@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "PixleeSDK"
-  spec.version      = "2.0.6"
+  spec.version      = "2.1.0"
   spec.summary      = "An API Wrapper for Pixlee API"
 
   spec.description      = "This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used."
@@ -32,6 +32,6 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Classes/**/*{swift}'
     
   spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
-  spec.dependency 'Alamofire', '~> 5.0.0'
+  spec.dependency 'Alamofire', '~> 5.0'
   spec.dependency 'Nuke', '~> 8.4.0'
 end
