@@ -29,6 +29,7 @@ class ViewController: UIViewController {
 //        filterOptions = filterOptions.changeSubmittedDateStart(newSubmittedDateStart: date)
 //
 //        PXLAlbumFilterOptions(submittedDateStart: date)
+//        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
 //        album.filterOptions = filterOptions
         album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
 
