@@ -25,6 +25,7 @@
 		F2832B1023F3E04B004B62C0 /* PXLAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B0F23F3E04B004B62C0 /* PXLAnalyticsEvent.swift */; };
 		F2832B1223F3E062004B62C0 /* PXLAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B1123F3E062004B62C0 /* PXLAnalyticsService.swift */; };
 		F2832B1423F3E19F004B62C0 /* PXLPlainErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832B1323F3E19F004B62C0 /* PXLPlainErrorDTO.swift */; };
+		F296941E24223D77003EB9DD /* PXLAnalyitcsEventWidgetVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F296941D24223D77003EB9DD /* PXLAnalyitcsEventWidgetVisible.swift */; };
 		F2E30F0F23D8F70800CDD977 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */; };
 		F2E30F1423D8F70800CDD977 /* PixleeSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E30F1323D8F70800CDD977 /* PixleeSDKTests.swift */; };
 		F2E30F1623D8F70800CDD977 /* PixleeSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E30F0823D8F70800CDD977 /* PixleeSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -164,6 +165,7 @@
 		F2832B0F23F3E04B004B62C0 /* PXLAnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEvent.swift; sourceTree = "<group>"; };
 		F2832B1123F3E062004B62C0 /* PXLAnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsService.swift; sourceTree = "<group>"; };
 		F2832B1323F3E19F004B62C0 /* PXLPlainErrorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLPlainErrorDTO.swift; sourceTree = "<group>"; };
+		F296941D24223D77003EB9DD /* PXLAnalyitcsEventWidgetVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLAnalyitcsEventWidgetVisible.swift; sourceTree = "<group>"; };
 		F2E30F0523D8F70800CDD977 /* PixleeSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixleeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E30F0823D8F70800CDD977 /* PixleeSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixleeSDK.h; sourceTree = "<group>"; };
 		F2E30F0923D8F70800CDD977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				F2E30F3023D8F73200CDD977 /* PXLAnalyticsEventAddCart.swift */,
 				F2E30F3123D8F73200CDD977 /* PXLAnalyticsEventOpenedLightBox.swift */,
 				F2E30F3323D8F73200CDD977 /* PXLAnalyticsEventOpenedWidget.swift */,
+				F296941D24223D77003EB9DD /* PXLAnalyitcsEventWidgetVisible.swift */,
 				F2E30F3423D8F73200CDD977 /* PXLAnalyticsEventActionClicked.swift */,
 				F2E30F3523D8F73200CDD977 /* PXLAnalyticsEventLoadMoreClicked.swift */,
 				F2E30F3623D8F73200CDD977 /* PXLAnalyticsEventConvertedPhoto.swift */,
@@ -625,6 +628,7 @@
 				F2E30F4123D8F73200CDD977 /* PXLPhotoConverter.swift in Sources */,
 				F2E30F4223D8F73200CDD977 /* PXLAlbum.swift in Sources */,
 				F23F5D072420C44C000E3351 /* PXLNewImage.swift in Sources */,
+				F296941E24223D77003EB9DD /* PXLAnalyitcsEventWidgetVisible.swift in Sources */,
 				F2E30F3D23D8F73200CDD977 /* PXLAlbumFilterOptions.swift in Sources */,
 				F2E30F4023D8F73200CDD977 /* PXLProductConverter.swift in Sources */,
 				F27CCFE723DB54C6007CF85A /* PXLAlbumViewModel.swift in Sources */,
