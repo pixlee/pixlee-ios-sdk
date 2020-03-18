@@ -10,6 +10,11 @@ import PixleeSDK
 import UIKit
 
 class AnalyticsViewController: UIViewController {
+    
+    var photo: PXLPhoto?
+    @IBOutlet var consoleLabel: UILabel!
+    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,19 +34,15 @@ class AnalyticsViewController: UIViewController {
         }
     }
 
-    var photo: PXLPhoto?
-
-    @IBOutlet var consoleLabel: UILabel!
+    
 
     // Album events
-    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
     @IBAction func openedWidget(_ sender: Any) {
         _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
             }
-            print("Example opened analytics logged")
             self.printToConsole(log: "Opened widget fired")
         }
     }
@@ -52,7 +53,6 @@ class AnalyticsViewController: UIViewController {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
             }
-            print("Example widget visible analytics logged")
             self.printToConsole(log: "Widget visible fired")
         }
     }
@@ -123,5 +123,6 @@ class AnalyticsViewController: UIViewController {
 
     func printToConsole(log: String) {
         consoleLabel.text = log
+        print(log)
     }
 }

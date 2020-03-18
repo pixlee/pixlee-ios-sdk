@@ -11,7 +11,8 @@ import UIKit
 
 class WidgetsExampleViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
-
+    @IBOutlet weak var consoleOutput: UILabel!
+    
     let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
     var widgetVisibleFired = false
 
@@ -31,6 +32,7 @@ class WidgetsExampleViewController: UIViewController {
     }
 
     func printToConsole(log: String) {
+        consoleOutput.text = log
         print(log)
     }
 }
