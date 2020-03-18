@@ -14,7 +14,6 @@ class AnalyticsViewController: UIViewController {
         super.viewDidLoad()
 
         var photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-        photoAlbumId = "402593466"
         if let photoAlbumId = photoAlbumId {
             _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
                 guard error == nil else {
@@ -35,7 +34,7 @@ class AnalyticsViewController: UIViewController {
     @IBOutlet var consoleLabel: UILabel!
 
     // Album events
-    let album = PXLAlbum(identifier: "5984962")
+    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
     @IBAction func openedWidget(_ sender: Any) {
         _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
             guard error == nil else {
