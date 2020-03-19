@@ -1,6 +1,0 @@
-[submodule "Carthage/Checkouts/Alamofire"]
-	url = https://github.com/Alamofire/Alamofire.git
-	path = Carthage/Checkouts/Alamofire
-[submodule "Carthage/Checkouts/Nuke"]
-	path = Carthage/Checkouts/Nuke
-	url = https://github.com/kean/Nuke.git
