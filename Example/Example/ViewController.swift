@@ -11,9 +11,15 @@ import UIKit
 
 class ViewController: UIViewController {
     let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
+    @IBOutlet var versionLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let ver = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            versionLabel.text = "\(ver) (\(buildNumber))"
+        }
+
         // Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
         //        #warning  Environment Variables, replace with your Pixlee API key.
         PXLClient.sharedClient.apiKey = ProcessInfo.processInfo.environment["PIXLEE_API_KEY"]
@@ -60,15 +66,16 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let albumVC = PXLAlbumViewController.viewControllerForAlbum(album: album)
-        showViewController(VC: albumVC)
     }
 
-    func showViewController(VC: UIViewController) {
-        VC.willMove(toParent: self)
-        addChild(VC)
-        VC.view.frame = view.bounds
-        view.addSubview(VC.view)
-        VC.didMove(toParent: self)
+    @IBAction func loadAlbum(_ sender: Any) {
+        let albumVC = PXLAlbumViewController.viewControllerForAlbum(album: album)
+        present(albumVC, animated: true, completion: nil)
     }
+
+    @IBAction func showAnalytics(_ sender: Any) {
+        let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+        present(analyticsVC, animated: true, completion: nil)
+    }
+
 }
