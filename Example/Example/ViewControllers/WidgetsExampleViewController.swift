@@ -75,7 +75,7 @@ extension WidgetsExampleViewController: UITableViewDelegate, UITableViewDataSour
 
         let cell = UITableViewCell(style: .default, reuseIdentifier: "defaultCell")
         if indexPath.row == 0 {
-            cell.textLabel?.text = "This example demonstartes when you have to fire 'Opened Widget' and 'Widget Visible'\n\n Be aware of the difference betwen 'Opened Widget' and 'Widget Visible'\n\n 'Opened Widget': You should fire this when firing the api is done and loading the photo data into your own view for the widget is complete.\n\n'Widget Visible': 'Opened Widget' should be fired first. Then, you can fire this when your own view for the widget started to be visible on the screen.\n\nPlease scroll down to see it in action."
+            cell.textLabel?.text = "This example demonstrates when you have to fire 'Opened Widget' and 'Widget Visible'\n\n Be aware of the difference between 'Opened Widget' and 'Widget Visible'\n\n 'Opened Widget': You should fire this when firing the api is done and loading the photo data into your own view for the widget is complete.\n\n'Widget Visible': 'Opened Widget' should be fired first. Then, you can fire this when your own view for the widget started to be visible on the screen.\n\nPlease scroll down to see it in action."
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.numberOfLines = 0
         } else if indexPath.row < 51 {

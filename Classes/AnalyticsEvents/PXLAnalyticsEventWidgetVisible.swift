@@ -1,5 +1,5 @@
 //
-//  PXLAnalyitcsEventWidgetVisible.swift
+//  PXLAnalyticsEventWidgetVisible.swift
 //  PixleeSDK
 //
 //  Created by Csaba Toth on 2020. 03. 18..

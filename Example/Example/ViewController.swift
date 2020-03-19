@@ -73,9 +73,9 @@ class ViewController: UIViewController {
         present(albumVC, animated: true, completion: nil)
     }
 
-    @IBAction func showAnalyitcs(_ sender: Any) {
-        let analyitcsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
-        present(analyitcsVC, animated: true, completion: nil)
+    @IBAction func showAnalytics(_ sender: Any) {
+        let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+        present(analyticsVC, animated: true, completion: nil)
     }
 
 }
