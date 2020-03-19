@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="01h-qm-4KD">
-                    <rect key="frame" x="16" y="112" width="382" height="353"/>
+                    <rect key="frame" x="16" y="68" width="382" height="353"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-zb-9xS">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
@@ -92,13 +92,16 @@
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIe-c0-qAl">
-                    <rect key="frame" x="16" y="613.5" width="382" height="0.0"/>
+                    <rect key="frame" x="16" y="830" width="382" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="xXw-ch-uL6"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Console:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfg-mh-VR0">
-                    <rect key="frame" x="16" y="585" width="382" height="20.5"/>
+                    <rect key="frame" x="16" y="801.5" width="382" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -109,10 +112,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="01h-qm-4KD" secondAttribute="trailing" constant="16" id="4og-v5-QVL"/>
                 <constraint firstItem="NIe-c0-qAl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="5qI-Wp-d9c"/>
                 <constraint firstItem="01h-qm-4KD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6j4-wC-PnY"/>
-                <constraint firstItem="wfg-mh-VR0" firstAttribute="top" secondItem="01h-qm-4KD" secondAttribute="bottom" constant="120" id="8PF-41-Lql"/>
-                <constraint firstItem="01h-qm-4KD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="68" id="EJG-dB-Hqy"/>
+                <constraint firstItem="01h-qm-4KD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="EJG-dB-Hqy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wfg-mh-VR0" secondAttribute="trailing" constant="16" id="HcO-HU-2d1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NIe-c0-qAl" secondAttribute="bottom" constant="16" id="MpW-mA-P0U"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NIe-c0-qAl" secondAttribute="bottom" constant="16" id="MpW-mA-P0U"/>
                 <constraint firstItem="NIe-c0-qAl" firstAttribute="top" secondItem="wfg-mh-VR0" secondAttribute="bottom" constant="8" id="e53-6j-ZiX"/>
                 <constraint firstItem="wfg-mh-VR0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="iF7-C9-f3A"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NIe-c0-qAl" secondAttribute="trailing" constant="16" id="pRu-RT-FR3"/>

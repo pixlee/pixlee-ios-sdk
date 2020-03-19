@@ -10,11 +10,10 @@ import PixleeSDK
 import UIKit
 
 class AnalyticsViewController: UIViewController {
-    
     var photo: PXLPhoto?
     @IBOutlet var consoleLabel: UILabel!
     let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,8 +32,6 @@ class AnalyticsViewController: UIViewController {
             }
         }
     }
-
-    
 
     // Album events
     @IBAction func openedWidget(_ sender: Any) {
@@ -81,6 +78,8 @@ class AnalyticsViewController: UIViewController {
                 }
                 self.printToConsole(log: "Opened lightbox fired")
             }
+        } else {
+            printToConsole(log: "Please insert a correct photo_album_id first")
         }
     }
 
@@ -93,6 +92,8 @@ class AnalyticsViewController: UIViewController {
                 }
                 self.printToConsole(log: "Action clicked fired")
             })
+        } else {
+            printToConsole(log: "Please insert a correct photo_album_id first")
         }
     }
 
