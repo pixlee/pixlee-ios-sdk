@@ -21,15 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-<<<<<<< HEAD
-	<string>We need to acces your photos to upload to the album</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to acces your photos to upload to the album</string>
-=======
 	<string>We need to access your photos to upload to the album</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access your photos to upload to the album</string>
->>>>>>> origin/dev/newAnalytics
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

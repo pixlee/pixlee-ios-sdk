@@ -65,7 +65,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
     ```
-    github "pixlee/pixlee-ios-sdk" "1.9.2"
+    github "pixlee/pixlee-ios-sdk" "1.9.3"
     ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
