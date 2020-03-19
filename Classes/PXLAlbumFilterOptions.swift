@@ -8,10 +8,21 @@
 
 import Foundation
 
-public struct PXLAlbumFilterOptions: Codable {
+public enum PXLContentSource :String, Codable{
+    case instagram_feed = "instagram_feed"
+    case instagram_story = "instagram_story"
+    case twitter = "twitter"
+    case facebook = "facebook"
+    case api = "api"
+    case desktop = "desktop"
+    case email = "email"
+}
+
+
+public struct PXLAlbumFilterOptions :Codable{
     public let minInstagramFollowers: Int?
     public let minTwitterFollowers: Int?
-    public let contentSource: [String]?
+    public let contentSource: [PXLContentSource]?
     public let contentType: [String]?
     public let inCategories: [Int]?
     public let filterBySubcaption: String?
@@ -81,7 +92,7 @@ public struct PXLAlbumFilterOptions: Codable {
 
     public init(minInstagramFollowers: Int? = nil,
                 minTwitterFollowers: Int? = nil,
-                contentSource: [String]? = nil,
+                contentSource: [PXLContentSource]? = nil,
                 contentType: [String]? = nil,
                 inCategories: [Int]? = nil,
                 filterBySubcaption: String? = nil,
@@ -199,7 +210,7 @@ public struct PXLAlbumFilterOptions: Codable {
                                      flagHasActionLink: flagHasActionLink)
     }
 
-    public func changeContentSource(newContentSource: [String]?) -> PXLAlbumFilterOptions {
+    public func changeContentSource(newContentSource: [PXLContentSource]?) -> PXLAlbumFilterOptions {
         return PXLAlbumFilterOptions(minInstagramFollowers: minInstagramFollowers,
                                      minTwitterFollowers: minTwitterFollowers,
                                      contentSource: newContentSource,
@@ -551,8 +562,19 @@ public struct PXLAlbumFilterOptions: Codable {
             options["has_action_link"] = hasActionLink
         }
 
-        if let contentSource = contentSource {
-            options["content_source"] = contentSource
+        if let contentSource = self.contentSource {
+            var array:[String] = []
+            var isInstagramAdded = false
+            for source in contentSource{
+                array.append(source.rawValue)
+                if !isInstagramAdded &&
+                    (source == PXLContentSource.instagram_feed || source == PXLContentSource.instagram_story) {
+                    isInstagramAdded = true
+                    array.append("instagram")
+                }
+            }
+            
+            options["content_source"] = array
         }
 
         if let contentType = self.contentType {
