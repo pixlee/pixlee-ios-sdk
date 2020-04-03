@@ -34,7 +34,7 @@ class PXLApiRequests {
         return ["API_KEY": apiKey]
     }
 
-    private func postHeaders(headers: [String: String], parameters: [String: Any]) -> [String: String] {
+    private func postHeaders(isDistilleryServer:Bool, headers: [String: String], parameters: [String: Any]) -> [String: String] {
         var httpHeaders = [String: String]()
 
         assert(apiKey != nil, "Your Pixlee API Key must be set before making API calls.")
@@ -44,7 +44,10 @@ class PXLApiRequests {
         httpHeaders["Content-Type"] = "application/json"
         httpHeaders["Accept"] = "application/json"
 
-        assert(secretKey != nil, "Your Pixlee Secret Key must be set before making API calls.")
+        if(isDistilleryServer) {
+            assert(secretKey != nil, "Your Pixlee Secret Key must be set before making API calls.")
+        }
+        
         if let secret = self.secretKey {
             if let parametersData = try? JSONSerialization.data(withJSONObject: newParameters, options: []), let jsonParameters = String(data: parametersData, encoding: String.Encoding.utf8) {
                 let cleanedJSON = jsonParameters.replacingOccurrences(of: "\\", with: "")
@@ -135,7 +138,7 @@ class PXLApiRequests {
 
         do {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
-            let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+            let postHeaders = self.postHeaders(isDistilleryServer: false, headers: [:], parameters: parameters)
             let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
             return request
         } catch {
@@ -153,7 +156,7 @@ class PXLApiRequests {
 
                 let jsonString = String(data: jsonData, encoding: .utf8)!
 
-                let postHeaders = self.postHeaders(headers: [:], parameters: parameters)
+                let postHeaders = self.postHeaders(isDistilleryServer: true, headers: [:], parameters: parameters)
 
                 var url = url
                 url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
