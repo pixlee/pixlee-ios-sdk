@@ -19,11 +19,21 @@ class PXLProductConverter {
         if let imageUrl = dto.image {
             imageURL = URL(string: imageUrl)
         }
+        var imageThumbURL: URL?
+        if let imageThumbUrl = dto.imageThumb {
+            imageThumbURL = URL(string: imageThumbUrl)
+        }
+        var imageThumbSquareURL: URL?
+        if let imageThumbSquareUrl = dto.imageThumb {
+            imageThumbSquareURL = URL(string: imageThumbSquareUrl)
+        }
 
         return PXLProduct(identifier: dto.id,
                           linkText: dto.linkText,
                           link: link,
                           imageUrl: imageURL,
+                          imageThumbUrl: imageThumbURL,
+                          imageThumbSquareUrl: imageThumbSquareURL,
                           title: dto.title,
                           sku: dto.sku,
                           productDescription: dto.productDescription)

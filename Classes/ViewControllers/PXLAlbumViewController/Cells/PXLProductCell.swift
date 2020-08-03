@@ -20,7 +20,7 @@ class PXLProductCell: UICollectionViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
 
-            if let imageUrl = viewModel.imageUrl {
+            if let imageUrl = viewModel.imageThumbUrl {
                 Nuke.loadImage(with: imageUrl, into: productImageView)
                 productImageView.backgroundColor = .red
             }
