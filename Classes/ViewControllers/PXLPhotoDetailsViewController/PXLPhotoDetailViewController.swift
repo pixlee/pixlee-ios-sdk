@@ -17,14 +17,18 @@ public class PXLPhotoDetailViewController: UIViewController {
         return imageDetailsVC
     }
 
+    @IBOutlet var backButton: UIButton!
+
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var sourceImageView: UIImageView!
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
     public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -32,26 +36,22 @@ public class PXLPhotoDetailViewController: UIViewController {
 
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
-
-            usernameLabel.text = viewModel.username
-
-            if let updatedAt = viewModel.updatedAt {
-                dateLabel.text = updatedAt.getElapsedInterval()
-            } else {
-                dateLabel.text = ""
-            }
-
-            sourceImageView.image = viewModel.sourceIconImage
         }
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+    
         setupCollectionView()
     }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
 
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -61,6 +61,8 @@ public class PXLPhotoDetailViewController: UIViewController {
         productCollectionView.dataSource = self
         let bundle = Bundle(for: PXLImageCell.self)
         productCollectionView.register(UINib(nibName: "PXLProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLProductCell.defaultIdentifier)
+
+        productCollectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
     }
 
     @objc func doneButtonPressed() {
@@ -98,6 +100,6 @@ extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionVi
 
 extension PXLPhotoDetailViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+        return CGSize(width: 250, height: 100)
     }
 }
