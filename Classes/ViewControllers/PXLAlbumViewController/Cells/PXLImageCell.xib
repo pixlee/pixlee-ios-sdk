@@ -56,7 +56,7 @@
                                     <constraint firstAttribute="bottom" secondItem="2yQ-kK-u4o" secondAttribute="bottom" constant="8" id="uhm-nj-dqT"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81C-Jz-0Js">
+                            <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81C-Jz-0Js">
                                 <rect key="frame" x="199" y="199.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="BrF-vM-yJJ"/>
