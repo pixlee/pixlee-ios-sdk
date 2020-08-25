@@ -6,6 +6,7 @@
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
+import AVKit
 import Nuke
 import UIKit
 
@@ -29,6 +30,12 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
+    var playerLooper: NSObject?
+    var playerLayer: AVPlayerLayer?
+    var queuePlayer: AVQueuePlayer?
+    var durationLabelUpdateTimer: Timer?
+    @IBOutlet var durationLabel: UILabel!
+
     public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -39,19 +46,69 @@ public class PXLPhotoDetailViewController: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
+            
+            self.durationLabel.text = nil
+            
+            if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
+                self.imageView.isHidden = true
+                self.playVideo(url: videoURL)
+            } else {
+                durationLabelUpdateTimer?.invalidate()
+                self.imageView.isHidden = false
+                queuePlayer?.pause()
+                if let playerLayer = self.playerLayer {
+                    playerLayer.removeFromSuperlayer()
+                }
+            }
         }
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-    
         setupCollectionView()
+    }
+
+    func playVideo(url: URL) {
+        let playerItem = AVPlayerItem(url: url as URL)
+        queuePlayer = AVQueuePlayer(items: [playerItem])
+        if let queuePlayer = self.queuePlayer {
+            playerLayer = AVPlayerLayer(player: queuePlayer)
+
+            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            view.layer.addSublayer(playerLayer!)
+            playerLayer?.frame = imageView.frame
+            queuePlayer.play()
+
+            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
+                let formattedTime = self.getHoursMinutesSecondsFrom(seconds: currentTime)
+                self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+            }
+        }
+    }
+
+    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
+        let secs = Int(seconds)
+        let hours = secs / 3600
+        let minutes = (secs % 3600) / 60
+        let seconds = (secs % 3600) % 60
+        return (hours, minutes, seconds)
+    }
+
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = imageView.frame
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        queuePlayer?.pause()
+        durationLabelUpdateTimer?.invalidate()
+    }
 
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
