@@ -9,14 +9,20 @@
 import Nuke
 import UIKit
 
+protocol PXLImageCellDelegate {
+    func pxlImageCellPlayTapped(viewModel: PXLPhoto)
+}
+
 class PXLImageCell: UICollectionViewCell {
     static let defaultIdentifier = "ImageCell"
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    
+    @IBOutlet var playButton: UIButton!
+
+    var delegate: PXLImageCellDelegate?
+
     var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else {
@@ -30,17 +36,17 @@ class PXLImageCell: UICollectionViewCell {
             }
             if let title = viewModel.title {
                 titleLabel.text = title
-            }else{
+            } else {
                 titleLabel.text = nil
             }
-            
+
             playButton.isHidden = !viewModel.isVideo
-            if (viewModel.contentType == "video"){
-                print("It is a video with url: \(viewModel.sourceUrl)")
-                let url = viewModel.videoUrl()
-                print("url: \(url)")
-            }
         }
+    }
+
+    @IBAction func playTapped(_ sender: Any) {
+        guard let viewModel = viewModel else { return }
+        delegate?.pxlImageCellPlayTapped(viewModel: viewModel)
     }
 
     override func awakeFromNib() {

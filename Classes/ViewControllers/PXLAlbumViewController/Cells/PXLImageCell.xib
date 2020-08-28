@@ -64,6 +64,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="playIcon"/>
+                                <connections>
+                                    <action selector="playTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DHJ-fT-zg2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -30,6 +30,7 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
+    @IBOutlet var durationView: UIView!
     var playerLooper: NSObject?
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
@@ -46,15 +47,17 @@ public class PXLPhotoDetailViewController: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
-            
+
             self.durationLabel.text = nil
-            
+
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
                 self.imageView.isHidden = true
+                durationView.isHidden = false
                 self.playVideo(url: videoURL)
             } else {
                 durationLabelUpdateTimer?.invalidate()
                 self.imageView.isHidden = false
+                durationView.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -66,6 +69,12 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        durationView.layer.cornerRadius = 10
+        durationView.isHidden = true
+        if #available(iOS 11.0, *) {
+            durationView.layer.maskedCorners = [.layerMinXMaxYCorner]
+        } else {
+        }
     }
 
     func playVideo(url: URL) {
@@ -79,10 +88,17 @@ public class PXLPhotoDetailViewController: UIViewController {
             playerLayer?.frame = imageView.frame
             queuePlayer.play()
 
+            view.bringSubviewToFront(durationView)
+
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
                 let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
-                let formattedTime = self.getHoursMinutesSecondsFrom(seconds: currentTime)
-                self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+                if totalTime > 0 {
+                    let remainingTime: Double = totalTime - currentTime
+
+                    let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
+                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+                }
             }
         }
     }

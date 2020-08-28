@@ -88,7 +88,7 @@ public class PXLAlbumViewController: UIViewController {
         }
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         setupCollectionView()
@@ -139,6 +139,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLImageCell.defaultIdentifier, for: indexPath) as! PXLImageCell
 
         cell.viewModel = viewModel?.album.photos[indexPath.row]
+        cell.delegate = self
 
         return cell
     }
@@ -220,5 +221,13 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
                 }
             )
         }
+    }
+}
+
+extension PXLAlbumViewController: PXLImageCellDelegate {
+    func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel)
+        let navController = UINavigationController(rootViewController: photoDetailVC)
+        present(navController, animated: true, completion: nil)
     }
 }
