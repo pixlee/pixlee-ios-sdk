@@ -24,13 +24,13 @@ public struct PXLProduct {
     static var currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "en_US")
+        formatter.numberStyle = .decimal
+//        formatter.locale = Locale(identifier: "en_US")
         return formatter
     }()
 
     var formattedPrice: String? {
-        guard let price = price else { return nil }
-        return PXLProduct.currencyFormatter.string(from: NSNumber(value: price))
+        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
+        return "\(currency) \(formattedPrice)"
     }
 }
