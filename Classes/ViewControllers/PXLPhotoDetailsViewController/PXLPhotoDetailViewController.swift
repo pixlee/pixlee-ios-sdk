@@ -80,12 +80,14 @@ public class PXLPhotoDetailViewController: UIViewController {
     func playVideo(url: URL) {
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
+    
         if let queuePlayer = self.queuePlayer {
             playerLayer = AVPlayerLayer(player: queuePlayer)
-
+            
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
             playerLayer?.frame = imageView.frame
+            playerLayer?.videoGravity = .resizeAspectFill
             queuePlayer.play()
 
             view.bringSubviewToFront(durationView)
