@@ -25,7 +25,6 @@ public struct PXLProduct {
         let formatter = NumberFormatter()
         formatter.usesGroupingSeparator = true
         formatter.numberStyle = .decimal
-//        formatter.locale = Locale(identifier: "en_US")
         return formatter
     }()
 
