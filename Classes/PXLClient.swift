@@ -68,7 +68,6 @@ public class PXLClient {
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
                     let request = Alamofire.request(apiRequests.loadNextAlbumPage(album: album)).responseData { resultData in
-                        self.debugResponse(resultData)
                         if let data = resultData.data {
                             do {
                                 let decoder = JSONDecoder()
@@ -107,7 +106,6 @@ public class PXLClient {
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
                     let request = Alamofire.request(apiRequests.loadNextAlbumPageWithSKU(album: album)).responseData { resultData in
-                        self.debugResponse(resultData)
                         if let data = resultData.data {
                             do {
                                 let decoder = JSONDecoder()
