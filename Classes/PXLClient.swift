@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 
 public class PXLClient {
-    public init (){}
+    public init() {}
     public static var sharedClient = PXLClient()
 
     private let apiRequests = PXLApiRequests()
@@ -143,6 +143,12 @@ public class PXLClient {
         } else {
             completionHandler?(nil, nil)
             return nil
+        }
+    }
+
+    private func debugResponse(_ response: DataResponse<Data>) {
+        if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
+            print("respon dseJson: \(responseJSONString)")
         }
     }
 

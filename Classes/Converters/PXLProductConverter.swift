@@ -36,6 +36,8 @@ class PXLProductConverter {
                           imageThumbSquareUrl: imageThumbSquareURL,
                           title: dto.title,
                           sku: dto.sku,
-                          productDescription: dto.productDescription)
+                          productDescription: dto.productDescription,
+                          price:dto.price,
+                          currency: dto.currency)
     }
 }

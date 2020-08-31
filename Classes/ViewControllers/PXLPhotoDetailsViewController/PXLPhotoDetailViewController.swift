@@ -6,6 +6,7 @@
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
+import AVKit
 import Nuke
 import UIKit
 
@@ -17,14 +18,25 @@ public class PXLPhotoDetailViewController: UIViewController {
         return imageDetailsVC
     }
 
+    @IBOutlet var backButton: UIButton!
+
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var sourceImageView: UIImageView!
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var durationView: UIView!
+    var playerLooper: NSObject?
+    var playerLayer: AVPlayerLayer?
+    var queuePlayer: AVQueuePlayer?
+    var durationLabelUpdateTimer: Timer?
+    @IBOutlet var durationLabel: UILabel!
+
     public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -32,25 +44,88 @@ public class PXLPhotoDetailViewController: UIViewController {
 
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
 
-            usernameLabel.text = viewModel.username
+            self.durationLabel.text = nil
 
-            if let updatedAt = viewModel.updatedAt {
-                dateLabel.text = updatedAt.getElapsedInterval()
+            if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
+                self.imageView.isHidden = true
+                durationView.isHidden = false
+                self.playVideo(url: videoURL)
             } else {
-                dateLabel.text = ""
+                durationLabelUpdateTimer?.invalidate()
+                self.imageView.isHidden = false
+                durationView.isHidden = true
+                queuePlayer?.pause()
+                if let playerLayer = self.playerLayer {
+                    playerLayer.removeFromSuperlayer()
+                }
             }
-
-            sourceImageView.image = viewModel.sourceIconImage
         }
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         setupCollectionView()
+        durationView.layer.cornerRadius = 10
+        durationView.isHidden = true
+        if #available(iOS 11.0, *) {
+            durationView.layer.maskedCorners = [.layerMinXMaxYCorner]
+        } else {
+        }
+    }
+
+    func playVideo(url: URL) {
+        let playerItem = AVPlayerItem(url: url as URL)
+        queuePlayer = AVQueuePlayer(items: [playerItem])
+    
+        if let queuePlayer = self.queuePlayer {
+            playerLayer = AVPlayerLayer(player: queuePlayer)
+            
+            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            view.layer.addSublayer(playerLayer!)
+            playerLayer?.frame = imageView.frame
+            playerLayer?.videoGravity = .resizeAspectFill
+            queuePlayer.play()
+
+            view.bringSubviewToFront(durationView)
+
+            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
+                let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
+                if totalTime > 0 {
+                    let remainingTime: Double = totalTime - currentTime
+
+                    let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
+                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+                }
+            }
+        }
+    }
+
+    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
+        let secs = Int(seconds)
+        let hours = secs / 3600
+        let minutes = (secs % 3600) / 60
+        let seconds = (secs % 3600) % 60
+        return (hours, minutes, seconds)
+    }
+
+    override public func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = imageView.frame
+    }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        queuePlayer?.pause()
+        durationLabelUpdateTimer?.invalidate()
     }
 
     func setupCollectionView() {
@@ -61,6 +136,8 @@ public class PXLPhotoDetailViewController: UIViewController {
         productCollectionView.dataSource = self
         let bundle = Bundle(for: PXLImageCell.self)
         productCollectionView.register(UINib(nibName: "PXLProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLProductCell.defaultIdentifier)
+
+        productCollectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
     }
 
     @objc func doneButtonPressed() {
@@ -98,6 +175,6 @@ extension PXLPhotoDetailViewController: UICollectionViewDelegate, UICollectionVi
 
 extension PXLPhotoDetailViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+        return CGSize(width: 250, height: 100)
     }
 }
