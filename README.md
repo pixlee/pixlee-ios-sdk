@@ -405,11 +405,14 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
 ```
 ## UI components
 #### Image and Video Viewer with PXLPhoto
-- after receiving PXLPhoto list via PXLBaseAlbum.loadNextPageOfPhotos(...), you can launch watch the content using PXLPhotoViewerActivity. Depending on its content_type, PXLPhotoViewerActivity will play a video or display a photo.
-- you can use the activity using the code here
+- after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
     ```
-    PXLPhotoViewerActivity.launch(getContext(), pxlPhoto, "photo name");
-    PXLPhotoViewerActivity.launch(getContext(), pxlPhoto);
+    //Example
+    func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel)
+        let navController = UINavigationController(rootViewController: photoDetailVC)
+        present(navController, animated: true, completion: nil)
+    }
     ```
 
 #### Example
