@@ -19,6 +19,8 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Action Click](#Action-Click)
     - [Load More](#Load-More)
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
+- [UI components](#UI-components)
+    - [Image & Video Viewer with PXLPhoto](#Image-and-Video-Viewer-with-PXLPhoto)
 - [Troubleshooting](#Troubleshooting)
 - [License](#License)
 
@@ -363,7 +365,53 @@ It's important to trigger this event after the LoadNextPage event
 
 ```
 ## Uploading an Image to an album
-Coming soon, until that please use the Obj-C SDK to upload an image. 
+```
+// Example
+public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    guard let image = info[.editedImage] as? UIImage else {
+        print("No image found")
+        return
+    }
+    
+    if let albumIdentifier = viewModel?.album.identifier, let albumID = Int(albumIdentifier) {
+        let pxlNewImage = PXLNewImage(image: image, albumId: albumID, title: "Sample image name", email: "will.smith@gmail.com", username: "Will", approved: true, connectedUserId: nil, productSKUs: nil, connectedUser: nil)
+        
+        PXLClient.sharedClient.uploadPhoto(photo: pxlNewImage,
+            progress: { percentage in
+                self.applyUploadPercentage(percentage)
+            },
+            uploadRequest: { uploadReqest in
+
+                let doYouWantToCancelTheRequest = false
+                if doYouWantToCancelTheRequest {
+                    uploadReqest?.cancel()
+                }
+            },
+            completion: { photoId, connectedUserId, error in
+                guard error == nil else {
+                    print("🛑 Error while uploading image :\(error?.localizedDescription)")
+                    return
+                }
+
+                guard let photoId = photoId, let connectedUserId = connectedUserId else {
+                    print("🛑 Don't have photo or connectedUserID")
+                    return
+                }
+                print("⭐️ Upload completed: photoID:\(photoId), connectedUserID:\(connectedUserId)")
+            }
+        )
+    }
+}
+```
+## UI components
+#### Image and Video Viewer with PXLPhoto
+- after receiving PXLPhoto list via PXLBaseAlbum.loadNextPageOfPhotos(...), you can launch watch the content using PXLPhotoViewerActivity. Depending on its content_type, PXLPhotoViewerActivity will play a video or display a photo.
+- you can use the activity using the code here
+    ```
+    PXLPhotoViewerActivity.launch(getContext(), pxlPhoto, "photo name");
+    PXLPhotoViewerActivity.launch(getContext(), pxlPhoto);
+    ```
+
 #### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
