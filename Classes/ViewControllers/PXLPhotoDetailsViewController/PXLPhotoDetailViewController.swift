@@ -11,10 +11,11 @@ import Nuke
 import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
-    public static func viewControllerForPhoto(photo: PXLPhoto) -> PXLPhotoDetailViewController {
+    public static func viewControllerForPhoto(photo: PXLPhoto, title: String?) -> PXLPhotoDetailViewController {
         let bundle = Bundle(for: PXLPhotoDetailViewController.self)
         let imageDetailsVC = PXLPhotoDetailViewController(nibName: "PXLPhotoDetailViewController", bundle: bundle)
         imageDetailsVC.viewModel = photo
+        imageDetailsVC.titleString = title
         return imageDetailsVC
     }
 
@@ -46,23 +47,28 @@ public class PXLPhotoDetailViewController: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: imageView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
-            titleLabel.text = (viewModel.title != nil) ? viewModel.title : ""
 
-            self.durationLabel.text = nil
+            durationLabel.text = nil
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                self.imageView.isHidden = true
+                imageView.isHidden = true
                 durationView.isHidden = false
-                self.playVideo(url: videoURL)
+                playVideo(url: videoURL)
             } else {
                 durationLabelUpdateTimer?.invalidate()
-                self.imageView.isHidden = false
+                imageView.isHidden = false
                 durationView.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
                 }
             }
+        }
+    }
+
+    public var titleString: String? {
+        didSet {
+            titleLabel.text = titleString
         }
     }
 
@@ -80,10 +86,10 @@ public class PXLPhotoDetailViewController: UIViewController {
     func playVideo(url: URL) {
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
-    
+
         if let queuePlayer = self.queuePlayer {
             playerLayer = AVPlayerLayer(player: queuePlayer)
-            
+
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
             playerLayer?.frame = imageView.frame
