@@ -82,6 +82,17 @@ public struct PXLPhoto {
         }
     }
 
+    public var isVideo: Bool {
+        return contentType == "video"
+    }
+
+    public func videoUrl() -> URL? {
+        if contentType == "video" {
+            return sourceUrl
+        }
+        return nil
+    }
+
     func getResizedPhotoUrl(for size: PXLPhotoSize) -> URL? {
         switch size {
         case .thumbnail:

@@ -14,18 +14,23 @@ class PXLProductCell: UICollectionViewCell {
 
     @IBOutlet var productImageView: UIImageView!
 
+    @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet var productActionButton: UIButton!
 
     var viewModel: PXLProduct? {
         didSet {
             guard let viewModel = viewModel else { return }
-
+            
+            self.contentView.layer.cornerRadius = 4
+            self.contentView.backgroundColor = .white
+            productImageView.layer.cornerRadius = 4
+            
             if let imageUrl = viewModel.imageThumbUrl {
                 Nuke.loadImage(with: imageUrl, into: productImageView)
-                productImageView.backgroundColor = .red
             }
 
-            productActionButton.setTitle(viewModel.title, for: .normal)
+            productActionButton.setTitle(viewModel.formattedPrice, for: .normal)
+            productTitleLabel.text = viewModel.title
         }
     }
 
