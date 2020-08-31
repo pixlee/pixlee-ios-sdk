@@ -409,7 +409,7 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
     ```
     //Example
     func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel)
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
         let navController = UINavigationController(rootViewController: photoDetailVC)
         present(navController, animated: true, completion: nil)
     }
