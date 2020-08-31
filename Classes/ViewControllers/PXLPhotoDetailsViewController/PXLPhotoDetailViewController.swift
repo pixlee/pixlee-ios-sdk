@@ -46,7 +46,7 @@ public class PXLPhotoDetailViewController: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: imageView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
-            titleLabel.text = (viewModel.photoTitle != nil) ? viewModel.photoTitle : ""
+            titleLabel.text = (viewModel.title != nil) ? viewModel.title : ""
 
             self.durationLabel.text = nil
 
