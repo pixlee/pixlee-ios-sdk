@@ -146,7 +146,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let photo = viewModel?.album.photos[indexPath.row] {
-            let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
+            let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo, title:photo.title)
             let navController = UINavigationController(rootViewController: photoDetailVC)
             present(navController, animated: true, completion: nil)
         }
@@ -226,7 +226,7 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension PXLAlbumViewController: PXLImageCellDelegate {
     func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel)
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, title:viewModel.title)
         let navController = UINavigationController(rootViewController: photoDetailVC)
         present(navController, animated: true, completion: nil)
     }
