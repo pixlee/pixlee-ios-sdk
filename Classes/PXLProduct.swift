@@ -18,4 +18,18 @@ public struct PXLProduct {
     public let title: String?
     public let sku: String?
     public let productDescription: String?
+    public let price: Double?
+    public let currency: String?
+
+    static var currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+
+    var formattedPrice: String? {
+        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
+        return "\(currency) \(formattedPrice)"
+    }
 }

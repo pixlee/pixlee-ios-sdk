@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 
 public class PXLClient {
-    public init (){}
+    public init() {}
     public static var sharedClient = PXLClient()
 
     private let apiRequests = PXLApiRequests()
@@ -138,6 +138,12 @@ public class PXLClient {
             let handledError = getErrorFromResponse(responseData: response.data, error: error)
             print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
             return (nil, handledError)
+        }
+    }
+
+    private func debugResponse(_ response: DataResponse<Data, AFError>) {
+        if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
+            print("respon dseJson: \(responseJSONString)")
         }
     }
 
