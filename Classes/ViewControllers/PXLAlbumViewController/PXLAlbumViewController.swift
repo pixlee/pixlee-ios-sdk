@@ -228,6 +228,11 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension PXLAlbumViewController: PXLImageCellDelegate {
     func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
+        let photoView = PXLPhotoView(frame: CGRect(x: 0, y: 0, width: 200, height: 100), photo: viewModel, title: "Product name", subtitle: "Subtitle", buttonTitle: "Action", buttonImage: UIImage(named: "bookmarkOff", in: Bundle(for: PXLAlbumViewController.self), compatibleWith: nil))
+        photoView.contentMode = .scaleAspectFill
+        photoView.delegate = self
+        view.addSubview(photoView)
+
 //        let photoWidget = PXLPhotoProductView.phtotoProductWidget(for: viewModel, title: viewModel.title)
 //        photoWidget.show(on: self.view)
 //        self.view.addSubview(photoWidget)
@@ -236,6 +241,11 @@ extension PXLAlbumViewController: PXLImageCellDelegate {
 //        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, title:viewModel.title)
 //        let navController = UINavigationController(rootViewController: photoDetailVC)
 //        present(navController, animated: true, completion: nil)
+    }
+}
+extension PXLAlbumViewController:PXLPhotoViewDelegate{
+    public func onPhotoActionClicked(photo: PXLPhoto) {
+        print("Action tapped")
     }
 }
 
