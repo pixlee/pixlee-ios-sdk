@@ -189,6 +189,7 @@ public class PXLPhotoProductView: UIViewController {
             queuePlayer.play()
 
             view.bringSubviewToFront(durationView)
+            view.bringSubviewToFront(productCollectionView)
 
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                 let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
