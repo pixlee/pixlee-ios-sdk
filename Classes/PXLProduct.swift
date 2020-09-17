@@ -32,4 +32,16 @@ public struct PXLProduct {
         guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
         return "\(currency) \(formattedPrice)"
     }
+ 
+    var attributedPrice: NSAttributedString? {
+        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
+
+        let priceString = "\(formattedPrice) "
+        let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        
+        let currencyString = NSAttributedString(string: "\(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+        mutableAttributedString.append(currencyString)
+
+        return mutableAttributedString
+    }
 }
