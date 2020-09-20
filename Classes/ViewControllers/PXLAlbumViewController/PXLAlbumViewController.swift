@@ -228,10 +228,17 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension PXLAlbumViewController: PXLImageCellDelegate {
     func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-        let photoView = PXLPhotoView(frame: CGRect(x: 0, y: 0, width: 200, height: 100), photo: viewModel, title: "Product name", subtitle: "Subtitle", buttonTitle: "Action", buttonImage: UIImage(named: "bookmarkOff", in: Bundle(for: PXLAlbumViewController.self), compatibleWith: nil))
-        photoView.contentMode = .scaleAspectFill
-        photoView.delegate = self
-        view.addSubview(photoView)
+//        let photoView = PXLPhotoView(frame: CGRect(x: 0, y: 0, width: 200, height: 100), photo: viewModel, title: "Product name", subtitle: "Subtitle", buttonTitle: "Action", buttonImage: UIImage(named: "bookmarkOff", in: Bundle(for: PXLAlbumViewController.self), compatibleWith: nil))
+//        photoView.contentMode = .scaleAspectFill
+//        photoView.delegate = self
+//        view.addSubview(photoView)
+
+        let photoListView = PXLPhotoListView()
+        if let photos = self.viewModel?.photos {
+            photoListView.items = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5]]
+        }
+        photoListView.frame = view.frame
+        view.addSubview(photoListView)
 
 //        let photoWidget = PXLPhotoProductView.phtotoProductWidget(for: viewModel, title: viewModel.title)
 //        photoWidget.show(on: self.view)
@@ -243,7 +250,8 @@ extension PXLAlbumViewController: PXLImageCellDelegate {
 //        present(navController, animated: true, completion: nil)
     }
 }
-extension PXLAlbumViewController:PXLPhotoViewDelegate{
+
+extension PXLAlbumViewController: PXLPhotoViewDelegate {
     public func onPhotoActionClicked(photo: PXLPhoto) {
         print("Action tapped")
     }

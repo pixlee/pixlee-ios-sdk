@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (5.2.2)
+  - Nuke (8.4.1)
+  - PixleeSDK (2.2.4):
+    - Alamofire (~> 5.0)
+    - Nuke (~> 8.4.0)
+
+DEPENDENCIES:
+  - PixleeSDK (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Nuke
+
+EXTERNAL SOURCES:
+  PixleeSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
+  PixleeSDK: 4692961c168bb2fba39294d0bcb0dea13be021c5
+
+PODFILE CHECKSUM: 9fcadd8d6a95fd37a19efc0937c316d7185eea5a
+
+COCOAPODS: 1.9.3
