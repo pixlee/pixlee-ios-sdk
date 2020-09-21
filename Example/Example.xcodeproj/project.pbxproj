@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		042EB2E76FAC9226D8B11A6E /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */; };
 		8226E89CFFCBBDFF753AEC6B /* Pods_Example_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7846117A9263BAE1A6F58A /* Pods_Example_ExampleUITests.framework */; };
+		F23BA1A725190368009FC402 /* PhotoListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1A525190368009FC402 /* PhotoListDemoViewController.swift */; };
+		F23BA1A825190368009FC402 /* PhotoListDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BA1A625190368009FC402 /* PhotoListDemoViewController.xib */; };
+		F23BA1AE25190384009FC402 /* PhotoProductListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */; };
+		F23BA1AF25190384009FC402 /* PhotoProductListDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */; };
 		F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F423C65BBE0091E324 /* AppDelegate.swift */; };
 		F24D42F723C65BBE0091E324 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F623C65BBE0091E324 /* SceneDelegate.swift */; };
 		F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F823C65BBE0091E324 /* ViewController.swift */; };
@@ -53,6 +57,10 @@
 		8B7846117A9263BAE1A6F58A /* Pods_Example_ExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014A7C4C477C418F331B7C8 /* Pods-Example-ExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DCAC9142E4ADF433F94D5960 /* Pods-Example-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F23BA1A525190368009FC402 /* PhotoListDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListDemoViewController.swift; sourceTree = "<group>"; };
+		F23BA1A625190368009FC402 /* PhotoListDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoListDemoViewController.xib; sourceTree = "<group>"; };
+		F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProductListDemoViewController.swift; sourceTree = "<group>"; };
+		F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoProductListDemoViewController.xib; sourceTree = "<group>"; };
 		F24D42F123C65BBE0091E324 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24D42F423C65BBE0091E324 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F24D42F623C65BBE0091E324 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +196,10 @@
 				F296942624224213003EB9DD /* AnalyticsViewController.xib */,
 				F2969429242243BB003EB9DD /* WidgetsExampleViewController.swift */,
 				F296942A242243BB003EB9DD /* WidgetsExampleViewController.xib */,
+				F23BA1A525190368009FC402 /* PhotoListDemoViewController.swift */,
+				F23BA1A625190368009FC402 /* PhotoListDemoViewController.xib */,
+				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
+				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 				F296942D24224A86003EB9DD /* Cells */,
 			);
 			path = ViewControllers;
@@ -311,7 +323,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23BA1A825190368009FC402 /* PhotoListDemoViewController.xib in Resources */,
 				F24D430123C65BBF0091E324 /* LaunchScreen.storyboard in Resources */,
+				F23BA1AF25190384009FC402 /* PhotoProductListDemoViewController.xib in Resources */,
 				F296943324224BFB003EB9DD /* WidgetTableViewCell.xib in Resources */,
 				F296942C242243BB003EB9DD /* WidgetsExampleViewController.xib in Resources */,
 				F24D42FE23C65BBF0091E324 /* Assets.xcassets in Resources */,
@@ -448,7 +462,9 @@
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
 				F296942B242243BB003EB9DD /* WidgetsExampleViewController.swift in Sources */,
 				F296943224224BFB003EB9DD /* WidgetTableViewCell.swift in Sources */,
+				F23BA1A725190368009FC402 /* PhotoListDemoViewController.swift in Sources */,
 				F24D42F723C65BBE0091E324 /* SceneDelegate.swift in Sources */,
+				F23BA1AE25190384009FC402 /* PhotoProductListDemoViewController.swift in Sources */,
 				F296942724224213003EB9DD /* AnalyticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

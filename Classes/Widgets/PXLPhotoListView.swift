@@ -8,14 +8,16 @@
 import UIKit
 
 public protocol PXLPhotoListViewDelegate {
-//    func setupPhotoCell(photo: PXLPhoto, title: String, subtitle: String, buttonTitle: String, delegate: PXLPhotoViewDelegate)
+    func setupPhotoCell(cell: PXLPhotoListViewCell, photo: PXLPhoto)
+    func onPhotoClicked(photo: PXLPhoto)
+    func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
 }
 
-class PXLPhotoListView: UIView {
+public class PXLPhotoListView: UIView {
     let tableView = UITableView()
 
-    var items: [PXLPhoto] = [] {
+    public var items: [PXLPhoto] = [] {
         didSet {
             infiniteItems = items
         }
@@ -27,7 +29,7 @@ class PXLPhotoListView: UIView {
         }
     }
 
-    var delegate: PXLPhotoListViewDelegate? {
+    public var delegate: PXLPhotoListViewDelegate? {
         didSet {
             guard let delegate = delegate else { return }
             let height = delegate.cellHeight()
@@ -36,12 +38,16 @@ class PXLPhotoListView: UIView {
         }
     }
 
-    init() {
+    private var cellHeight: CGFloat {
+        return delegate?.cellHeight() ?? 200
+    }
+
+    public init() {
         super.init(frame: .zero)
         tableView.dataSource = self
         tableView.register(UINib(nibName: PXLPhotoListViewCell.identifier, bundle: Bundle(for: PXLPhotoListViewCell.self)), forCellReuseIdentifier: PXLPhotoListViewCell.identifier)
-        tableView.rowHeight = 200
-        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = cellHeight
+        tableView.estimatedRowHeight = cellHeight
         tableView.prefetchDataSource = self
 
         addSubview(tableView)
@@ -62,25 +68,25 @@ class PXLPhotoListView: UIView {
 }
 
 extension PXLPhotoListView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PXLPhotoListViewCell.identifier) as? PXLPhotoListViewCell {
-            cell.setupCell(photo: items[indexPath.row % items.count], title: "title", subtitle: "subtitle", buttonTitle: "open")
+            delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
             return cell
         }
         fatalError()
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return infiniteItems.count
     }
 }
 
 extension PXLPhotoListView: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
 
         var items = infiniteItems

@@ -16,6 +16,7 @@ public struct PXLProductCellConfiguration {
     public let shopImage: UIImage?
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
+//    public let imageContentMode: 
 
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
@@ -89,7 +90,15 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
-    public func dismissModal() {
+    public func dismiss() {
+        if isModal {
+            dismissModal()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+
+    private func dismissModal() {
         let duration = needsAnim ? 0.3 : 0
         UIView.animate(withDuration: duration, animations: {
             self.view.transform = CGAffineTransform(translationX: 0, y: self.view.frame.size.height)

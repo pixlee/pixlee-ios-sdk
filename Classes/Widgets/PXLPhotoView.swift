@@ -8,8 +8,38 @@
 import Nuke
 import UIKit
 
+public struct PXLPhotoViewConfiguration {
+    public init(textColor: UIColor? = UIColor.white,
+                titleFont: UIFont? = UIFont.systemFont(ofSize: 16, weight: .bold),
+                subtitleFont: UIFont? = UIFont.systemFont(ofSize: 14, weight: .bold),
+                buttonFont: UIFont? = UIFont.systemFont(ofSize: 24, weight: .bold),
+                buttonImage: UIImage? = nil,
+                buttonBorderWidth: CGFloat = 1.0,
+                delegate: PXLPhotoViewDelegate? = nil,
+                cropMode: PXLPhotoCropMode? = .centerFill) {
+        self.textColor = textColor
+        self.titleFont = titleFont
+        self.subtitleFont = subtitleFont
+        self.buttonFont = buttonFont
+        self.buttonImage = buttonImage
+        self.buttonBorderWidth = buttonBorderWidth
+        self.delegate = delegate
+        self.cropMode = cropMode
+    }
+
+    public let textColor: UIColor?
+    public let titleFont: UIFont?
+    public let subtitleFont: UIFont?
+    public let buttonFont: UIFont?
+    public let buttonImage: UIImage?
+    public let buttonBorderWidth: CGFloat
+    public let delegate: PXLPhotoViewDelegate?
+    public let cropMode: PXLPhotoCropMode?
+}
+
 public protocol PXLPhotoViewDelegate {
-    func onPhotoActionClicked(photo: PXLPhoto)
+    func onPhotoButtonClicked(photo: PXLPhoto)
+    func onPhotoClicked(photo: PXLPhoto)
 }
 
 public class PXLPhotoView: UIView {
@@ -17,6 +47,35 @@ public class PXLPhotoView: UIView {
     var titleLabel: UILabel?
     var subtitleLabel: UILabel?
     var actionButton: UIButton?
+
+    public var configuration: PXLPhotoViewConfiguration? = PXLPhotoViewConfiguration() {
+        didSet {
+            if let textColor = configuration?.textColor {
+                self.textColor = textColor
+            }
+            if let titleFont = configuration?.titleFont {
+                self.titleFont = titleFont
+            }
+            if let subtitleFont = configuration?.subtitleFont {
+                self.subtitleFont = subtitleFont
+            }
+            if let buttonFont = configuration?.buttonFont {
+                actionButton?.titleLabel?.font = buttonFont
+            }
+            if let buttonImage = configuration?.buttonImage {
+                actionButton?.setImage(buttonImage, for: .normal)
+            }
+            if let borderWidth = configuration?.buttonBorderWidth {
+                actionButton?.layer.borderWidth = borderWidth
+            }
+
+            delegate = configuration?.delegate
+
+            if let cropMode = configuration?.cropMode {
+                self.cropMode = cropMode
+            }
+        }
+    }
 
     public var photo: PXLPhoto? {
         didSet {
@@ -38,7 +97,19 @@ public class PXLPhotoView: UIView {
         }
     }
 
-    public var textColor: UIColor = UIColor.white {
+    public var buttonTitle: String? {
+        didSet {
+            actionButton?.setTitle(buttonTitle, for: .normal)
+        }
+    }
+
+    var cropMode: PXLPhotoCropMode {
+        didSet {
+            imageView?.contentMode = cropMode.asImageContentMode
+        }
+    }
+
+    var textColor: UIColor = UIColor.white {
         didSet {
             titleLabel?.textColor = textColor
             subtitleLabel?.textColor = textColor
@@ -47,37 +118,25 @@ public class PXLPhotoView: UIView {
         }
     }
 
-    public var titleFont: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold) {
+    var titleFont: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold) {
         didSet {
             titleLabel?.font = titleFont
         }
     }
 
-    public var subtitleFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular) {
+    var subtitleFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular) {
         didSet {
             subtitleLabel?.font = subtitleFont
         }
     }
 
-    override public var contentMode: UIView.ContentMode {
-        didSet {
-            imageView?.contentMode = contentMode
-        }
-    }
-
-    public var buttonBorderWidth: CGFloat = 1 {
+    var buttonBorderWidth: CGFloat = 1 {
         didSet {
             actionButton?.layer.borderWidth = buttonBorderWidth
         }
     }
 
-    public var buttonTitle: String? {
-        didSet {
-            actionButton?.setTitle(buttonTitle, for: .normal)
-        }
-    }
-
-    public var buttonImage: UIImage? {
+    var buttonImage: UIImage? {
         didSet {
             actionButton?.setImage(buttonImage, for: .normal)
         }
@@ -109,6 +168,12 @@ public class PXLPhotoView: UIView {
         actionButton?.layer.borderWidth = buttonBorderWidth
 
         translatesAutoresizingMaskIntoConstraints = false
+
+        gestureRecognizers?.forEach({ gestureRec in
+            self.removeGestureRecognizer(gestureRec)
+        })
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        addGestureRecognizer(tapRecognizer)
 
         if let imageView = imageView {
             imageView.contentMode = contentMode
@@ -152,17 +217,24 @@ public class PXLPhotoView: UIView {
         self.buttonTitle = buttonTitle
         self.buttonImage = buttonImage
         self.photo = photo
+        cropMode = .centerFill
         super.init(frame: frame)
 
         prepareViews()
     }
 
+    @objc func imageTapped() {
+        guard let photo = photo else { return }
+        delegate?.onPhotoClicked(photo: photo)
+    }
+
     @objc func actionTapped() {
         guard let photo = photo else { return }
-        delegate?.onPhotoActionClicked(photo: photo)
+        delegate?.onPhotoButtonClicked(photo: photo)
     }
 
     required init?(coder: NSCoder) {
+        cropMode = .centerFill
         super.init(coder: coder)
         prepareViews()
     }

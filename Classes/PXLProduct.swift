@@ -28,12 +28,12 @@ public struct PXLProduct {
         return formatter
     }()
 
-    var formattedPrice: String? {
+    public var formattedPrice: String? {
         guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
         return "\(currency) \(formattedPrice)"
     }
  
-    var attributedPrice: NSAttributedString? {
+    public var attributedPrice: NSAttributedString? {
         guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
 
         let priceString = "\(formattedPrice) "

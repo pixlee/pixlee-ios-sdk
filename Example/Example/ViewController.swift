@@ -30,10 +30,10 @@ class ViewController: UIViewController {
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "yyyyMMdd"
 //        let date = dateFormatter.date(from: dateString)
-        
+
 //        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
 //        album.filterOptions = filterOptions
-        
+
         album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
@@ -73,9 +73,40 @@ class ViewController: UIViewController {
         present(albumVC, animated: true, completion: nil)
     }
 
+    @IBAction func loadPhotoList(_ sender: Any) {
+        let listVC = PhotoListDemoViewController(nibName: "PhotoListDemoViewController", bundle: Bundle.main)
+        if album.photos.count < 4 {
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+
+                if let photos = photos {
+                    listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+                }
+            }
+        } else {
+            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
+        }
+
+        present(listVC, animated: true, completion: nil)
+    }
+
+    @IBAction func loadPhotoProductsView(_ sender: Any) {
+        let listVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
+        if album.photos.count < 4 {
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+
+                if let photos = photos {
+                    listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+                }
+            }
+        } else {
+            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
+        }
+
+        present(listVC, animated: true, completion: nil)
+    }
+
     @IBAction func showAnalytics(_ sender: Any) {
         let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
         present(analyticsVC, animated: true, completion: nil)
     }
-
 }
