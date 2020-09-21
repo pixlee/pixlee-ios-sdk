@@ -15,19 +15,35 @@ class PhotoProductListDemoViewController: UIViewController {
 
     var photos = [PXLPhoto]() {
         didSet {
-            self.stackView.arrangedSubviews.forEach { view in
-                self.stackView.removeArrangedSubview(view)
-            }
-            photos.forEach { photo in
-                let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-                widget.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-                self.stackView.addArrangedSubview(widget.view)
-            }
+            guard let stackView = stackView else { return }
+            setupStackView()
+        }
+    }
+
+    func setupStackView() {
+        stackView.arrangedSubviews.forEach { view in
+            self.stackView.removeArrangedSubview(view)
+        }
+        photos.forEach { photo in
+            let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+//            widget.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: UIScreen.main.bounds.height)
+
+            self.stackView.addArrangedSubview(widget.view)
+            
+            widget.view.translatesAutoresizingMaskIntoConstraints = false
+            let constraints = [
+                widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6),
+                widget.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
+            ]
+            NSLayoutConstraint.activate(constraints)
+
+            
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStackView()
     }
 
     /*

@@ -95,11 +95,11 @@ class ViewController: UIViewController {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
 
                 if let photos = photos {
-                    listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+                    listVC.photos = [photos[0], photos[16], photos[2], photos[3]]
                 }
             }
         } else {
-            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
+            listVC.photos = [album.photos[0], album.photos[16], album.photos[2], album.photos[3]]
         }
 
         present(listVC, animated: true, completion: nil)
