@@ -21,6 +21,9 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
 - [UI components](#UI-components)
     - [Image & Video Viewer with PXLPhoto](#Image-and-Video-Viewer-with-PXLPhoto)
+    - [PXLPhotoProductView](#PXLPhotoProductView)
+    - [PXLPhotoView](#PXLPhotoView)
+    - [PXLPhotoListView](#PXLPhotoListView)
 - [Troubleshooting](#Troubleshooting)
 - [License](#License)
 
@@ -414,6 +417,43 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     present(navController, animated: true, completion: nil)
 }
 ```
+
+#### PXLPhotoProductView
+- You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
+```
+//Basic Example
+...
+    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+    widget.frame = self.view.frame
+    self.view.addSubview(widget.view)
+}
+//Show modally with animation example 
+...
+    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+    widget.showModally(hostView: self.view, animated:true)
+}
+```
+#### PXLPhotoView
+- Showing a photo with a title, subtitle, and an action button. You can customize the look of the photo view, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the photo clicked and the action button click events. 
+```
+//Basic Example
+...
+    let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
+    self.view.addSubview(photoView)
+}
+
+#### PXLPhotoListView
+- Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
+```
+//Basic Example
+...
+    var photoView = PXLPhotoListView()
+    photoView.delegate = self
+    photoView.frame = view.frame
+    view.addSubview(photoView)
+    photoView.items = [Array Of Photos]
+}
+
 #### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.

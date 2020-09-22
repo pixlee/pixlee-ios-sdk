@@ -16,7 +16,6 @@ public struct PXLProductCellConfiguration {
     public let shopImage: UIImage?
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
-//    public let imageContentMode: 
 
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
@@ -47,6 +46,13 @@ public class PXLPhotoProductView: UIViewController {
         widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
 
         return widget
+    }
+
+    public var cropMode: PXLPhotoCropMode = .centerFill {
+        didSet {
+            imageView.contentMode = cropMode.asImageContentMode
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
+        }
     }
 
     public var cellConfiguration = PXLProductCellConfiguration()
@@ -194,7 +200,8 @@ public class PXLPhotoProductView: UIViewController {
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
             playerLayer?.frame = imageView.frame
-            playerLayer?.videoGravity = .resizeAspectFill
+
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
             queuePlayer.play()
 
             view.bringSubviewToFront(durationView)

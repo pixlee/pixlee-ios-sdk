@@ -28,6 +28,7 @@ class PhotoProductListDemoViewController: UIViewController {
             let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
 //            widget.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: UIScreen.main.bounds.height)
 
+            
             self.stackView.addArrangedSubview(widget.view)
             
             widget.view.translatesAutoresizingMaskIntoConstraints = false
