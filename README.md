@@ -102,7 +102,7 @@ Information on the filters and sorts available are here: https://developers.pixl
 
 As of now, the following filters are supported by SDK:
 
-```
+```swift
 min_instagram_followers
 min_twitter_followers
 denied_photos
@@ -126,7 +126,7 @@ filter_by_radius
 
 The following sorts are supported by SDK:
 
-```
+```swift
 recency - The date the content was collected.
 random - Randomized.
 pixlee_shares - Number of times the content was shared from a Pixlee widget.
@@ -137,7 +137,7 @@ dynamic - Our "secret sauce" -- a special sort that highlights high performance 
 
 #### Example
 
-```
+```swift
 
 //=========================================================
 //These parameters are examples. Please adjust, add or remove them during implementation.
@@ -177,7 +177,7 @@ If you are retriving the content for a sku you'll want to use the `PXLAlbum` cla
 You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
 
 #### Example
-```
+```swift
 
 //=========================================================
 //These parameters are examples. Please adjust, add or remove them during implementation.
@@ -219,7 +219,7 @@ Once an album has loaded photos from the server, it will instantiate `PXLPhoto` 
 
 To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
 Example of showing the ViewController
-```
+```swift
 let albumVC = PXLAlbumViewController.viewControllerForAlbum(album:album)
 showViewController(VC: albumVC)
 ```
@@ -233,7 +233,7 @@ If a user taps on a photo in the `PXLAlbumViewController`, we present a detail v
 * the photo's caption (if one is available)
 * any products associated with that photo (displayed as a horizontal list of products)
 Example of loading the detailViewController
-```
+```swift
     let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
     let navController = UINavigationController(rootViewController: photoDetailVC)
     present(navController, animated: true, completion: nil)
@@ -243,7 +243,7 @@ Example of loading the detailViewController
 If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
 To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analytics service's `logEvent` method. 
 The following events are supported by the sdk:
-```
+```swift
 Add to Cart (PXLAnalyticsEventActionClicked): Call this whenever and wherever an add to cart event happens
 User Completes Checkout (PXLAnalyticsEventConvertedPhoto): Call this whenever a user completes a checkout and makes a purchase
 User Visits a Page with a Pixlee Widget (PXLAnalyticsEventOpenedLightBox): Call this whenever a user visits a page which as a Pixlee Widget on it
@@ -254,7 +254,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 
 ```
 #### Add to Cart
-```
+```swift
     let currency = "USD"
     let productSKU = "SL-BENJ"
     let quantity = 2
@@ -274,7 +274,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     }
 ```
 #### Conversion
-```
+```swift
     // Setup some constants
     let currency = "USD"
     // Product 1 example
@@ -307,7 +307,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 ```
 #### Opended Widget
 It's important to trigger this event after the LoadNextPage event
-```
+```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
     // If you are using api/v2/album/sku_from
@@ -322,7 +322,7 @@ It's important to trigger this event after the LoadNextPage event
     }
 ```
 #### Opened Lightbox
-```
+```swift
     // photo being the PXLPhoto that been clicked
     let photo:PXLPhoto = photoFromSomewhere
 
@@ -334,7 +334,7 @@ It's important to trigger this event after the LoadNextPage event
 ```
 
 #### Action Click 
-```
+```swift
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
@@ -354,7 +354,7 @@ It's important to trigger this event after the LoadNextPage event
 ```
 
 #### Load More
-```
+```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
     // If you are using api/v2/album/sku_from
@@ -368,7 +368,7 @@ It's important to trigger this event after the LoadNextPage event
 
 ```
 ## Uploading an Image to an album
-```
+```swift
 // Example
 public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
     guard let image = info[.editedImage] as? UIImage else {
@@ -409,7 +409,7 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
 ## UI components
 #### Image and Video Viewer with PXLPhoto
 - after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
-```
+```swift
 //Example
 func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
@@ -420,7 +420,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 
 #### PXLPhotoProductView
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
-```
+```swift
 //Basic Example
 ...
     let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
@@ -435,16 +435,16 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 ```
 #### PXLPhotoView
 - Showing a photo with a title, subtitle, and an action button. You can customize the look of the photo view, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the photo clicked and the action button click events. 
-```
+```swift
 //Basic Example
 ...
     let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
     self.view.addSubview(photoView)
 }
-
+```
 #### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
-```
+```swift
 //Basic Example
 ...
     var photoView = PXLPhotoListView()
@@ -453,7 +453,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     view.addSubview(photoView)
     photoView.items = [Array Of Photos]
 }
-
+```
 #### Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
