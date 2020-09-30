@@ -68,6 +68,8 @@ public class PXLClient {
                     print("Loading page \(nextPage)")
                     let request = AF.request(apiRequests.loadNextAlbumPage(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
 
+                        requestsForAlbum[nextPage] = nil
+                        self.loadingOperations[identifier] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
 
                         if let photos = photos, let completionHandler = completionHandler {
@@ -93,7 +95,8 @@ public class PXLClient {
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
                     let request = AF.request(apiRequests.loadNextAlbumPageWithSKU(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
-
+                        requestsForAlbum[nextPage] = nil
+                        self.loadingOperations[sku] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
 
                         if let photos = photos, let completionHandler = completionHandler {
