@@ -11,6 +11,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
         - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
 - [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
+- [Getting a PXLPhoto](#getting-a-pxlphoto-a-photo-or-a-video)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
     - [Conversion](#Conversion)
