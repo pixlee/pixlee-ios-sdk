@@ -239,6 +239,26 @@ Example of loading the detailViewController
     present(navController, animated: true, completion: nil)
 ```
 
+## Getting a PXLPhoto (a photo or a video)
+If you want to make a PXLPhoto using an album photo id, you can get it using our API in the SDK like below.
+```swift
+var photoAlbumId = <one of you photo album ids>
+if let photoAlbumId = photoAlbumId {
+    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
+        guard error == nil else {
+            print("Error during load of image with Id \(String(describing: error))")
+            return
+        }
+        guard let photo = newPhoto else {
+            print("cannot find photo")
+            return
+        }
+        print("New Photo: \(photo.albumPhotoId)")
+    }
+}
+
+```
+
 ## Analytics
 If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
 To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analytics service's `logEvent` method. 
