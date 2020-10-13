@@ -2,6 +2,10 @@
 
 This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
 
+### Notice: please be aware of these terms in the document. 
+- the word 'content' is used in the documentation. this means a photo or video.
+- PXLPhoto contains a content, which can be a photo or video.
+
 # Table of Content
 - [About the SDK](#About-the-SDK)
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
@@ -11,6 +15,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
         - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
 - [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
+- [Getting a PXLPhoto](#getting-a-content)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
     - [Conversion](#Conversion)
@@ -30,10 +35,10 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 # About the SDK
 Before accessing the Pixlee API, you must initialize the `PXLClient`. To set the API key, what can be set with the  `apiKey` property on `PXLClient.sharedClient`. You can then use that singleton instance to make calls against the Pixlee API.
 
-To load the photos in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
+To load PXLPhotos(contents) in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
 
 If you are retriving the content for one album you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(identifier: <ALBUM ID HERE>)`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
-You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
+You can load the PXLPhotos(contents) via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's contents as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded contents in the completion block, and updating the album's contents array to get all of the contents.
 
 # Get Started with Demo App
 1. open **Example** folder in terminal.
@@ -59,7 +64,7 @@ You can choose one of these two options to add the SDK to your app.
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
     target 'MyApp' do
-      pod 'PixleeSDK', '~> 2.2.4' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+      pod 'PixleeSDK', '~> 2.3.0-rc.1' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
     end
     ```
 3. Run Pod install
@@ -70,7 +75,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
     ```
-    github "pixlee/pixlee-ios-sdk" "2.2.4"
+    github "pixlee/pixlee-ios-sdk" "2.3.0-rc.1"
     ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
@@ -167,14 +172,14 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
         print("There was an error during the loading \(String(describing: error))")
         return
     }
-    //Use your photos array here
-    print("New photos loaded: \(photos)")
+    //Use your contents array here
+    print("New contents loaded: \(photos)")
 }
 
 ```
 
 If you are retriving the content for a sku you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(sku:<SKU ID HERE>)`.  As the same as with identifier, you can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
-You can load the photos via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's photos as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded photos in the completion block, and updating the album's photos array to get all of the photos.
+You can load the contents via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's contents as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded contents in the completion block, and updating the album's contents array to get all of the photos.
 
 #### Example
 ```swift
@@ -206,8 +211,8 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
         print("There was an error during the loading \(String(describing: error))")
         return
     }
-    //Use your photos array here
-    print("New photos loaded: \(photos)")
+    //Use your contents array here
+    print("New contents loaded: \(photos)")
 }
 
 ```
@@ -215,28 +220,48 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
 
 Additionally, you can control how an album loads its data using `PXLAlbumFilterOptions` and `PXLAlbumSortOptions`. To use these, create a new instance with `PXLAlbumFilterOptions()` or `PXLAlbumSortOptions(sortType:SortType, ascending:Boolean)`, set the necessary properties, and then set those objects to the `filterOptions` and `sortOptions` properties on your album. Make sure to set these before calling `loadNextPageOfPhotosForAlbum:`.
 
-Once an album has loaded photos from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a photo available through the Pixlee API and offers several image url sizes depending on your needs.
+Once an album has loaded contents from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a content available through the Pixlee API and offers several image url sizes depending on your needs.
 
-To help you quickly get started, we've also built an album view controller and photo detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the photos in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
+To help you quickly get started, we've also built an album view controller and content detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the contents in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
 Example of showing the ViewController
 ```swift
 let albumVC = PXLAlbumViewController.viewControllerForAlbum(album:album)
 showViewController(VC: albumVC)
 ```
-The album view controller is set up to automatically load more pages of photos as the user scrolls, giving it an infinite scroll effect.
+The album view controller is set up to automatically load more pages of contents as the user scrolls, giving it an infinite scroll effect.
 
-If a user taps on a photo in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController.viewControllerForPhot` and providing  the `PXLPhoto` instance property. The photo detail view is configured to display:
-* the large photo
+If a user taps on a content in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController.viewControllerForPhot` and providing  the `PXLPhoto` instance property. The content detail view is configured to display:
+* the large content
 * the username of the poster
-* a timestamp showing when the photo was posted
-* the platform source of the photo (e.g. Instagram)
-* the photo's caption (if one is available)
-* any products associated with that photo (displayed as a horizontal list of products)
+* a timestamp showing when the content was posted
+* the platform source of the content (e.g. Instagram)
+* the content's caption (if one is available)
+* any products associated with that content (displayed as a horizontal list of products)
 Example of loading the detailViewController
 ```swift
     let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo)
     let navController = UINavigationController(rootViewController: photoDetailVC)
     present(navController, animated: true, completion: nil)
+```
+
+## Getting a PXLPhoto (a content)
+If you want to make a PXLPhoto using an album photo id, you can get it using our API in the SDK like below.
+```swift
+var photoAlbumId = <one of you photo album ids>
+if let photoAlbumId = photoAlbumId {
+    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
+        guard error == nil else {
+            print("Error during load of image with Id \(String(describing: error))")
+            return
+        }
+        guard let photo = newPhoto else {
+            print("cannot find photo")
+            return
+        }
+        print("New Photo: \(photo.albumPhotoId)")
+    }
+}
+
 ```
 
 ## Analytics
@@ -294,7 +319,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 
     let cartContents = [cart1, cart2]
 
-    //EVENT converted:photo refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
+    //EVENT converted: refers to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
     let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
 
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
@@ -323,11 +348,11 @@ It's important to trigger this event after the LoadNextPage event
 ```
 #### Opened Lightbox
 ```swift
-    // photo being the PXLPhoto that been clicked
-    let photo:PXLPhoto = photoFromSomewhere
+    // fire this when a PXLPhoto is displayed from your List View containing a list of PXLPhotos
+    let pxlPhoto:PXLPhoto = photoFromSomewhere
 
     //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    photo.triggerEventOpenedLightbox { (error) in
+    pxlPhoto.triggerEventOpenedLightbox { (error) in
         print("Logged") 
     }
 
@@ -335,18 +360,18 @@ It's important to trigger this event after the LoadNextPage event
 
 #### Action Click 
 ```swift
-    PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPhoto, error in
+    PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPxlPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
             return
         }
-        guard let photo = newPhoto else {
-            print("cannot find photo")
+        guard let pxlPhoto = newPxlPhoto else {
+            print("cannot find pxlPhoto")
             return
         }
-        print("New Photo: \(photo.albumPhotoId)")
-        if let product = photo.products?.first, let url = product.link?.absoluteString {
-            photo.triggerEventActionClicked(actionLink: url) { _ in
+        print("New Photo: \(pxlPhoto.albumPhotoId)")
+        if let product = pxlPhoto.products?.first, let url = product.link?.absoluteString {
+            pxlPhoto.triggerEventActionClicked(actionLink: url) { _ in
                 print("triggered")
             }
         }
@@ -434,7 +459,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 }
 ```
 #### PXLPhotoView
-- Showing a photo with a title, subtitle, and an action button. You can customize the look of the photo view, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the photo clicked and the action button click events. 
+- Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events. 
 ```swift
 //Basic Example
 ...
@@ -460,7 +485,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 To run the project, open `Example.xcworkspace` in Xcode.
 
-Run the project and you should see a grid of photos from that album.
+Run the project and you should see a grid of contents from that album.
 
 ## Troubleshooting
 
