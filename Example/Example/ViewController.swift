@@ -95,7 +95,7 @@ class ViewController: UIViewController {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
 
                 if let photos = photos {
-                    listVC.photos = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5], photos[6]]
+                    listVC.photos = Array(photos.prefix(7))
                 }
             }
         } else {

@@ -87,12 +87,17 @@ public class PXLVideoListView: UIView {
                 collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             ]
             NSLayoutConstraint.activate(constraints)
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+                self.adjustHighlight()
+            }
         }
     }
 
     override public func layoutSubviews() {
         super.layoutSubviews()
         setupCellSize()
+        self.adjustHighlight()
     }
 
     required init?(coder: NSCoder) {
