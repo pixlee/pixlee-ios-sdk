@@ -89,6 +89,22 @@ class ViewController: UIViewController {
         present(listVC, animated: true, completion: nil)
     }
 
+    @IBAction func loadVideoList(_ sender: Any) {
+        let listVC = VideoListDemoViewController(nibName: "VideoListDemoViewController", bundle: Bundle.main)
+        if album.photos.count < 4 {
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+
+                if let photos = photos {
+                    listVC.photos = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5], photos[6]]
+                }
+            }
+        } else {
+            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
+        }
+
+        present(listVC, animated: true, completion: nil)
+    }
+
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         let listVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
         if album.photos.count < 4 {

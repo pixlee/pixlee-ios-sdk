@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
-                                <rect key="frame" x="16" y="345" width="382" height="216"/>
+                                <rect key="frame" x="16" y="314" width="382" height="278"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
@@ -34,15 +34,22 @@
                                             <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n" userLabel="I">
                                         <rect key="frame" x="0.0" y="124" width="382" height="30"/>
+                                        <state key="normal" title="Show video list"/>
+                                        <connections>
+                                            <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
+                                        <rect key="frame" x="0.0" y="186" width="382" height="30"/>
                                         <state key="normal" title="Show PXLPhotoProductView"/>
                                         <connections>
                                             <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
-                                        <rect key="frame" x="0.0" y="186" width="382" height="30"/>
+                                        <rect key="frame" x="0.0" y="248" width="382" height="30"/>
                                         <state key="normal" title="Analytics calls"/>
                                         <connections>
                                             <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>

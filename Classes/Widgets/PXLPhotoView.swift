@@ -5,6 +5,7 @@
 //  Created by Csaba Toth on 2020. 09. 17..
 //
 
+import AVFoundation
 import Nuke
 import UIKit
 
@@ -48,6 +49,10 @@ public class PXLPhotoView: UIView {
     var subtitleLabel: UILabel?
     var actionButton: UIButton?
 
+    var playerLooper: NSObject?
+    var playerLayer: AVPlayerLayer?
+    var queuePlayer: AVQueuePlayer?
+
     public var configuration: PXLPhotoViewConfiguration? = PXLPhotoViewConfiguration() {
         didSet {
             if let textColor = configuration?.textColor {
@@ -79,9 +84,38 @@ public class PXLPhotoView: UIView {
 
     public var photo: PXLPhoto? {
         didSet {
-            if let imageUrl = photo?.photoUrl(for: .medium), let imageView = imageView {
+            guard let photo = photo else { return }
+            if let imageUrl = photo.photoUrl(for: .medium), let imageView = imageView {
                 Nuke.loadImage(with: imageUrl, into: imageView)
             }
+
+            if photo.isVideo, let videoURL = photo.videoUrl() {
+                imageView?.isHidden = true
+                playVideo(url: videoURL)
+            } else {
+                imageView?.isHidden = false
+                queuePlayer?.pause()
+                if let playerLayer = self.playerLayer {
+                    playerLayer.removeFromSuperlayer()
+                }
+            }
+        }
+    }
+
+    func playVideo(url: URL) {
+        let playerItem = AVPlayerItem(url: url as URL)
+        queuePlayer = AVQueuePlayer(items: [playerItem])
+
+        if let queuePlayer = self.queuePlayer {
+            playerLayer = AVPlayerLayer(player: queuePlayer)
+
+            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            layer.insertSublayer(playerLayer!, above: imageView?.layer)
+            if let imageFrame = imageView?.frame {
+                playerLayer?.frame = imageFrame
+            }
+            playerLayer?.videoGravity = .resizeAspectFill
+            queuePlayer.play()
         }
     }
 
@@ -139,6 +173,21 @@ public class PXLPhotoView: UIView {
     var buttonImage: UIImage? {
         didSet {
             actionButton?.setImage(buttonImage, for: .normal)
+        }
+    }
+
+    public func stopPlaying() {
+        queuePlayer?.pause()
+    }
+
+    public func continuePlaying() {
+        queuePlayer?.play()
+    }
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        if let imageFrame = imageView?.frame {
+            playerLayer?.frame = imageFrame
         }
     }
 

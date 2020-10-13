@@ -122,6 +122,9 @@
 		F09ACB2C5062701272570EBBE36BB7C7 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C4F36865059134DA7CAD1EE92BBDC7 /* DataCache.swift */; };
 		F0F3224FF592F9BA2A044A2FC2BD4CCD /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26366EF2B4730586E2FE5D2B5FC48550 /* Validation.swift */; };
 		F174E775042AB7E1B5582657A6F9F1C9 /* PXLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5BB094E1134C86F12BA5BC86D9F2AF /* PXLError.swift */; };
+		F2985AC325335CF000308398 /* PXLVideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2985AC225335CF000308398 /* PXLVideoListView.swift */; };
+		F2985ACC25335E0700308398 /* PXLVideoListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2985ACA25335E0700308398 /* PXLVideoListViewCell.swift */; };
+		F2985ACD25335E0700308398 /* PXLVideoListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2985ACB25335E0700308398 /* PXLVideoListViewCell.xib */; };
 		F2E54E402518906F00644B56 /* PXLPhotoCropMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E54E3F2518906F00644B56 /* PXLPhotoCropMode.swift */; };
 		F3696A147C1AF3AFE726108B19CCB5AC /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFF601FEA74741262EDD22BA039E542 /* PXLAnalyticsEventOpenedLightBox.swift */; };
 		F6B16DC8CADA07287C6A372AC8AD787C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C326684258EB18FE130B07AF61D73088 /* Foundation.framework */; };
@@ -345,6 +348,9 @@
 		F1B355A6F32D85C02C07E334CAA5968A /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Session.swift; sourceTree = "<group>"; };
 		F1DD16600E88A95F9AC40C046FC2BBED /* ImagePipeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePipeline.swift; path = Sources/ImagePipeline.swift; sourceTree = "<group>"; };
 		F2425A39F42F7368805B1A728349DE09 /* PXLPhotoProductView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoProductView.swift; sourceTree = "<group>"; };
+		F2985AC225335CF000308398 /* PXLVideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLVideoListView.swift; sourceTree = "<group>"; };
+		F2985ACA25335E0700308398 /* PXLVideoListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLVideoListViewCell.swift; sourceTree = "<group>"; };
+		F2985ACB25335E0700308398 /* PXLVideoListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PXLVideoListViewCell.xib; sourceTree = "<group>"; };
 		F2E54E3F2518906F00644B56 /* PXLPhotoCropMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PXLPhotoCropMode.swift; path = Classes/PXLPhotoCropMode.swift; sourceTree = "<group>"; };
 		F8A628C2568D66962EE730FBB936A737 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		F8FBC06CAAEF08C2C01DD809446573E3 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
@@ -614,6 +620,7 @@
 				CEB1BBEC757EC36778DD5B0522D4E2F5 /* PXLAdvancedProductCell.swift */,
 				5D7A680384149F9A0AC5381F63491EF9 /* PXLImageCell.swift */,
 				99F4E81C36084FA4948BF4FDADF7F4E4 /* PXLPhotoListViewCell.swift */,
+				F2985ACA25335E0700308398 /* PXLVideoListViewCell.swift */,
 				0DD35AA6DF8170396A277A4804458FB8 /* PXLProductCell.swift */,
 			);
 			path = Cells;
@@ -729,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				DA895680EF254E32B0C83CFA08388CD7 /* PXLPhotoListView.swift */,
+				F2985AC225335CF000308398 /* PXLVideoListView.swift */,
 				F2425A39F42F7368805B1A728349DE09 /* PXLPhotoProductView.swift */,
 				018DE65B814D81B6986EAA940949EE27 /* PXLPhotoView.swift */,
 			);
@@ -741,6 +749,7 @@
 			children = (
 				B6FC63BC5307BB9066F08CC0ED70645A /* PXLAdvancedProductCell.xib */,
 				1EAE82E7C0A87D47F9B62452A059D3BB /* PXLImageCell.xib */,
+				F2985ACB25335E0700308398 /* PXLVideoListViewCell.xib */,
 				DABE67889F5894A1378EDE22A8BCF8A7 /* PXLPhotoListViewCell.xib */,
 				E45BD7E002F8DE2DEF8D15E6E402B1EA /* PXLProductCell.xib */,
 			);
@@ -1063,6 +1072,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2985ACD25335E0700308398 /* PXLVideoListViewCell.xib in Resources */,
 				B920213E5E322E9A8D7866FBF33DBDCE /* ImageAssets.xcassets in Resources */,
 				69F0C63746A016AF8D604F1A86EAB69A /* PXLAdvancedProductCell.xib in Resources */,
 				DD97A7364DABC7E59B276935D8B950ED /* PXLAlbumViewController.xib in Resources */,
@@ -1233,6 +1243,7 @@
 				05A4A6793D93564C110BE7153BEA5643 /* PXLPhotoProductView.swift in Sources */,
 				02F81DCD096B0B938C33A572D89E8AD9 /* PXLPhotoResponseDTO.swift in Sources */,
 				5D5D01D0A866C30CC4DB1B5E146D4941 /* PXLPhotoView.swift in Sources */,
+				F2985ACC25335E0700308398 /* PXLVideoListViewCell.swift in Sources */,
 				D1B27B45B410FE9A17E8561C59E75E26 /* PXLPlainErrorDTO.swift in Sources */,
 				226FF9B082B8DDB0A3FB274D6DCC5E27 /* PXLProduct.swift in Sources */,
 				546EA244E6E1B780A797B5A47D2154CD /* PXLProductCell.swift in Sources */,
@@ -1240,6 +1251,7 @@
 				3BFF03132ABB52DE965808824C82E0E3 /* PXLProductDTO.swift in Sources */,
 				0261C9C7C802C7596C727BBF70C9DE29 /* StringExtension.swift in Sources */,
 				E5DCA41CCA523AF9EAAEBAA25BDF1FE3 /* SwiftCrypto.swift in Sources */,
+				F2985AC325335CF000308398 /* PXLVideoListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
