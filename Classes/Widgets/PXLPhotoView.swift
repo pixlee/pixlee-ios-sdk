@@ -82,6 +82,7 @@ public class PXLPhotoView: UIView {
         }
     }
 
+    public var enableVideos: Bool = true
     public var photo: PXLPhoto? {
         didSet {
             guard let photo = photo else { return }
@@ -89,7 +90,7 @@ public class PXLPhotoView: UIView {
                 Nuke.loadImage(with: imageUrl, into: imageView)
             }
 
-            if photo.isVideo, let videoURL = photo.videoUrl() {
+            if enableVideos, photo.isVideo, let videoURL = photo.videoUrl() {
                 imageView?.isHidden = true
                 playVideo(url: videoURL)
             } else {
