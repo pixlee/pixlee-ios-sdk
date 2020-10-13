@@ -21,12 +21,20 @@ public class PXLVideoListViewCell: UICollectionViewCell {
         photoView.buttonTitle = buttonTitle
         photoView.configuration = configuration
         photoView.delegate = delegate
+        disableHighlightView()
+    }
+
+    func highlightView() {
+        photoView.continuePlaying()
+    }
+
+    func disableHighlightView() {
         photoView.stopPlaying()
     }
-    
-    public override func prepareForReuse() {
+
+    override public func prepareForReuse() {
         super.prepareForReuse()
-        photoView.stopPlaying()
+        disableHighlightView()
     }
 
     public static let identifier = "PXLVideoListViewCell"

@@ -49,6 +49,7 @@ public class PXLPhotoListView: UIView {
         tableView.rowHeight = cellHeight
         tableView.estimatedRowHeight = cellHeight
         tableView.prefetchDataSource = self
+        tableView.delegate = self
 
         addSubview(tableView)
 
@@ -65,12 +66,19 @@ public class PXLPhotoListView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    var topIndexPath: IndexPath = IndexPath(row: 0, section: 0)
 }
 
 extension PXLPhotoListView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PXLPhotoListViewCell.identifier) as? PXLPhotoListViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
+            if indexPath.row == topIndexPath.row {
+                cell.highlightView()
+            } else {
+                cell.disableHighlightView()
+            }
             return cell
         }
         fatalError()
@@ -92,5 +100,36 @@ extension PXLPhotoListView: UITableViewDataSourcePrefetching {
         var items = infiniteItems
         items.append(contentsOf: self.items)
         self.items = items
+    }
+}
+
+extension PXLPhotoListView: UITableViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        adjustHighlight()
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        adjustHighlight()
+    }
+
+    func adjustHighlight() {
+        // set hight light to a new center cell
+        let centerX = tableView.bounds.width / 2
+
+        let topItemCoords = convert(CGPoint(x: centerX, y: cellHeight / 2), to: tableView)
+
+        guard let currentIndex = tableView.indexPathForRow(at: topItemCoords) else { return }
+
+        guard currentIndex != topIndexPath else { return }
+
+        // reset the previous hight light cell
+        if let cell = tableView.cellForRow(at: topIndexPath) as? PXLPhotoListViewCell {
+            cell.disableHighlightView()
+        }
+
+        if let index = tableView.indexPathForRow(at: topItemCoords), let cell = tableView.cellForRow(at: index) as? PXLPhotoListViewCell {
+            cell.highlightView()
+            topIndexPath = index
+        }
     }
 }

@@ -19,6 +19,22 @@ public class PXLPhotoListViewCell: UITableViewCell {
         photoView.buttonTitle = buttonTitle
         photoView.configuration = configuration
         photoView.delegate = delegate
+        disableHighlightView()
+    }
+
+    func highlightView() {
+        photoView.alpha = 1
+        photoView.continuePlaying()
+    }
+
+    func disableHighlightView() {
+        photoView.alpha = 0.5
+        photoView.stopPlaying()
+    }
+
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        disableHighlightView()
     }
 
     public static let identifier = "PXLPhotoListViewCell"

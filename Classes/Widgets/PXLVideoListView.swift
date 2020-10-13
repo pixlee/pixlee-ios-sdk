@@ -87,8 +87,8 @@ public class PXLVideoListView: UIView {
                 collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             ]
             NSLayoutConstraint.activate(constraints)
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.adjustHighlight()
             }
         }
@@ -97,7 +97,7 @@ public class PXLVideoListView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         setupCellSize()
-        self.adjustHighlight()
+        adjustHighlight()
     }
 
     required init?(coder: NSCoder) {
@@ -150,28 +150,31 @@ extension PXLVideoListView: UICollectionViewDelegate {
     func adjustHighlight() {
         guard let collectionView = collectionView else { return }
 
-        // reset the previous hight light cell
-        if let cellIndex = topLeftCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
-            cell.photoView.stopPlaying()
-        }
-        if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
-            cell.photoView.stopPlaying()
-        }
-
-        // set hight light to a new center cell
         let rightX = collectionView.bounds.width - flowLayout.itemSize.width / 2
         let leftX = flowLayout.itemSize.width / 2
         let topLeft = convert(CGPoint(x: leftX, y: flowLayout.itemSize.height / 2), to: collectionView)
         let topRight = convert(CGPoint(x: rightX, y: flowLayout.itemSize.height / 2), to: collectionView)
+        guard let topLeftIndex = collectionView.indexPathForItem(at: topLeft), let topRightIndex = collectionView.indexPathForItem(at: topRight) else { return }
+        guard topLeftIndex != topLeftCellIndex, topRightIndex != topRightCellIndex else { return }
 
-        if let index = collectionView.indexPathForItem(at: topLeft), let cell = collectionView.cellForItem(at: index) as? PXLVideoListViewCell {
-            cell.photoView.continuePlaying()
-            topLeftCellIndex = index
+        // reset the previous hight light cell
+        if let cellIndex = topLeftCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+            cell.disableHighlightView()
+        }
+        if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+            cell.disableHighlightView()
         }
 
-        if let index = collectionView.indexPathForItem(at: topRight), let cell = collectionView.cellForItem(at: index) as? PXLVideoListViewCell {
-            cell.photoView.continuePlaying()
-            topRightCellIndex = index
+        // set hight light to a new center cell
+
+        if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLVideoListViewCell {
+            cell.highlightView()
+            topLeftCellIndex = topLeftIndex
+        }
+
+        if let cell = collectionView.cellForItem(at: topRightIndex) as? PXLVideoListViewCell {
+            cell.highlightView()
+            topRightCellIndex = topRightIndex
         }
     }
 }
