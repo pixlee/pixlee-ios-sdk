@@ -62,4 +62,8 @@ extension VideoListDemoViewController: PXLVideoListViewDelegate {
     func cellPadding() -> CGFloat {
         return 8
     }
+
+    func isMultipleColumnEnabled() -> Bool {
+        return false
+    }
 }

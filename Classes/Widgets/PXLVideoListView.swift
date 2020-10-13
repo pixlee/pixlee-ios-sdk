@@ -12,6 +12,7 @@ public protocol PXLVideoListViewDelegate {
     func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
+    func isMultipleColumnEnabled() -> Bool
 }
 
 public class PXLVideoListView: UIView {
@@ -43,10 +44,14 @@ public class PXLVideoListView: UIView {
         guard width > 0, height > 0 else {
             return
         }
-
-        flowLayout.itemSize = CGSize(width: width, height: height)
-        flowLayout.minimumInteritemSpacing = cellPadding
-        flowLayout.minimumLineSpacing = cellPadding
+        if let twoColumns = delegate?.isMultipleColumnEnabled(), twoColumns {
+            flowLayout.itemSize = CGSize(width: width, height: height)
+            flowLayout.minimumInteritemSpacing = cellPadding
+            flowLayout.minimumLineSpacing = cellPadding
+        } else {
+            flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
+            flowLayout.minimumLineSpacing = cellPadding
+        }
 
         print("Size: \(flowLayout.itemSize)")
         collectionView?.collectionViewLayout.invalidateLayout()
@@ -104,7 +109,7 @@ public class PXLVideoListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    var topLeftCellIndex: IndexPath?
+    var topLeftCellIndex: IndexPath = IndexPath(item: 0, section: 0)
     var topRightCellIndex: IndexPath?
 }
 
@@ -114,6 +119,12 @@ extension PXLVideoListView: UICollectionViewDataSource {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
             cell.cellWidth.constant = flowLayout.itemSize.width
             cell.cellHeight.constant = flowLayout.itemSize.height
+
+            if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
+                cell.highlightView()
+            } else {
+                cell.disableHighlightView()
+            }
             return cell
         }
         fatalError()
@@ -158,7 +169,7 @@ extension PXLVideoListView: UICollectionViewDelegate {
         guard topLeftIndex != topLeftCellIndex, topRightIndex != topRightCellIndex else { return }
 
         // reset the previous hight light cell
-        if let cellIndex = topLeftCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+        if let cell = collectionView.cellForItem(at: topLeftCellIndex) as? PXLVideoListViewCell {
             cell.disableHighlightView()
         }
         if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
