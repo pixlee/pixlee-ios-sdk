@@ -64,6 +64,6 @@ extension VideoListDemoViewController: PXLVideoListViewDelegate {
     }
 
     func isMultipleColumnEnabled() -> Bool {
-        return false
+        return true
     }
 }
