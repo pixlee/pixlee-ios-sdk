@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
     @IBOutlet var versionLabel: UILabel!
 
+    var photos: [PXLPhoto] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,9 +62,31 @@ class ViewController: UIViewController {
             }
         }
 
+        _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            if let photos = photos {
+                self.photos = photos
+            }
+        }
+
         _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { _ in
             print("Example opened analytics logged")
         }
+    }
+
+    func getSamplePhotos() -> [PXLPhoto] {
+        guard album.photos.count < 5 else {
+            return album.photos
+        }
+        guard photos.count < 5 else {
+            return photos
+        }
+
+        _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            if let photos = photos {
+                self.photos = photos
+            }
+        }
+        return [PXLPhoto]()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,50 +97,36 @@ class ViewController: UIViewController {
         present(albumVC, animated: true, completion: nil)
     }
 
-    @IBAction func loadPhotoList(_ sender: Any) {
-        let listVC = PhotoListDemoViewController(nibName: "PhotoListDemoViewController", bundle: Bundle.main)
-        if album.photos.count < 4 {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+    @IBAction func showListWithTitle(_ sender: Any) {
+        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
-                if let photos = photos {
-                    listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
-                }
-            }
-        } else {
-            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
-        }
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.listTitle = "Photo list title"
+
+        present(listVC, animated: true, completion: nil)
+    }
+
+    @IBAction func loadPhotoList(_ sender: Any) {
+        let listVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
+
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
 
         present(listVC, animated: true, completion: nil)
     }
 
     @IBAction func loadVideoList(_ sender: Any) {
-        let listVC = VideoListDemoViewController(nibName: "VideoListDemoViewController", bundle: Bundle.main)
-        if album.photos.count < 4 {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
-
-                if let photos = photos {
-                    listVC.photos = Array(photos.prefix(7))
-                }
-            }
-        } else {
-            listVC.photos = [album.photos[0], album.photos[1], album.photos[2], album.photos[3]]
-        }
-
+        let listVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5], photos[6]]
         present(listVC, animated: true, completion: nil)
     }
 
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         let listVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-        if album.photos.count < 4 {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
-
-                if let photos = photos {
-                    listVC.photos = [photos[0], photos[16], photos[2], photos[3]]
-                }
-            }
-        } else {
-            listVC.photos = [album.photos[0], album.photos[16], album.photos[2], album.photos[3]]
-        }
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
 
         present(listVC, animated: true, completion: nil)
     }

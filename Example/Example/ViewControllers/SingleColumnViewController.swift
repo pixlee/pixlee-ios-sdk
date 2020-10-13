@@ -1,5 +1,5 @@
 //
-//  PhotoListDemoViewController.swift
+//  SingleColumnViewController.swift
 //  Example
 //
 //  Created by Csaba Toth on 2020. 09. 21..
@@ -9,25 +9,25 @@
 import PixleeSDK
 import UIKit
 
-class PhotoListDemoViewController: UIViewController {
+class SingleColumnViewController: UIViewController {
     public var photos = [PXLPhoto]() {
         didSet {
             photoView.items = photos
         }
     }
 
-    var photoView = PXLPhotoListView()
+    var photoView = PXLGridView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        photoView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
         photoView.delegate = self
-        photoView.frame = view.frame
         view.addSubview(photoView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        photoView.frame = view.frame
+        photoView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
     }
 
     /*
@@ -41,7 +41,7 @@ class PhotoListDemoViewController: UIViewController {
      */
 }
 
-extension PhotoListDemoViewController: PXLPhotoViewDelegate {
+extension SingleColumnViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -51,12 +51,28 @@ extension PhotoListDemoViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension PhotoListDemoViewController: PXLPhotoListViewDelegate {
-    public func setupPhotoCell(cell: PXLPhotoListViewCell, photo: PXLPhoto) {
+extension SingleColumnViewController: PXLGridViewDelegate {
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
     public func cellHeight() -> CGFloat {
         return 350
+    }
+
+    func cellPadding() -> CGFloat {
+        return 8
+    }
+
+    func isMultipleColumnEnabled() -> Bool {
+        return false
+    }
+
+    func isHighlightingEnabled() -> Bool {
+        return true
+    }
+
+    func isInfiniteScrollEnabled() -> Bool {
+        return false
     }
 }

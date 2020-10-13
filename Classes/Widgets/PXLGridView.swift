@@ -1,22 +1,23 @@
 //
-//  PXLVideoListView.swift
+//  PXLGridView.swift
 //  PixleeSDK
 //
 //  Created by Csaba Toth on 2020. 10. 11..
 //
 
 import UIKit
-public protocol PXLVideoListViewDelegate {
-    func setupPhotoCell(cell: PXLVideoListViewCell, photo: PXLPhoto)
+public protocol PXLGridViewDelegate {
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func onPhotoClicked(photo: PXLPhoto)
     func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
     func isMultipleColumnEnabled() -> Bool
     func isHighlightingEnabled() -> Bool
+    func isInfiniteScrollEnabled() -> Bool
 }
 
-public class PXLVideoListView: UIView {
+public class PXLGridView: UIView {
     var collectionView: UICollectionView?
     let flowLayout = UICollectionViewFlowLayout()
 
@@ -32,9 +33,14 @@ public class PXLVideoListView: UIView {
         }
     }
 
-    public var delegate: PXLVideoListViewDelegate? {
+    public var delegate: PXLGridViewDelegate? {
         didSet {
             setupCellSize()
+            if isMultipleColumnsEnabled {
+                topRightCellIndex = IndexPath(item: 1, section: 0)
+            } else {
+                topRightCellIndex = nil
+            }
         }
     }
 
@@ -74,6 +80,10 @@ public class PXLVideoListView: UIView {
     private var isMultipleColumnsEnabled: Bool {
         return delegate?.isMultipleColumnEnabled() ?? true
     }
+    
+    private var isInifiteScrollEnabled:Bool{
+        return delegate?.isInfiniteScrollEnabled() ?? true
+    }
 
     override public init(frame: CGRect) {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
@@ -83,6 +93,8 @@ public class PXLVideoListView: UIView {
 
         if isMultipleColumnsEnabled {
             topRightCellIndex = IndexPath(item: 1, section: 0)
+        } else {
+            topRightCellIndex = nil
         }
 
         if let collectionView = collectionView {
@@ -91,7 +103,7 @@ public class PXLVideoListView: UIView {
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
 
-            collectionView.register(UINib(nibName: PXLVideoListViewCell.identifier, bundle: Bundle(for: PXLVideoListViewCell.self)), forCellWithReuseIdentifier: PXLVideoListViewCell.identifier)
+            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: Bundle(for: PXLGridViewCell.self)), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
 
             addSubview(collectionView)
             backgroundColor = .clear
@@ -126,9 +138,9 @@ public class PXLVideoListView: UIView {
     var topRightCellIndex: IndexPath?
 }
 
-extension PXLVideoListView: UICollectionViewDataSource {
+extension PXLGridView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLVideoListViewCell.identifier, for: indexPath) as? PXLVideoListViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
             cell.isHighlihtingEnabled = isHighlightingEnabled
             cell.cellWidth.constant = flowLayout.itemSize.width
@@ -153,9 +165,9 @@ extension PXLVideoListView: UICollectionViewDataSource {
     }
 }
 
-extension PXLVideoListView: UICollectionViewDataSourcePrefetching {
+extension PXLGridView: UICollectionViewDataSourcePrefetching {
     public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        guard let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
+        guard isInifiteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
 
         var items = infiniteItems
         items.append(contentsOf: self.items)
@@ -163,7 +175,7 @@ extension PXLVideoListView: UICollectionViewDataSourcePrefetching {
     }
 }
 
-extension PXLVideoListView: UICollectionViewDelegate {
+extension PXLGridView: UICollectionViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         adjustHighlight()
     }
@@ -183,21 +195,21 @@ extension PXLVideoListView: UICollectionViewDelegate {
         guard topLeftIndex != topLeftCellIndex, topRightIndex != topRightCellIndex else { return }
 
         // reset the previous hight light cell
-        if let cell = collectionView.cellForItem(at: topLeftCellIndex) as? PXLVideoListViewCell {
+        if let cell = collectionView.cellForItem(at: topLeftCellIndex) as? PXLGridViewCell {
             cell.disableHighlightView()
         }
-        if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+        if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLGridViewCell {
             cell.disableHighlightView()
         }
 
         // set hight light to a new center cell
 
-        if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLVideoListViewCell {
+        if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLGridViewCell {
             cell.highlightView()
             topLeftCellIndex = topLeftIndex
         }
 
-        if let cell = collectionView.cellForItem(at: topRightIndex) as? PXLVideoListViewCell {
+        if let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
             cell.highlightView()
             topRightCellIndex = topRightIndex
         }

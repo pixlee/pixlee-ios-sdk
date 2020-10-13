@@ -1,5 +1,5 @@
 //
-//  PXLVideoListViewCell.swift
+//  PXLGridViewCell.swift
 //  PixleeSDK
 //
 //  Created by Csaba Toth on 2020. 10. 11..
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class PXLVideoListViewCell: UICollectionViewCell {
+public class PXLGridViewCell: UICollectionViewCell {
     @IBOutlet var photoView: PXLPhotoView!
     private var photoModel: PXLPhoto?
     @IBOutlet var cellWidth: NSLayoutConstraint!
@@ -45,5 +45,5 @@ public class PXLVideoListViewCell: UICollectionViewCell {
         disableHighlightView()
     }
 
-    public static let identifier = "PXLVideoListViewCell"
+    public static let identifier = "PXLGridViewCell"
 }

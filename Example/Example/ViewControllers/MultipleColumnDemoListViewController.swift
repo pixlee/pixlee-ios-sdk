@@ -1,5 +1,5 @@
 //
-//  VideoListDemoViewController.swift
+//  MultipleColumnDemoListViewController.swift
 //  Example
 //
 //  Created by Csaba Toth on 2020. 10. 11..
@@ -8,14 +8,14 @@
 import PixleeSDK
 import UIKit
 
-class VideoListDemoViewController: UIViewController {
+class MultipleColumnDemoListViewController: UIViewController {
     public var photos = [PXLPhoto]() {
         didSet {
             photoView.items = photos
         }
     }
 
-    var photoView = PXLVideoListView()
+    var photoView = PXLGridView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +40,7 @@ class VideoListDemoViewController: UIViewController {
      */
 }
 
-extension VideoListDemoViewController: PXLPhotoViewDelegate {
+extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -50,8 +50,8 @@ extension VideoListDemoViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension VideoListDemoViewController: PXLVideoListViewDelegate {
-    func setupPhotoCell(cell: PXLVideoListViewCell, photo: PXLPhoto) {
+extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
@@ -69,5 +69,9 @@ extension VideoListDemoViewController: PXLVideoListViewDelegate {
 
     func isHighlightingEnabled() -> Bool {
         return false
+    }
+
+    func isInfiniteScrollEnabled() -> Bool {
+        return true
     }
 }
