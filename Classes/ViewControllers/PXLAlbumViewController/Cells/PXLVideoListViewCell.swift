@@ -21,7 +21,6 @@ public class PXLVideoListViewCell: UICollectionViewCell {
         photoView.buttonTitle = buttonTitle
         photoView.configuration = configuration
         photoView.delegate = delegate
-        alpha = 0.5
         photoView.stopPlaying()
     }
     
