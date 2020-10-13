@@ -13,6 +13,7 @@ public protocol PXLVideoListViewDelegate {
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
     func isMultipleColumnEnabled() -> Bool
+    func isHighlightingEnabled() -> Bool
 }
 
 public class PXLVideoListView: UIView {
@@ -66,6 +67,10 @@ public class PXLVideoListView: UIView {
         return delegate?.cellPadding() ?? 4
     }
 
+    private var isHighlightingEnabled: Bool {
+        return delegate?.isHighlightingEnabled() ?? false
+    }
+
     override public init(frame: CGRect) {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         flowLayout.scrollDirection = .vertical
@@ -117,6 +122,7 @@ extension PXLVideoListView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLVideoListViewCell.identifier, for: indexPath) as? PXLVideoListViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
+            cell.isHighlihtingEnabled = isHighlightingEnabled
             cell.cellWidth.constant = flowLayout.itemSize.width
             cell.cellHeight.constant = flowLayout.itemSize.height
 

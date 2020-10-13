@@ -66,4 +66,8 @@ extension VideoListDemoViewController: PXLVideoListViewDelegate {
     func isMultipleColumnEnabled() -> Bool {
         return true
     }
+
+    func isHighlightingEnabled() -> Bool {
+        return false
+    }
 }

@@ -13,6 +13,8 @@ public class PXLVideoListViewCell: UICollectionViewCell {
     @IBOutlet var cellWidth: NSLayoutConstraint!
     @IBOutlet var cellHeight: NSLayoutConstraint!
 
+    var isHighlihtingEnabled: Bool = false
+
     public func setupCell(photo: PXLPhoto, title: String, subtitle: String, buttonTitle: String, configuration: PXLPhotoViewConfiguration? = PXLPhotoViewConfiguration(), delegate: PXLPhotoViewDelegate? = nil) {
         photoModel = photo
         photoView.photo = photo
@@ -25,12 +27,16 @@ public class PXLVideoListViewCell: UICollectionViewCell {
     }
 
     func highlightView() {
-        photoView.alpha = 1
+        if isHighlihtingEnabled {
+            photoView.alpha = 1
+        }
         photoView.continuePlaying()
     }
 
     func disableHighlightView() {
-        photoView.alpha = 0.5
+        if isHighlihtingEnabled {
+            photoView.alpha = 0.5
+        }
         photoView.stopPlaying()
     }
 
