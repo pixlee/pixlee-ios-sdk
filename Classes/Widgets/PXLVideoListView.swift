@@ -45,7 +45,7 @@ public class PXLVideoListView: UIView {
         guard width > 0, height > 0 else {
             return
         }
-        if let twoColumns = delegate?.isMultipleColumnEnabled(), twoColumns {
+        if isMultipleColumnsEnabled {
             flowLayout.itemSize = CGSize(width: width, height: height)
             flowLayout.minimumInteritemSpacing = cellPadding
             flowLayout.minimumLineSpacing = cellPadding
@@ -71,11 +71,19 @@ public class PXLVideoListView: UIView {
         return delegate?.isHighlightingEnabled() ?? false
     }
 
+    private var isMultipleColumnsEnabled: Bool {
+        return delegate?.isMultipleColumnEnabled() ?? true
+    }
+
     override public init(frame: CGRect) {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         flowLayout.scrollDirection = .vertical
 
         super.init(frame: frame)
+
+        if isMultipleColumnsEnabled {
+            topRightCellIndex = IndexPath(item: 1, section: 0)
+        }
 
         if let collectionView = collectionView {
             collectionView.dataSource = self
