@@ -68,15 +68,19 @@ public class PXLPhotoListView: UIView {
     }
 
     var topIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+
 }
 
 extension PXLPhotoListView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: PXLPhotoListViewCell.identifier) as? PXLPhotoListViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
+
             if indexPath.row == topIndexPath.row {
+                print("\t Enable Highlighting :\(indexPath)")
                 cell.highlightView()
             } else {
+                print("\t Disable Highlighting :\(indexPath)")
                 cell.disableHighlightView()
             }
             return cell
@@ -124,12 +128,14 @@ extension PXLPhotoListView: UITableViewDelegate {
 
         // reset the previous hight light cell
         if let cell = tableView.cellForRow(at: topIndexPath) as? PXLPhotoListViewCell {
+            print("Disable Highlighting :\(topIndexPath)")
             cell.disableHighlightView()
         }
 
-        if let index = tableView.indexPathForRow(at: topItemCoords), let cell = tableView.cellForRow(at: index) as? PXLPhotoListViewCell {
+        if let cell = tableView.cellForRow(at: currentIndex) as? PXLPhotoListViewCell {
+            print("Highlighting :\(currentIndex)")
             cell.highlightView()
-            topIndexPath = index
+            topIndexPath = currentIndex
         }
     }
 }

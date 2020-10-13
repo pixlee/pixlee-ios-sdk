@@ -88,7 +88,7 @@ public class PXLVideoListView: UIView {
             ]
             NSLayoutConstraint.activate(constraints)
 
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.adjustHighlight()
             }
         }

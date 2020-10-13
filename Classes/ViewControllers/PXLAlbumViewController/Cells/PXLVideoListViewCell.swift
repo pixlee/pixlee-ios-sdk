@@ -25,10 +25,12 @@ public class PXLVideoListViewCell: UICollectionViewCell {
     }
 
     func highlightView() {
+        photoView.alpha = 1
         photoView.continuePlaying()
     }
 
     func disableHighlightView() {
+        photoView.alpha = 0.5
         photoView.stopPlaying()
     }
 

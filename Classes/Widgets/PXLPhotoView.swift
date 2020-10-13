@@ -178,10 +178,12 @@ public class PXLPhotoView: UIView {
     }
 
     public func stopPlaying() {
+        print("\t\tStop playing")
         queuePlayer?.pause()
     }
 
     public func continuePlaying() {
+        print("\t\tContinue playing")
         queuePlayer?.play()
     }
 
