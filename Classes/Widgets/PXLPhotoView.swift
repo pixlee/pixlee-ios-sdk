@@ -108,6 +108,7 @@ public class PXLPhotoView: UIView {
 
         if let queuePlayer = self.queuePlayer {
             playerLayer = AVPlayerLayer(player: queuePlayer)
+            queuePlayer.isMuted = true
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             layer.insertSublayer(playerLayer!, above: imageView?.layer)
@@ -182,6 +183,10 @@ public class PXLPhotoView: UIView {
 
     public func continuePlaying() {
         queuePlayer?.play()
+    }
+
+    public func mutePlayer(muted: Bool) {
+        queuePlayer?.isMuted = muted
     }
 
     override public func layoutSubviews() {

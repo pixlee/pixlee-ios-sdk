@@ -71,6 +71,7 @@ public class PXLVideoListView: UIView {
             collectionView.dataSource = self
             collectionView.prefetchDataSource = self
             collectionView.isPrefetchingEnabled = true
+            collectionView.delegate = self
 
             collectionView.register(UINib(nibName: PXLVideoListViewCell.identifier, bundle: Bundle(for: PXLVideoListViewCell.self)), forCellWithReuseIdentifier: PXLVideoListViewCell.identifier)
 
@@ -97,6 +98,9 @@ public class PXLVideoListView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    var topLeftCellIndex: IndexPath?
+    var topRightCellIndex: IndexPath?
 }
 
 extension PXLVideoListView: UICollectionViewDataSource {
@@ -105,6 +109,11 @@ extension PXLVideoListView: UICollectionViewDataSource {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
             cell.cellWidth.constant = flowLayout.itemSize.width
             cell.cellHeight.constant = flowLayout.itemSize.height
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                cell.alpha = 0.5
+            }
+            cell.alpha = 0.5
+
             return cell
         }
         fatalError()
@@ -126,5 +135,47 @@ extension PXLVideoListView: UICollectionViewDataSourcePrefetching {
         var items = infiniteItems
         items.append(contentsOf: self.items)
         self.items = items
+    }
+}
+
+extension PXLVideoListView: UICollectionViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        adjustHighlight()
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        adjustHighlight()
+    }
+
+    func adjustHighlight() {
+        guard let collectionView = collectionView else { return }
+
+        // reset the previous hight light cell
+        if let cellIndex = topLeftCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+            cell.alpha = 0.5
+            cell.photoView.stopPlaying()
+        }
+        if let cellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: cellIndex) as? PXLVideoListViewCell {
+            cell.alpha = 0.5
+            cell.photoView.stopPlaying()
+        }
+
+        // set hight light to a new center cell
+        let rightX = collectionView.bounds.width - flowLayout.itemSize.width / 2
+        let leftX = flowLayout.itemSize.width / 2
+        let topLeft = convert(CGPoint(x: leftX, y: flowLayout.itemSize.height / 2), to: collectionView)
+        let topRight = convert(CGPoint(x: rightX, y: flowLayout.itemSize.height / 2), to: collectionView)
+
+        if let index = collectionView.indexPathForItem(at: topLeft), let cell = collectionView.cellForItem(at: index) as? PXLVideoListViewCell {
+            cell.alpha = 1
+            cell.photoView.continuePlaying()
+            topLeftCellIndex = index
+        }
+
+        if let index = collectionView.indexPathForItem(at: topRight), let cell = collectionView.cellForItem(at: index) as? PXLVideoListViewCell {
+            cell.alpha = 1
+            cell.photoView.continuePlaying()
+            topRightCellIndex = index
+        }
     }
 }
