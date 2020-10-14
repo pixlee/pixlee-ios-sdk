@@ -42,7 +42,7 @@ public class PXLItemsView: UIView {
                           title: String?,
                           subTitle: String?,
                           buttonTitle: String?,
-                          configuration: PXLPhotoViewConfiguration? = PXLPhotoViewConfiguration(),
+                          configuration: PXLPhotoViewConfiguration = PXLPhotoViewConfiguration(),
                           delegate: PXLPhotoViewDelegate? = nil) {
         photoView.title = title
         photoView.subtitle = subTitle

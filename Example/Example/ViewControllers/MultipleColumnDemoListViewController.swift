@@ -11,22 +11,22 @@ import UIKit
 class MultipleColumnDemoListViewController: UIViewController {
     public var photos = [PXLPhoto]() {
         didSet {
-            photoView.items = photos
+            gridView.items = photos
         }
     }
 
-    var photoView = PXLGridView()
+    var gridView = PXLGridView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        photoView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        photoView.delegate = self
-        view.addSubview(photoView)
+        gridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
+        gridView.delegate = self
+        view.addSubview(gridView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        photoView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
+        gridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
     }
 
     /*

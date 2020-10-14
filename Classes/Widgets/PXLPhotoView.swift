@@ -16,6 +16,7 @@ public struct PXLPhotoViewConfiguration {
                 buttonFont: UIFont? = UIFont.systemFont(ofSize: 24, weight: .bold),
                 buttonImage: UIImage? = nil,
                 buttonBorderWidth: CGFloat = 1.0,
+                enableVideoPlayback: Bool = true,
                 delegate: PXLPhotoViewDelegate? = nil,
                 cropMode: PXLPhotoCropMode? = .centerFill) {
         self.textColor = textColor
@@ -26,6 +27,7 @@ public struct PXLPhotoViewConfiguration {
         self.buttonBorderWidth = buttonBorderWidth
         self.delegate = delegate
         self.cropMode = cropMode
+        self.enableVideoPlayback = enableVideoPlayback
     }
 
     public let textColor: UIColor?
@@ -36,6 +38,19 @@ public struct PXLPhotoViewConfiguration {
     public let buttonBorderWidth: CGFloat
     public let delegate: PXLPhotoViewDelegate?
     public let cropMode: PXLPhotoCropMode?
+    public let enableVideoPlayback: Bool
+
+    public func changeEnableVideoPlayback(_ newEnableVideos: Bool) -> PXLPhotoViewConfiguration {
+        return PXLPhotoViewConfiguration(textColor: textColor,
+                                         titleFont: titleFont,
+                                         subtitleFont: subtitleFont,
+                                         buttonFont: buttonFont,
+                                         buttonImage: buttonImage,
+                                         buttonBorderWidth: buttonBorderWidth,
+                                         enableVideoPlayback: newEnableVideos,
+                                         delegate: delegate,
+                                         cropMode: cropMode)
+    }
 }
 
 public protocol PXLPhotoViewDelegate {
@@ -53,36 +68,34 @@ public class PXLPhotoView: UIView {
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
 
-    public var configuration: PXLPhotoViewConfiguration? = PXLPhotoViewConfiguration() {
+    public var configuration: PXLPhotoViewConfiguration = PXLPhotoViewConfiguration() {
         didSet {
-            if let textColor = configuration?.textColor {
+            if let textColor = configuration.textColor {
                 self.textColor = textColor
             }
-            if let titleFont = configuration?.titleFont {
+            if let titleFont = configuration.titleFont {
                 self.titleFont = titleFont
             }
-            if let subtitleFont = configuration?.subtitleFont {
+            if let subtitleFont = configuration.subtitleFont {
                 self.subtitleFont = subtitleFont
             }
-            if let buttonFont = configuration?.buttonFont {
+            if let buttonFont = configuration.buttonFont {
                 actionButton?.titleLabel?.font = buttonFont
             }
-            if let buttonImage = configuration?.buttonImage {
+            if let buttonImage = configuration.buttonImage {
                 actionButton?.setImage(buttonImage, for: .normal)
             }
-            if let borderWidth = configuration?.buttonBorderWidth {
-                actionButton?.layer.borderWidth = borderWidth
-            }
 
-            delegate = configuration?.delegate
+            actionButton?.layer.borderWidth = configuration.buttonBorderWidth
 
-            if let cropMode = configuration?.cropMode {
+            delegate = configuration.delegate
+
+            if let cropMode = configuration.cropMode {
                 self.cropMode = cropMode
             }
         }
     }
 
-    public var enableVideos: Bool = true
     public var photo: PXLPhoto? {
         didSet {
             guard let photo = photo else { return }
@@ -90,7 +103,7 @@ public class PXLPhotoView: UIView {
                 Nuke.loadImage(with: imageUrl, into: imageView)
             }
 
-            if enableVideos, photo.isVideo, let videoURL = photo.videoUrl() {
+            if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
                 imageView?.isHidden = true
                 playVideo(url: videoURL)
             } else {

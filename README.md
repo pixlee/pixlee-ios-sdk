@@ -467,6 +467,19 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     self.view.addSubview(photoView)
 }
 ```
+#### PXLPhotoViewConfiguration
+Configurator class for the PXLPhotoView.
+Configuration options:
+- `textColor:UIColor` : Color of the texts
+- `titleFont:UIFont`: Font for the title
+- `subtitleFont:UIFont`: Font for the subtitle
+- `buttonFont:UIFont`: Font for the button
+- `buttonImage:UIImage`: Image for the button
+- `buttonBorderWidth:CGFloat`: Border width for the button
+- `enableVideoPlayback:Bool`: Should play videos or not
+- `delegate:PXLPhotoViewDelegate`: Delegate
+- `cropMode:PXLPhotoCropMode`: Image/ Video crop mode
+
 #### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
 ```swift
@@ -479,7 +492,56 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     photoView.items = [Array Of Photos]
 }
 ```
-#### Example
+
+#### PXLGridView
+Grid view with lots of customizable features, where the cells are PXLPhotoViews. You have to implement the `PXLGridViewDelegate` to customize the grid.
+Customization options
+- `cellHeight`: Height of the cells
+- `cellPadding`: Padding between the cells and rows
+- `isMultipleColumnsEnabled`: Two columns if true, if false then only one column
+- `isHighlightingEnabled`: Should change the opacity of the view highlighting the top element in the view
+- `isInfiniteScrollingEnabled`: If we want to have infinite scrolling
+- `setupPhtoCell(cellPXLGridViewCell: photo:PXLPhoto)`: Here, you can customize your cell like in the basic example of `PXLPhotoView`.
+```swift
+//Basic Example
+...
+    var gridView = PXLGridView()
+    photoView.delegate = self
+    gridView.frame = self.view.bounds
+    gridView.delegate = self
+    view.addSubview(gridView)
+    gridView.items = [Array Of Photos]
+}
+```
+#### PXLItemsView
+Show a custom set of items, with the provided title
+Customization options
+- `listTitle`: Title of the list
+- `titleFont`: Font of the title
+- `cellHeight`: Height of the cells
+- `cellPadding`: Padding between the cells and rows
+- `setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)`: Here, you can customize your view by calling the `setupView(photoView:, title:, subtitle:, buttonTitle:, configuration:, delegate:)` To have the ability to customize all the photos one by one
+```swift
+//Basic Example
+...
+    var itemsView = PXLItemsView()
+    itemsView.delegate = self
+    view.addSubview(itemsView)
+    itemsView.translatesAutoresizingMaskIntoConstraints = false
+    let itemsConstraints = [
+            itemsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            itemsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            itemsView.topAnchor.constraint(equalTo: view.topAnchor),
+            itemsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(itemsConstraints)
+        itemsView.items = [Array of photos]
+        itemsView.listTitle = "[List title]"
+}
+```
+
+
+#### Example App
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
 
