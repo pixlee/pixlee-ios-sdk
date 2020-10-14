@@ -32,16 +32,119 @@ public struct PXLProduct {
         guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
         return "\(currency) \(formattedPrice)"
     }
- 
+
     public var attributedPrice: NSAttributedString? {
-        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
+        guard let currency = currencySymbol, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
 
-        let priceString = "\(formattedPrice) "
-        let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
-        
-        let currencyString = NSAttributedString(string: "\(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
-        mutableAttributedString.append(currencyString)
+        let separatedPrice = formattedPrice.split(separator: ".")
+        if let mainPrice = separatedPrice.first, let decimalPrice = separatedPrice.last {
+            let priceString = "\(mainPrice)"
+            let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
 
-        return mutableAttributedString
+            let currencyString = NSAttributedString(string: ".\(decimalPrice) \(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+            mutableAttributedString.append(currencyString)
+
+            return mutableAttributedString
+        }
+        return nil
+    }
+
+    public var currencySymbol: String? {
+        switch currency {
+        case "EUR": return "€"
+        case "USD": return "$"
+        case "GBP": return "£"
+        case "CZK": return "Kč"
+        case "TRY": return "₺"
+        case "AED": return "د.إ"
+        case "AFN": return "؋"
+        case "ARS": return "$"
+        case "AUD": return "$"
+        case "BBD": return "$"
+        case "BDT": return " Tk"
+        case "BGN": return "лв"
+        case "BHD": return "BD"
+        case "BMD": return "$"
+        case "BND": return "$"
+        case "BOB": return "$b"
+        case "BRL": return "R$"
+        case "BTN": return "Nu."
+        case "BZD": return "BZ$"
+        case "CAD": return "$"
+        case "CHF": return "CHF"
+        case "CLP": return "$"
+        case "CNY": return "¥"
+        case "COP": return "$"
+        case "CRC": return "₡"
+        case "DKK": return "kr"
+        case "DOP": return "RD$"
+        case "EGP": return "£"
+        case "ETB": return "Br"
+        case "GEL": return "₾"
+        case "GHS": return "¢"
+        case "GMD": return "D"
+        case "GYD": return "$"
+        case "HKD": return "$"
+        case "HRK": return "kn"
+        case "HUF": return "Ft"
+        case "IDR": return "Rp"
+        case "ILS": return "₪"
+        case "INR": return "₹"
+        case "ISK": return "kr"
+        case "JMD": return "J$"
+        case "JPY": return "¥"
+        case "KES": return "KSh"
+        case "KRW": return "₩"
+        case "KWD": return "د.ك"
+        case "KYD": return "$"
+        case "KZT": return "лв"
+        case "LAK": return "₭"
+        case "LKR": return "₨"
+        case "LRD": return "$"
+        case "LTL": return "Lt"
+        case "MAD": return "MAD"
+        case "MDL": return "MDL"
+        case "MKD": return "ден"
+        case "MNT": return "₮"
+        case "MUR": return "₨"
+        case "MWK": return "MK"
+        case "MXN": return "$"
+        case "MYR": return "RM"
+        case "MZN": return "MT"
+        case "NAD": return "$"
+        case "NGN": return "₦"
+        case "NIO": return "C$"
+        case "NOK": return "kr"
+        case "NPR": return "₨"
+        case "NZD": return "$"
+        case "OMR": return "﷼"
+        case "PEN": return "S/."
+        case "PGK": return "K"
+        case "PHP": return "₱"
+        case "PKR": return "₨"
+        case "PLN": return "zł"
+        case "PYG": return "Gs"
+        case "QAR": return "﷼"
+        case "RON": return "lei"
+        case "RSD": return "Дин."
+        case "RUB": return "₽"
+        case "SAR": return "﷼"
+        case "SEK": return "kr"
+        case "SGD": return "$"
+        case "SOS": return "S"
+        case "SRD": return "$"
+        case "THB": return "฿"
+        case "TTD": return "TT$"
+        case "TWD": return "NT$"
+        case "TZS": return "TSh"
+        case "UAH": return "₴"
+        case "UGX": return "USh"
+        case "UYU": return "$U"
+        case "VEF": return "Bs"
+        case "VND": return "₫"
+        case "YER": return "﷼"
+        case "ZAR": return "R"
+        default: return currency
+        }
     }
 }
