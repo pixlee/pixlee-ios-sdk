@@ -517,9 +517,12 @@ Customization options
 Show a custom set of items, with the provided title
 Customization options
 - `listTitle`: Title of the list
+- `titleGifName`: Name of the title gif bundled with the applciation
+- `titleGifURL`: URL of the gif to load instead of the title
 - `titleFont`: Font of the title
 - `cellHeight`: Height of the cells
 - `cellPadding`: Padding between the cells and rows
+- `gifHeight`: Height of the gif in the title (default 200)
 - `setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)`: Here, you can customize your view by calling the `setupView(photoView:, title:, subtitle:, buttonTitle:, configuration:, delegate:)` To have the ability to customize all the photos one by one
 ```swift
 //Basic Example
