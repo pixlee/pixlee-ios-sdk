@@ -131,7 +131,32 @@ public class PXLItemsView: UIView {
             ]
             NSLayoutConstraint.activate(gifContstraints)
         } else if let titleGifURL = titleGifURL {
-            titleGifImage.image = UIImage.gifImageWithURL(titleGifURL)
+            let loadingView = UIView()
+            loadingView.translatesAutoresizingMaskIntoConstraints = false
+            let loadingIndicator = UIActivityIndicatorView(style: .gray)
+            loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+            loadingIndicator.startAnimating()
+            let loadingConstraints = [
+                loadingView.heightAnchor.constraint(equalToConstant: gifHeight),
+                loadingIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor, constant: 0),
+                loadingIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor, constant: 0),
+                loadingIndicator.heightAnchor.constraint(equalToConstant: 30),
+                loadingIndicator.widthAnchor.constraint(equalToConstant: 30),
+            ]
+            loadingView.addSubview(loadingIndicator)
+            itemsStack.addArrangedSubview(loadingView)
+
+            NSLayoutConstraint.activate(loadingConstraints)
+
+            DispatchQueue.global(qos: .userInitiated).async {
+                let gif = UIImage.gifImageWithURL(titleGifURL)
+                // Bounce back to the main thread to update the UI
+                DispatchQueue.main.async {
+                    loadingView.removeFromSuperview()
+                    self.titleGifImage.image = gif
+                }
+            }
+
             itemsStack.addArrangedSubview(titleGifImage)
             let gifContstraints = [
                 titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
