@@ -126,6 +126,11 @@
 		F2985ACC25335E0700308398 /* PXLGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2985ACA25335E0700308398 /* PXLGridViewCell.swift */; };
 		F2985ACD25335E0700308398 /* PXLGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2985ACB25335E0700308398 /* PXLGridViewCell.xib */; };
 		F29866C52535D32100308398 /* PXLItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29866C42535D32100308398 /* PXLItemsView.swift */; };
+		F298760125381EFC00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760025381EFC00308398 /* wavingBear.gif */; };
+		F29876382538209100308398 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29876372538209100308398 /* UIImage+Gif.swift */; };
+		F29876752538245A00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760025381EFC00308398 /* wavingBear.gif */; };
+		F298767C2538245B00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760025381EFC00308398 /* wavingBear.gif */; };
+		F29876832538245C00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760025381EFC00308398 /* wavingBear.gif */; };
 		F2E54E402518906F00644B56 /* PXLPhotoCropMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E54E3F2518906F00644B56 /* PXLPhotoCropMode.swift */; };
 		F3696A147C1AF3AFE726108B19CCB5AC /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFF601FEA74741262EDD22BA039E542 /* PXLAnalyticsEventOpenedLightBox.swift */; };
 		F6B16DC8CADA07287C6A372AC8AD787C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C326684258EB18FE130B07AF61D73088 /* Foundation.framework */; };
@@ -353,6 +358,8 @@
 		F2985ACA25335E0700308398 /* PXLGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLGridViewCell.swift; sourceTree = "<group>"; };
 		F2985ACB25335E0700308398 /* PXLGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PXLGridViewCell.xib; sourceTree = "<group>"; };
 		F29866C42535D32100308398 /* PXLItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLItemsView.swift; sourceTree = "<group>"; };
+		F298760025381EFC00308398 /* wavingBear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = wavingBear.gif; path = Example/Example/wavingBear.gif; sourceTree = "<group>"; };
+		F29876372538209100308398 /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		F2E54E3F2518906F00644B56 /* PXLPhotoCropMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PXLPhotoCropMode.swift; path = Classes/PXLPhotoCropMode.swift; sourceTree = "<group>"; };
 		F8A628C2568D66962EE730FBB936A737 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		F8FBC06CAAEF08C2C01DD809446573E3 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
@@ -737,6 +744,7 @@
 		A8C796F22F510F21241FA0DC4DE58311 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				F29875E825381E6000308398 /* Helpers */,
 				DA895680EF254E32B0C83CFA08388CD7 /* PXLPhotoListView.swift */,
 				F2985AC225335CF000308398 /* PXLGridView.swift */,
 				F2425A39F42F7368805B1A728349DE09 /* PXLPhotoProductView.swift */,
@@ -793,6 +801,7 @@
 		DBA66E8079717F2F95C7517328D1B3E4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F298760025381EFC00308398 /* wavingBear.gif */,
 				4A1902652869C67BE1B20B6CDE8F9795 /* Resources */,
 				E9995C3B6499FA10BB82F4EAB10DAD88 /* ViewControllers */,
 				76D49C21A43637C0FE1E6F2B5130769B /* Widgets */,
@@ -843,6 +852,14 @@
 			);
 			name = "Pods-Example";
 			path = "Target Support Files/Pods-Example";
+			sourceTree = "<group>";
+		};
+		F29875E825381E6000308398 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F29876372538209100308398 /* UIImage+Gif.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F46904AB41C62C56B036D29A36B40A44 /* Support Files */ = {
@@ -1068,6 +1085,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F298767C2538245B00308398 /* wavingBear.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1095,7 @@
 			files = (
 				F2985ACD25335E0700308398 /* PXLGridViewCell.xib in Resources */,
 				B920213E5E322E9A8D7866FBF33DBDCE /* ImageAssets.xcassets in Resources */,
+				F298760125381EFC00308398 /* wavingBear.gif in Resources */,
 				69F0C63746A016AF8D604F1A86EAB69A /* PXLAdvancedProductCell.xib in Resources */,
 				DD97A7364DABC7E59B276935D8B950ED /* PXLAlbumViewController.xib in Resources */,
 				751977D07FFD13C3C7089FE4CB4E2D5A /* PXLImageCell.xib in Resources */,
@@ -1091,6 +1110,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29876752538245A00308398 /* wavingBear.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29876832538245C00308398 /* wavingBear.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,6 +1236,7 @@
 				311AD9F20CE87FCB360B859E19B78492 /* DateExtension.swift in Sources */,
 				7FBACA4ACA8A5C1618EF805C8FEB8502 /* PixleeSDK-dummy.m in Sources */,
 				98F5C1D86D72EA49E69B6762707F79C4 /* PXLAdvancedProductCell.swift in Sources */,
+				F29876382538209100308398 /* UIImage+Gif.swift in Sources */,
 				A3CEF10A5B89FA6980F0783D851B2E89 /* PXLAlbum.swift in Sources */,
 				83AE42340622250C641E9B511B699DAB /* PXLAlbumFilterOptions.swift in Sources */,
 				59580E6627626A5B84FCD37E6F6F1D74 /* PXLAlbumNexPageResponseDTO.swift in Sources */,

@@ -6,10 +6,18 @@
 //
 
 import UIKit
+
 public protocol PXLItemsViewDelegate {
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
     func setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)
+    func gifHeight() -> CGFloat
+}
+
+public extension PXLItemsViewDelegate {
+    func gifHeight() -> CGFloat {
+        return 200
+    }
 }
 
 public class PXLItemsView: UIView {
@@ -32,6 +40,15 @@ public class PXLItemsView: UIView {
         }
     }
 
+    public var titleGifName: String? {
+        didSet {
+        }
+    }
+
+    public var titleGifURL: String? {
+        didSet {}
+    }
+
     public var titleFont: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold) {
         didSet {
             titleLabel.font = titleFont
@@ -52,6 +69,7 @@ public class PXLItemsView: UIView {
     }
 
     let titleLabel = UILabel()
+    let titleGifImage = UIImageView()
     let scrollView = UIScrollView()
 
     private var itemHeight: CGFloat {
@@ -64,6 +82,10 @@ public class PXLItemsView: UIView {
 
     private var itemWidth: CGFloat {
         return (frame.size.width - padding) / 2
+    }
+
+    private var gifHeight: CGFloat {
+        return delegate?.gifHeight() ?? 200
     }
 
     private func resetData() {
@@ -99,7 +121,25 @@ public class PXLItemsView: UIView {
             view.removeFromSuperview()
         }
 
-        if listTitle != nil {
+        if let titleGifName = titleGifName {
+            titleGifImage.image = UIImage.gifImageWithName(titleGifName)
+            itemsStack.addArrangedSubview(titleGifImage)
+            let gifContstraints = [
+                titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
+                titleGifImage.trailingAnchor.constraint(equalTo: itemsStack.trailingAnchor),
+                titleGifImage.heightAnchor.constraint(greaterThanOrEqualToConstant: gifHeight),
+            ]
+            NSLayoutConstraint.activate(gifContstraints)
+        } else if let titleGifURL = titleGifURL {
+            titleGifImage.image = UIImage.gifImageWithURL(titleGifURL)
+            itemsStack.addArrangedSubview(titleGifImage)
+            let gifContstraints = [
+                titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
+                titleGifImage.trailingAnchor.constraint(equalTo: itemsStack.trailingAnchor),
+                titleGifImage.heightAnchor.constraint(greaterThanOrEqualToConstant: gifHeight),
+            ]
+            NSLayoutConstraint.activate(gifContstraints)
+        } else if listTitle != nil {
             let titleContainer = UIView()
             titleLabel.font = titleFont
             titleLabel.numberOfLines = 0

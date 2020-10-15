@@ -96,7 +96,26 @@ class ViewController: UIViewController {
         let albumVC = PXLAlbumViewController.viewControllerForAlbum(album: album)
         present(albumVC, animated: true, completion: nil)
     }
+    @IBAction func showListWithGifURL(_ sender: Any) {
+        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+
+        present(listVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func showListWithGif(_ sender: Any) {
+        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
+
+        let photos = getSamplePhotos()
+        listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.titleGifName = "wavingBear"
+
+        present(listVC, animated: true, completion: nil)
+        
+    }
     @IBAction func showListWithTitle(_ sender: Any) {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 

@@ -22,6 +22,18 @@ class ListWithTitleViewController: UIViewController {
         }
     }
 
+    public var titleGifName: String? {
+        didSet {
+            itemsView.titleGifName = titleGifName
+        }
+    }
+
+    public var titleGifURL: String? {
+        didSet {
+            itemsView.titleGifURL = titleGifURL
+        }
+    }
+
     var itemsView = PXLItemsView()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +57,7 @@ class ListWithTitleViewController: UIViewController {
 }
 
 extension ListWithTitleViewController: PXLItemsViewDelegate {
+
     func cellHeight() -> CGFloat {
         return 550
     }
