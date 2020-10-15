@@ -4,7 +4,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 
 ### Notice: please be aware of these terms in the document. 
 - the word 'content' is used in the documentation. this means a photo or video.
-- PXLPhoto contains a content, which can be a photo or video.
+- The PXLPhoto class represents a piece of content, which can be a photo or video
 
 # Table of Content
 - [About the SDK](#About-the-SDK)
@@ -35,10 +35,10 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 # About the SDK
 Before accessing the Pixlee API, you must initialize the `PXLClient`. To set the API key, what can be set with the  `apiKey` property on `PXLClient.sharedClient`. You can then use that singleton instance to make calls against the Pixlee API.
 
-To load PXLPhotos(contents) in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
+To load PXLPhotos(content) in an album there are two methods https://developers.pixlee.com/reference#get-approved-content-from-album or https://developers.pixlee.com/reference#get-approved-content-for-product. 
 
 If you are retriving the content for one album you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(identifier: <ALBUM ID HERE>)`. You can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
-You can load the PXLPhotos(contents) via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's contents as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded contents in the completion block, and updating the album's contents array to get all of the contents.
+You can load the PXLPhotos(content) via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's content as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded content in the completion block, and updating the album's content array to get all of the content.
 
 # Get Started with Demo App
 1. open **Example** folder in terminal.
@@ -81,7 +81,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
 1. Run `bin/setup`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
-1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
+1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following content to the script area below the shell:
     ```
     sh
     /usr/local/bin/carthage copy-frameworks
@@ -172,14 +172,14 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
         print("There was an error during the loading \(String(describing: error))")
         return
     }
-    //Use your contents array here
-    print("New contents loaded: \(photos)")
+    //Use your content array here
+    print("New content loaded: \(photos)")
 }
 
 ```
 
 If you are retriving the content for a sku you'll want to use the `PXLAlbum` class. Create an instance by calling `PXLAlbum(sku:<SKU ID HERE>)`.  As the same as with identifier, you can then set `sortOptions` and `filterOptions` as necessary (see the header files for more details) before calling `loadNextPageOfPhotos:` to load photos.
-You can load the contents via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's contents as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded contents in the completion block, and updating the album's contents array to get all of the photos.
+You can load the content via the `PXLClient`, You just have to use the `loadNextPageOfPhotosForAlbum(album, completionHandler)`. It will load the album's content as pages, and calling `loadNextPageOfPhotos:` successively will load each page in turn with returning the newly loaded content in the completion block, and updating the album's content array to get all of the photos.
 
 #### Example
 ```swift
@@ -211,8 +211,8 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
         print("There was an error during the loading \(String(describing: error))")
         return
     }
-    //Use your contents array here
-    print("New contents loaded: \(photos)")
+    //Use your content array here
+    print("New content loaded: \(photos)")
 }
 
 ```
@@ -220,15 +220,15 @@ PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, erro
 
 Additionally, you can control how an album loads its data using `PXLAlbumFilterOptions` and `PXLAlbumSortOptions`. To use these, create a new instance with `PXLAlbumFilterOptions()` or `PXLAlbumSortOptions(sortType:SortType, ascending:Boolean)`, set the necessary properties, and then set those objects to the `filterOptions` and `sortOptions` properties on your album. Make sure to set these before calling `loadNextPageOfPhotosForAlbum:`.
 
-Once an album has loaded contents from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a content available through the Pixlee API and offers several image url sizes depending on your needs.
+Once an album has loaded content from the server, it will instantiate `PXLPhoto` objects that can be consumed by your UI. `PXLPhoto` exposes all of the data for a content available through the Pixlee API and offers several image url sizes depending on your needs.
 
-To help you quickly get started, we've also built an album view controller and content detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the contents in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
+To help you quickly get started, we've also built an album view controller and content detail view controller that can be used and customized in your app. `PXLAlbumViewController` uses a `UICollectionView` to display the content in an album and includes a toggle to switch between a grid and list view. You can use the `viewControllerForAlbum` method of the class to instantiate a new view controller with the provided album object.
 Example of showing the ViewController
 ```swift
 let albumVC = PXLAlbumViewController.viewControllerForAlbum(album:album)
 showViewController(VC: albumVC)
 ```
-The album view controller is set up to automatically load more pages of contents as the user scrolls, giving it an infinite scroll effect.
+The album view controller is set up to automatically load more pages of content as the user scrolls, giving it an infinite scroll effect.
 
 If a user taps on a content in the `PXLAlbumViewController`, we present a detail view with `PXLPhotoDetailViewController`. You may present a detail view yourself by instantiating an instance of `PXLPhotoDetailViewController.viewControllerForPhot` and providing  the `PXLPhoto` instance property. The content detail view is configured to display:
 * the large content
@@ -552,7 +552,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 To run the project, open `Example.xcworkspace` in Xcode.
 
-Run the project and you should see a grid of contents from that album.
+Run the project and you should see a grid of content from that album.
 
 ## Troubleshooting
 
