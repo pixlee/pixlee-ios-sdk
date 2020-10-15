@@ -12,11 +12,16 @@ public protocol PXLItemsViewDelegate {
     func cellPadding() -> CGFloat
     func setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)
     func gifHeight() -> CGFloat
+    func gifContentMode() -> UIView.ContentMode
 }
 
 public extension PXLItemsViewDelegate {
     func gifHeight() -> CGFloat {
         return 200
+    }
+
+    func gifContentMode() -> UIView.ContentMode {
+        return .scaleAspectFill
     }
 }
 
@@ -88,6 +93,10 @@ public class PXLItemsView: UIView {
         return delegate?.gifHeight() ?? 200
     }
 
+    private var gifContentMode: UIView.ContentMode {
+        return delegate?.gifContentMode() ?? .scaleAspectFit
+    }
+
     private func resetData() {
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -121,6 +130,8 @@ public class PXLItemsView: UIView {
             view.removeFromSuperview()
         }
 
+        titleGifImage.contentMode = gifContentMode
+
         if let titleGifName = titleGifName {
             titleGifImage.image = UIImage.gifImageWithName(titleGifName)
             itemsStack.addArrangedSubview(titleGifImage)
@@ -131,20 +142,21 @@ public class PXLItemsView: UIView {
             ]
             NSLayoutConstraint.activate(gifContstraints)
         } else if let titleGifURL = titleGifURL {
-            let loadingView = UIView()
-            loadingView.translatesAutoresizingMaskIntoConstraints = false
+            let gifContainer = UIView()
+            gifContainer.clipsToBounds = true
+            gifContainer.translatesAutoresizingMaskIntoConstraints = false
             let loadingIndicator = UIActivityIndicatorView(style: .gray)
             loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
             loadingIndicator.startAnimating()
             let loadingConstraints = [
-                loadingView.heightAnchor.constraint(equalToConstant: gifHeight),
-                loadingIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor, constant: 0),
-                loadingIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor, constant: 0),
+                gifContainer.heightAnchor.constraint(equalToConstant: gifHeight),
+                loadingIndicator.centerYAnchor.constraint(equalTo: gifContainer.centerYAnchor, constant: 0),
+                loadingIndicator.centerXAnchor.constraint(equalTo: gifContainer.centerXAnchor, constant: 0),
                 loadingIndicator.heightAnchor.constraint(equalToConstant: 30),
                 loadingIndicator.widthAnchor.constraint(equalToConstant: 30),
             ]
-            loadingView.addSubview(loadingIndicator)
-            itemsStack.addArrangedSubview(loadingView)
+            gifContainer.addSubview(loadingIndicator)
+            itemsStack.addArrangedSubview(gifContainer)
 
             NSLayoutConstraint.activate(loadingConstraints)
 
@@ -152,18 +164,20 @@ public class PXLItemsView: UIView {
                 let gif = UIImage.gifImageWithURL(titleGifURL)
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
-                    loadingView.removeFromSuperview()
+                    loadingIndicator.removeFromSuperview()
+                    gifContainer.addSubview(self.titleGifImage)
+                    self.titleGifImage.translatesAutoresizingMaskIntoConstraints = false
+                    let gifContstraints = [
+                        self.titleGifImage.leadingAnchor.constraint(equalTo: gifContainer.leadingAnchor),
+                        self.titleGifImage.trailingAnchor.constraint(equalTo: gifContainer.trailingAnchor),
+                        self.titleGifImage.bottomAnchor.constraint(equalTo: gifContainer.bottomAnchor),
+                        self.titleGifImage.topAnchor.constraint(equalTo: gifContainer.topAnchor),
+                    ]
+                    NSLayoutConstraint.activate(gifContstraints)
                     self.titleGifImage.image = gif
                 }
             }
 
-            itemsStack.addArrangedSubview(titleGifImage)
-            let gifContstraints = [
-                titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
-                titleGifImage.trailingAnchor.constraint(equalTo: itemsStack.trailingAnchor),
-                titleGifImage.heightAnchor.constraint(greaterThanOrEqualToConstant: gifHeight),
-            ]
-            NSLayoutConstraint.activate(gifContstraints)
         } else if listTitle != nil {
             let titleContainer = UIView()
             titleLabel.font = titleFont

@@ -523,6 +523,8 @@ Customization options
 - `cellHeight`: Height of the cells
 - `cellPadding`: Padding between the cells and rows
 - `gifHeight`: Height of the gif in the title (default 200)
+- `gifContentMode`: Content mode of the gif in the title
+
 - `setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)`: Here, you can customize your view by calling the `setupView(photoView:, title:, subtitle:, buttonTitle:, configuration:, delegate:)` To have the ability to customize all the photos one by one
 ```swift
 //Basic Example
