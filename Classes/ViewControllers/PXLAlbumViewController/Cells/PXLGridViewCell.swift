@@ -42,7 +42,10 @@ public class PXLGridViewCell: UICollectionViewCell {
 
     override public func prepareForReuse() {
         super.prepareForReuse()
-        disableHighlightView()
+        if isHighlihtingEnabled {
+            photoView.alpha = 0.5
+        }
+        self.photoView.resetPlayer()
     }
 
     public static let identifier = "PXLGridViewCell"

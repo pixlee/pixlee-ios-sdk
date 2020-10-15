@@ -121,6 +121,8 @@ public class PXLPhotoView: UIView {
         queuePlayer = AVQueuePlayer(items: [playerItem])
 
         if let queuePlayer = self.queuePlayer {
+            let oldPlayerLayer = playerLayer
+            playerLayer?.removeFromSuperlayer()
             playerLayer = AVPlayerLayer(player: queuePlayer)
             queuePlayer.isMuted = true
 
@@ -193,6 +195,12 @@ public class PXLPhotoView: UIView {
 
     public func stopPlaying() {
         queuePlayer?.pause()
+    }
+
+    public func resetPlayer() {
+        if let photo = self.photo, configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
+            playVideo(url: videoURL)
+        }
     }
 
     public func continuePlaying() {
