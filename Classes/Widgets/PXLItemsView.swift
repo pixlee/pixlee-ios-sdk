@@ -184,6 +184,7 @@ public class PXLItemsView: UIView {
             titleLabel.numberOfLines = 0
 
             titleContainer.addSubview(titleLabel)
+            titleContainer.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             let titleConstraints = [
                 titleLabel.leadingAnchor.constraint(equalTo: titleContainer.leadingAnchor, constant: 0),
@@ -195,7 +196,7 @@ public class PXLItemsView: UIView {
             itemsStack.addArrangedSubview(titleContainer)
         }
 
-        var row = 0
+        var itemIndex = 0
         var currentRowStack = UIStackView()
         currentRowStack.spacing = padding
         items.forEach { photo in
@@ -219,8 +220,8 @@ public class PXLItemsView: UIView {
             ]
             NSLayoutConstraint.activate(constraints)
 
-            if row % 2 == 1 || items.last == photo {
-                if items.last == photo {
+            if itemIndex % 2 == 1 || itemIndex == items.count + 1 {
+                if itemIndex == items.count + 1 {
                     let spacer = UIView()
                     currentRowStack.addArrangedSubview(spacer)
                 }
@@ -235,7 +236,7 @@ public class PXLItemsView: UIView {
                 currentRowStack = UIStackView()
                 currentRowStack.spacing = padding
             }
-            row += 1
+            itemIndex += 1
         }
     }
 }
