@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "PIXLEE_ALBUM_ID"
-            value = "18510980"
+            value = "12598895"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -63,7 +63,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "PIXLEE_API_KEY"
-            value = "wDtiN1VLRqJSX3T2v3RG"
+            value = "CgLNEXLCR4PJHNwNLc2d"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

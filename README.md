@@ -502,6 +502,15 @@ Customization options
 - `isHighlightingEnabled`: Should change the opacity of the view highlighting the top element in the view
 - `isInfiniteScrollingEnabled`: If we want to have infinite scrolling
 - `setupPhtoCell(cellPXLGridViewCell: photo:PXLPhoto)`: Here, you can customize your cell like in the basic example of `PXLPhotoView`.
+
+Optional options:
+-`headerTitle`: Title of the header
+-`headerGifName`: Name of header gif image bundled in the application
+-`headerGifUrl`: Url of the header gif image
+-`headerHeight`: Height of the header
+-`headerGifContentMode`: Content mode of the header gif images
+-`headerTitleFont`: Font of the header title
+-`headerTitleColor`: Color of the header title
 ```swift
 //Basic Example
 ...
