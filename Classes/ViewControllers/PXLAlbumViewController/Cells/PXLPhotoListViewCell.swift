@@ -21,6 +21,14 @@ public class PXLPhotoListViewCell: UITableViewCell {
         photoView.delegate = delegate
         photoView.stopPlaying()
     }
+    
+    public func playVideo(){
+        photoView.play()
+    }
+    
+    public func stopVideo(){
+        photoView.stopPlaying()
+    }
 
     func highlightView() {
         photoView.alpha = 1

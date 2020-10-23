@@ -30,7 +30,7 @@ public class PXLGridViewCell: UICollectionViewCell {
         if isHighlihtingEnabled {
             photoView.alpha = 1
         }
-        photoView.continuePlaying()
+        photoView.play()
     }
 
     func disableHighlightView() {
@@ -40,12 +40,20 @@ public class PXLGridViewCell: UICollectionViewCell {
         photoView.stopPlaying()
     }
 
+    public func playVideo() {
+        photoView.play()
+    }
+
+    public func stopVideo() {
+        photoView.stopPlaying()
+    }
+
     override public func prepareForReuse() {
         super.prepareForReuse()
         if isHighlihtingEnabled {
             photoView.alpha = 0.5
         }
-        self.photoView.resetPlayer()
+        photoView.resetPlayer()
     }
 
     public static let identifier = "PXLGridViewCell"

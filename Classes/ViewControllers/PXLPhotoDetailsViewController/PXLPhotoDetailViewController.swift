@@ -25,6 +25,14 @@ public class PXLPhotoDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    public func playVideo() {
+        queuePlayer?.play()
+    }
+
+    public func stopVideo() {
+        queuePlayer?.pause()
+    }
+
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!

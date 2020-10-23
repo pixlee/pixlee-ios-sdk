@@ -193,7 +193,7 @@ public class PXLPhotoView: UIView {
         }
     }
 
-    public func stopPlaying() {
+    public func stopVideo() {
         queuePlayer?.pause()
     }
 
@@ -203,7 +203,7 @@ public class PXLPhotoView: UIView {
         }
     }
 
-    public func continuePlaying() {
+    public func playVideo() {
         queuePlayer?.play()
     }
 

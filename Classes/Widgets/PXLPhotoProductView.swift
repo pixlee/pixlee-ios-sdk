@@ -264,6 +264,18 @@ public class PXLPhotoProductView: UIViewController {
             UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
         }
     }
+
+    public func playVideo() {
+        queuePlayer?.play()
+    }
+
+    public func stopVideo() {
+        queuePlayer?.pause()
+    }
+    
+    public func mutePlayer(muted: Bool) {
+        queuePlayer?.isMuted = muted
+    }
 }
 
 extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSource {

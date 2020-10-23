@@ -66,7 +66,7 @@ class PXLGridHeaderView: UICollectionReusableView {
                 titleGifImage.trailingAnchor.constraint(equalTo: trailingAnchor),
                 titleGifImage.topAnchor.constraint(equalTo: topAnchor),
                 titleGifImage.bottomAnchor.constraint(equalTo: bottomAnchor),
-                heightAnchor.constraint(equalToConstant: viewModel.height - viewModel.padding),
+                heightAnchor.constraint(equalToConstant: viewModel.height),
             ]
             NSLayoutConstraint.activate(gifContstraints)
         } else if let titleGifURL = viewModel.titleGifUrl, self.cachedGif == nil {
@@ -85,7 +85,7 @@ class PXLGridHeaderView: UICollectionReusableView {
                 gifContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
                 gifContainer.topAnchor.constraint(equalTo: topAnchor),
                 gifContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-                heightAnchor.constraint(equalToConstant: viewModel.height - viewModel.padding),
+                heightAnchor.constraint(equalToConstant: viewModel.height),
             ]
             gifContainer.addSubview(loadingIndicator)
             addSubview(gifContainer)

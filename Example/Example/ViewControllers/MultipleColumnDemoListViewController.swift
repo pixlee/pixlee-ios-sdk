@@ -38,6 +38,17 @@ class MultipleColumnDemoListViewController: UIViewController {
          // Pass the selected object to the new view controller.
      }
      */
+    var videoCell: PXLGridViewCell? {
+        didSet {
+            guard let videoCell = videoCell else { return }
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                videoCell.stopVideo()
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                    videoCell.playVideo()
+                }
+            }
+        }
+    }
 }
 
 extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
@@ -51,12 +62,14 @@ extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
 }
 
 extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
-    
     func headerGifName() -> String? {
         return "wavingBear"
     }
-    
+
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
+        if photo.isVideo {
+            videoCell = cell
+        }
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
