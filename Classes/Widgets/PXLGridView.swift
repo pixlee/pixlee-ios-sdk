@@ -15,6 +15,44 @@ public protocol PXLGridViewDelegate {
     func isMultipleColumnEnabled() -> Bool
     func isHighlightingEnabled() -> Bool
     func isInfiniteScrollEnabled() -> Bool
+
+    func headerTitle() -> String?
+    func headerGifName() -> String?
+    func headerGifUrl() -> String?
+    func headerHeight() -> CGFloat
+    func headerGifContentMode() -> UIView.ContentMode
+    func headerTitleFont() -> UIFont
+    func headerTitleColor() -> UIColor
+}
+
+extension PXLGridViewDelegate {
+    public func headerTitleFont() -> UIFont {
+        return UIFont.systemFont(ofSize: 21)
+    }
+
+    public func headerTitleColor() -> UIColor {
+        return .black
+    }
+
+    public func headerGifContentMode() -> UIView.ContentMode {
+        return .scaleAspectFill
+    }
+
+    public func headerHeight() -> CGFloat {
+        return 200
+    }
+
+    public func headerTitle() -> String? {
+        return nil
+    }
+
+    public func headerGifName() -> String? {
+        return nil
+    }
+
+    public func headerGifUrl() -> String? {
+        return nil
+    }
 }
 
 public class PXLGridView: UIView {
@@ -48,6 +86,10 @@ public class PXLGridView: UIView {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
 
+        if delegate?.headerTitle() != nil || delegate?.headerGifUrl() != nil || delegate?.headerGifName() != nil {
+            flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: 200 + cellPadding)
+        }
+
         guard width > 0, height > 0 else {
             return
         }
@@ -80,8 +122,8 @@ public class PXLGridView: UIView {
     private var isMultipleColumnsEnabled: Bool {
         return delegate?.isMultipleColumnEnabled() ?? true
     }
-    
-    private var isInifiteScrollEnabled:Bool{
+
+    private var isInifiteScrollEnabled: Bool {
         return delegate?.isInfiniteScrollEnabled() ?? true
     }
 
@@ -104,6 +146,7 @@ public class PXLGridView: UIView {
             collectionView.delegate = self
 
             collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: Bundle(for: PXLGridViewCell.self)), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
+            collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
 
             addSubview(collectionView)
             backgroundColor = .clear
@@ -139,6 +182,41 @@ public class PXLGridView: UIView {
 }
 
 extension PXLGridView: UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? PXLGridHeaderView {
+            guard let delegate = delegate else { fatalError("Needs to add the delegate first") }
+
+            let headerHeight = delegate.headerHeight()
+            let contentMode = delegate.headerGifContentMode()
+            if let title = delegate.headerTitle() {
+                let titleFont = delegate.headerTitleFont()
+                let titleColor = delegate.headerTitleColor()
+                header.viewModel = PXLGridHeaderSettings(title: title,
+                                                         height: headerHeight,
+                                                         width: collectionView.frame.size.width,
+                                                         padding: cellPadding,
+                                                         titleFont: titleFont,
+                                                         titleColor: titleColor,
+                                                         gifContentMode: contentMode)
+            } else if let url = delegate.headerGifUrl() {
+                header.viewModel = PXLGridHeaderSettings(titleGifUrl: url,
+                                                         height: headerHeight,
+                                                         width: collectionView.frame.size.width,
+                                                         padding: cellPadding,
+                                                         gifContentMode: contentMode)
+            } else if let name = delegate.headerGifName() {
+                header.viewModel = PXLGridHeaderSettings(titleGifName: name,
+                                                         height: headerHeight,
+                                                         width: collectionView.frame.size.width,
+                                                         padding: cellPadding,
+                                                         gifContentMode: contentMode)
+            }
+
+            return header
+        }
+        fatalError()
+    }
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])

@@ -74,10 +74,10 @@ class ViewController: UIViewController {
     }
 
     func getSamplePhotos() -> [PXLPhoto] {
-        guard album.photos.count < 5 else {
+        guard album.photos.count < 4 else {
             return album.photos
         }
-        guard photos.count < 5 else {
+        guard photos.count < 4 else {
             return photos
         }
 
@@ -96,6 +96,7 @@ class ViewController: UIViewController {
         let albumVC = PXLAlbumViewController.viewControllerForAlbum(album: album)
         present(albumVC, animated: true, completion: nil)
     }
+
     @IBAction func showListWithGifURL(_ sender: Any) {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
 
         present(listVC, animated: true, completion: nil)
     }
-    
+
     @IBAction func showListWithGif(_ sender: Any) {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
@@ -114,8 +115,8 @@ class ViewController: UIViewController {
         listVC.titleGifName = "wavingBear"
 
         present(listVC, animated: true, completion: nil)
-        
     }
+
     @IBAction func showListWithTitle(_ sender: Any) {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
@@ -130,7 +131,9 @@ class ViewController: UIViewController {
         let listVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        if photos.count >= 4 {
+            listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        }
 
         present(listVC, animated: true, completion: nil)
     }
@@ -138,7 +141,7 @@ class ViewController: UIViewController {
     @IBAction func loadVideoList(_ sender: Any) {
         let listVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2], photos[3], photos[4], photos[5], photos[6]]
+        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
         present(listVC, animated: true, completion: nil)
     }
 

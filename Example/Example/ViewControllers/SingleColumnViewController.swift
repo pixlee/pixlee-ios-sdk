@@ -52,6 +52,10 @@ extension SingleColumnViewController: PXLPhotoViewDelegate {
 }
 
 extension SingleColumnViewController: PXLGridViewDelegate {
+    func headerGifUrl() -> String? {
+        return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+    }
+
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }

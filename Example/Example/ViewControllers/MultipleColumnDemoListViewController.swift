@@ -51,6 +51,11 @@ extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
 }
 
 extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
+    
+    func headerGifName() -> String? {
+        return "wavingBear"
+    }
+    
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
