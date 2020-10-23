@@ -19,25 +19,25 @@ public class PXLPhotoListViewCell: UITableViewCell {
         photoView.buttonTitle = buttonTitle
         photoView.configuration = configuration.changeEnableVideoPlayback(false)
         photoView.delegate = delegate
-        photoView.stopPlaying()
+        photoView.stopVideo()
     }
     
     public func playVideo(){
-        photoView.play()
+        photoView.playVideo()
     }
     
     public func stopVideo(){
-        photoView.stopPlaying()
+        photoView.stopVideo()
     }
 
     func highlightView() {
         photoView.alpha = 1
-        photoView.stopPlaying()
+        photoView.stopVideo()
     }
 
     func disableHighlightView() {
         photoView.alpha = 0.5
-        photoView.stopPlaying()
+        photoView.stopVideo()
     }
 
     override public func prepareForReuse() {
