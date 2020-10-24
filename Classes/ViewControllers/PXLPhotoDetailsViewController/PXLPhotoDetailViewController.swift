@@ -8,6 +8,7 @@
 
 import AVKit
 import Nuke
+import SafariServices
 import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
@@ -160,8 +161,23 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     func handleProductPressed(product: PXLProduct) {
         if let url = product.link?.absoluteString.removingPercentEncoding, let productURL = URL(string: url) {
-            UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
+            if #available(iOS 11.0, *) {
+                let vc = SFSafariViewController(url: productURL, configuration: SFSafariViewController.Configuration())
+                self.present(vc, animated: true)
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
+            }
+            
         }
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        playVideo()
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        stopVideo()
     }
 }
 
