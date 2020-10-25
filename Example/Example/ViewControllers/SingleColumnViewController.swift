@@ -52,6 +52,10 @@ extension SingleColumnViewController: PXLPhotoViewDelegate {
 }
 
 extension SingleColumnViewController: PXLGridViewDelegate {
+    func cellsHighlighted(cells: [PXLGridViewCell]) {
+        print("Highlighted cells: \(cells)")
+    }
+
     func headerGifUrl() -> String? {
         return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
     }

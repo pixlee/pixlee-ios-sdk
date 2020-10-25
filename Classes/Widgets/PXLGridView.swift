@@ -8,6 +8,7 @@
 import UIKit
 public protocol PXLGridViewDelegate {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
+    func cellsHighlighted(cells: [PXLGridViewCell])
     func onPhotoClicked(photo: PXLPhoto)
     func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
@@ -26,6 +27,9 @@ public protocol PXLGridViewDelegate {
 }
 
 extension PXLGridViewDelegate {
+    public func cellsHighlighted(cells: [PXLGridViewCell]) {
+    }
+
     public func headerTitleFont() -> UIFont {
         return UIFont.systemFont(ofSize: 21)
     }
@@ -68,6 +72,9 @@ public class PXLGridView: UIView {
     private var infiniteItems: [PXLPhoto] = [] {
         didSet {
             collectionView?.reloadData()
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                self.logFirstHighlights()
+            }
         }
     }
 
@@ -126,6 +133,9 @@ public class PXLGridView: UIView {
     private var isInifiteScrollEnabled: Bool {
         return delegate?.isInfiniteScrollEnabled() ?? true
     }
+
+    var firstHighlightLogged = false
+    var secondHighlightLogged = false
 
     override public init(frame: CGRect) {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
@@ -217,6 +227,21 @@ extension PXLGridView: UICollectionViewDataSource {
         fatalError()
     }
 
+    func logFirstHighlights() {
+        guard let collectionView = collectionView else { return }
+        var highlightedCells = [PXLGridViewCell]()
+
+        if let cell = collectionView.cellForItem(at: topLeftCellIndex) as? PXLGridViewCell {
+            highlightedCells.append(cell)
+        }
+
+        if let topRightCellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: topRightCellIndex) as? PXLGridViewCell {
+            highlightedCells.append(cell)
+        }
+
+        delegate?.cellsHighlighted(cells: highlightedCells)
+    }
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
             delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
@@ -281,15 +306,20 @@ extension PXLGridView: UICollectionViewDelegate {
         }
 
         // set hight light to a new center cell
+        var highlightedCells = [PXLGridViewCell]()
 
         if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLGridViewCell {
             cell.highlightView()
+            highlightedCells.append(cell)
             topLeftCellIndex = topLeftIndex
         }
 
-        if let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
+        if topLeftIndex != topRightIndex, let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
             cell.highlightView()
+            highlightedCells.append(cell)
             topRightCellIndex = topRightIndex
         }
+
+        delegate?.cellsHighlighted(cells: highlightedCells)
     }
 }
