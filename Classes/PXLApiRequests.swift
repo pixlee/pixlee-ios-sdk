@@ -85,6 +85,10 @@ class PXLApiRequests {
             if let filterOptions = album.filterOptions, let filterParamString = filterOptions.urlParamString {
                 params["filters"] = filterParamString
             }
+            
+            if album.regionId != nil {
+                params["region_id"] = album.regionId
+            }
 
             let request = try urlRequest(.get, url, parameters: params)
             return request
@@ -113,6 +117,10 @@ class PXLApiRequests {
             }
             if let filterOptions = album.filterOptions, let filterParamString = filterOptions.urlParamString {
                 params["filters"] = filterParamString
+            }
+            
+            if album.regionId != nil {
+                params["region_id"] = album.regionId
             }
 
             let request = try urlRequest(.get, url, parameters: params)

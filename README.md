@@ -153,6 +153,10 @@ dynamic - Our "secret sauce" -- a special sort that highlights high performance 
 //Create an Instance of Album with the Identifier
 let album = PXLAlbum(identifier: PXLAlbumIdentifier)
 
+// Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
+// note: - note: you can get the right currencies of your products by adding regionId here
+album.regionId = <your region id in Int>
+
 // Create and set filter options on the album.
 album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
 
@@ -193,6 +197,10 @@ You can load the content via the `PXLClient`, You just have to use the `loadNext
 
 //Create an Instance of Album with the SKU Identifier
 let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
+
+// Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
+// note: - note: you can get the right currencies of your products by adding regionId here
+album.regionId = <your region id in Int>
 
 // Create and set filter options on the album.
 let dateString = "20190101"
