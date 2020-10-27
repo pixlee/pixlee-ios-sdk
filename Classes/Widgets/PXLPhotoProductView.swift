@@ -55,6 +55,35 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+    public var closeButtonImage: UIImage? = UIImage(named: "closeIcon") {
+        didSet {
+            backButton.setImage(closeButtonImage, for: .normal)
+        }
+    }
+
+    public var closeButtonBackgroundColor: UIColor = .clear {
+        didSet {
+            backButton.backgroundColor = closeButtonBackgroundColor
+        }
+    }
+
+    public var closeButtonTintColor: UIColor = .white {
+        didSet {
+            backButton.tintColor = closeButtonTintColor
+        }
+    }
+
+    public var closeButtonCornerRadius: CGFloat = 22 {
+        didSet {
+            backButton.layer.cornerRadius = closeButtonCornerRadius
+        }
+    }
+    public var hideCloseButton:Bool = false{
+        didSet{
+            backButton.isHidden = hideCloseButton
+        }
+    }
+
     public var cellConfiguration = PXLProductCellConfiguration()
 
     public var onBookmarkClicked: ((_ product: PXLProduct, _ isSelected: Bool) -> Void)?
@@ -199,6 +228,7 @@ public class PXLPhotoProductView: UIViewController {
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
+            view.bringSubviewToFront(backButton)
             playerLayer?.frame = imageView.frame
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
@@ -276,7 +306,7 @@ public class PXLPhotoProductView: UIViewController {
     public func stopVideo() {
         queuePlayer?.pause()
     }
-    
+
     public func mutePlayer(muted: Bool) {
         queuePlayer?.isMuted = muted
     }
