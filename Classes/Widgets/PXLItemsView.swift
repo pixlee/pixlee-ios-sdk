@@ -131,6 +131,7 @@ public class PXLItemsView: UIView {
         }
 
         titleGifImage.contentMode = gifContentMode
+        titleGifImage.clipsToBounds = true
 
         if let titleGifName = titleGifName {
             titleGifImage.image = UIImage.gif(name: titleGifName)
