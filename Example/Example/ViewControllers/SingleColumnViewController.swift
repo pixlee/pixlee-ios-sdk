@@ -61,7 +61,7 @@ extension SingleColumnViewController: PXLGridViewDelegate {
     }
 
     func headerGifContentMode() -> UIView.ContentMode {
-        .scaleAspectFit
+        .scaleAspectFill
     }
 
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
