@@ -70,9 +70,7 @@ class PXLGridHeaderView: UICollectionReusableView {
         translatesAutoresizingMaskIntoConstraints = false
 
         if let titleGifName = viewModel.titleGifName {
-            titleGifImage.backgroundColor = .green
             titleGifImage.image = UIImage.gif(name: titleGifName)
-
             addSubview(titleGifImage)
 
         } else if let titleGifURL = viewModel.titleGifUrl, self.cachedGif == nil {

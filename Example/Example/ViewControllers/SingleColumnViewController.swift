@@ -55,11 +55,15 @@ extension SingleColumnViewController: PXLGridViewDelegate {
     func cellsHighlighted(cells: [PXLGridViewCell]) {
         print("Highlighted cells: \(cells)")
     }
-
-    func headerGifUrl() -> String? {
-        return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+    
+    func headerGifName() -> String? {
+        return "wavingBear"
     }
 
+    func headerGifContentMode() -> UIView.ContentMode {
+        .scaleAspectFit
+    }
+    
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
