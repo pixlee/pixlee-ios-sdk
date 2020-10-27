@@ -463,6 +463,14 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 - `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
 - `hideCloseButton`: Set to true if you don't need the close button on the view
 
+- You can use and customize the mute button on the view with the following methods:
+- `muteButtonOnImage` : Sets the on image for the mute button.
+- `muteButtonOffImage` : Sets the off image for the mute button.
+- `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
+- `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
+- `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
+- `hideMuteButton`: Set to true if you don't need the mute button on the view
+
 ```swift
 //Basic Example
 ...
