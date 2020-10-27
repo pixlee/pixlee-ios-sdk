@@ -36,15 +36,17 @@ public struct PXLProduct {
     public var attributedPrice: NSAttributedString? {
         guard let currency = currencySymbol, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
 
-        let separatedPrice = formattedPrice.split(separator: ".")
-        if let mainPrice = separatedPrice.first, let decimalPrice = separatedPrice.last {
-            let priceString = "\(mainPrice)"
-            let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        if let decimalSeparator = PXLProduct.currencyFormatter.decimalSeparator {
+            let separatedPrice = formattedPrice.components(separatedBy: decimalSeparator)
+            if let mainPrice = separatedPrice.first, let decimalPrice = separatedPrice.last {
+                let priceString = "\(mainPrice)"
+                let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
 
-            let currencyString = NSAttributedString(string: ".\(decimalPrice) \(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
-            mutableAttributedString.append(currencyString)
+                let currencyString = NSAttributedString(string: "\(decimalSeparator)\(decimalPrice) \(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+                mutableAttributedString.append(currencyString)
 
-            return mutableAttributedString
+                return mutableAttributedString
+            }
         }
         return nil
     }
