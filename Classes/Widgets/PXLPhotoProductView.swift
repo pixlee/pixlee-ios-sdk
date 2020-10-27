@@ -294,6 +294,8 @@ public class PXLPhotoProductView: UIViewController {
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
             queuePlayer.play()
+            queuePlayer.isMuted = true
+            adjustMuteImages()
 
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
