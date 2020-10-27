@@ -121,6 +121,7 @@ public class PXLPhotoDetailViewController: UIViewController {
     }
 
     func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
+        guard seconds >= 0, seconds < Double.infinity else { return (0, 0, 0) }
         let secs = Int(seconds)
         let hours = secs / 3600
         let minutes = (secs % 3600) / 60
@@ -168,15 +169,14 @@ public class PXLPhotoDetailViewController: UIViewController {
                 // Fallback on earlier versions
                 UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
             }
-            
         }
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
+
+    override public func viewDidAppear(_ animated: Bool) {
         playVideo()
     }
-    
-    public override func viewDidDisappear(_ animated: Bool) {
+
+    override public func viewDidDisappear(_ animated: Bool) {
         stopVideo()
     }
 }
