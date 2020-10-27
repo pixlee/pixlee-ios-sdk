@@ -28,7 +28,9 @@ class PhotoProductListDemoViewController: UIViewController {
             let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
             widget.closeButtonBackgroundColor = .gray
             widget.closeButtonCornerRadius = 22
-            widget.closeButtonTintColor = UIColor.white.withAlphaComponent(0.6)
+            widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
+            
+            widget.muteButtonBackgroundColor = .purple
             
 //            widget.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: UIScreen.main.bounds.height)
 

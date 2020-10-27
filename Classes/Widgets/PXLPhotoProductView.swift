@@ -55,7 +55,7 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
-    public var closeButtonImage: UIImage? = UIImage(named: "closeIcon") {
+    public var closeButtonImage: UIImage? = UIImage(named: "closeIcon", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
         didSet {
             backButton.setImage(closeButtonImage, for: .normal)
         }
@@ -78,10 +78,65 @@ public class PXLPhotoProductView: UIViewController {
             backButton.layer.cornerRadius = closeButtonCornerRadius
         }
     }
-    public var hideCloseButton:Bool = false{
-        didSet{
+
+    public var hideCloseButton: Bool = false {
+        didSet {
             backButton.isHidden = hideCloseButton
         }
+    }
+
+    static var ownBundle: Bundle {
+        Bundle(for: PXLPhotoProductView.self)
+    }
+
+    public var muteButtonOnImage: UIImage? = UIImage(named: "outline_volume_off_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
+        didSet {
+            adjustMuteImages()
+        }
+    }
+
+    public var muteButtonOffImage: UIImage? = UIImage(named: "outline_volume_up_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
+        didSet {
+            adjustMuteImages()
+        }
+    }
+
+    public var muteButtonBackgroundColor: UIColor = .clear {
+        didSet {
+            muteButton.backgroundColor = muteButtonBackgroundColor
+        }
+    }
+
+    public var muteButtonTintColor: UIColor = .white {
+        didSet {
+            muteButton.tintColor = muteButtonTintColor
+        }
+    }
+
+    public var muteButtonCornerRadius: CGFloat = 22 {
+        didSet {
+            muteButton.layer.cornerRadius = muteButtonCornerRadius
+        }
+    }
+
+    public var hideMuteButton: Bool = false {
+        didSet {
+            muteButton.isHidden = hideMuteButton
+        }
+    }
+
+    func setupButtons() {
+        muteButton.isHidden = hideMuteButton
+        muteButton.layer.cornerRadius = muteButtonCornerRadius
+        muteButton.tintColor = muteButtonTintColor
+        muteButton.backgroundColor = muteButtonBackgroundColor
+        adjustMuteImages()
+
+        backButton.isHidden = hideCloseButton
+        backButton.layer.cornerRadius = closeButtonCornerRadius
+        backButton.setImage(closeButtonImage, for: .normal)
+        backButton.backgroundColor = closeButtonBackgroundColor
+        backButton.tintColor = closeButtonTintColor
     }
 
     public var cellConfiguration = PXLProductCellConfiguration()
@@ -142,9 +197,23 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+    @IBOutlet var muteButton: UIButton!
     @IBOutlet var backButton: UIButton!
 
+    @IBAction func muteButtonPressed(_ sender: Any) {
+        print("mute pressed")
+        queuePlayer?.isMuted.toggle()
+        adjustMuteImages()
+    }
+
+    func adjustMuteImages() {
+        guard let queuePlayer = queuePlayer else { return }
+        let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
+        muteButton.setImage(image, for: .normal)
+    }
+
     @IBAction func backButtonPressed(_ sender: Any) {
+        print("back pressed")
         if isModal {
             dismissModal()
         } else {
@@ -165,12 +234,10 @@ public class PXLPhotoProductView: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    @IBOutlet var durationView: UIView!
     var playerLooper: NSObject?
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
     var durationLabelUpdateTimer: Timer?
-    @IBOutlet var durationLabel: UILabel!
 
     public var viewModel: PXLPhoto? {
         didSet {
@@ -182,16 +249,14 @@ public class PXLPhotoProductView: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
 
-            durationLabel.text = nil
-
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
                 imageView.isHidden = true
-                durationView.isHidden = false
+                muteButton.isHidden = false
                 playVideo(url: videoURL)
             } else {
                 durationLabelUpdateTimer?.invalidate()
                 imageView.isHidden = false
-                durationView.isHidden = true
+                muteButton.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -207,16 +272,12 @@ public class PXLPhotoProductView: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        durationView.layer.cornerRadius = 10
-        durationView.isHidden = true
-        if #available(iOS 11.0, *) {
-            durationView.layer.maskedCorners = [.layerMinXMaxYCorner]
-        } else {
-        }
 
         if let viewModel = viewModel {
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
         }
+
+        setupButtons()
     }
 
     func playVideo(url: URL) {
@@ -228,14 +289,15 @@ public class PXLPhotoProductView: UIViewController {
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
-            view.bringSubviewToFront(backButton)
+
             playerLayer?.frame = imageView.frame
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
             queuePlayer.play()
 
-            view.bringSubviewToFront(durationView)
             view.bringSubviewToFront(productCollectionView)
+            view.bringSubviewToFront(backButton)
+            view.bringSubviewToFront(muteButton)
 
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                 let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
@@ -244,7 +306,7 @@ public class PXLPhotoProductView: UIViewController {
                     let remainingTime: Double = totalTime - currentTime
 
                     let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
-                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+//                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
                 }
             }
         }
@@ -309,6 +371,7 @@ public class PXLPhotoProductView: UIViewController {
 
     public func mutePlayer(muted: Bool) {
         queuePlayer?.isMuted = muted
+        adjustMuteImages()
     }
 }
 
