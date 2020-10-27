@@ -220,8 +220,12 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
-    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
-        let secs = Int(seconds)
+    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: UInt64, minutes: UInt64, seconds: UInt64) {
+        guard !(seconds.isNaN || seconds.isInfinite) else {
+            return (0, 0, 0)
+        }
+
+        let secs = UInt64(seconds)
         let hours = secs / 3600
         let minutes = (secs % 3600) / 60
         let seconds = (secs % 3600) % 60

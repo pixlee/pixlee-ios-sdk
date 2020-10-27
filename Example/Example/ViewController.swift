@@ -37,6 +37,9 @@ class ViewController: UIViewController {
 //        album.filterOptions = filterOptions
 
         album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
+        
+        // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
+        // album.regionId = 2469
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
         // Get one photo example

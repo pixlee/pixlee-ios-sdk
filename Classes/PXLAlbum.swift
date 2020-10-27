@@ -18,6 +18,8 @@ public class PXLAlbum {
     public var photos: [PXLPhoto]
     public var lastPageFetched: Int
     public var hasNextPage: Bool
+    
+    public var regionId: Int?
 
     public var perPage: Int {
         didSet {
@@ -43,7 +45,7 @@ public class PXLAlbum {
         hasNextPage = true
     }
 
-    public init(identifier: String? = nil, sku: Int? = nil, perPage: Int = PXLAlbum.PXLAlbumDefaultPerPage, photos: [PXLPhoto] = [PXLPhoto](), lastPageFetched: Int = 0, hasNextPage: Bool = true, sortOptions: PXLAlbumSortOptions? = nil, filterOptions: PXLAlbumFilterOptions? = nil) {
+    public init(identifier: String? = nil, sku: Int? = nil, perPage: Int = PXLAlbum.PXLAlbumDefaultPerPage, photos: [PXLPhoto] = [PXLPhoto](), lastPageFetched: Int = 0, hasNextPage: Bool = true, sortOptions: PXLAlbumSortOptions? = nil, filterOptions: PXLAlbumFilterOptions? = nil, regionId: Int? = nil) {
         self.identifier = identifier
         self.sku = sku
         self.perPage = perPage
@@ -52,6 +54,7 @@ public class PXLAlbum {
         self.hasNextPage = hasNextPage
         self.sortOptions = sortOptions
         self.filterOptions = filterOptions
+        self.regionId = regionId
     }
 
     public func changeIdentifier(newIdentifier: String) -> PXLAlbum {
@@ -62,7 +65,8 @@ public class PXLAlbum {
                         lastPageFetched: 0,
                         hasNextPage: true,
                         sortOptions: sortOptions,
-                        filterOptions: filterOptions)
+                        filterOptions: filterOptions,
+                        regionId: regionId)
     }
 
     public func changeSKU(newSKU: Int) -> PXLAlbum {
@@ -73,7 +77,8 @@ public class PXLAlbum {
                         lastPageFetched: NSNotFound,
                         hasNextPage: true,
                         sortOptions: sortOptions,
-                        filterOptions: filterOptions)
+                        filterOptions: filterOptions,
+                        regionId: regionId)
     }
 
     public func triggerEventOpenedWidget(widget: PXLWidgetType, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
