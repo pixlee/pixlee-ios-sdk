@@ -66,8 +66,8 @@ class PXLGridHeaderView: UICollectionReusableView {
         guard let viewModel = viewModel else { return }
 
         titleGifImage.contentMode = viewModel.gifContentMode
+        titleGifImage.clipsToBounds = true
         clipsToBounds = true
-        translatesAutoresizingMaskIntoConstraints = false
 
         if let titleGifName = viewModel.titleGifName {
             titleGifImage.image = UIImage.gif(name: titleGifName)
@@ -91,7 +91,9 @@ class PXLGridHeaderView: UICollectionReusableView {
             }
         } else if let downloadedGif = cachedGif {
             titleGifImage.image = downloadedGif
+            addSubview(titleGifImage)
         } else if viewModel.title != nil {
+            translatesAutoresizingMaskIntoConstraints = false
             titleLabel.font = viewModel.titleFont
             titleLabel.textColor = viewModel.titleColor
             titleLabel.text = viewModel.title
