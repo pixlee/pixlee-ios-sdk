@@ -353,6 +353,7 @@ public class PXLPhotoProductView: UIViewController {
         productCollectionView.register(UINib(nibName: "PXLAdvancedProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier)
 
         productCollectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        productCollectionView.isPagingEnabled = false
     }
 
     func handleProductPressed(product: PXLProduct) {
