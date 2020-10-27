@@ -94,7 +94,7 @@ public class PXLGridView: UIView {
         let height = cellHeight
 
         if delegate?.headerTitle() != nil || delegate?.headerGifUrl() != nil || delegate?.headerGifName() != nil {
-            flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: 200 + cellPadding)
+            flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + cellPadding)
         }
 
         guard width > 0, height > 0 else {
@@ -116,6 +116,9 @@ public class PXLGridView: UIView {
 
     private var cellHeight: CGFloat {
         return delegate?.cellHeight() ?? 200
+    }
+    private var headerHeight: CGFloat {
+        return delegate?.headerHeight() ?? 200
     }
 
     private var cellPadding: CGFloat {

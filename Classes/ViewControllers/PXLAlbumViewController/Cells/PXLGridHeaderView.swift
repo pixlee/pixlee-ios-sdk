@@ -41,6 +41,7 @@ class PXLGridHeaderView: UICollectionReusableView {
     }
 
     var titleGifImage = UIImageView()
+    let loadingIndicator = UIActivityIndicatorView(style: .gray)
     var titleLabel = UILabel()
 
     private var cachedGif: UIImage?
@@ -51,86 +52,46 @@ class PXLGridHeaderView: UICollectionReusableView {
         }
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let viewModel = viewModel {
+            titleGifImage.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - viewModel.padding)
+            loadingIndicator.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
+            loadingIndicator.center = center
+        }
+        print("titleGIf: \(titleGifImage)")
+    }
+
     func customInit() {
         guard let viewModel = viewModel else { return }
+
         titleGifImage.contentMode = viewModel.gifContentMode
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
 
         if let titleGifName = viewModel.titleGifName {
-            titleGifImage.translatesAutoresizingMaskIntoConstraints = false
-            titleGifImage.image = UIImage.gifImageWithName(titleGifName)
-            addSubview(titleGifImage)
-            let gifContstraints = [
-                titleGifImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-                titleGifImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-                titleGifImage.topAnchor.constraint(equalTo: topAnchor),
-                titleGifImage.bottomAnchor.constraint(equalTo: bottomAnchor),
-                heightAnchor.constraint(equalToConstant: viewModel.height),
-            ]
-            NSLayoutConstraint.activate(gifContstraints)
-        } else if let titleGifURL = viewModel.titleGifUrl, self.cachedGif == nil {
-            let gifContainer = UIView()
-            gifContainer.clipsToBounds = true
-            gifContainer.translatesAutoresizingMaskIntoConstraints = false
-            let loadingIndicator = UIActivityIndicatorView(style: .gray)
-            loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-            loadingIndicator.startAnimating()
-            let loadingConstraints = [
-                loadingIndicator.centerYAnchor.constraint(equalTo: gifContainer.centerYAnchor, constant: 0),
-                loadingIndicator.centerXAnchor.constraint(equalTo: gifContainer.centerXAnchor, constant: 0),
-                loadingIndicator.heightAnchor.constraint(equalToConstant: 30),
-                loadingIndicator.widthAnchor.constraint(equalToConstant: 30),
-                gifContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-                gifContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-                gifContainer.topAnchor.constraint(equalTo: topAnchor),
-                gifContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-                heightAnchor.constraint(equalToConstant: viewModel.height),
-            ]
-            gifContainer.addSubview(loadingIndicator)
-            addSubview(gifContainer)
+            titleGifImage.backgroundColor = .green
+            titleGifImage.image = UIImage.gif(name: titleGifName)
 
-            NSLayoutConstraint.activate(loadingConstraints)
+            addSubview(titleGifImage)
+
+        } else if let titleGifURL = viewModel.titleGifUrl, self.cachedGif == nil {
+            loadingIndicator.startAnimating()
+
+            self.addSubview(loadingIndicator)
 
             DispatchQueue.global(qos: .userInitiated).async {
-                let gif = UIImage.gifImageWithURL(titleGifURL)
+                let gif = UIImage.gif(url: titleGifURL)
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
                     self.cachedGif = gif
-                    loadingIndicator.removeFromSuperview()
-                    gifContainer.addSubview(self.titleGifImage)
-                    self.titleGifImage.translatesAutoresizingMaskIntoConstraints = false
-                    let gifContstraints = [
-                        self.titleGifImage.leadingAnchor.constraint(equalTo: gifContainer.leadingAnchor),
-                        self.titleGifImage.trailingAnchor.constraint(equalTo: gifContainer.trailingAnchor),
-                        self.titleGifImage.bottomAnchor.constraint(equalTo: gifContainer.bottomAnchor),
-                        self.titleGifImage.topAnchor.constraint(equalTo: gifContainer.topAnchor),
-                    ]
-                    NSLayoutConstraint.activate(gifContstraints)
+                    self.loadingIndicator.removeFromSuperview()
+                    self.addSubview(self.titleGifImage)
+
                     self.titleGifImage.image = gif
                 }
             }
-
         } else if let downloadedGif = cachedGif {
-            let gifContainer = UIView()
-            gifContainer.addSubview(titleGifImage)
-            addSubview(gifContainer)
-
-            gifContainer.translatesAutoresizingMaskIntoConstraints = false
-            translatesAutoresizingMaskIntoConstraints = false
-            titleGifImage.translatesAutoresizingMaskIntoConstraints = false
-            let gifContstraints = [
-                titleGifImage.leadingAnchor.constraint(equalTo: gifContainer.leadingAnchor),
-                titleGifImage.trailingAnchor.constraint(equalTo: gifContainer.trailingAnchor),
-                titleGifImage.bottomAnchor.constraint(equalTo: gifContainer.bottomAnchor),
-                titleGifImage.topAnchor.constraint(equalTo: gifContainer.topAnchor),
-                gifContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-                gifContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
-                gifContainer.topAnchor.constraint(equalTo: topAnchor, constant: viewModel.padding),
-                gifContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -viewModel.padding),
-                heightAnchor.constraint(equalToConstant: viewModel.height),
-            ]
-            NSLayoutConstraint.activate(gifContstraints)
             titleGifImage.image = downloadedGif
         } else if viewModel.title != nil {
             titleLabel.font = viewModel.titleFont

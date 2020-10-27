@@ -133,12 +133,12 @@ public class PXLItemsView: UIView {
         titleGifImage.contentMode = gifContentMode
 
         if let titleGifName = titleGifName {
-            titleGifImage.image = UIImage.gifImageWithName(titleGifName)
+            titleGifImage.image = UIImage.gif(name: titleGifName)
             itemsStack.addArrangedSubview(titleGifImage)
             let gifContstraints = [
                 titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
                 titleGifImage.trailingAnchor.constraint(equalTo: itemsStack.trailingAnchor),
-                titleGifImage.heightAnchor.constraint(greaterThanOrEqualToConstant: gifHeight),
+                titleGifImage.heightAnchor.constraint(equalToConstant: gifHeight),
             ]
             NSLayoutConstraint.activate(gifContstraints)
         } else if let titleGifURL = titleGifURL {
@@ -161,7 +161,7 @@ public class PXLItemsView: UIView {
             NSLayoutConstraint.activate(loadingConstraints)
 
             DispatchQueue.global(qos: .userInitiated).async {
-                let gif = UIImage.gifImageWithURL(titleGifURL)
+                let gif = UIImage.gif(url: titleGifURL)
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
                     loadingIndicator.removeFromSuperview()
