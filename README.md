@@ -66,7 +66,7 @@ You can choose one of these two options to add the SDK to your app.
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
     target 'MyApp' do
-      pod 'PixleeSDK', '~> 2.3.0-rc.6' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+      pod 'PixleeSDK', '~> 2.3.0-rc.8' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
     end
     ```
 3. Run Pod install
@@ -77,7 +77,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
     ```
-    github "pixlee/pixlee-ios-sdk" "2.3.0-rc.6"
+    github "pixlee/pixlee-ios-sdk" "2.3.0-rc.8"
     ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
@@ -456,6 +456,13 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 #### PXLPhotoProductView
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
+- You can use and customize the close button on the view with the following methods:
+- `closeButtonImage` : Sets the image for the close button. Default is an close x image
+- `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
+- `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
+- `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
+- `hideCloseButton`: Set to true if you don't need the close button on the view
+
 ```swift
 //Basic Example
 ...
