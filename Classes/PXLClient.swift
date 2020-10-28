@@ -56,6 +56,27 @@ public class PXLClient {
         }
     }
 
+    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
+        return AF.request(apiRequests.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId)).responseDecodable { (response: DataResponse<PXLPhotoDTO, AFError>) in
+            
+            //            if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
+            //                print("responseJson: \(responseJSONString)")
+            //            }
+            
+            switch response.result {
+            case let .success(responseDTO):
+                let photo = self.photoConverter.convertPhotoDTOToPhoto(dto: responseDTO)
+                completionHandler?(photo, nil)
+                
+            case let .failure(error):
+                let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
+                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                completionHandler?(nil, handledError)
+            }
+        }
+    }
+
+    
     public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
         if album.hasNextPage {
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1

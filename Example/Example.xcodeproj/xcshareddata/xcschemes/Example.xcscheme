@@ -57,6 +57,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "PIXLEE_PHOTO_ALBUM_ID"
+            value = "443030367"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "PIXLEE_SECRET_KEY"
             value = "a26e392597fa29af191251fadc"
             isEnabled = "YES">

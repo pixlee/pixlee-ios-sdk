@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 
 class PXLApiRequests {
-    private let baseURL: String = "https://distillery.pixlee.com/api/v2/"
+    private let baseURL: String = "https://distillery.pixlee.com/"
     private let analyticsBaseURL: String = "https://inbound-analytics.pixlee.com/events/"
 
     var apiKey: String?
@@ -69,7 +69,7 @@ class PXLApiRequests {
             fatalError("You need to set the album identifier for this request")
         }
 
-        let url = baseURL + "albums/\(albumIdentifier)/photos"
+        let url = baseURL + "api/v2/albums/\(albumIdentifier)/photos"
         do {
             var params = defaultGetParameters()
 
@@ -102,7 +102,7 @@ class PXLApiRequests {
             fatalError("You need to set the album SKU for this request")
         }
 
-        let url = baseURL + "albums/from_sku"
+        let url = baseURL + "api/v2/albums/from_sku"
         do {
             var params = defaultGetParameters()
             params["sku"] = sku
@@ -131,9 +131,25 @@ class PXLApiRequests {
     }
 
     func getPhotoWithPhotoAlbumId(_ photoAlbumId: String) -> URLRequest {
-        let url = baseURL + "media/\(photoAlbumId)"
+        let url = baseURL + "api/v2/media/\(photoAlbumId)"
         do {
             let params = defaultGetParameters()
+            let request = try urlRequest(.get, url, parameters: params)
+            return request
+        } catch {
+            fatalError("Worng url request")
+        }
+    }
+    
+    func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int?) -> URLRequest {
+        let url = baseURL + "getPhoto"
+        do {
+            var params = defaultGetParameters()
+            params["album_photo_id"] = photoAlbumId
+            if regionId != nil {
+                params["region_id"] = regionId
+            }
+            
             let request = try urlRequest(.get, url, parameters: params)
             return request
         } catch {
@@ -156,7 +172,7 @@ class PXLApiRequests {
 
     func addMedia(_ newMedia: PXLNewImage, progress: @escaping (Double) -> Void, uploadRequest: @escaping (UploadRequest?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
         if let apiKey = apiKey {
-            let url = baseURL + "media/file?api_key=\(apiKey)"
+            let url = baseURL + "api/v2/media/file?api_key=\(apiKey)"
 
             do {
                 let parameters = newMedia.parameters

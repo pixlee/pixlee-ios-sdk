@@ -271,8 +271,26 @@ if let photoAlbumId = photoAlbumId {
         print("New Photo: \(photo.albumPhotoId)")
     }
 }
-
 ```
+If you want to make a PXLPhoto using an album photo id and a region id, you can get it using our API in the SDK like below.
+```swift
+var photoAlbumId = <one of you photo album ids>
+var regionId:Int = <one of your region ids>
+if let photoAlbumId = photoAlbumId {
+    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionid: regionId) { newPhoto, error in
+        guard error == nil else {
+            print("Error during load of image with Id \(String(describing: error))")
+            return
+        }
+        guard let photo = newPhoto else {
+            print("cannot find photo")
+            return
+        }
+        print("New Photo: \(photo.albumPhotoId)")
+    }
+}
+```
+
 
 ## Analytics
 If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
