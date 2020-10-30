@@ -57,7 +57,6 @@ class ListWithTitleViewController: UIViewController {
 }
 
 extension ListWithTitleViewController: PXLItemsViewDelegate {
-
     func cellHeight() -> CGFloat {
         return 550
     }
@@ -68,5 +67,7 @@ extension ListWithTitleViewController: PXLItemsViewDelegate {
 
     func setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto) {
         itemsView.setupView(photoView: photoView, title: "Title", subTitle: "Subtitle", buttonTitle: "buttonTitle")
+        let playImage = UIImage(named: "material-play_arrow-36px", in: Bundle(for: PXLPhotoView.self), with: nil)
+        photoView.configuration = PXLPhotoViewConfiguration(buttonImage: playImage, enableVideoPlayback: false)
     }
 }

@@ -93,25 +93,30 @@ public class PXLPhotoView: UIView {
             if let cropMode = configuration.cropMode {
                 self.cropMode = cropMode
             }
+            initPhoto()
         }
     }
 
     public var photo: PXLPhoto? {
         didSet {
-            guard let photo = photo else { return }
-            if let imageUrl = photo.photoUrl(for: .medium), let imageView = imageView {
-                Nuke.loadImage(with: imageUrl, into: imageView)
-            }
+            initPhoto()
+        }
+    }
 
-            if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
-                imageView?.isHidden = true
-                playVideo(url: videoURL)
-            } else {
-                imageView?.isHidden = false
-                queuePlayer?.pause()
-                if let playerLayer = self.playerLayer {
-                    playerLayer.removeFromSuperlayer()
-                }
+    func initPhoto() {
+        queuePlayer?.pause()
+        guard let photo = photo else { return }
+        if let imageUrl = photo.photoUrl(for: .medium), let imageView = imageView {
+            Nuke.loadImage(with: imageUrl, into: imageView)
+        }
+
+        if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
+            imageView?.isHidden = true
+            playVideo(url: videoURL)
+        } else {
+            imageView?.isHidden = false
+            if let playerLayer = self.playerLayer {
+                playerLayer.removeFromSuperlayer()
             }
         }
     }
