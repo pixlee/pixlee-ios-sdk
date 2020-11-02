@@ -109,7 +109,7 @@ public class PXLPhotoView: UIView {
         if let imageUrl = photo.photoUrl(for: .medium), let imageView = imageView {
             Nuke.loadImage(with: imageUrl, into: imageView)
         }
-
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
             imageView?.isHidden = true
             playVideo(url: videoURL)
@@ -231,6 +231,7 @@ public class PXLPhotoView: UIView {
         titleLabel = UILabel()
         titleLabel?.font = titleFont
         titleLabel?.text = title
+        titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
         titleLabel?.textColor = textColor
 
@@ -271,8 +272,8 @@ public class PXLPhotoView: UIView {
             addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 16).isActive = true
+            NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -16).isActive = true
         }
 
         if let subtitleLabel = subtitleLabel {
