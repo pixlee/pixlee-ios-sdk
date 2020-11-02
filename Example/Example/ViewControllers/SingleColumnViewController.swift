@@ -65,7 +65,9 @@ extension SingleColumnViewController: PXLGridViewDelegate {
     }
 
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
-        cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        if let index = photos.firstIndex(of: photo) {
+            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        }
     }
 
     public func cellHeight() -> CGFloat {
