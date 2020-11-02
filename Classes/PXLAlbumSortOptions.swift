@@ -11,6 +11,7 @@ import Foundation
 public enum PXLAlbumSortType: Int, Codable {
     case none
     case recency
+    case approvedTime
     case random
     case pixleeShares
     case pixleeLikes
@@ -21,6 +22,8 @@ public enum PXLAlbumSortType: Int, Codable {
         switch self {
         case .recency:
             return "recency"
+        case .approvedTime:
+            return "approved_time"
         case .random:
             return "random"
         case .pixleeShares:
