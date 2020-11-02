@@ -35,8 +35,11 @@ class ViewController: UIViewController {
 
 //        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
 //        album.filterOptions = filterOptions
+        
+        var filterOptions = PXLAlbumFilterOptions(contentType: ["video"])
+        album.filterOptions = filterOptions
 
-        album.sortOptions = PXLAlbumSortOptions(sortType: .popularity, ascending: false)
+        album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
         
         // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
         // album.regionId = 2469
@@ -106,7 +109,8 @@ class ViewController: UIViewController {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2]]
+        // listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.photos = photos
         listVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
 
         present(listVC, animated: true, completion: nil)
@@ -116,7 +120,8 @@ class ViewController: UIViewController {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2]]
+        //listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.photos = photos
         listVC.titleGifName = "wavingBear"
 
         present(listVC, animated: true, completion: nil)
@@ -126,7 +131,8 @@ class ViewController: UIViewController {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2]]
+        // listVC.photos = [photos[0], photos[1], photos[2]]
+        listVC.photos = photos
         listVC.listTitle = "Photo list title"
 
         present(listVC, animated: true, completion: nil)
@@ -136,9 +142,7 @@ class ViewController: UIViewController {
         let listVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        if photos.count >= 4 {
-            listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
-        }
+        listVC.photos = photos
 
         present(listVC, animated: true, completion: nil)
     }
@@ -146,14 +150,16 @@ class ViewController: UIViewController {
     @IBAction func loadVideoList(_ sender: Any) {
         let listVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        //listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        listVC.photos = photos
         present(listVC, animated: true, completion: nil)
     }
 
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         let listVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        // listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        listVC.photos = photos
 
         present(listVC, animated: true, completion: nil)
     }
