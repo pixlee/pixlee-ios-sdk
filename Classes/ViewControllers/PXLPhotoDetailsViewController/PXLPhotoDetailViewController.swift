@@ -40,12 +40,9 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    @IBOutlet var durationView: UIView!
     var playerLooper: NSObject?
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
-    var durationLabelUpdateTimer: Timer?
-    @IBOutlet var durationLabel: UILabel!
 
     public var viewModel: PXLPhoto? {
         didSet {
@@ -57,16 +54,12 @@ public class PXLPhotoDetailViewController: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = nil
-            durationLabel.text = nil
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
                 imageView.isHidden = true
-                durationView.isHidden = false
                 playVideo(url: videoURL)
             } else {
-                durationLabelUpdateTimer?.invalidate()
                 imageView.isHidden = false
-                durationView.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -84,12 +77,6 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        durationView.layer.cornerRadius = 10
-        durationView.isHidden = true
-        if #available(iOS 11.0, *) {
-            durationView.layer.maskedCorners = [.layerMinXMaxYCorner]
-        } else {
-        }
     }
 
     func playVideo(url: URL) {
@@ -104,29 +91,7 @@ public class PXLPhotoDetailViewController: UIViewController {
             playerLayer?.frame = imageView.frame
             playerLayer?.videoGravity = .resizeAspectFill
             queuePlayer.play()
-
-            view.bringSubviewToFront(durationView)
-
-            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-                let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
-                if totalTime > 0 {
-                    let remainingTime: Double = totalTime - currentTime
-
-                    let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
-                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
-                }
-            }
         }
-    }
-
-    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
-        guard seconds >= 0, seconds < Double.infinity else { return (0, 0, 0) }
-        let secs = Int(seconds)
-        let hours = secs / 3600
-        let minutes = (secs % 3600) / 60
-        let seconds = (secs % 3600) % 60
-        return (hours, minutes, seconds)
     }
 
     override public func viewDidLayoutSubviews() {
@@ -141,7 +106,6 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         queuePlayer?.pause()
-        durationLabelUpdateTimer?.invalidate()
     }
 
     func setupCollectionView() {
