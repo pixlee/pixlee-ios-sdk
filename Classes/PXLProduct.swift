@@ -42,7 +42,12 @@ public struct PXLProduct {
                 let priceString = "\(mainPrice)"
                 let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
 
-                let currencyString = NSAttributedString(string: "\(decimalSeparator)\(decimalPrice) \(currency)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+                var secondPhase = "\(decimalSeparator)\(decimalPrice) \(currency)"
+                if decimalPrice == mainPrice {
+                    secondPhase = " \(currency)"
+                }
+
+                let currencyString = NSAttributedString(string: secondPhase, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
                 mutableAttributedString.append(currencyString)
 
                 return mutableAttributedString
