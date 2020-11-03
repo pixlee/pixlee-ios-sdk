@@ -7,6 +7,7 @@
 //
 
 import AVKit
+import Gifu
 import Nuke
 import UIKit
 
@@ -50,7 +51,7 @@ public class PXLPhotoProductView: UIViewController {
 
     public var cropMode: PXLPhotoCropMode = .centerFill {
         didSet {
-            imageView.contentMode = cropMode.asImageContentMode
+            gifView.contentMode = cropMode.asImageContentMode
             playerLayer?.videoGravity = cropMode.asVideoContentMode
         }
     }
@@ -206,6 +207,14 @@ public class PXLPhotoProductView: UIViewController {
         adjustMuteImages()
     }
 
+    func setupConfiguration() {
+        gifView.frame = view.bounds
+
+        gifView.contentMode = cropMode.asImageContentMode
+        playerLayer?.videoGravity = cropMode.asVideoContentMode
+        setupButtons()
+    }
+
     func adjustMuteImages() {
         guard let queuePlayer = queuePlayer else { return }
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
@@ -230,7 +239,7 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     @IBOutlet var backgroundImageView: UIImageView!
-    @IBOutlet var imageView: UIImageView!
+    var gifView = Gifu.GIFImageView()
 
     @IBOutlet var productCollectionView: UICollectionView!
 
@@ -244,24 +253,33 @@ public class PXLPhotoProductView: UIViewController {
             guard let viewModel = viewModel else { return }
             _ = view
 
+            setupConfiguration()
             if let imageUrl = viewModel.photoUrl(for: .medium) {
-                Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: gifView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                imageView.isHidden = true
+                gifView.isHidden = true
                 muteButton.isHidden = false
                 playVideo(url: videoURL)
             } else {
                 durationLabelUpdateTimer?.invalidate()
-                imageView.isHidden = false
+                durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
+                }
+                
+                gifView.isHidden = false
                 muteButton.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
                 }
             }
+
+            view.bringSubviewToFront(productCollectionView)
+            view.bringSubviewToFront(backButton)
+            view.bringSubviewToFront(muteButton)
 
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
         }
@@ -272,6 +290,18 @@ public class PXLPhotoProductView: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+
+        view.addSubview(gifView)
+        gifView.frame = view.bounds
+        gifView.translatesAutoresizingMaskIntoConstraints = false
+        let gifConstraints = [
+            gifView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gifView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gifView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gifView.topAnchor.constraint(equalTo: view.topAnchor),
+        ]
+
+        NSLayoutConstraint.activate(gifConstraints)
 
         if let viewModel = viewModel {
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
@@ -290,7 +320,7 @@ public class PXLPhotoProductView: UIViewController {
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
 
-            playerLayer?.frame = imageView.frame
+            playerLayer?.frame = gifView.frame
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
             queuePlayer.play()
@@ -300,35 +330,16 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
-
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-                let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
-                if totalTime > 0 {
-                    let remainingTime: Double = totalTime - currentTime
-
-                    let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
-//                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
-                }
+                let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
             }
         }
     }
 
-    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: UInt64, minutes: UInt64, seconds: UInt64) {
-        guard !(seconds.isNaN || seconds.isInfinite) else {
-            return (0, 0, 0)
-        }
-
-        let secs = UInt64(seconds)
-        let hours = secs / 3600
-        let minutes = (secs % 3600) / 60
-        let seconds = (secs % 3600) % 60
-        return (hours, minutes, seconds)
-    }
-
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerLayer?.frame = imageView.frame
+        gifView.frame = view.bounds
+        playerLayer?.frame = gifView.frame
     }
 
     override public func viewWillAppear(_ animated: Bool) {
