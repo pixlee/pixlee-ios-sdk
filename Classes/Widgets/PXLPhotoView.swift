@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import Gifu
 import Nuke
 import UIKit
 
@@ -59,7 +60,7 @@ public protocol PXLPhotoViewDelegate {
 }
 
 public class PXLPhotoView: UIView {
-    var imageView: UIImageView?
+    var gifView = Gifu.GIFImageView()
     var titleLabel: UILabel?
     var subtitleLabel: UILabel?
     var actionButton: UIButton?
@@ -106,15 +107,15 @@ public class PXLPhotoView: UIView {
     func initPhoto() {
         queuePlayer?.pause()
         guard let photo = photo else { return }
-        if let imageUrl = photo.photoUrl(for: .medium), let imageView = imageView {
-            Nuke.loadImage(with: imageUrl, into: imageView)
+        if let imageUrl = photo.photoUrl(for: .medium) {
+            Nuke.loadImage(with: imageUrl, into: gifView)
         }
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        backgroundColor = UIColor.black.withAlphaComponent(0.2)
         if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
-            imageView?.isHidden = true
+            gifView.isHidden = true
             playVideo(url: videoURL)
         } else {
-            imageView?.isHidden = false
+            gifView.isHidden = false
             if let playerLayer = self.playerLayer {
                 playerLayer.removeFromSuperlayer()
             }
@@ -132,10 +133,10 @@ public class PXLPhotoView: UIView {
             queuePlayer.isMuted = true
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
-            layer.insertSublayer(playerLayer!, above: imageView?.layer)
-            if let imageFrame = imageView?.frame {
-                playerLayer?.frame = imageFrame
-            }
+            layer.insertSublayer(playerLayer!, above: gifView.layer)
+
+            playerLayer?.frame = gifView.frame
+
             playerLayer?.videoGravity = .resizeAspectFill
             queuePlayer.play()
         }
@@ -161,7 +162,7 @@ public class PXLPhotoView: UIView {
 
     var cropMode: PXLPhotoCropMode {
         didSet {
-            imageView?.contentMode = cropMode.asImageContentMode
+            gifView.contentMode = cropMode.asImageContentMode
         }
     }
 
@@ -218,15 +219,14 @@ public class PXLPhotoView: UIView {
 
     override public func layoutSubviews() {
         super.layoutSubviews()
-        if let imageFrame = imageView?.frame {
-            playerLayer?.frame = imageFrame
-        }
+
+        playerLayer?.frame = gifView.frame
     }
 
     public var delegate: PXLPhotoViewDelegate?
 
     func prepareViews() {
-        imageView = UIImageView(frame: frame)
+        gifView.frame = bounds
 
         titleLabel = UILabel()
         titleLabel?.font = titleFont
@@ -257,16 +257,15 @@ public class PXLPhotoView: UIView {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         addGestureRecognizer(tapRecognizer)
 
-        if let imageView = imageView {
-            imageView.contentMode = contentMode
-
-            addSubview(imageView)
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-            NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
-        }
+        addSubview(gifView)
+        gifView.translatesAutoresizingMaskIntoConstraints = false
+        let gifConstraints = [
+            gifView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            gifView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            gifView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            gifView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+        ]
+        NSLayoutConstraint.activate(gifConstraints)
 
         if let titleLabel = titleLabel {
             addSubview(titleLabel)

@@ -35,20 +35,20 @@ class ViewController: UIViewController {
 
 //        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
 //        album.filterOptions = filterOptions
-        
-        var filterOptions = PXLAlbumFilterOptions(contentType: ["video"])
+
+        let filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
         album.filterOptions = filterOptions
 
         album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-        
+
         // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
         // album.regionId = 2469
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
         // Get one photo example
         var photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-        var regionId:Int = 2469// add a region id if you have one
-        
+        var regionId: Int = 2469 // add a region id if you have one
+
         if let photoAlbumId = photoAlbumId {
             _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId) { newPhoto, error in
                 guard error == nil else {
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
 
         let photos = getSamplePhotos()
-        //listVC.photos = [photos[0], photos[1], photos[2]]
+        // listVC.photos = [photos[0], photos[1], photos[2]]
         listVC.photos = photos
         listVC.titleGifName = "wavingBear"
 
@@ -150,7 +150,7 @@ class ViewController: UIViewController {
     @IBAction func loadVideoList(_ sender: Any) {
         let listVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        //listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
+        // listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
         listVC.photos = photos
         present(listVC, animated: true, completion: nil)
     }

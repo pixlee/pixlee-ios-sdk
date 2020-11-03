@@ -5,6 +5,8 @@
 //  Created by Csaba Toth on 2020. 10. 23..
 //
 
+import Gifu
+import Nuke
 import UIKit
 
 public struct PXLGridHeaderSettings {
@@ -40,11 +42,9 @@ class PXLGridHeaderView: UICollectionReusableView {
         }
     }
 
-    var titleGifImage = UIImageView()
+    var titleGifImage = Gifu.GIFImageView()
     let loadingIndicator = UIActivityIndicatorView(style: .gray)
     var titleLabel = UILabel()
-
-    private var cachedGif: UIImage?
 
     override func prepareForReuse() {
         subviews.forEach { view in
@@ -65,33 +65,25 @@ class PXLGridHeaderView: UICollectionReusableView {
     func customInit() {
         guard let viewModel = viewModel else { return }
 
+
         titleGifImage.contentMode = viewModel.gifContentMode
         titleGifImage.clipsToBounds = true
         clipsToBounds = true
 
         if let titleGifName = viewModel.titleGifName {
-            titleGifImage.image = UIImage.gif(name: titleGifName)
+            titleGifImage.animate(withGIFNamed: titleGifName)
             addSubview(titleGifImage)
 
-        } else if let titleGifURL = viewModel.titleGifUrl, self.cachedGif == nil {
+        } else if let titleGifURL = viewModel.titleGifUrl {
             loadingIndicator.startAnimating()
 
-            self.addSubview(loadingIndicator)
+            addSubview(loadingIndicator)
 
-            DispatchQueue.global(qos: .userInitiated).async {
-                let gif = UIImage.gif(url: titleGifURL)
-                // Bounce back to the main thread to update the UI
-                DispatchQueue.main.async {
-                    self.cachedGif = gif
-                    self.loadingIndicator.removeFromSuperview()
-                    self.addSubview(self.titleGifImage)
-
-                    self.titleGifImage.image = gif
-                }
-            }
-        } else if let downloadedGif = cachedGif {
-            titleGifImage.image = downloadedGif
-            addSubview(titleGifImage)
+            Nuke.loadImage(with: URL(string: titleGifURL)!, into: titleGifImage, completion: {
+                _ in
+                self.loadingIndicator.removeFromSuperview()
+                self.addSubview(self.titleGifImage)
+            })
         } else if viewModel.title != nil {
             translatesAutoresizingMaskIntoConstraints = false
             titleLabel.font = viewModel.titleFont

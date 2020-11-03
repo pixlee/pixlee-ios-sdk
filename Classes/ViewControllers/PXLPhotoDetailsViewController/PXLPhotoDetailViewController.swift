@@ -9,6 +9,7 @@
 import AVKit
 import Nuke
 import SafariServices
+import Gifu
 import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
@@ -36,6 +37,7 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
+    var gifView = Gifu.GIFImageView()
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var productCollectionView: UICollectionView!
@@ -50,16 +52,16 @@ public class PXLPhotoDetailViewController: UIViewController {
             _ = view
 
             if let imageUrl = viewModel.photoUrl(for: .medium) {
-                Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: gifView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = nil
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                imageView.isHidden = true
+                gifView.isHidden = true
                 playVideo(url: videoURL)
             } else {
-                imageView.isHidden = false
+                gifView.isHidden = false
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -77,6 +79,9 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        self.view.addSubview(gifView)
+        gifView.frame = imageView.frame
+        imageView.isHidden = true
     }
 
     func playVideo(url: URL) {
@@ -88,7 +93,7 @@ public class PXLPhotoDetailViewController: UIViewController {
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
-            playerLayer?.frame = imageView.frame
+            playerLayer?.frame = gifView.frame
             playerLayer?.videoGravity = .resizeAspectFill
             queuePlayer.play()
         }
@@ -96,7 +101,8 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerLayer?.frame = imageView.frame
+        gifView.frame = imageView.frame
+        playerLayer?.frame = gifView.frame
     }
 
     override public func viewWillAppear(_ animated: Bool) {

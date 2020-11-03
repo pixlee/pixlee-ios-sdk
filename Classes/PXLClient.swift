@@ -8,9 +8,12 @@
 
 import Alamofire
 import Foundation
+import Nuke
 
 public class PXLClient {
-    public init() {}
+    public init() {
+        ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+    }
     public static var sharedClient = PXLClient()
 
     private let apiRequests = PXLApiRequests()

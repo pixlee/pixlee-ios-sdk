@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Nuke
+import Gifu
 
 public protocol PXLItemsViewDelegate {
     func cellHeight() -> CGFloat
@@ -74,7 +76,7 @@ public class PXLItemsView: UIView {
     }
 
     let titleLabel = UILabel()
-    let titleGifImage = UIImageView()
+    var titleGifImage = Gifu.GIFImageView()
     let scrollView = UIScrollView()
 
     private var itemHeight: CGFloat {
@@ -98,6 +100,7 @@ public class PXLItemsView: UIView {
     }
 
     private func resetData() {
+
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         let scrollViewConstraints = [
@@ -134,7 +137,7 @@ public class PXLItemsView: UIView {
         titleGifImage.clipsToBounds = true
 
         if let titleGifName = titleGifName {
-            titleGifImage.image = UIImage.gif(name: titleGifName)
+            titleGifImage.animate(withGIFNamed: titleGifName)
             itemsStack.addArrangedSubview(titleGifImage)
             let gifContstraints = [
                 titleGifImage.leadingAnchor.constraint(equalTo: itemsStack.leadingAnchor),
@@ -161,23 +164,19 @@ public class PXLItemsView: UIView {
 
             NSLayoutConstraint.activate(loadingConstraints)
 
-            DispatchQueue.global(qos: .userInitiated).async {
-                let gif = UIImage.gif(url: titleGifURL)
-                // Bounce back to the main thread to update the UI
-                DispatchQueue.main.async {
-                    loadingIndicator.removeFromSuperview()
-                    gifContainer.addSubview(self.titleGifImage)
-                    self.titleGifImage.translatesAutoresizingMaskIntoConstraints = false
-                    let gifContstraints = [
-                        self.titleGifImage.leadingAnchor.constraint(equalTo: gifContainer.leadingAnchor),
-                        self.titleGifImage.trailingAnchor.constraint(equalTo: gifContainer.trailingAnchor),
-                        self.titleGifImage.bottomAnchor.constraint(equalTo: gifContainer.bottomAnchor),
-                        self.titleGifImage.topAnchor.constraint(equalTo: gifContainer.topAnchor),
-                    ]
-                    NSLayoutConstraint.activate(gifContstraints)
-                    self.titleGifImage.image = gif
-                }
-            }
+            Nuke.loadImage(with: URL(string: titleGifURL)!, into: titleGifImage, completion: {
+                _ in
+                loadingIndicator.removeFromSuperview()
+                gifContainer.addSubview(self.titleGifImage)
+                self.titleGifImage.translatesAutoresizingMaskIntoConstraints = false
+                let gifContstraints = [
+                    self.titleGifImage.leadingAnchor.constraint(equalTo: gifContainer.leadingAnchor),
+                    self.titleGifImage.trailingAnchor.constraint(equalTo: gifContainer.trailingAnchor),
+                    self.titleGifImage.bottomAnchor.constraint(equalTo: gifContainer.bottomAnchor),
+                    self.titleGifImage.topAnchor.constraint(equalTo: gifContainer.topAnchor),
+                ]
+                NSLayoutConstraint.activate(gifContstraints)
+            })
 
         } else if listTitle != nil {
             let titleContainer = UIView()
