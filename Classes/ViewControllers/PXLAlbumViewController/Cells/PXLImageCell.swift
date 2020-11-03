@@ -7,6 +7,7 @@
 //
 
 import Nuke
+import Gifu
 import UIKit
 
 protocol PXLImageCellDelegate {
@@ -16,11 +17,12 @@ protocol PXLImageCellDelegate {
 class PXLImageCell: UICollectionViewCell {
     static let defaultIdentifier = "ImageCell"
 
-    @IBOutlet var imageView: UIImageView!
+    var gifView = Gifu.GIFImageView()
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var playButton: UIButton!
 
+    @IBOutlet weak var imageContent: UIView!
     var delegate: PXLImageCellDelegate?
 
     var viewModel: PXLPhoto? {
@@ -28,8 +30,20 @@ class PXLImageCell: UICollectionViewCell {
             guard let viewModel = viewModel else {
                 return
             }
+            self.imageContent.insertSubview(gifView, at: 0)
+            gifView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let gifConstraints = [
+                gifView.leadingAnchor.constraint(equalTo: self.imageContent.leadingAnchor, constant: 8),
+                gifView.trailingAnchor.constraint(equalTo: self.imageContent.trailingAnchor, constant: -8),
+                gifView.bottomAnchor.constraint(equalTo: self.imageContent.bottomAnchor, constant: -8),
+                gifView.topAnchor.constraint(equalTo: self.imageContent.topAnchor, constant: 8),
+                gifView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
+            ]
+
+            NSLayoutConstraint.activate(gifConstraints)
             if let imageUrl = viewModel.photoUrl(for: .medium) {
-                Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: gifView)
             }
             if let userName = viewModel.username {
                 authorLabel.text = "@\(userName)"
