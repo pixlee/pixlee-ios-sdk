@@ -260,10 +260,10 @@ public class PXLPhotoView: UIView {
         addSubview(gifView)
         gifView.translatesAutoresizingMaskIntoConstraints = false
         let gifConstraints = [
-            gifView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            gifView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            gifView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            gifView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            gifView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            gifView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            gifView.topAnchor.constraint(equalTo: topAnchor),
+            gifView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
         NSLayoutConstraint.activate(gifConstraints)
 
