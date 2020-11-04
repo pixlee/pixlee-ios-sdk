@@ -9,9 +9,9 @@ import AVFoundation
 import UIKit
 
 public enum PXLPhotoCropMode {
-    case centerFill
-    case centerFit
-    case resizeAspect
+    case centerFill // Preserve aspect ratio; fill layer bounds.
+    case centerFit // Preserve aspect ratio; fit within layer bounds.
+    case resize // Stretch to fill layer bounds.
 
     public var asImageContentMode: UIView.ContentMode {
         switch self {
@@ -19,7 +19,7 @@ public enum PXLPhotoCropMode {
             return UIView.ContentMode.scaleAspectFill
         case .centerFit:
             return UIView.ContentMode.scaleAspectFit
-        case .resizeAspect:
+        case .resize:
             return UIView.ContentMode.scaleToFill
         }
     }
@@ -27,11 +27,11 @@ public enum PXLPhotoCropMode {
     public var asVideoContentMode: AVLayerVideoGravity {
         switch self {
         case .centerFill:
-            return AVLayerVideoGravity.resize
+            return AVLayerVideoGravity.resizeAspectFill
         case .centerFit:
             return AVLayerVideoGravity.resizeAspect
-        case .resizeAspect:
-            return AVLayerVideoGravity.resizeAspectFill
+        case .resize:
+            return AVLayerVideoGravity.resize
         }
     }
 }
