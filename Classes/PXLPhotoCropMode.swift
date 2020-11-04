@@ -27,11 +27,11 @@ public enum PXLPhotoCropMode {
     public var asVideoContentMode: AVLayerVideoGravity {
         switch self {
         case .centerFill:
-            return AVLayerVideoGravity.resizeAspectFill
-        case .centerFit:
             return AVLayerVideoGravity.resize
-        case .resizeAspect:
+        case .centerFit:
             return AVLayerVideoGravity.resizeAspect
+        case .resizeAspect:
+            return AVLayerVideoGravity.resizeAspectFill
         }
     }
 }
