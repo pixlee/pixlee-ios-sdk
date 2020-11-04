@@ -1,6 +1,6 @@
 {
   "name": "PixleeSDK",
-  "version": "2.3.0-rc.10",
+  "version": "2.4.0-rc.1",
   "summary": "An API Wrapper for Pixlee API",
   "description": "This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.",
   "homepage": "https://github.com/pixlee/pixlee-ios-sdk.git",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/pixlee/pixlee-ios-sdk.git",
-    "tag": "2.3.0-rc.10"
+    "tag": "2.4.0-rc.1"
   },
   "platforms": {
     "ios": "11.0"
@@ -26,7 +26,7 @@
       "~> 5.0"
     ],
     "Nuke": [
-      "~> 9.0"
+      "~> 8.0"
     ],
     "Gifu": [
 

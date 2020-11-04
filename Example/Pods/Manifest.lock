@@ -1,11 +1,11 @@
 PODS:
   - Alamofire (5.3.0)
   - Gifu (3.3)
-  - Nuke (9.1.2)
-  - PixleeSDK (2.3.0-rc.10):
+  - Nuke (8.4.1)
+  - PixleeSDK (2.4.0-rc.1):
     - Alamofire (~> 5.0)
     - Gifu
-    - Nuke (~> 9.0)
+    - Nuke (~> 8.0)
 
 DEPENDENCIES:
   - PixleeSDK (from `../`)
@@ -23,8 +23,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
   Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
-  Nuke: dd2e6be6a34c042a7861e190632781d11f253026
-  PixleeSDK: 101b8977012f6fc6f3046f387a34e522b2dc2b2f
+  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
+  PixleeSDK: 1d7f914a4c013a87f29e4aa46657ca134f786a7c
 
 PODFILE CHECKSUM: 9fcadd8d6a95fd37a19efc0937c316d7185eea5a
 

@@ -33,6 +33,6 @@ Pod::Spec.new do |spec|
     
   spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
   spec.dependency 'Alamofire', '~> 5.0'
-  spec.dependency 'Nuke', '~> 9.0'
+  spec.dependency 'Nuke', '~> 8.0'
   spec.dependency 'Gifu'
 end

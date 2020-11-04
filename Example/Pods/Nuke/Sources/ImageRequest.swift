@@ -13,7 +13,7 @@ public struct ImageRequest: CustomStringConvertible {
 
     /// The `URLRequest` used for loading an image.
     public var urlRequest: URLRequest {
-        get { ref.resource.urlRequest }
+        get { return ref.resource.urlRequest }
         set {
             mutate {
                 $0.resource = Resource.urlRequest(newValue)
@@ -38,26 +38,26 @@ public struct ImageRequest: CustomStringConvertible {
         }
 
         public static func < (lhs: Priority, rhs: Priority) -> Bool {
-            lhs.rawValue < rhs.rawValue
+            return lhs.rawValue < rhs.rawValue
         }
     }
 
     /// The relative priority of the operation. The priority affects the order in which the image
     /// requests are executed.`.normal` by default.
     public var priority: Priority {
-        get { ref.priority }
+        get { return ref.priority }
         set { mutate { $0.priority = newValue } }
     }
 
     /// The request options. See `ImageRequestOptions` for more info.
     public var options: ImageRequestOptions {
-        get { ref.options }
+        get { return ref.options }
         set { mutate { $0.options = newValue } }
     }
 
     /// Processor to be applied to the image. `nil` by default.
     public var processors: [ImageProcessing] {
-        get { ref.processors }
+        get { return ref.processors }
         set { mutate { $0.processors = newValue } }
     }
 
@@ -73,8 +73,8 @@ public struct ImageRequest: CustomStringConvertible {
     ///
     /// ```swift
     /// let request = ImageRequest(
-    ///     url: URL(string: "http://...")!,
-    ///     processors: [ImageProcessors.Resize(size: imageView.bounds.size)],
+    ///     url: URL(string: "http://..."),
+    ///     processors: [ImageProcessor.Resize(size: imageView.bounds.size)],
     ///     priority: .high
     /// )
     /// ```
@@ -98,8 +98,8 @@ public struct ImageRequest: CustomStringConvertible {
     ///
     /// ```swift
     /// let request = ImageRequest(
-    ///     url: URLRequest(url: URL(string: "http://...")!),
-    ///     processors: [ImageProcessors.Resize(size: imageView.bounds.size)],
+    ///     url: URL(string: "http://..."),
+    ///     processors: [ImageProcessor.Resize(size: imageView.bounds.size)],
     ///     priority: .high
     /// )
     /// ```
@@ -149,7 +149,7 @@ public struct ImageRequest: CustomStringConvertible {
         }
 
         var preferredURLString: String {
-            options.filteredURL ?? urlString ?? ""
+            return options.filteredURL ?? urlString ?? ""
         }
     }
 
@@ -167,8 +167,10 @@ public struct ImageRequest: CustomStringConvertible {
 
         var description: String {
             switch self {
-            case let .url(url): return "\(url)"
-            case let .urlRequest(urlRequest): return "\(urlRequest)"
+            case let .url(url):
+                return "\(url)"
+            case let .urlRequest(urlRequest):
+                return "\(urlRequest)"
             }
         }
     }
@@ -224,28 +226,28 @@ public struct ImageRequestOptions {
     /// ```
     public var filteredURL: String?
 
-    /// The **memory** cache key for final processed images. Set if you are not
-    /// happy with the default behavior.
+    /// Returns a key that compares requests with regards to caching images.
     ///
-    /// By default, two requests are considered equivalent if they have the same
-    /// URLs and the same processors.
+    /// The default key considers two requests equivalent it they have the same
+    /// `URLRequests` and the same processors. `URLRequests` are compared
+    /// just by their `URLs`.
     public var cacheKey: AnyHashable?
 
     /// Returns a key that compares requests with regards to loading images.
     ///
-    /// The default key considers two requests equivalent if they have the same
+    /// The default key considers two requests equivalent it they have the same
     /// `URLRequests` and the same processors. `URLRequests` are compared by
     /// their `URL`, `cachePolicy`, and `allowsCellularAccess` properties.
     public var loadKey: AnyHashable?
 
     /// Custom info passed alongside the request.
-    public var userInfo: [AnyHashable: Any]
+    public var userInfo: Any?
 
     public init(memoryCacheOptions: MemoryCacheOptions = .init(),
                 filteredURL: String? = nil,
                 cacheKey: AnyHashable? = nil,
                 loadKey: AnyHashable? = nil,
-                userInfo: [AnyHashable: Any] = [:]) {
+                userInfo: Any? = nil) {
         self.memoryCacheOptions = memoryCacheOptions
         self.filteredURL = filteredURL
         self.cacheKey = cacheKey
@@ -261,28 +263,26 @@ extension ImageRequest {
     // MARK: - Cache Keys
 
     /// A key for processed image in memory cache.
-    func makeCacheKeyForFinalImage() -> ImageRequest.CacheKey {
-        CacheKey(request: self)
+    func makeCacheKeyForProcessedImage() -> ImageRequest.CacheKey {
+        return CacheKey(request: self)
     }
 
     /// A key for processed image data in disk cache.
-    func makeCacheKeyForFinalImageData() -> String {
-        ref.preferredURLString + ImageProcessors.Composition(processors).identifier
+    func makeCacheKeyForProcessedImageData() -> String {
+        return ref.preferredURLString + ImageProcessor.Composition(processors).identifier
     }
 
     /// A key for original image data in disk cache.
     func makeCacheKeyForOriginalImageData() -> String {
-        ref.preferredURLString
+        return ref.preferredURLString
     }
 
     // MARK: - Load Keys
 
     /// A key for deduplicating operations for fetching the processed image.
-    func makeLoadKeyForFinalImage() -> AnyHashable {
-        LoadKeyForProcessedImage(
-            cacheKey: makeCacheKeyForFinalImage(),
-            loadKey: makeLoadKeyForOriginalImage()
-        )
+    func makeLoadKeyForProcessedImage() -> AnyHashable {
+        return LoadKeyForProcessedImage(cacheKey: makeCacheKeyForProcessedImage(),
+                                        loadKey: makeLoadKeyForOriginalImage())
     }
 
     /// A key for deduplicating operations for fetching the original image.

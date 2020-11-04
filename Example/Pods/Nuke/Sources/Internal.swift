@@ -9,8 +9,7 @@ import os
 
 extension NSLock {
     func sync<T>(_ closure: () -> T) -> T {
-        lock()
-        defer { unlock() }
+        lock(); defer { unlock() }
         return closure()
     }
 }
@@ -60,10 +59,9 @@ final class RateLimiter {
         isExecutingPendingTasks = true
         // Compute a delay such that by the time the closure is executed the
         // bucket is refilled to a point that is able to execute at least one
-        // pending task. With a rate of 80 tasks we expect a refill every ~26 ms
-        // or as soon as the new tasks are added.
-        let delay = Int(2.1 * (1000 / bucket.rate)) // 14 ms for rate 80 (default)
-        let bounds = min(100, max(15, delay))
+        // pending task. With a rate of 100 tasks we expect a refill every 10 ms.
+        let delay = Int(1.15 * (1000 / bucket.rate)) // 14 ms for rate 80 (default)
+        let bounds = max(100, min(5, delay)) // Make the delay is reasonable
         queue.asyncAfter(deadline: .now() + .milliseconds(bounds), execute: executePendingTasks)
     }
 
@@ -118,34 +116,34 @@ private final class TokenBucket {
 // MARK: - Operation
 
 final class Operation: Foundation.Operation {
-    private var _isExecuting = Atomic(false)
-    private var _isFinished = Atomic(false)
+    private var _isExecuting = false
+    private var _isFinished = false
     private var isFinishCalled = Atomic(false)
 
     override var isExecuting: Bool {
         set {
-            guard _isExecuting.value != newValue else {
+            guard _isExecuting != newValue else {
                 fatalError("Invalid state, operation is already (not) executing")
             }
             willChangeValue(forKey: "isExecuting")
-            _isExecuting.value = newValue
+            _isExecuting = newValue
             didChangeValue(forKey: "isExecuting")
         }
         get {
-            _isExecuting.value
+            return _isExecuting
         }
     }
     override var isFinished: Bool {
         set {
-            guard !_isFinished.value else {
+            guard !_isFinished else {
                 fatalError("Invalid state, operation is already finished")
             }
             willChangeValue(forKey: "isFinished")
-            _isFinished.value = newValue
+            _isFinished = newValue
             didChangeValue(forKey: "isFinished")
         }
         get {
-            _isFinished.value
+            return _isFinished
         }
     }
 
@@ -189,7 +187,7 @@ final class LinkedList<Element> {
     }
 
     var isEmpty: Bool {
-        last == nil
+        return last == nil
     }
 
     /// Adds an element to the end of the list.
@@ -303,7 +301,7 @@ struct ResumableData {
     // Check if the server decided to resume the response.
     static func isResumedResponse(_ response: URLResponse) -> Bool {
         // "206 Partial Content" (server accepted "If-Range")
-        (response as? HTTPURLResponse)?.statusCode == 206
+        return (response as? HTTPURLResponse)?.statusCode == 206
     }
 
     // MARK: Storing Resumable Data
@@ -446,7 +444,7 @@ final class Log {
 
     @available(OSX 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *)
     var signpostID: OSSignpostID {
-        OSSignpostID(log: log, object: self)
+        return OSSignpostID(log: log, object: self)
     }
 }
 
@@ -454,11 +452,11 @@ private let byteFormatter = ByteCountFormatter()
 
 extension Log {
     static func bytes(_ count: Int) -> String {
-        bytes(Int64(count))
+        return bytes(Int64(count))
     }
 
     static func bytes(_ count: Int64) -> String {
-        byteFormatter.string(fromByteCount: count)
+        return byteFormatter.string(fromByteCount: count)
     }
 }
 

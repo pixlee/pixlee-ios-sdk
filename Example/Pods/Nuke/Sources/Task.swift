@@ -60,7 +60,9 @@ final class Task<Value, Error>: TaskSubscriptionDelegate {
     }
 
     /// Publishes the results of the task.
-    var publisher: Publisher { Publisher(task: self) }
+    var publisher: Publisher {
+        return Publisher(task: self)
+    }
 
     /// Initializes the task with the `starter`.
     /// - parameter starter: The closure which gets called as soon as the first
@@ -73,7 +75,7 @@ final class Task<Value, Error>: TaskSubscriptionDelegate {
     // MARK: - Managing Observers
 
     /// - notes: Returns `nil` if the task was disposed.
-    private func subscribe(priority: TaskPriority = .normal, _ observer: @escaping (Event) -> Void) -> TaskSubscription? {
+    fileprivate func subscribe(priority: TaskPriority = .normal, _ observer: @escaping (Event) -> Void) -> TaskSubscription? {
         guard !isDisposed else { return nil }
 
         nextSubscriptionId += 1
@@ -85,9 +87,6 @@ final class Task<Value, Error>: TaskSubscriptionDelegate {
 
         starter?(self)
         starter = nil
-
-        // The task may have been completed synchronously by `starter`.
-        guard !isDisposed else { return nil }
 
         return subscription
     }
@@ -180,7 +179,7 @@ extension Task {
         /// Attaches the subscriber to the task.
         /// - notes: Returns `nil` if the task is already disposed.
         func subscribe(priority: TaskPriority = .normal, _ observer: @escaping (Event) -> Void) -> TaskSubscription? {
-            task.subscribe(priority: priority, observer)
+            return task.subscribe(priority: priority, observer)
         }
 
         /// Attaches the subscriber to the task. Automatically forwards progress
@@ -280,13 +279,10 @@ final class TaskPool<Value, Error> {
         self.isDeduplicationEnabled = isDeduplicationEnabled
     }
 
-    /// Creates a task with the given key. If there is an outstanding task with
-    /// the given key in the pool, the existing task is returned. Tasks are
-    /// automatically removed from the pool when they are disposed.
-    func task(withKey key: AnyHashable, starter: @escaping (Task<Value, Error>) -> Void) -> Task<Value, Error> {
-        task(withKey: key) {
+    func publisher(withKey key: AnyHashable, starter: @escaping (Task<Value, Error>) -> Void) -> Task<Value, Error>.Publisher {
+        return task(withKey: key) {
             Task<Value, Error>(starter: starter)
-        }
+        }.publisher
     }
 
     private func task(withKey key: AnyHashable, _ make: () -> Task<Value, Error>) -> Task<Value, Error> {

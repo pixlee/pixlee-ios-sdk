@@ -4,15 +4,12 @@
 
 import Foundation
 
-/// Prefetches and caches image to eliminate delays when requesting the same
-/// images later.
+/// Prefetches and caches image in order to eliminate delays when you request 
+/// individual images later.
 ///
 /// To start preheating call `startPreheating(with:)` method. When you
-/// need an individual image, just start loading them, the pipeline will
-/// automatically reuse the existing tasks and add new obsevers to them instead
-/// of starting the new downloads.
-///
-/// Preheater automatically cancels all of the outstanding tasks when deallocated.
+/// need an individual image just start loading an image using `Loading` object.
+/// When preheating is no longer necessary call `stopPreheating(with:)` method.
 ///
 /// All `Preheater` methods are thread-safe.
 public final class ImagePreheater {
@@ -46,15 +43,6 @@ public final class ImagePreheater {
         self.preheatQueue.maxConcurrentOperationCount = maxConcurrentRequestCount
     }
 
-    deinit {
-        let tasks = self.tasks.values // Make sure we don't retain self
-        queue.async {
-            for task in tasks {
-                task.cancel()
-            }
-        }
-    }
-
     /// Starte preheating images for the given urls.
     /// - note: See `func startPreheating(with requests: [ImageRequest])` for more info
     public func startPreheating(with urls: [URL]) {
@@ -75,13 +63,13 @@ public final class ImagePreheater {
     }
 
     private func _startPreheating(with request: ImageRequest) {
-        let key = request.makeLoadKeyForFinalImage()
+        let key = request.makeLoadKeyForProcessedImage()
 
         guard tasks[key] == nil else {
             return // Already started prefetching
         }
 
-        guard pipeline.configuration.imageCache?[request] == nil else {
+        guard pipeline.configuration.imageCache?.cachedResponse(for: request) == nil else {
             return // The image is already in memory cache
         }
 
@@ -151,7 +139,7 @@ public final class ImagePreheater {
     }
 
     private func _stopPreheating(with request: ImageRequest) {
-        if let task = tasks[request.makeLoadKeyForFinalImage()] {
+        if let task = tasks[request.makeLoadKeyForProcessedImage()] {
             tasks[task.key] = nil
             task.cancel()
         }
