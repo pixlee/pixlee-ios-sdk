@@ -13,12 +13,13 @@ public class PXLPhotoListViewCell: UITableViewCell {
 
     public func setupCell(photo: PXLPhoto, title: String, subtitle: String, buttonTitle: String, configuration: PXLPhotoViewConfiguration = PXLPhotoViewConfiguration(), delegate: PXLPhotoViewDelegate? = nil) {
         photoModel = photo
+        photoView.delegate = delegate
+        photoView.configuration = configuration
+        
         photoView.photo = photo
         photoView.title = title
         photoView.subtitle = subtitle
         photoView.buttonTitle = buttonTitle
-        photoView.configuration = configuration.changeEnableVideoPlayback(false)
-        photoView.delegate = delegate
         photoView.stopVideo()
     }
     

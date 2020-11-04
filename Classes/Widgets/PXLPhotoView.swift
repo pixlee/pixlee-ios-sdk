@@ -137,7 +137,7 @@ public class PXLPhotoView: UIView {
 
             playerLayer?.frame = gifView.frame
 
-            playerLayer?.videoGravity = .resizeAspectFill
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
             queuePlayer.play()
         }
     }
@@ -163,6 +163,7 @@ public class PXLPhotoView: UIView {
     var cropMode: PXLPhotoCropMode {
         didSet {
             gifView.contentMode = cropMode.asImageContentMode
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
         }
     }
 

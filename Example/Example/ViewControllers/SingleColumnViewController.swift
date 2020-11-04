@@ -66,7 +66,7 @@ extension SingleColumnViewController: PXLGridViewDelegate {
 
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = photos.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFill), delegate: self)
         }
     }
 
