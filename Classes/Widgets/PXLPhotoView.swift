@@ -60,6 +60,7 @@ public protocol PXLPhotoViewDelegate {
 }
 
 public class PXLPhotoView: UIView {
+    var backgroundImageView: UIImageView!
     var gifView = Gifu.GIFImageView()
     var titleLabel: UILabel?
     var subtitleLabel: UILabel?
@@ -109,6 +110,7 @@ public class PXLPhotoView: UIView {
         guard let photo = photo else { return }
         if let imageUrl = photo.photoUrl(for: .medium) {
             Nuke.loadImage(with: imageUrl, into: gifView)
+            Nuke.loadImage(with: imageUrl, into: backgroundImageView)
         }
         backgroundColor = UIColor.black.withAlphaComponent(0.2)
         if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
@@ -225,8 +227,10 @@ public class PXLPhotoView: UIView {
     }
 
     public var delegate: PXLPhotoViewDelegate?
+    private var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
     func prepareViews() {
+        backgroundImageView = UIImageView()
         gifView.frame = bounds
 
         titleLabel = UILabel()
@@ -257,6 +261,26 @@ public class PXLPhotoView: UIView {
         })
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         addGestureRecognizer(tapRecognizer)
+        
+        addSubview(backgroundImageView)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        let bgConstraints = [
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(bgConstraints)
+        
+        self.addSubview(blurView)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        let blurConstraints = [
+            blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            blurView.topAnchor.constraint(equalTo: topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(blurConstraints)
 
         addSubview(gifView)
         gifView.translatesAutoresizingMaskIntoConstraints = false
@@ -267,6 +291,8 @@ public class PXLPhotoView: UIView {
             gifView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
         NSLayoutConstraint.activate(gifConstraints)
+        
+        
 
         if let titleLabel = titleLabel {
             addSubview(titleLabel)
