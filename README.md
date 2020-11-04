@@ -472,6 +472,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 ```
 
 #### PXLPhotoProductView
+<img src="doc/gif/PXLPhotoProductView.gif" width="20%">
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
 - You can use and customize the close button on the view with the following methods:
@@ -539,6 +540,10 @@ Configuration options:
 ```
 
 #### PXLGridView
+|one photo in a row|two photos in a row|
+|------|---|
+|<img src="doc/gif/PXLGridView.gif" width="50%">|<img src="doc/gif/PXLGridViewMulti.gif" width="50%">|
+
 Grid view with lots of customizable features, where the cells are PXLPhotoViews. You have to implement the `PXLGridViewDelegate` to customize the grid.
 Customization options
 - `cellHeight`: Height of the cells
