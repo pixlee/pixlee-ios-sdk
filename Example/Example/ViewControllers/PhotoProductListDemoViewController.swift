@@ -26,6 +26,7 @@ class PhotoProductListDemoViewController: UIViewController {
         }
         photos.forEach { photo in
             let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+            widget.cropMode = .centerFill
             widget.closeButtonBackgroundColor = .gray
             widget.closeButtonCornerRadius = 22
             widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
