@@ -259,8 +259,9 @@ public class PXLPhotoProductView: UIViewController {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
 
+            gifView.alpha = 1
+
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                gifView.isHidden = true
                 muteButton.isHidden = false
                 playVideo(url: videoURL)
             } else {
@@ -268,8 +269,7 @@ public class PXLPhotoProductView: UIViewController {
                 durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                     let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
                 }
-                
-                gifView.isHidden = false
+
                 muteButton.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
@@ -289,6 +289,8 @@ public class PXLPhotoProductView: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+
+        backgroundImageView.contentMode = .scaleAspectFit
         setupCollectionView()
 
         view.addSubview(gifView)
@@ -323,6 +325,8 @@ public class PXLPhotoProductView: UIViewController {
             playerLayer?.frame = gifView.frame
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
+            queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
+            isObserving = true
             queuePlayer.play()
             queuePlayer.isMuted = true
             adjustMuteImages()
@@ -332,6 +336,20 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(muteButton)
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                 let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
+            }
+        }
+    }
+
+    var observeKey = "timeControlStatus"
+    var isObserving = false
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard let queuePlayer = queuePlayer else { return }
+        if keyPath == observeKey {
+            if queuePlayer.timeControlStatus == .playing {
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 0
+                }
             }
         }
     }
@@ -348,14 +366,15 @@ public class PXLPhotoProductView: UIViewController {
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        queuePlayer?.pause()
         durationLabelUpdateTimer?.invalidate()
+        stopVideo()
     }
 
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 350, height: 150)
+        layout.minimumInteritemSpacing = 20
 
         productCollectionView.setCollectionViewLayout(layout, animated: false)
         productCollectionView.delegate = self
@@ -381,6 +400,11 @@ public class PXLPhotoProductView: UIViewController {
 
     public func stopVideo() {
         queuePlayer?.pause()
+        queuePlayer?.cancelPendingPrerolls()
+        if isObserving {
+            queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+            isObserving = false
+        }
     }
 
     public func mutePlayer(muted: Bool) {
