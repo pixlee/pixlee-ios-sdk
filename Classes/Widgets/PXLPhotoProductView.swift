@@ -290,6 +290,7 @@ public class PXLPhotoProductView: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.clipsToBounds = true
         backgroundImageView.contentMode = .scaleAspectFit
         setupCollectionView()
 
