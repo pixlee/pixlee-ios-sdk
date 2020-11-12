@@ -125,6 +125,8 @@ public class PXLPhotoView: UIView {
     }
 
     func playVideo(url: URL) {
+        queuePlayer?.pause()
+        queuePlayer?.cancelPendingPrerolls()
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
 
@@ -204,6 +206,7 @@ public class PXLPhotoView: UIView {
 
     public func stopVideo() {
         queuePlayer?.pause()
+        queuePlayer?.cancelPendingPrerolls()
     }
 
     public func resetPlayer() {
