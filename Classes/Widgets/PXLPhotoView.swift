@@ -106,7 +106,7 @@ public class PXLPhotoView: UIView {
     }
 
     func initPhoto() {
-        queuePlayer?.pause()
+        stopVideo()
         guard let photo = photo else { return }
 
         gifView.alpha = 1
