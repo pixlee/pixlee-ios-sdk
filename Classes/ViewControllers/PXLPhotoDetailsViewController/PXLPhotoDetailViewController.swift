@@ -112,6 +112,7 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         queuePlayer?.pause()
+        queuePlayer?.cancelPendingPrerolls()
     }
 
     func setupCollectionView() {
