@@ -133,7 +133,6 @@ public class PXLPhotoView: UIView {
         queuePlayer = AVQueuePlayer(items: [playerItem])
 
         if let queuePlayer = self.queuePlayer {
-            let oldPlayerLayer = playerLayer
             playerLayer?.removeFromSuperlayer()
             playerLayer = AVPlayerLayer(player: queuePlayer)
             queuePlayer.isMuted = true
@@ -149,7 +148,18 @@ public class PXLPhotoView: UIView {
             queuePlayer.play()
         }
     }
+    
+    public override func willMove(toWindow newWindow: UIWindow?) {
+        if newWindow == nil{
+            self.stopVideo()
+        }
+    }
 
+    public override func willMove(toSuperview newSuperview: UIView?) {
+        if newSuperview == nil{
+            self.stopVideo()
+        }
+    }
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard let queuePlayer = queuePlayer else { return }
         if keyPath == observeKey {
