@@ -10,11 +10,7 @@ import PixleeSDK
 import UIKit
 
 class ListWithTitleViewController: UIViewController {
-    public var photos = [PXLPhoto]() {
-        didSet {
-            itemsView.items = photos
-        }
-    }
+    public var photos = [PXLPhoto]()
 
     public var listTitle: String? {
         didSet {
