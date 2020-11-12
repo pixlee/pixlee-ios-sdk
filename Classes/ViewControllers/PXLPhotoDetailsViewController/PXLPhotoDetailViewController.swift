@@ -7,9 +7,9 @@
 //
 
 import AVKit
+import Gifu
 import Nuke
 import SafariServices
-import Gifu
 import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
@@ -42,6 +42,18 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
+    var cropMode: PXLPhotoCropMode? = .centerFill {
+        didSet {
+            setupCropMode()
+        }
+    }
+
+    func setupCropMode() {
+        guard let cropMode = cropMode else { return }
+        gifView.contentMode = cropMode.asImageContentMode
+        playerLayer?.videoGravity = cropMode.asVideoContentMode
+    }
+
     var playerLooper: NSObject?
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
@@ -51,6 +63,9 @@ public class PXLPhotoDetailViewController: UIViewController {
             guard let viewModel = viewModel else { return }
             _ = view
 
+            setupCropMode()
+
+            gifView.alpha = 1
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
@@ -58,10 +73,8 @@ public class PXLPhotoDetailViewController: UIViewController {
             titleLabel.text = nil
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                gifView.isHidden = true
                 playVideo(url: videoURL)
             } else {
-                gifView.isHidden = false
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -79,11 +92,14 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        self.view.addSubview(gifView)
+        view.insertSubview(gifView, belowSubview: backButton)
         gifView.frame = imageView.frame
         imageView.isHidden = true
         backgroundImageView.contentMode = .scaleAspectFit
     }
+
+    var observeKey = "timeControlStatus"
+    var isObserving = false
 
     func playVideo(url: URL) {
         let playerItem = AVPlayerItem(url: url as URL)
@@ -95,8 +111,21 @@ public class PXLPhotoDetailViewController: UIViewController {
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
             playerLayer?.frame = gifView.frame
-            playerLayer?.videoGravity = .resizeAspectFill
+            queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
+            isObserving = true
+            setupCropMode()
             queuePlayer.play()
+        }
+    }
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard let queuePlayer = queuePlayer else { return }
+        if keyPath == observeKey {
+            if queuePlayer.timeControlStatus == .playing {
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 0
+                }
+            }
         }
     }
 
@@ -114,6 +143,11 @@ public class PXLPhotoDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         queuePlayer?.pause()
         queuePlayer?.cancelPendingPrerolls()
+
+        if isObserving {
+            queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+            isObserving = false
+        }
     }
 
     func setupCollectionView() {

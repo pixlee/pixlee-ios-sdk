@@ -108,25 +108,27 @@ public class PXLPhotoView: UIView {
     func initPhoto() {
         queuePlayer?.pause()
         guard let photo = photo else { return }
+
+        gifView.alpha = 1
         if let imageUrl = photo.photoUrl(for: .medium) {
             Nuke.loadImage(with: imageUrl, into: gifView)
             Nuke.loadImage(with: imageUrl, into: backgroundImageView)
         }
         backgroundColor = UIColor.black.withAlphaComponent(0.2)
         if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
-            gifView.isHidden = true
             playVideo(url: videoURL)
         } else {
-            gifView.isHidden = false
             if let playerLayer = self.playerLayer {
                 playerLayer.removeFromSuperlayer()
             }
         }
     }
 
+    var observeKey = "timeControlStatus"
+    var isObserving = false
+
     func playVideo(url: URL) {
-        queuePlayer?.pause()
-        queuePlayer?.cancelPendingPrerolls()
+        stopVideo()
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
 
@@ -142,7 +144,20 @@ public class PXLPhotoView: UIView {
             playerLayer?.frame = gifView.frame
 
             playerLayer?.videoGravity = cropMode.asVideoContentMode
+            queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
+            isObserving = true
             queuePlayer.play()
+        }
+    }
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard let queuePlayer = queuePlayer else { return }
+        if keyPath == observeKey {
+            if queuePlayer.timeControlStatus == .playing {
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 0
+                }
+            }
         }
     }
 
@@ -207,6 +222,10 @@ public class PXLPhotoView: UIView {
     public func stopVideo() {
         queuePlayer?.pause()
         queuePlayer?.cancelPendingPrerolls()
+        if isObserving {
+            queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+            isObserving = false
+        }
     }
 
     public func resetPlayer() {
@@ -265,7 +284,7 @@ public class PXLPhotoView: UIView {
         })
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         addGestureRecognizer(tapRecognizer)
-        
+
         addSubview(backgroundImageView)
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         let bgConstraints = [
@@ -275,8 +294,8 @@ public class PXLPhotoView: UIView {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
         NSLayoutConstraint.activate(bgConstraints)
-        
-        self.addSubview(blurView)
+
+        addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         let blurConstraints = [
             blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -295,8 +314,6 @@ public class PXLPhotoView: UIView {
             gifView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
         NSLayoutConstraint.activate(gifConstraints)
-        
-        
 
         if let titleLabel = titleLabel {
             addSubview(titleLabel)

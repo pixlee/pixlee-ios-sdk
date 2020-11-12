@@ -46,8 +46,8 @@ class ViewController: UIViewController {
 
         // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
         // Get one photo example
-        var photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-        var regionId: Int = 2469 // add a region id if you have one
+        let photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
+        let regionId: Int = 2469 // add a region id if you have one
 
         if let photoAlbumId = photoAlbumId {
             _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId) { newPhoto, error in
