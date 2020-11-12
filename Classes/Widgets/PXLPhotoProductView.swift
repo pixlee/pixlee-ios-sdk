@@ -374,7 +374,6 @@ public class PXLPhotoProductView: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 350, height: 150)
-        layout.minimumInteritemSpacing = 20
 
         productCollectionView.setCollectionViewLayout(layout, animated: false)
         productCollectionView.delegate = self
