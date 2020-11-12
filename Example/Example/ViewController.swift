@@ -49,8 +49,8 @@ class ViewController: UIViewController {
         let photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
         let regionId: Int = 2469 // add a region id if you have one
 
-        if let photoAlbumId = photoAlbumId {
-            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId) { newPhoto, error in
+        if let photoExample = photoAlbumId {
+            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoExample) { newPhoto, error in
                 guard error == nil else {
                     print("Error during load of image with Id \(String(describing: error))")
                     return
@@ -60,7 +60,6 @@ class ViewController: UIViewController {
                     return
                 }
                 print("New Photo: \(photo.albumPhotoId)")
-
                 _ = photo.triggerEventOpenedLightbox { _ in
                     print("Opened lightbox logged")
                 }
@@ -82,10 +81,10 @@ class ViewController: UIViewController {
     }
 
     func getSamplePhotos() -> [PXLPhoto] {
-        guard album.photos.count < 4 else {
+        guard album.photos.count < 1 else {
             return album.photos
         }
-        guard photos.count < 4 else {
+        guard photos.count < 1 else {
             return photos
         }
 
