@@ -82,6 +82,7 @@ public class PXLPhotoDetailViewController: UIViewController {
         self.view.addSubview(gifView)
         gifView.frame = imageView.frame
         imageView.isHidden = true
+        backgroundImageView.contentMode = .scaleAspectFit
     }
 
     func playVideo(url: URL) {
