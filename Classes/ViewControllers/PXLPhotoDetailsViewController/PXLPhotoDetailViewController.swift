@@ -95,7 +95,7 @@ public class PXLPhotoDetailViewController: UIViewController {
         view.insertSubview(gifView, belowSubview: backButton)
         gifView.frame = imageView.frame
         imageView.isHidden = true
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
     }
 
     var observeKey = "timeControlStatus"

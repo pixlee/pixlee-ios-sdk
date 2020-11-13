@@ -291,7 +291,7 @@ public class PXLPhotoProductView: UIViewController {
         super.viewDidLoad()
 
         self.view.clipsToBounds = true
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
         setupCollectionView()
 
         view.addSubview(gifView)
