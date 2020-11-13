@@ -53,7 +53,7 @@ extension SingleColumnViewController: PXLPhotoViewDelegate {
 
 extension SingleColumnViewController: PXLGridViewDelegate {
     func cellsHighlighted(cells: [PXLGridViewCell]) {
-        print("Highlighted cells: \(cells)")
+//        print("Highlighted cells: \(cells)")
     }
 
     func headerGifUrl() -> String? {
@@ -87,6 +87,6 @@ extension SingleColumnViewController: PXLGridViewDelegate {
     }
 
     func isInfiniteScrollEnabled() -> Bool {
-        return false
+        return true
     }
 }

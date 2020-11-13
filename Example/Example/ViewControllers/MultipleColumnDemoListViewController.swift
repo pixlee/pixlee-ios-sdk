@@ -63,7 +63,7 @@ extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
 
 extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
     func cellsHighlighted(cells: [PXLGridViewCell]) {
-        print("Highlighted cells: \(cells)")
+//        print("Highlighted cells: \(cells)")
     }
     func headerGifName() -> String? {
         return "wavingBear"

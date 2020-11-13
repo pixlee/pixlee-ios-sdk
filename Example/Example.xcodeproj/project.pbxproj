@@ -32,6 +32,8 @@
 		F29866BF2535D29000308398 /* ListWithTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29866BD2535D29000308398 /* ListWithTitleViewController.swift */; };
 		F29866C02535D29000308398 /* ListWithTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29866BE2535D29000308398 /* ListWithTitleViewController.xib */; };
 		F298768B2538246F00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760825381F0300308398 /* wavingBear.gif */; };
+		F2A8AC4A255E6F10008A40BF /* ListWithGifImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */; };
+		F2A8AC4F255E7041008A40BF /* ListWithGifURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */; };
 		F85F3150BB9DEF91E686FCBA /* Pods_ExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCE6AF1F69CB38DE855DB7E /* Pods_ExampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,8 @@
 		F29866BD2535D29000308398 /* ListWithTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithTitleViewController.swift; sourceTree = "<group>"; };
 		F29866BE2535D29000308398 /* ListWithTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListWithTitleViewController.xib; sourceTree = "<group>"; };
 		F298760825381F0300308398 /* wavingBear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = wavingBear.gif; sourceTree = "<group>"; };
+		F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithGifImageViewController.swift; sourceTree = "<group>"; };
+		F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithGifURLViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,11 +212,13 @@
 				F2969429242243BB003EB9DD /* WidgetsExampleViewController.swift */,
 				F296942A242243BB003EB9DD /* WidgetsExampleViewController.xib */,
 				F23BA1A525190368009FC402 /* SingleColumnViewController.swift */,
+				F23BA1A625190368009FC402 /* SingleColumnViewController.xib */,
 				F2985AE3253364F400308398 /* MultipleColumnDemoListViewController.swift */,
 				F2985AE4253364F400308398 /* MultipleColumnDemoListViewController.xib */,
 				F29866BD2535D29000308398 /* ListWithTitleViewController.swift */,
+				F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */,
+				F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */,
 				F29866BE2535D29000308398 /* ListWithTitleViewController.xib */,
-				F23BA1A625190368009FC402 /* SingleColumnViewController.xib */,
 				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
 				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 				F296942D24224A86003EB9DD /* Cells */,
@@ -477,7 +483,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */,
+				F2A8AC4F255E7041008A40BF /* ListWithGifURLViewController.swift in Sources */,
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
+				F2A8AC4A255E6F10008A40BF /* ListWithGifImageViewController.swift in Sources */,
 				F296942B242243BB003EB9DD /* WidgetsExampleViewController.swift in Sources */,
 				F296943224224BFB003EB9DD /* WidgetTableViewCell.swift in Sources */,
 				F23BA1A725190368009FC402 /* SingleColumnViewController.swift in Sources */,

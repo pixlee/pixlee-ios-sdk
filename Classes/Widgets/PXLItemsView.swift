@@ -5,9 +5,9 @@
 //  Created by Csaba Toth on 2020. 10. 13..
 //
 
-import UIKit
-import Nuke
 import Gifu
+import Nuke
+import UIKit
 
 public protocol PXLItemsViewDelegate {
     func cellHeight() -> CGFloat
@@ -47,14 +47,9 @@ public class PXLItemsView: UIView {
         }
     }
 
-    public var titleGifName: String? {
-        didSet {
-        }
-    }
+    public var titleGifName: String?
 
-    public var titleGifURL: String? {
-        didSet {}
-    }
+    public var titleGifURL: String?
 
     public var titleFont: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold) {
         didSet {
@@ -100,6 +95,11 @@ public class PXLItemsView: UIView {
     }
 
     private func resetData() {
+        itemsStack.arrangedSubviews.forEach { item in
+            item.removeFromSuperview()
+        }
+        itemsStack.removeFromSuperview()
+        scrollView.removeFromSuperview()
 
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false

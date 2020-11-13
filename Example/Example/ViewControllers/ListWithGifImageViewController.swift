@@ -1,26 +1,27 @@
 //
-//  ListWithTitleViewController.swift
+//  ListWithGifImageViewController.swift
 //  Example
 //
-//  Created by Csaba Toth on 2020. 10. 13..
+//  Created by Csaba Toth on 2020. 11. 13..
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
 import PixleeSDK
 import UIKit
 
-class ListWithTitleViewController: UIViewController {
+class ListWithGifImageViewController: UIViewController {
     public var photos = [PXLPhoto]()
 
-    public var listTitle: String? {
+    public var titleGifName: String? {
         didSet {
-            itemsView.listTitle = listTitle
+            itemsView.titleGifName = titleGifName
         }
     }
 
     var itemsView = PXLItemsView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
 
         itemsView.delegate = self
         view.addSubview(itemsView)
@@ -40,7 +41,7 @@ class ListWithTitleViewController: UIViewController {
     }
 }
 
-extension ListWithTitleViewController: PXLItemsViewDelegate {
+extension ListWithGifImageViewController: PXLItemsViewDelegate {
     func cellHeight() -> CGFloat {
         return 550
     }

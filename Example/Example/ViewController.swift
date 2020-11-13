@@ -81,6 +81,8 @@ class ViewController: UIViewController {
     }
 
     func getSamplePhotos() -> [PXLPhoto] {
+        return [photos[0], photos[1], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1]]
+
         guard album.photos.count < 1 else {
             return album.photos
         }
@@ -104,67 +106,56 @@ class ViewController: UIViewController {
         present(albumVC, animated: true, completion: nil)
     }
 
+    // Example viewControllers
+    let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
+    let gifImageListVC = ListWithGifImageViewController()
+    let gifURLListVC = ListWithGifURLViewController()
+    let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
+    let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
+    let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
+    let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+
     @IBAction func showListWithGifURL(_ sender: Any) {
-        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-
         let photos = getSamplePhotos()
-        // listVC.photos = [photos[0], photos[1], photos[2]]
-        listVC.photos = photos
-        listVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
-
-        present(listVC, animated: true, completion: nil)
+        gifURLListVC.photos = photos
+        gifURLListVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+        present(gifURLListVC, animated: true, completion: nil)
     }
 
     @IBAction func showListWithGif(_ sender: Any) {
-        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-
         let photos = getSamplePhotos()
-        // listVC.photos = [photos[0], photos[1], photos[2]]
-        listVC.photos = photos
-        listVC.titleGifName = "wavingBear"
-
-        present(listVC, animated: true, completion: nil)
+        gifImageListVC.photos = photos
+        gifImageListVC.titleGifName = "wavingBear"
+        present(gifImageListVC, animated: true, completion: nil)
     }
 
     @IBAction func showListWithTitle(_ sender: Any) {
-        let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-
         let photos = getSamplePhotos()
-        // listVC.photos = [photos[0], photos[1], photos[2]]
         listVC.photos = photos
         listVC.listTitle = "Photo list title"
-
         present(listVC, animated: true, completion: nil)
     }
 
     @IBAction func loadPhotoList(_ sender: Any) {
-        let listVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
-
         let photos = getSamplePhotos()
-        listVC.photos = photos
-
-        present(listVC, animated: true, completion: nil)
+        gridVC.photos = photos
+        present(gridVC, animated: true, completion: nil)
     }
 
     @IBAction func loadVideoList(_ sender: Any) {
-        let listVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        // listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
-        listVC.photos = photos
-        present(listVC, animated: true, completion: nil)
+        multipleColumnVC.photos = photos
+        present(multipleColumnVC, animated: true, completion: nil)
     }
 
     @IBAction func loadPhotoProductsView(_ sender: Any) {
-        let listVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
         let photos = getSamplePhotos()
-        // listVC.photos = [photos[0], photos[1], photos[2], photos[3]]
-        listVC.photos = photos
+        photoListDemoVC.photos = photos
 
-        present(listVC, animated: true, completion: nil)
+        present(photoListDemoVC, animated: true, completion: nil)
     }
 
     @IBAction func showAnalytics(_ sender: Any) {
-        let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
         present(analyticsVC, animated: true, completion: nil)
     }
 }
