@@ -221,9 +221,17 @@ public class PXLItemsView: UIView {
             NSLayoutConstraint.activate(constraints)
 
             if itemIndex % 2 == 1 || itemIndex == items.count - 1 {
-                if itemIndex == items.count - 1 {
+                if itemIndex == items.count - 1, (items.count - 1) % 2 == 0  {
                     let spacer = UIView()
+
                     currentRowStack.addArrangedSubview(spacer)
+                    if (items.count - 1) % 2 == 0 {
+                        let spacerConstraints = [
+                            spacer.heightAnchor.constraint(equalToConstant: itemHeight),
+                            spacer.widthAnchor.constraint(equalTo: currentRowStack.widthAnchor, multiplier: 0.5),
+                        ]
+                        NSLayoutConstraint.activate(spacerConstraints)
+                    }
                 }
                 itemsStack.addArrangedSubview(currentRowStack)
 
