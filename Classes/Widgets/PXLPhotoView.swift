@@ -266,7 +266,7 @@ public class PXLPhotoView: UIView {
 
     func prepareViews() {
         backgroundImageView = UIImageView()
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
         gifView.frame = bounds
 
         titleLabel = UILabel()
