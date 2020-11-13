@@ -128,6 +128,8 @@ public class PXLPhotoView: UIView {
     var isObserving = false
 
     func playVideo(url: URL) {
+        guard configuration.enableVideoPlayback else { return }
+
         stopVideo()
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
@@ -148,18 +150,19 @@ public class PXLPhotoView: UIView {
             queuePlayer.play()
         }
     }
-    
-    public override func willMove(toWindow newWindow: UIWindow?) {
-        if newWindow == nil{
-            self.stopVideo()
+
+    override public func willMove(toWindow newWindow: UIWindow?) {
+        if newWindow == nil {
+            stopVideo()
         }
     }
 
-    public override func willMove(toSuperview newSuperview: UIView?) {
-        if newSuperview == nil{
-            self.stopVideo()
+    override public func willMove(toSuperview newSuperview: UIView?) {
+        if newSuperview == nil {
+            stopVideo()
         }
     }
+
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard let queuePlayer = queuePlayer else { return }
         if keyPath == observeKey {
