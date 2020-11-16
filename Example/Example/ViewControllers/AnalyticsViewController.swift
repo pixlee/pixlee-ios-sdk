@@ -16,20 +16,13 @@ class AnalyticsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-        if let photoAlbumId = photoAlbumId {
-            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
-                guard error == nil else {
-                    print("Error during load of image with Id \(String(describing: error))")
-                    return
-                }
-                guard let photo = newPhoto else {
-                    print("cannot find photo")
-                    return
-                }
-                self.photo = photo
+        
+        _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+            guard error == nil else {
+                self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
+                return
             }
+            self.photo = photos?.first
         }
     }
 

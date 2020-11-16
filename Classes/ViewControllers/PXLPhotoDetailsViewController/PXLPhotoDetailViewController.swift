@@ -7,7 +7,9 @@
 //
 
 import AVKit
+import Gifu
 import Nuke
+import SafariServices
 import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
@@ -25,39 +27,54 @@ public class PXLPhotoDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    public func playVideo() {
+        queuePlayer?.play()
+    }
+
+    public func stopVideo() {
+        queuePlayer?.pause()
+    }
+
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
+    var gifView = Gifu.GIFImageView()
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    @IBOutlet var durationView: UIView!
+    var cropMode: PXLPhotoCropMode? = .centerFill {
+        didSet {
+            setupCropMode()
+        }
+    }
+
+    func setupCropMode() {
+        guard let cropMode = cropMode else { return }
+        gifView.contentMode = cropMode.asImageContentMode
+        playerLayer?.videoGravity = cropMode.asVideoContentMode
+    }
+
     var playerLooper: NSObject?
     var playerLayer: AVPlayerLayer?
     var queuePlayer: AVQueuePlayer?
-    var durationLabelUpdateTimer: Timer?
-    @IBOutlet var durationLabel: UILabel!
 
     public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
 
+            setupCropMode()
+
+            gifView.alpha = 1
             if let imageUrl = viewModel.photoUrl(for: .medium) {
-                Nuke.loadImage(with: imageUrl, into: imageView)
+                Nuke.loadImage(with: imageUrl, into: gifView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }
             titleLabel.text = nil
-            durationLabel.text = nil
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                imageView.isHidden = true
-                durationView.isHidden = false
                 playVideo(url: videoURL)
             } else {
-                durationLabelUpdateTimer?.invalidate()
-                imageView.isHidden = false
-                durationView.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
                     playerLayer.removeFromSuperlayer()
@@ -75,13 +92,14 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        durationView.layer.cornerRadius = 10
-        durationView.isHidden = true
-        if #available(iOS 11.0, *) {
-            durationView.layer.maskedCorners = [.layerMinXMaxYCorner]
-        } else {
-        }
+        view.insertSubview(gifView, belowSubview: backButton)
+        gifView.frame = imageView.frame
+        imageView.isHidden = true
+        backgroundImageView.contentMode = .scaleAspectFill
     }
+
+    var observeKey = "timeControlStatus"
+    var isObserving = false
 
     func playVideo(url: URL) {
         let playerItem = AVPlayerItem(url: url as URL)
@@ -92,36 +110,29 @@ public class PXLPhotoDetailViewController: UIViewController {
 
             playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
-            playerLayer?.frame = imageView.frame
-            playerLayer?.videoGravity = .resizeAspectFill
+            playerLayer?.frame = gifView.frame
+            queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
+            isObserving = true
+            setupCropMode()
             queuePlayer.play()
+        }
+    }
 
-            view.bringSubviewToFront(durationView)
-
-            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                let totalTime: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-                let currentTime: Double = self.queuePlayer?.currentItem?.currentTime().seconds ?? 0
-                if totalTime > 0 {
-                    let remainingTime: Double = totalTime - currentTime
-
-                    let formattedTime = self.getHoursMinutesSecondsFrom(seconds: remainingTime)
-                    self.durationLabel.text = String(format: "%02d:%02d", formattedTime.minutes, formattedTime.seconds)
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        guard let queuePlayer = queuePlayer else { return }
+        if keyPath == observeKey {
+            if queuePlayer.timeControlStatus == .playing {
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 0
                 }
             }
         }
     }
 
-    func getHoursMinutesSecondsFrom(seconds: Double) -> (hours: Int, minutes: Int, seconds: Int) {
-        let secs = Int(seconds)
-        let hours = secs / 3600
-        let minutes = (secs % 3600) / 60
-        let seconds = (secs % 3600) % 60
-        return (hours, minutes, seconds)
-    }
-
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerLayer?.frame = imageView.frame
+        gifView.frame = imageView.frame
+        playerLayer?.frame = gifView.frame
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -131,7 +142,12 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         queuePlayer?.pause()
-        durationLabelUpdateTimer?.invalidate()
+        queuePlayer?.cancelPendingPrerolls()
+
+        if isObserving {
+            queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+            isObserving = false
+        }
     }
 
     func setupCollectionView() {
@@ -152,8 +168,22 @@ public class PXLPhotoDetailViewController: UIViewController {
 
     func handleProductPressed(product: PXLProduct) {
         if let url = product.link?.absoluteString.removingPercentEncoding, let productURL = URL(string: url) {
-            UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
+            if #available(iOS 11.0, *) {
+                let vc = SFSafariViewController(url: productURL, configuration: SFSafariViewController.Configuration())
+                self.present(vc, animated: true)
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.open(productURL, options: [:], completionHandler: nil)
+            }
         }
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        playVideo()
+    }
+
+    override public func viewDidDisappear(_ animated: Bool) {
+        stopVideo()
     }
 }
 

@@ -146,7 +146,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let photo = viewModel?.album.photos[indexPath.row] {
-            let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo, title:photo.title)
+            let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: photo, title: photo.title)
             let navController = UINavigationController(rootViewController: photoDetailVC)
             present(navController, animated: true, completion: nil)
         }
@@ -226,8 +226,51 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension PXLAlbumViewController: PXLImageCellDelegate {
     func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, title:viewModel.title)
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, title: viewModel.title)
         let navController = UINavigationController(rootViewController: photoDetailVC)
         present(navController, animated: true, completion: nil)
+    }
+}
+
+extension PXLAlbumViewController: PXLPhotoViewDelegate {
+    public func onPhotoButtonClicked(photo: PXLPhoto) {
+        print("Action tapped \(photo.id)")
+    }
+
+    public func onPhotoClicked(photo: PXLPhoto) {
+        print("Photo Clicked \(photo.id)")
+    }
+}
+
+extension PXLAlbumViewController: PXLPhotoListViewDelegate {
+    public func setupPhotoCell(cell: PXLPhotoListViewCell, photo: PXLPhoto) {
+        cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+    }
+
+    public func cellHeight() -> CGFloat {
+        return 350
+    }
+}
+
+extension PXLAlbumViewController: PXLPhotoProductDelegate {
+    public func onProductsLoaded(products: [PXLProduct]) -> [Int: Bool] {
+        var bookmarks = [Int: Bool]()
+        products.forEach { product in
+            bookmarks[product.identifier] = true
+        }
+        return bookmarks
+    }
+
+    public func onBookmarkClicked(product: PXLProduct, isSelected: Bool) {
+        print("Pruduct: \(product.identifier) is selected: \(isSelected)")
+    }
+
+    public func shouldOpenURL(url: URL) -> Bool {
+        print("url: \(url)")
+        return false
+    }
+
+    public func onProductClicked(product: PXLProduct) {
+        print("Pruduct: \(product.identifier) clicked")
     }
 }

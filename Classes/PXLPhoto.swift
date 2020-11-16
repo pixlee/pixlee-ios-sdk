@@ -16,7 +16,11 @@ public enum PXLPhotoSize {
     case big
 }
 
-public struct PXLPhoto {
+public struct PXLPhoto: Equatable {
+    public static func == (lhs: PXLPhoto, rhs: PXLPhoto) -> Bool {
+        lhs.id == rhs.id
+    }
+
     public let id: Int
     public let photoTitle: String?
     public let latitude: Double?

@@ -8,9 +8,12 @@
 
 import Alamofire
 import Foundation
+import Nuke
 
 public class PXLClient {
-    public init() {}
+    public init() {
+        ImagePipeline.Configuration.isAnimatedImageDataEnabled = true
+    }
     public static var sharedClient = PXLClient()
 
     private let apiRequests = PXLApiRequests()
@@ -56,6 +59,27 @@ public class PXLClient {
         }
     }
 
+    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
+        return AF.request(apiRequests.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId)).responseDecodable { (response: DataResponse<PXLPhotoDTO, AFError>) in
+            
+            //            if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
+            //                print("responseJson: \(responseJSONString)")
+            //            }
+            
+            switch response.result {
+            case let .success(responseDTO):
+                let photo = self.photoConverter.convertPhotoDTOToPhoto(dto: responseDTO)
+                completionHandler?(photo, nil)
+                
+            case let .failure(error):
+                let handledError = self.getErrorFromResponse(responseData: response.data, error: error)
+                print("🛑 PIXLEE SDK Error: \(handledError.errorMessage)")
+                completionHandler?(nil, handledError)
+            }
+        }
+    }
+
+    
     public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
         if album.hasNextPage {
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1
@@ -68,6 +92,8 @@ public class PXLClient {
                     print("Loading page \(nextPage)")
                     let request = AF.request(apiRequests.loadNextAlbumPage(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
 
+                        requestsForAlbum[nextPage] = nil
+                        self.loadingOperations[identifier] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
 
                         if let photos = photos, let completionHandler = completionHandler {
@@ -93,7 +119,8 @@ public class PXLClient {
                 if var requestsForAlbum = requestsForAlbum, requestsForAlbum[nextPage] == nil {
                     print("Loading page \(nextPage)")
                     let request = AF.request(apiRequests.loadNextAlbumPageWithSKU(album: album)).responseDecodable { (response: DataResponse<PXLAlbumNextPageResponse, AFError>) in
-
+                        requestsForAlbum[nextPage] = nil
+                        self.loadingOperations[sku] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
 
                         if let photos = photos, let completionHandler = completionHandler {
