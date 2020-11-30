@@ -257,6 +257,9 @@ public class PXLPhotoProductView: UIViewController {
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
+            }else{
+                gifView.image = nil
+                backgroundImageView.image = nil
             }
 
             gifView.alpha = 1
