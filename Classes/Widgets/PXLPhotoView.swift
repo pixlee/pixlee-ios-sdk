@@ -113,6 +113,9 @@ public class PXLPhotoView: UIView {
         if let imageUrl = photo.photoUrl(for: .medium) {
             Nuke.loadImage(with: imageUrl, into: gifView)
             Nuke.loadImage(with: imageUrl, into: backgroundImageView)
+        } else {
+            gifView.image = nil
+            backgroundImageView.image = nil
         }
         backgroundColor = UIColor.black.withAlphaComponent(0.2)
         if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {

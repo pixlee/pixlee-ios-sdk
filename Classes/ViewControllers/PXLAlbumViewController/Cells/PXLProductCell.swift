@@ -27,6 +27,8 @@ class PXLProductCell: UICollectionViewCell {
             
             if let imageUrl = viewModel.imageThumbUrl {
                 Nuke.loadImage(with: imageUrl, into: productImageView)
+            }else{
+                productImageView.image = nil
             }
 
             productActionButton.setTitle(viewModel.formattedPrice, for: .normal)

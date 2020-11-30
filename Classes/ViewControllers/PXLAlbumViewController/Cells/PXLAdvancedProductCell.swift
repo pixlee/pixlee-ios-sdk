@@ -62,6 +62,8 @@ class PXLAdvancedProductCell: UICollectionViewCell {
 
             if let imageUrl = viewModel.imageThumbUrl {
                 Nuke.loadImage(with: imageUrl, into: itemImageView)
+            }else{
+                itemImageView.image = nil
             }
 
             actionButton.setAttributedTitle(viewModel.attributedPrice, for: .normal)

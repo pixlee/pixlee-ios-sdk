@@ -44,7 +44,10 @@ class PXLImageCell: UICollectionViewCell {
             NSLayoutConstraint.activate(gifConstraints)
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
+            }else{
+                gifView.image = nil
             }
+            
             if let userName = viewModel.username {
                 authorLabel.text = "@\(userName)"
             }
