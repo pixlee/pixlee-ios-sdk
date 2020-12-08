@@ -31,3 +31,5 @@ xcuserdata
 
 # Carthage
 Carthage/Build
+
+Example/Example/PixleeCredentials.plist

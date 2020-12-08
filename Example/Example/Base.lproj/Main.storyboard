@@ -1,117 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--PixleeSDK example app-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
-                                <rect key="frame" x="16" y="221" width="382" height="464"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-4w-iAa">
+                                <rect key="frame" x="0.0" y="44" width="428" height="882"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
-                                        <state key="normal" title="Show an example abum"/>
-                                        <connections>
-                                            <action selector="loadAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CQB-ZT-7XX"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-JH-9Xw">
-                                        <rect key="frame" x="0.0" y="62" width="382" height="30"/>
-                                        <state key="normal" title="Show list with title"/>
-                                        <connections>
-                                            <action selector="showListWithTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1W-rd-Ubq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-FR-36k">
-                                        <rect key="frame" x="0.0" y="124" width="382" height="30"/>
-                                        <state key="normal" title="Show list with GifImage"/>
-                                        <connections>
-                                            <action selector="showListWithGif:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0f-mL-it7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-U0-qmW">
-                                        <rect key="frame" x="0.0" y="186" width="382" height="30"/>
-                                        <state key="normal" title="Show list with GifImage from URL"/>
-                                        <connections>
-                                            <action selector="showListWithGifURL:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFq-8r-G6o"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a">
-                                        <rect key="frame" x="0.0" y="248" width="382" height="30"/>
-                                        <state key="normal" title="Show one column list"/>
-                                        <connections>
-                                            <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n" userLabel="I">
-                                        <rect key="frame" x="0.0" y="310" width="382" height="30"/>
-                                        <state key="normal" title="Show two column list"/>
-                                        <connections>
-                                            <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
-                                        <rect key="frame" x="0.0" y="372" width="382" height="30"/>
-                                        <state key="normal" title="Show PXLPhotoProductView"/>
-                                        <connections>
-                                            <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
-                                        <rect key="frame" x="0.0" y="434" width="382" height="30"/>
-                                        <state key="normal" title="Analytics calls"/>
-                                        <connections>
-                                            <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="left" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
+                                        <rect key="frame" x="0.0" y="70" width="428" height="582"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm">
+                                                <rect key="frame" x="0.0" y="0.0" width="428" height="77.666666666666671"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PixleeSDK example app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2b-UM-JJt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 2.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mym-la-b7f">
+                                                        <rect key="frame" x="0.0" y="57.33333333333335" width="428" height="20.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
+                                                <rect key="frame" x="0.0" y="82.666666666666657" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show an example abum"/>
+                                                <connections>
+                                                    <action selector="loadAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CQB-ZT-7XX"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-JH-9Xw">
+                                                <rect key="frame" x="0.0" y="145.66666666666669" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show list with title"/>
+                                                <connections>
+                                                    <action selector="showListWithTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1W-rd-Ubq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-FR-36k">
+                                                <rect key="frame" x="0.0" y="208.66666666666669" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show list with GifImage"/>
+                                                <connections>
+                                                    <action selector="showListWithGif:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0f-mL-it7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-U0-qmW">
+                                                <rect key="frame" x="0.0" y="271.66666666666669" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show list with GifImage from URL"/>
+                                                <connections>
+                                                    <action selector="showListWithGifURL:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFq-8r-G6o"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a">
+                                                <rect key="frame" x="0.0" y="334.66666666666669" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show one column list"/>
+                                                <connections>
+                                                    <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n">
+                                                <rect key="frame" x="0.0" y="397.66666666666669" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show two column list"/>
+                                                <connections>
+                                                    <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
+                                                <rect key="frame" x="0.0" y="460.66666666666663" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Show PXLPhotoProductView"/>
+                                                <connections>
+                                                    <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
+                                                <rect key="frame" x="0.0" y="523.66666666666663" width="428" height="58"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                <state key="normal" title="Analytics calls"/>
+                                                <connections>
+                                                    <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PixleeSDK example app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2b-UM-JJt">
-                                <rect key="frame" x="86" y="107" width="242" height="26.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 2.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mym-la-b7f">
-                                <rect key="frame" x="158.5" y="141" width="97" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <constraints>
+                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="width" secondItem="bXT-4w-iAa" secondAttribute="width" id="7dM-mm-Tl1"/>
+                                    <constraint firstAttribute="bottom" secondItem="FgL-jc-DM7" secondAttribute="bottom" constant="80" id="DCL-SW-icK"/>
+                                    <constraint firstAttribute="trailing" secondItem="FgL-jc-DM7" secondAttribute="trailing" id="PBK-av-n7s"/>
+                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="leading" secondItem="bXT-4w-iAa" secondAttribute="leading" id="UkY-kN-ekQ"/>
+                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="top" secondItem="bXT-4w-iAa" secondAttribute="top" constant="70" id="xLf-y8-wIJ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="xms-ma-9vr"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="3FJ-Zt-rIB"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FgL-jc-DM7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Q0r-fz-Lyu"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FgL-jc-DM7" secondAttribute="bottom" constant="16" id="Urf-zp-gtI"/>
-                            <constraint firstItem="y2b-UM-JJt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="a3k-gS-bxr"/>
-                            <constraint firstItem="FgL-jc-DM7" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="b94-hG-nKW"/>
-                            <constraint firstItem="FgL-jc-DM7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="16" id="bfD-I5-DtZ"/>
-                            <constraint firstItem="y2b-UM-JJt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="63" id="ez3-FD-K32"/>
-                            <constraint firstItem="Mym-la-b7f" firstAttribute="top" secondItem="y2b-UM-JJt" secondAttribute="bottom" constant="7.5" id="ptR-ni-1pL"/>
-                            <constraint firstItem="Mym-la-b7f" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uWb-za-Dyp"/>
-                            <constraint firstAttribute="trailing" secondItem="FgL-jc-DM7" secondAttribute="trailing" constant="16" id="vcF-EW-z8p"/>
+                            <constraint firstItem="bXT-4w-iAa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UR9-Tg-xQb"/>
+                            <constraint firstAttribute="bottom" secondItem="bXT-4w-iAa" secondAttribute="bottom" id="WCd-kg-4Wm"/>
+                            <constraint firstItem="bXT-4w-iAa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="myE-rE-cBb"/>
+                            <constraint firstItem="bXT-4w-iAa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uU0-LJ-y74"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="PixleeSDK example app" id="Tjw-Mr-lNa"/>
                     <connections>
                         <outlet property="versionLabel" destination="Mym-la-b7f" id="c1c-rC-2VW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
+            <point key="canvasLocation" x="1028.9719626168223" y="91.360691144708426"/>
         </scene>
     </scenes>
     <resources>
