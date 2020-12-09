@@ -49,14 +49,15 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
     pod install
     ```
 3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
-4. Edit Environment Variables
-    - Click here
-        - <img src="doc/img/edit_scheme.png" width="50%">
-    - Add these 4 in Run> Arguments> Environment Variables 
-        - PIXLEE_API_KEY: "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
-        - PIXLEE_SECRET_KEY: "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
-        - PIXLEE_ALBUM_ID: "replace with your own value"  (find here: https://app.pixlee.com/app#albums)
-        - PIXLEE_PHOTO_ALBUM_ID: "replace with your own value" (you should get this by calling **[GET album api](https://developers.pixlee.com/reference#get-approved-content-from-album)** or **[GET from_sku API](https://developers.pixlee.com/reference#get-approved-content-for-product)**)
+4. create **PixleeCredentials.plist** in Example/Example path 
+    - add these 4 elements to **PixleeCredentials.plist** 
+        - PIXLEE_API_KEY:(String) "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
+        - PIXLEE_SECRET_KEY:(String) "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
+        - PIXLEE_ALBUM_ID:(String) "replace with your own value"  (find here: https://app.pixlee.com/app#albums)
+        - PIXLEE_SKU:(String) "replace with your own value" (find here: https://app.pixlee.com/app#products)
+
+      <img src="doc/img/edit_pixlee_credentials.png" width="50%">
+
 5. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
 
 # Add the SDK to your App
