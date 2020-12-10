@@ -1,0 +1,55 @@
+version: 2.1
+
+workflows:
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+      - deploy:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:  /.*/
+              
+jobs: 
+  build:
+    macos:  
+      xcode: 11.3.0
+    steps:
+      - checkout
+      - set-directory
+      - unit-tests
+  deploy:
+    macos:
+      xcode: 11.3.0
+    steps:
+      - checkout
+      - set-directory
+      - deploy-cooapods
+      
+commands:
+  set-directory:
+    steps:
+      - run:
+          name: set directory
+          command: pod install --project-directory=Example
+  unit-tests:
+    steps:
+      - run:
+          name: unit tests
+          command:  |
+            xcodebuild test -enableCodeCoverage YES -workspace Example/Example.xcworkspace -scheme Example -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=12.4,name=iPhone 8' | xcpretty
+  deploy-cooapods:
+    steps:
+      - run:
+          name: deploy cooapods
+          command:  |
+            export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
+            pod lib lint --allow-warnings
+            pod trunk push --allow-warnings
+
