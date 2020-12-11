@@ -36,24 +36,24 @@ class ViewController: UIViewController {
 
         
     func readCredentials() {
-        if let url = Bundle.main.url(forResource:"pixleeCredentials", withExtension: "plist") {
+        if let url = Bundle.main.url(forResource:"PixleeCredentials", withExtension: "plist") {
             do {
                 let data = try Data(contentsOf:url)
                 let swiftDictionary = try PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
                 // do something with the dictionary
-                pixleeCredentials.apiKey = swiftDictionary["PIXLEE_API_KEY"] as! String
-                pixleeCredentials.secretKey = swiftDictionary["PIXLEE_SECRET_KEY"] as! String
-                pixleeCredentials.albumId = swiftDictionary["PIXLEE_ALBUM_ID"] as! String
+                pixleeCredentials.apiKey = swiftDictionary["PIXLEE_API_KEY"] as? String
+                pixleeCredentials.secretKey = swiftDictionary["PIXLEE_SECRET_KEY"] as? String
+                pixleeCredentials.albumId = swiftDictionary["PIXLEE_ALBUM_ID"] as? String
                 print("swiftDictionary: \(swiftDictionary)")
                 
             } catch {
-                let message = "can't read Example/pixleeCredentials.plist \(error)"
+                let message = "can't read Example/PixleeCredentials.plist \(error)"
                 showPopup(message: message)
                 print(message)
             }
         }else{
             // todo: show alert
-            let message = "can't run the demo. please add Example/pixleeCredential.plist to this project and run it again"
+            let message = "can't run the demo. please add Example/PixleeCredentials.plist to this project and run it again"
             showPopup(message: message)
             print(message)
         }

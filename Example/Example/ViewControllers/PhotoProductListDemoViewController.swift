@@ -15,7 +15,7 @@ class PhotoProductListDemoViewController: UIViewController {
 
     var photos = [PXLPhoto]() {
         didSet {
-            guard let stackView = stackView else { return }
+            guard stackView != nil else { return }
             setupStackView()
         }
     }
