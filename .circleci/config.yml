@@ -41,7 +41,8 @@ commands:
             pod install --project-directory=Example
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/PixleeCredentials.plist
             echo $PIXLEE_CREDENTIALS | base64 --decode
-            ls al Example
+            ls -al Example
+            echo "Example/PixleeCredentials.plist is added"
           
   unit-tests:
     steps:
