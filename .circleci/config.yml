@@ -42,7 +42,7 @@ commands:
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/Example/PixleeCredentials.plist
             echo $PIXLEE_CREDENTIALS | base64 --decode
             ls -al Example/Example
-            cat Example/Example/PixleeCredentials.plist is added"
+            cat Example/Example/PixleeCredentials.plist
           
   unit-tests:
     steps:
