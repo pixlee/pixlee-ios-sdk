@@ -23,6 +23,7 @@ jobs:
     steps:
       - checkout
       - set-directory
+      - add-pixlee-credentials
       - unit-tests
   deploy:
     macos:
@@ -37,13 +38,16 @@ commands:
     steps:
       - run:
           name: set directory
+          command: pod install --project-directory=Example
+  add-pixlee-credentials:
+    steps:
+      - run:
+          name: add pixlee credentials
           command: |
-            pod install --project-directory=Example
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/Example/PixleeCredentials.plist
             echo $PIXLEE_CREDENTIALS | base64 --decode
             ls -al Example/Example
             cat Example/Example/PixleeCredentials.plist
-          
   unit-tests:
     steps:
       - run:
