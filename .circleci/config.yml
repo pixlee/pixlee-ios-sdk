@@ -39,7 +39,7 @@ commands:
           name: set directory
           command: |
             pod install --project-directory=Example
-            echo $PIXLEE_CREDENTIALS > Example/PixleeCredentials.plist
+            echo $PIXLEE_CREDENTIALS | base64 --decode > Example/PixleeCredentials.plist
           
   unit-tests:
     steps:
