@@ -86,7 +86,7 @@ class ViewController: UIViewController {
         }
         
         if let album = album {
-            let filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            let filterOptions = PXLAlbumFilterOptions(contentType: ["video"])
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
@@ -177,16 +177,17 @@ class ViewController: UIViewController {
     }
 
     // Example viewControllers
-    let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-    let gifImageListVC = ListWithGifImageViewController()
-    let gifURLListVC = ListWithGifURLViewController()
-    let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
-    let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
-    let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-    let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+//    let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
+//    let gifImageListVC = ListWithGifImageViewController()
+//    let gifURLListVC = ListWithGifURLViewController()
+//    let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
+//    let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
+//    let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
+//    let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
 
     @IBAction func showListWithGifURL(_ sender: Any) {
         if let photos = getSamplePhotos(){
+            let gifURLListVC = ListWithGifURLViewController()
             gifURLListVC.photos = photos
             gifURLListVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
             present(gifURLListVC, animated: true, completion: nil)
@@ -195,6 +196,7 @@ class ViewController: UIViewController {
 
     @IBAction func showListWithGif(_ sender: Any) {
         if let photos = getSamplePhotos() {
+            let gifImageListVC = ListWithGifImageViewController()
             gifImageListVC.photos = photos
             gifImageListVC.titleGifName = "wavingBear"
             present(gifImageListVC, animated: true, completion: nil)
@@ -204,6 +206,7 @@ class ViewController: UIViewController {
 
     @IBAction func showListWithTitle(_ sender: Any) {
         if let photos = getSamplePhotos() {
+            let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
             listVC.photos = photos
             listVC.listTitle = "Photo list title"
             present(listVC, animated: true, completion: nil)
@@ -212,6 +215,7 @@ class ViewController: UIViewController {
 
     @IBAction func loadPhotoList(_ sender: Any) {
         if let photos = getSamplePhotos() {
+            let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
             gridVC.photos = photos
             present(gridVC, animated: true, completion: nil)
         }
@@ -219,6 +223,7 @@ class ViewController: UIViewController {
 
     @IBAction func loadVideoList(_ sender: Any) {
         if let photos = getSamplePhotos() {
+            let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
             multipleColumnVC.photos = photos
             present(multipleColumnVC, animated: true, completion: nil)
         }
@@ -226,6 +231,7 @@ class ViewController: UIViewController {
 
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         if let photos = getSamplePhotos() {
+            let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
             photoListDemoVC.photos = photos
             present(photoListDemoVC, animated: true, completion: nil)
         }
@@ -233,6 +239,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAnalytics(_ sender: Any) {
+        let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
         present(analyticsVC, animated: true, completion: nil)
     }
 }

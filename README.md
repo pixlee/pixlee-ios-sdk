@@ -49,7 +49,7 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
     pod install
     ```
 3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
-4. create **PixleeCredentials.plist** in Example/Example path 
+4. create **PixleeCredentials.plist** in Example/Example/PixleeCredentials.plist 
     - add these 4 elements to **PixleeCredentials.plist** 
         - PIXLEE_API_KEY:(String) "replace with your own value" (https://app.pixlee.com/app#settings/pixlee_api)
         - PIXLEE_SECRET_KEY:(String) "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)

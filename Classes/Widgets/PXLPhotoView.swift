@@ -110,19 +110,38 @@ public class PXLPhotoView: UIView {
         guard let photo = photo else { return }
 
         gifView.alpha = 1
-        if let imageUrl = photo.photoUrl(for: .medium) {
+        
+        loadMainImage()
+        loadBackgroundImage()
+        
+        backgroundColor = UIColor.black.withAlphaComponent(0.2)
+    }
+    
+    private func loadMainImage(){
+        if let photo = photo, let imageUrl = photo.photoUrl(for: .medium) {
             Nuke.loadImage(with: imageUrl, into: gifView)
-            Nuke.loadImage(with: imageUrl, into: backgroundImageView)
         } else {
             gifView.image = nil
+        }
+    }
+
+    private func loadBackgroundImage(){
+        if let photo = photo, let thumbnail = photo.photoUrl(for: .thumbnail) {
+            Nuke.loadImage(with: thumbnail, into: backgroundImageView)
+        } else {
             backgroundImageView.image = nil
         }
-        backgroundColor = UIColor.black.withAlphaComponent(0.2)
-        if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
-            playVideo(url: videoURL)
-        } else {
-            if let playerLayer = self.playerLayer {
-                playerLayer.removeFromSuperlayer()
+    }
+
+    
+    func realPlayVideo() {
+        if let photo = photo {
+            if configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
+                playVideo(url: videoURL)
+            } else {
+                if let playerLayer = self.playerLayer {
+                    playerLayer.removeFromSuperlayer()
+                }
             }
         }
     }
@@ -131,8 +150,7 @@ public class PXLPhotoView: UIView {
     var isObserving = false
 
     func playVideo(url: URL) {
-        guard configuration.enableVideoPlayback else { return }
-
+        print("playVideo==")
         stopVideo()
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
@@ -142,7 +160,7 @@ public class PXLPhotoView: UIView {
             playerLayer = AVPlayerLayer(player: queuePlayer)
             queuePlayer.isMuted = true
 
-            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            //playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             layer.insertSublayer(playerLayer!, above: gifView.layer)
 
             playerLayer?.frame = gifView.frame
@@ -236,22 +254,40 @@ public class PXLPhotoView: UIView {
     }
 
     public func stopVideo() {
-        queuePlayer?.pause()
-        queuePlayer?.cancelPendingPrerolls()
-        if isObserving {
-            queuePlayer?.removeObserver(self, forKeyPath: observeKey)
-            isObserving = false
+        print("stopVideo()")
+        if(queuePlayer != nil){
+            queuePlayer?.pause()
+            queuePlayer?.removeAllItems()
+            //queuePlayer?.cancelPendingPrerolls()
+            if isObserving {
+                queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+                isObserving = false
+            }
+            playerLayer?.removeFromSuperlayer()
+            queuePlayer = nil
+            //playerLayer?.removeFromSuperlayer()
+            
+            //bringSubviewToFront(gifView)
+            self.gifView.alpha = 1
         }
+        
+        //loadMainImage()
     }
 
     public func resetPlayer() {
-        if let photo = self.photo, configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
-            playVideo(url: videoURL)
-        }
+        stopVideo()
+        
+//        if let photo = self.photo, configuration.enableVideoPlayback, photo.isVideo, let videoURL = photo.videoUrl() {
+//            playVideo(url: videoURL)
+//        }
     }
 
     public func playVideo() {
-        queuePlayer?.play()
+        if(queuePlayer==nil){
+            realPlayVideo()
+        }else{
+            queuePlayer?.play()
+        }
     }
 
     public func mutePlayer(muted: Bool) {
