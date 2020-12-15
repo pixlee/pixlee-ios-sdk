@@ -23,8 +23,8 @@ public class PXLPhotoListViewCell: UITableViewCell {
         photoView.stopVideo()
     }
     
-    public func playVideo(){
-        photoView.playVideo()
+    public func playVideo(muted: Bool = false){
+        photoView.playVideo(muted: muted)
     }
     
     public func stopVideo(){

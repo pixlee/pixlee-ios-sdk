@@ -256,10 +256,8 @@ public class PXLPhotoProductView: UIViewController {
             setupConfiguration()
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
-                Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }else{
                 gifView.image = nil
-                backgroundImageView.image = nil
             }
             
             if let imageUrl = viewModel.photoUrl(for: .thumbnail) {
@@ -296,8 +294,14 @@ public class PXLPhotoProductView: UIViewController {
 
     var bookmarks: [Int: Bool]?
 
+    private let category = AVAudioSession.sharedInstance().category
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        do{
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        }catch{
+        }
 
         self.view.clipsToBounds = true
         backgroundImageView.contentMode = .scaleAspectFill
@@ -338,7 +342,7 @@ public class PXLPhotoProductView: UIViewController {
             queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
             isObserving = true
             queuePlayer.play()
-            queuePlayer.isMuted = true
+            queuePlayer.isMuted = false
             adjustMuteImages()
 
             view.bringSubviewToFront(productCollectionView)
@@ -377,7 +381,11 @@ public class PXLPhotoProductView: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         durationLabelUpdateTimer?.invalidate()
-        stopVideo()
+        destroyPlayer()
+        do{
+            try AVAudioSession.sharedInstance().setCategory(category)
+        }catch{
+        }
     }
 
     func setupCollectionView() {
@@ -413,6 +421,19 @@ public class PXLPhotoProductView: UIViewController {
         if isObserving {
             queuePlayer?.removeObserver(self, forKeyPath: observeKey)
             isObserving = false
+        }
+    }
+    
+    public func destroyPlayer(){
+        if(queuePlayer != nil){
+            queuePlayer?.pause()
+            queuePlayer?.removeAllItems()
+            if isObserving {
+                queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+                isObserving = false
+            }
+            playerLayer?.removeFromSuperlayer()
+            queuePlayer = nil
         }
     }
 

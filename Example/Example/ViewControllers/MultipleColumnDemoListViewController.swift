@@ -40,13 +40,13 @@ class MultipleColumnDemoListViewController: UIViewController {
      */
     var videoCell: PXLGridViewCell? {
         didSet {
-            guard let videoCell = videoCell else { return }
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                videoCell.stopVideo()
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                    videoCell.playVideo()
-                }
-            }
+//            guard let videoCell = videoCell else { return }
+//            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+//                videoCell.stopVideo()
+//                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+//                    videoCell.playVideo(muted: self.isVideoMutted())
+//                }
+//            }
         }
     }
 }
@@ -62,6 +62,10 @@ extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
 }
 
 extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
+    func isVideoMutted() -> Bool {
+        false
+    }
+    
     func cellsHighlighted(cells: [PXLGridViewCell]) {
 //        print("Highlighted cells: \(cells)")
     }

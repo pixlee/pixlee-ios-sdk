@@ -232,7 +232,7 @@ class ViewController: UIViewController {
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         if let photos = getSamplePhotos() {
             let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-            photoListDemoVC.photos = photos
+            photoListDemoVC.photos = [photos[0]]
             present(photoListDemoVC, animated: true, completion: nil)
         }
         

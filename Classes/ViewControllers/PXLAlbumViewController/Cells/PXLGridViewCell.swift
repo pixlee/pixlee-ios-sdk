@@ -26,26 +26,33 @@ public class PXLGridViewCell: UICollectionViewCell {
         disableHighlightView()
     }
 
-    func highlightView() {
+    func highlightView(muted: Bool) {
+        print("highlightView")
         if isHighlihtingEnabled {
             photoView.alpha = 1
         }
-        photoView.playVideo()
+        photoView.playVideo(muted: muted)
     }
 
     func disableHighlightView() {
+        print("disableHighlightView")
         if isHighlihtingEnabled {
             photoView.alpha = 0.5
         }
-        photoView.stopVideo()
+        photoView.resetPlayer()
     }
 
-    public func playVideo() {
-        photoView.playVideo()
+    public func playVideo(muted: Bool) {
+        photoView.playVideo(muted: muted)
+    }
+    
+    public func mutePlayer(_ muted: Bool){
+        print("muted: \(muted)")
+        photoView.mutePlayer(muted)
     }
 
     public func stopVideo() {
-        photoView.stopVideo()
+        photoView.resetPlayer()
     }
 
     override public func prepareForReuse() {

@@ -52,6 +52,10 @@ extension SingleColumnViewController: PXLPhotoViewDelegate {
 }
 
 extension SingleColumnViewController: PXLGridViewDelegate {
+    func isVideoMutted() -> Bool {
+        false
+    }
+    
     func cellsHighlighted(cells: [PXLGridViewCell]) {
 //        print("Highlighted cells: \(cells)")
     }
