@@ -16,14 +16,27 @@ class ViewController: UIViewController {
 
     var photos: [PXLPhoto] = []
     
+    @IBOutlet weak var uiStackView: UIStackView!
+    @IBOutlet weak var analyticsStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
+    func addEmptySpace(to: UIStackView){
+        to.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        to.isLayoutMarginsRelativeArrangement = true
+        to.layer.cornerRadius = CGFloat(20)
+        to.layer.masksToBounds = true
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        addEmptySpace(to: uiStackView)
+        addEmptySpace(to: analyticsStackView)
+                
         readCredentials()
         
         initClient()
@@ -186,31 +199,31 @@ class ViewController: UIViewController {
 //    let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
 
     @IBAction func showListWithGifURL(_ sender: Any) {
-        if let photos = getSamplePhotos(){
-            let gifURLListVC = ListWithGifURLViewController()
-            gifURLListVC.photos = photos
-            gifURLListVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
-            present(gifURLListVC, animated: true, completion: nil)
-        }
+//        if let photos = getSamplePhotos(){
+//            let gifURLListVC = ListWithGifURLViewController()
+//            gifURLListVC.photos = photos
+//            gifURLListVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+//            present(gifURLListVC, animated: true, completion: nil)
+//        }
     }
 
     @IBAction func showListWithGif(_ sender: Any) {
-        if let photos = getSamplePhotos() {
-            let gifImageListVC = ListWithGifImageViewController()
-            gifImageListVC.photos = photos
-            gifImageListVC.titleGifName = "wavingBear"
-            present(gifImageListVC, animated: true, completion: nil)
-        }
+//        if let photos = getSamplePhotos() {
+//            let gifImageListVC = ListWithGifImageViewController()
+//            gifImageListVC.photos = photos
+//            gifImageListVC.titleGifName = "wavingBear"
+//            present(gifImageListVC, animated: true, completion: nil)
+//        }
         
     }
 
     @IBAction func showListWithTitle(_ sender: Any) {
-        if let photos = getSamplePhotos() {
-            let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-            listVC.photos = photos
-            listVC.listTitle = "Photo list title"
-            present(listVC, animated: true, completion: nil)
-        }
+//        if let photos = getSamplePhotos() {
+//            let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
+//            listVC.photos = photos
+//            listVC.listTitle = "Photo list title"
+//            present(listVC, animated: true, completion: nil)
+//        }
     }
 
     @IBAction func loadPhotoList(_ sender: Any) {

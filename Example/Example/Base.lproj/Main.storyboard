@@ -2,9 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,11 +19,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-4w-iAa">
                                 <rect key="frame" x="0.0" y="44" width="428" height="882"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="left" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
-                                        <rect key="frame" x="0.0" y="70" width="428" height="582"/>
+                                    <stackView opaque="NO" contentMode="left" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
+                                        <rect key="frame" x="0.0" y="70" width="428" height="605"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm">
-                                                <rect key="frame" x="0.0" y="0.0" width="428" height="77.666666666666671"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm" userLabel="Title StackView">
+                                                <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PixleeSDK example app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2b-UM-JJt">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
@@ -31,79 +31,113 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 2.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mym-la-b7f">
-                                                        <rect key="frame" x="0.0" y="57.33333333333335" width="428" height="20.333333333333336"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
-                                                <rect key="frame" x="0.0" y="82.666666666666657" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show an example abum"/>
-                                                <connections>
-                                                    <action selector="loadAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CQB-ZT-7XX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-JH-9Xw">
-                                                <rect key="frame" x="0.0" y="145.66666666666669" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show list with title"/>
-                                                <connections>
-                                                    <action selector="showListWithTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1W-rd-Ubq"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-FR-36k">
-                                                <rect key="frame" x="0.0" y="208.66666666666669" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show list with GifImage"/>
-                                                <connections>
-                                                    <action selector="showListWithGif:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0f-mL-it7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-U0-qmW">
-                                                <rect key="frame" x="0.0" y="271.66666666666669" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show list with GifImage from URL"/>
-                                                <connections>
-                                                    <action selector="showListWithGifURL:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFq-8r-G6o"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a">
-                                                <rect key="frame" x="0.0" y="334.66666666666669" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show one column list"/>
-                                                <connections>
-                                                    <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n">
-                                                <rect key="frame" x="0.0" y="397.66666666666669" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show two column list"/>
-                                                <connections>
-                                                    <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
-                                                <rect key="frame" x="0.0" y="460.66666666666663" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Show PXLPhotoProductView"/>
-                                                <connections>
-                                                    <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
-                                                <rect key="frame" x="0.0" y="523.66666666666663" width="428" height="58"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                <state key="normal" title="Analytics calls"/>
-                                                <connections>
-                                                    <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>
-                                                </connections>
-                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da0-DU-Tlg">
+                                                <rect key="frame" x="0.0" y="27.333333333333343" width="428" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="hou-xF-vjE"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
+                                                <rect key="frame" x="0.0" y="78.333333333333343" width="428" height="426.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
+                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show an example abum"/>
+                                                        <connections>
+                                                            <action selector="loadAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CQB-ZT-7XX"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-JH-9Xw">
+                                                        <rect key="frame" x="0.0" y="78.333333333333343" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show list with title"/>
+                                                        <connections>
+                                                            <action selector="showListWithTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1W-rd-Ubq"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-FR-36k">
+                                                        <rect key="frame" x="0.0" y="136.33333333333334" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show list with GifImage"/>
+                                                        <connections>
+                                                            <action selector="showListWithGif:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0f-mL-it7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-U0-qmW">
+                                                        <rect key="frame" x="0.0" y="194.33333333333334" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show list with GifImage from URL"/>
+                                                        <connections>
+                                                            <action selector="showListWithGifURL:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFq-8r-G6o"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a">
+                                                        <rect key="frame" x="0.0" y="252.33333333333337" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show one column list"/>
+                                                        <connections>
+                                                            <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n">
+                                                        <rect key="frame" x="0.0" y="310.33333333333337" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show two column list"/>
+                                                        <connections>
+                                                            <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
+                                                        <rect key="frame" x="0.0" y="368.33333333333326" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Show PXLPhotoProductView"/>
+                                                        <connections>
+                                                            <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlK-Ia-Y78">
+                                                <rect key="frame" x="0.0" y="505.66666666666663" width="428" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="CRh-p7-hFy"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-oQ-oH7">
+                                                <rect key="frame" x="0.0" y="526.66666666666663" width="428" height="78.333333333333371"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-KZ-OP2" userLabel="Analaytics">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
+                                                        <rect key="frame" x="0.0" y="20.333333333333371" width="428" height="58"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                                        <state key="normal" title="Analytics calls"/>
+                                                        <connections>
+                                                            <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="x9k-Li-OaM" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="50" id="GnH-ks-jmh"/>
+                                            <constraint firstItem="A1x-oQ-oH7" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="50" id="W5Q-ja-5lt"/>
+                                            <constraint firstAttribute="trailing" secondItem="A1x-oQ-oH7" secondAttribute="trailing" constant="50" id="YzG-k8-GpR"/>
+                                            <constraint firstAttribute="trailing" secondItem="x9k-Li-OaM" secondAttribute="trailing" constant="50" id="psu-Hl-IEY"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -118,7 +152,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bXT-4w-iAa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UR9-Tg-xQb"/>
                             <constraint firstAttribute="bottom" secondItem="bXT-4w-iAa" secondAttribute="bottom" id="WCd-kg-4Wm"/>
@@ -128,7 +162,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="PixleeSDK example app" id="Tjw-Mr-lNa"/>
                     <connections>
-                        <outlet property="versionLabel" destination="Mym-la-b7f" id="c1c-rC-2VW"/>
+                        <outlet property="analyticsStackView" destination="A1x-oQ-oH7" id="hCZ-jQ-vUW"/>
+                        <outlet property="uiStackView" destination="x9k-Li-OaM" id="wlE-1Y-bT6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -136,9 +171,4 @@
             <point key="canvasLocation" x="1028.9719626168223" y="91.360691144708426"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
