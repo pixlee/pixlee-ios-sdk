@@ -1,17 +1,19 @@
 //
-//  ListWithGifURLViewController.swift
+//  InfiniteScrollViewController.swift
 //  Example
 //
-//  Created by Csaba Toth on 2020. 11. 13..
-//  Copyright © 2020. Pixlee. All rights reserved.
+//  Created by Sungjun Hong on 12/16/20.
+//  Copyright © 2020 Pixlee. All rights reserved.
 //
+
+import Foundation
 
 import PixleeSDK
 import UIKit
 
-class ListWithGifURLViewController: UIViewController {
-    static func getInstance(_ list: [PXLPhoto]) -> ListWithGifURLViewController {
-        let vc = ListWithGifURLViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+class InfiniteScrollViewController: UIViewController {
+    static func getInstance(_ list: [PXLPhoto]) -> InfiniteScrollViewController {
+        let vc = InfiniteScrollViewController(nibName: "EmptyViewController", bundle: Bundle.main)
         vc.photos = list
         return vc
     }
@@ -31,13 +33,12 @@ class ListWithGifURLViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         photoView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
         
     }
 }
 
-extension ListWithGifURLViewController: PXLPhotoViewDelegate {
+extension InfiniteScrollViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -47,21 +48,13 @@ extension ListWithGifURLViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension ListWithGifURLViewController: PXLGridViewDelegate {
+extension InfiniteScrollViewController: PXLGridViewDelegate {
     func isVideoMutted() -> Bool {
         false
     }
     
     func cellsHighlighted(cells: [PXLGridViewCell]) {
         //        print("Highlighted cells: \(cells)")
-    }
-    
-    func headerGifUrl() -> String? {
-        return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
-    }
-    
-    func headerGifContentMode() -> UIView.ContentMode {
-        .scaleAspectFill
     }
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
@@ -83,7 +76,7 @@ extension ListWithGifURLViewController: PXLGridViewDelegate {
     }
     
     func isHighlightingEnabled() -> Bool {
-        return true
+        return false
     }
     
     func isInfiniteScrollEnabled() -> Bool {

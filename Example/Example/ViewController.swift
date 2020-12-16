@@ -37,7 +37,11 @@ class ViewController: UIViewController {
         addEmptySpace(to: uiStackView)
         addEmptySpace(to: analyticsStackView)
                 
-        readCredentials()
+        do {
+            try pixleeCredentials = PixleeCredentials.create()
+        } catch{
+            showPopup(message: error.localizedDescription)
+        }
         
         initClient()
         initAlbum()
@@ -159,7 +163,7 @@ class ViewController: UIViewController {
 
     func getSamplePhotos() -> [PXLPhoto]? {
         if let album = album {
-            return [photos[0], photos[1], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1]]
+//            return [photos[0], photos[1], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1]]
             
             guard album.photos.count < 1 else {
                 return album.photos
@@ -183,79 +187,98 @@ class ViewController: UIViewController {
 
     @IBAction func loadAlbum(_ sender: Any) {
         if let album = album {
-            let albumVC = PXLAlbumViewController.viewControllerForAlbum(album: album)
-            present(albumVC, animated: true, completion: nil)
+            present(PXLAlbumViewController.viewControllerForAlbum(album: album), animated: true, completion: nil)
         }
         
     }
 
-    // Example viewControllers
-//    let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-//    let gifImageListVC = ListWithGifImageViewController()
-//    let gifURLListVC = ListWithGifURLViewController()
-//    let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
-//    let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
-//    let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-//    let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
-
-    @IBAction func showListWithGifURL(_ sender: Any) {
-//        if let photos = getSamplePhotos(){
-//            let gifURLListVC = ListWithGifURLViewController()
-//            gifURLListVC.photos = photos
-//            gifURLListVC.titleGifURL = "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
-//            present(gifURLListVC, animated: true, completion: nil)
-//        }
+    // MARK: - APIs
+    
+    @IBAction func showAPIGetPhotos(_ sender: Any) {
+        present(GetPhotosViewController.getInstance(), animated: true, completion: nil)
     }
-
-    @IBAction func showListWithGif(_ sender: Any) {
-//        if let photos = getSamplePhotos() {
-//            let gifImageListVC = ListWithGifImageViewController()
-//            gifImageListVC.photos = photos
-//            gifImageListVC.titleGifName = "wavingBear"
-//            present(gifImageListVC, animated: true, completion: nil)
-//        }
-        
+    
+    @IBAction func showAPIGetPhoto(_ sender: Any) {
+        present(GetPhotoViewController.getInstance(), animated: true, completion: nil)
     }
-
-    @IBAction func showListWithTitle(_ sender: Any) {
-//        if let photos = getSamplePhotos() {
-//            let listVC = ListWithTitleViewController(nibName: "ListWithTitleViewController", bundle: Bundle.main)
-//            listVC.photos = photos
-//            listVC.listTitle = "Photo list title"
-//            present(listVC, animated: true, completion: nil)
-//        }
+    
+    @IBAction func showAnalytics(_ sender: Any) {
+        present(AnalyticsViewController.getInstance(), animated: true, completion: nil)
     }
+    
+    // MARK: - UI Components
 
-    @IBAction func loadPhotoList(_ sender: Any) {
+    @IBAction func loadOneColumn(_ sender: Any) {
         if let photos = getSamplePhotos() {
-            let gridVC = SingleColumnViewController(nibName: "SingleColumnViewController", bundle: Bundle.main)
-            gridVC.photos = photos
-            present(gridVC, animated: true, completion: nil)
+            present(OneColumnViewController.getInstance(photos), animated: true, completion: nil)
         }
     }
 
-    @IBAction func loadVideoList(_ sender: Any) {
+    @IBAction func loadOneColumnAutoplay(_ sender: Any) {
         if let photos = getSamplePhotos() {
-            let multipleColumnVC = MultipleColumnDemoListViewController(nibName: "MultipleColumnDemoListViewController", bundle: Bundle.main)
-            multipleColumnVC.photos = photos
-            present(multipleColumnVC, animated: true, completion: nil)
+            present(AutoPlayViewController.getInstance(photos), animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func loadOneColumnInfiniteScroll(_ sender: Any) {
+        if let photos = getSamplePhotos() {
+            present(InfiniteScrollViewController.getInstance(photos), animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func loadTwoColumn(_ sender: Any) {
+        if let photos = getSamplePhotos() {
+            present(TwoColumnDemoListViewController.getInstance(photos), animated: true, completion: nil)
         }
     }
 
+    @IBAction func loadGifFileHeader(_ sender: Any) {
+        if let photos = getSamplePhotos() {
+            present(ListWithGifFileViewController.getInstance(photos), animated: true, completion: nil)
+        }
+    }
+    @IBAction func loadGifURLHeader(_ sender: Any) {
+        if let photos = getSamplePhotos() {
+            present(ListWithGifURLViewController.getInstance(photos), animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func loadTextHeader(_ sender: Any) {
+        if let photos = getSamplePhotos() {
+            present(ListWithTextViewController.getInstance(photos), animated: true, completion: nil)
+        }
+    }
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         if let photos = getSamplePhotos() {
-            let photoListDemoVC = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-            photoListDemoVC.photos = [photos[0]]
-            present(photoListDemoVC, animated: true, completion: nil)
+            present(PhotoProductListDemoViewController.getInstance([photos[0]]), animated: true, completion: nil)
         }
         
     }
+}
 
-    @IBAction func showAnalytics(_ sender: Any) {
-        let analyticsVC = AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
-        present(analyticsVC, animated: true, completion: nil)
+extension ViewController: PXLPhotoProductDelegate {
+    public func onProductsLoaded(products: [PXLProduct]) -> [Int: Bool] {
+        var bookmarks = [Int: Bool]()
+        products.forEach { product in
+            bookmarks[product.identifier] = true
+        }
+        return bookmarks
+    }
+    
+    public func onBookmarkClicked(product: PXLProduct, isSelected: Bool) {
+        print("Pruduct: \(product.identifier) is selected: \(isSelected)")
+    }
+    
+    public func shouldOpenURL(url: URL) -> Bool {
+        print("url: \(url)")
+        return false
+    }
+    
+    public func onProductClicked(product: PXLProduct) {
+        print("Pruduct: \(product.identifier) clicked")
     }
 }
+
 
 // MARK: - Show Popup
 extension ViewController {

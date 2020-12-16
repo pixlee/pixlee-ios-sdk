@@ -1,17 +1,17 @@
 //
-//  ListWithGifURLViewController.swift
+//  ListWithTextViewController.swift
 //  Example
 //
-//  Created by Csaba Toth on 2020. 11. 13..
+//  Created by Csaba Toth on 2020. 10. 13..
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
 import PixleeSDK
 import UIKit
 
-class ListWithGifURLViewController: UIViewController {
-    static func getInstance(_ list: [PXLPhoto]) -> ListWithGifURLViewController {
-        let vc = ListWithGifURLViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+class ListWithTextViewController: UIViewController {
+    static func getInstance(_ list: [PXLPhoto]) -> ListWithTextViewController {
+        let vc = ListWithTextViewController(nibName: "EmptyViewController", bundle: Bundle.main)
         vc.photos = list
         return vc
     }
@@ -37,7 +37,7 @@ class ListWithGifURLViewController: UIViewController {
     }
 }
 
-extension ListWithGifURLViewController: PXLPhotoViewDelegate {
+extension ListWithTextViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -47,21 +47,17 @@ extension ListWithGifURLViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension ListWithGifURLViewController: PXLGridViewDelegate {
+extension ListWithTextViewController: PXLGridViewDelegate {
     func isVideoMutted() -> Bool {
-        false
+        return false
+    }
+    
+    func headerTitle() -> String? {
+        return "pixlee customizable title"
     }
     
     func cellsHighlighted(cells: [PXLGridViewCell]) {
         //        print("Highlighted cells: \(cells)")
-    }
-    
-    func headerGifUrl() -> String? {
-        return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
-    }
-    
-    func headerGifContentMode() -> UIView.ContentMode {
-        .scaleAspectFill
     }
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
@@ -90,3 +86,4 @@ extension ListWithGifURLViewController: PXLGridViewDelegate {
         return true
     }
 }
+

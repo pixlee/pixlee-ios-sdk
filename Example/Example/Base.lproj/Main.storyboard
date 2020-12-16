@@ -16,11 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-4w-iAa">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXT-4w-iAa">
                                 <rect key="frame" x="0.0" y="44" width="428" height="882"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="left" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7">
-                                        <rect key="frame" x="0.0" y="70" width="428" height="605"/>
+                                    <stackView opaque="NO" contentMode="left" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7" userLabel="Body Stack View">
+                                        <rect key="frame" x="20" y="20" width="428" height="687"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm" userLabel="Title StackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
@@ -34,96 +34,47 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da0-DU-Tlg">
-                                                <rect key="frame" x="0.0" y="27.333333333333343" width="428" height="50"/>
+                                                <rect key="frame" x="0.0" y="27.333333333333329" width="428" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="hou-xF-vjE"/>
+                                                    <constraint firstAttribute="height" constant="20" id="hou-xF-vjE"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
-                                                <rect key="frame" x="0.0" y="78.333333333333343" width="428" height="426.33333333333326"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-oQ-oH7">
+                                                <rect key="frame" x="0.0" y="48.333333333333329" width="428" height="212.33333333333337"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APIs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-KZ-OP2" userLabel="Analaytics">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
-                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show an example abum"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rui-8T-h6v">
+                                                        <rect key="frame" x="0.0" y="20.333333333333329" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="Get Photos"/>
+                                                        <connections>
+                                                            <action selector="showAPIGetPhotos:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V43-VN-wbd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jR-oy-VrE">
+                                                        <rect key="frame" x="0.0" y="68.333333333333329" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="Get a photo with album_photo_id"/>
+                                                        <connections>
+                                                            <action selector="showAPIGetPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H9G-6z-ZbL"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-jc-Oze">
+                                                        <rect key="frame" x="0.0" y="116.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="Upload a photo"/>
                                                         <connections>
                                                             <action selector="loadAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CQB-ZT-7XX"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-JH-9Xw">
-                                                        <rect key="frame" x="0.0" y="78.333333333333343" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show list with title"/>
-                                                        <connections>
-                                                            <action selector="showListWithTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1W-rd-Ubq"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-FR-36k">
-                                                        <rect key="frame" x="0.0" y="136.33333333333334" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show list with GifImage"/>
-                                                        <connections>
-                                                            <action selector="showListWithGif:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I0f-mL-it7"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-U0-qmW">
-                                                        <rect key="frame" x="0.0" y="194.33333333333334" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show list with GifImage from URL"/>
-                                                        <connections>
-                                                            <action selector="showListWithGifURL:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QFq-8r-G6o"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a">
-                                                        <rect key="frame" x="0.0" y="252.33333333333337" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show one column list"/>
-                                                        <connections>
-                                                            <action selector="loadPhotoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n">
-                                                        <rect key="frame" x="0.0" y="310.33333333333337" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show two column list"/>
-                                                        <connections>
-                                                            <action selector="loadVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
-                                                        <rect key="frame" x="0.0" y="368.33333333333326" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Show PXLPhotoProductView"/>
-                                                        <connections>
-                                                            <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlK-Ia-Y78">
-                                                <rect key="frame" x="0.0" y="505.66666666666663" width="428" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="CRh-p7-hFy"/>
-                                                </constraints>
-                                            </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-oQ-oH7">
-                                                <rect key="frame" x="0.0" y="526.66666666666663" width="428" height="78.333333333333371"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-KZ-OP2" userLabel="Analaytics">
-                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
-                                                        <rect key="frame" x="0.0" y="20.333333333333371" width="428" height="58"/>
-                                                        <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
-                                                        <state key="normal" title="Analytics calls"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48M-co-gVz">
+                                                        <rect key="frame" x="0.0" y="164.33333333333337" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="Analytics"/>
                                                         <connections>
                                                             <action selector="showAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPS-MJ-ACO"/>
                                                         </connections>
@@ -131,21 +82,100 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlK-Ia-Y78">
+                                                <rect key="frame" x="0.0" y="261.66666666666669" width="428" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="CRh-p7-hFy"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
+                                                <rect key="frame" x="0.0" y="282.66666666666674" width="428" height="404.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a" userLabel="One-column">
+                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List type] One-column"/>
+                                                        <connections>
+                                                            <action selector="loadOneColumn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cy6-ul-XFg"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5S-8G-FhZ" userLabel="One-column + auto play">
+                                                        <rect key="frame" x="0.0" y="68.333333333333314" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List type] One-column + auto play"/>
+                                                        <connections>
+                                                            <action selector="loadOneColumnAutoplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EjL-OU-UM3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-rq-dUI" userLabel="One-column + infinite">
+                                                        <rect key="frame" x="0.0" y="116.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List type] One-column + infinite scroll"/>
+                                                        <connections>
+                                                            <action selector="loadOneColumnInfiniteScroll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FTG-jc-AGM"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n" userLabel="Two-column">
+                                                        <rect key="frame" x="0.0" y="164.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List type] Two-column"/>
+                                                        <connections>
+                                                            <action selector="loadTwoColumn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xvq-2U-jlD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-1j-IO3" userLabel="GIF file header">
+                                                        <rect key="frame" x="0.0" y="212.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List header] Gif file"/>
+                                                        <connections>
+                                                            <action selector="loadGifFileHeader:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YcF-QE-ITP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSC-4B-q7T" userLabel="GIF URL header">
+                                                        <rect key="frame" x="0.0" y="260.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List header] Gif URL"/>
+                                                        <connections>
+                                                            <action selector="loadGifURLHeader:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uFi-p2-d1d"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kE-Z4-MDJ" userLabel="Text header">
+                                                        <rect key="frame" x="0.0" y="308.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[List header] Text"/>
+                                                        <connections>
+                                                            <action selector="loadTextHeader:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UBj-BH-VKR"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
+                                                        <rect key="frame" x="0.0" y="356.33333333333331" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="A photo with products"/>
+                                                        <connections>
+                                                            <action selector="loadPhotoProductsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bcx-G0-hTm"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="x9k-Li-OaM" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="50" id="GnH-ks-jmh"/>
-                                            <constraint firstItem="A1x-oQ-oH7" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="50" id="W5Q-ja-5lt"/>
-                                            <constraint firstAttribute="trailing" secondItem="A1x-oQ-oH7" secondAttribute="trailing" constant="50" id="YzG-k8-GpR"/>
-                                            <constraint firstAttribute="trailing" secondItem="x9k-Li-OaM" secondAttribute="trailing" constant="50" id="psu-Hl-IEY"/>
+                                            <constraint firstAttribute="trailing" secondItem="A1x-oQ-oH7" secondAttribute="trailing" constant="20" id="BIy-Oq-gIB"/>
+                                            <constraint firstItem="A1x-oQ-oH7" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="Uav-8v-kyK"/>
+                                            <constraint firstAttribute="trailing" secondItem="x9k-Li-OaM" secondAttribute="trailing" constant="20" id="ljh-VR-f5g"/>
+                                            <constraint firstItem="x9k-Li-OaM" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="sEe-Ei-KXH"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="width" secondItem="bXT-4w-iAa" secondAttribute="width" id="7dM-mm-Tl1"/>
-                                    <constraint firstAttribute="bottom" secondItem="FgL-jc-DM7" secondAttribute="bottom" constant="80" id="DCL-SW-icK"/>
-                                    <constraint firstAttribute="trailing" secondItem="FgL-jc-DM7" secondAttribute="trailing" id="PBK-av-n7s"/>
-                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="leading" secondItem="bXT-4w-iAa" secondAttribute="leading" id="UkY-kN-ekQ"/>
-                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="top" secondItem="bXT-4w-iAa" secondAttribute="top" constant="70" id="xLf-y8-wIJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="FgL-jc-DM7" secondAttribute="bottom" constant="20" id="DCL-SW-icK"/>
+                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="width" secondItem="bXT-4w-iAa" secondAttribute="width" id="GRR-wE-eto"/>
+                                    <constraint firstItem="FgL-jc-DM7" firstAttribute="top" secondItem="bXT-4w-iAa" secondAttribute="top" constant="20" id="xLf-y8-wIJ"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="xms-ma-9vr"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="3FJ-Zt-rIB"/>
@@ -156,8 +186,8 @@
                         <constraints>
                             <constraint firstItem="bXT-4w-iAa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UR9-Tg-xQb"/>
                             <constraint firstAttribute="bottom" secondItem="bXT-4w-iAa" secondAttribute="bottom" id="WCd-kg-4Wm"/>
-                            <constraint firstItem="bXT-4w-iAa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="myE-rE-cBb"/>
-                            <constraint firstItem="bXT-4w-iAa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uU0-LJ-y74"/>
+                            <constraint firstItem="bXT-4w-iAa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="myE-rE-cBb"/>
+                            <constraint firstItem="bXT-4w-iAa" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="uU0-LJ-y74"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PixleeSDK example app" id="Tjw-Mr-lNa"/>

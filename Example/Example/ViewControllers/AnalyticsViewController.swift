@@ -10,6 +10,11 @@ import PixleeSDK
 import UIKit
 
 class AnalyticsViewController: UIViewController {
+    static func getInstance() -> AnalyticsViewController {
+        return AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+    }
+    
+    
     var photo: PXLPhoto?
     @IBOutlet var consoleLabel: UILabel!
     let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
