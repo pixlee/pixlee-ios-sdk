@@ -9,6 +9,9 @@ import Nuke
 import UIKit
 
 class PXLAdvancedProductCell: UICollectionViewCell {
+    deinit{
+        print("deallocate PXLAdvancedProductCell")
+    }
     static var defaultIdentifier = "PXLAdvancedProductCell"
 
     @IBOutlet var cellContainer: UIView!
@@ -25,6 +28,12 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         didSet {
             guard let config = configuration else { return }
 
+            if let _ = config.bookmarkOffImage, let _ = config.bookmarkOnImage{
+                bookmarkButton.isHidden = false
+            }else{
+                bookmarkButton.isHidden = true
+            }
+            
             bookmarkButton.setImage(config.bookmarkOffImage, for: .normal)
 
             shopIcon.image = config.shopImage

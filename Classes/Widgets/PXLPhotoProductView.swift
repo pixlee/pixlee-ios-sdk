@@ -31,7 +31,7 @@ public struct PXLProductCellConfiguration {
     }
 }
 
-public protocol PXLPhotoProductDelegate {
+public protocol PXLPhotoProductDelegate: class {
     func onProductsLoaded(products: [PXLProduct]) -> [Int: Bool]
     func onBookmarkClicked(product: PXLProduct, isSelected: Bool)
     func onProductClicked(product: PXLProduct)
@@ -39,6 +39,10 @@ public protocol PXLPhotoProductDelegate {
 }
 
 public class PXLPhotoProductView: UIViewController {
+    deinit {
+        print("deallocate PXLPhotoProductView")
+    }
+    
     public static func widgetForPhoto(photo: PXLPhoto, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
@@ -144,7 +148,7 @@ public class PXLPhotoProductView: UIViewController {
 
     public var onBookmarkClicked: ((_ product: PXLProduct, _ isSelected: Bool) -> Void)?
 
-    public var delegate: PXLPhotoProductDelegate? {
+    public weak var delegate: PXLPhotoProductDelegate? {
         didSet {
             if let viewModel = viewModel {
                 bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
@@ -215,8 +219,9 @@ public class PXLPhotoProductView: UIViewController {
         setupButtons()
     }
 
-    func adjustMuteImages() {
+    public func adjustMuteImages() {
         guard let queuePlayer = queuePlayer else { return }
+        print("on: \(muteButtonOnImage), off: \(muteButtonOffImage)")
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
         muteButton.setImage(image, for: .normal)
     }
@@ -243,10 +248,10 @@ public class PXLPhotoProductView: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    var playerLooper: NSObject?
-    var playerLayer: AVPlayerLayer?
-    var queuePlayer: AVQueuePlayer?
-    var durationLabelUpdateTimer: Timer?
+    weak var playerLooper: NSObject?
+    weak var playerLayer: AVPlayerLayer?
+    weak var queuePlayer: AVQueuePlayer?
+    weak var durationLabelUpdateTimer: Timer?
 
     public var viewModel: PXLPhoto? {
         didSet {
@@ -333,7 +338,7 @@ public class PXLPhotoProductView: UIViewController {
         if let queuePlayer = self.queuePlayer {
             playerLayer = AVPlayerLayer(player: queuePlayer)
 
-            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            //playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
 
             playerLayer?.frame = gifView.frame
@@ -380,6 +385,7 @@ public class PXLPhotoProductView: UIViewController {
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("PDPView.viewWillDisappear()")
         durationLabelUpdateTimer?.invalidate()
         destroyPlayer()
         do{
@@ -452,16 +458,18 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier, for: indexPath) as! PXLAdvancedProductCell
 
         cell.configuration = cellConfiguration
-        cell.onBookmarkClicked = { product, isSelected in
-            self.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
+        cell.onBookmarkClicked = { [weak self] product, isSelected in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
         }
         let product = viewModel?.products?[indexPath.row]
         cell.viewModel = product
         if let bookmarks = bookmarks, let product = product {
             cell.isBookmarked = bookmarks[product.identifier] ?? false
         }
-        cell.actionButtonPressed = { product in
-            self.handleProductPressed(product: product)
+        cell.actionButtonPressed = { [weak self] product in
+            guard let strongSelf = self else { return }
+            strongSelf.handleProductPressed(product: product)
         }
         return cell
     }

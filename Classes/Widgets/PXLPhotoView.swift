@@ -54,12 +54,16 @@ public struct PXLPhotoViewConfiguration {
     }
 }
 
-public protocol PXLPhotoViewDelegate {
+public protocol PXLPhotoViewDelegate:class {
     func onPhotoButtonClicked(photo: PXLPhoto)
     func onPhotoClicked(photo: PXLPhoto)
 }
 
 public class PXLPhotoView: UIView {
+    deinit {
+        print("deallocate PXLPhotoView")
+    }
+    
     var backgroundImageView: UIImageView!
     var gifView = Gifu.GIFImageView()
     var titleLabel: UILabel?
@@ -299,7 +303,7 @@ public class PXLPhotoView: UIView {
         playerLayer?.frame = gifView.frame
     }
 
-    public var delegate: PXLPhotoViewDelegate?
+    public weak var delegate: PXLPhotoViewDelegate?
     private var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
     func prepareViews() {

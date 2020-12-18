@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-public protocol PXLGridViewDelegate {
+public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
     func onPhotoClicked(photo: PXLPhoto)
@@ -63,6 +63,10 @@ extension PXLGridViewDelegate {
 }
 
 public class PXLGridView: UIView {
+    deinit {
+        print("deallocate PXLGridView")
+    }
+    
     var collectionView: UICollectionView?
     let flowLayout = UICollectionViewFlowLayout()
 
@@ -81,7 +85,7 @@ public class PXLGridView: UIView {
         }
     }
 
-    public var delegate: PXLGridViewDelegate? {
+    public weak var delegate: PXLGridViewDelegate? {
         didSet {
             setupCellSize()
             if isMultipleColumnsEnabled {

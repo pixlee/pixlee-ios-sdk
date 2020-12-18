@@ -16,6 +16,10 @@ class PhotoProductListDemoViewController: UIViewController {
         return vc
     }
     
+    deinit {
+        print("deallocate PhotoProductListDemoViewController")
+    }
+    
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var scrollView: UIScrollView!
 
@@ -30,17 +34,18 @@ class PhotoProductListDemoViewController: UIViewController {
         stackView.arrangedSubviews.forEach { view in
             self.stackView.removeArrangedSubview(view)
         }
-        
+
         let widget = PXLPhotoProductView.widgetForPhoto(photo: photos[0], delegate: self)
-        widget.cropMode = .centerFill
-        widget.closeButtonBackgroundColor = .gray
+        widget.cropMode = .centerFit
+        widget.closeButtonBackgroundColor = .white
         widget.closeButtonCornerRadius = 22
         widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
         
-        widget.muteButtonBackgroundColor = .purple
-                
+        widget.muteButtonBackgroundColor = .white
+        widget.muteButtonTintColor = UIColor.red.withAlphaComponent(0.6)
+
         self.stackView.addArrangedSubview(widget.view)
-        
+
         widget.view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1),

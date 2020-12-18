@@ -16,8 +16,8 @@ class ViewController: UIViewController {
 
     var photos: [PXLPhoto] = []
     
-    @IBOutlet weak var uiStackView: UIStackView!
-    @IBOutlet weak var analyticsStackView: UIStackView!
+    @IBOutlet var uiStackView: UIStackView!
+    @IBOutlet var analyticsStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

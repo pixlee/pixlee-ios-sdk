@@ -60,22 +60,22 @@ class GetPhotoViewController: UIViewController {
         if let album = album {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 if let photos = photos {
-                    
-//                    PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: <#T##String#>, regionId: <#T##Int#>, completionHandler: <#T##((PXLPhoto?, Error?) -> Void)?##((PXLPhoto?, Error?) -> Void)?##(PXLPhoto?, Error?) -> Void#>)
-                    
                     if let albumPhotoId = photos.shuffled().first?.albumPhotoId {
                         print("albumPhotoId: \(albumPhotoId)")
+                        // alternative: PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: <#T##String#>, regionId: <#T##Int#>, completionHandler: <#T##((PXLPhoto?, Error?) -> Void)?##((PXLPhoto?, Error?) -> Void)?##(PXLPhoto?, Error?) -> Void#>)
                         PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: String(albumPhotoId)) { (pxlPhoto, error) in
                             if let pxlPhoto = pxlPhoto {
                                 print("a photo loaded, albumPhotoId: \(pxlPhoto.albumPhotoId)")
-                                let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, delegate: self)
-                                widget.cropMode = .centerFill
-                                widget.closeButtonBackgroundColor = .gray
+                                let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, delegate: self, cellConfiguration: PXLProductCellConfiguration(bookmarkOnImage: nil, bookmarkOffImage: nil))
+                                
+                                widget.cropMode = .centerFit
+                                widget.closeButtonBackgroundColor = .white
                                 widget.closeButtonCornerRadius = 22
                                 widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
 
-                                widget.muteButtonBackgroundColor = .purple
-
+                                widget.muteButtonBackgroundColor = .white
+                                widget.muteButtonTintColor = UIColor.red.withAlphaComponent(0.6)
+                                
                                 self.view.addSubview(widget.view)
 
                                 widget.view.translatesAutoresizingMaskIntoConstraints = false

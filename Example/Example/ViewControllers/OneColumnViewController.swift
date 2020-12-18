@@ -16,6 +16,10 @@ class OneColumnViewController: UIViewController {
         return vc
     }
     
+    deinit {
+        print("deallocate OneColumnViewController")
+    }
+    
     public var photos = [PXLPhoto]() {
         didSet {
             photoView.items = photos
