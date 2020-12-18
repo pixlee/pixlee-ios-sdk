@@ -62,11 +62,7 @@ extension PXLGridViewDelegate {
     }
 }
 
-public class PXLGridView: UIView {
-    deinit {
-        print("deallocate PXLGridView")
-    }
-    
+public class PXLGridView: UIView {    
     var collectionView: UICollectionView?
     let flowLayout = UICollectionViewFlowLayout()
 

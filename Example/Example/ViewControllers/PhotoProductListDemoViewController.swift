@@ -16,10 +16,6 @@ class PhotoProductListDemoViewController: UIViewController {
         return vc
     }
     
-    deinit {
-        print("deallocate PhotoProductListDemoViewController")
-    }
-    
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var scrollView: UIScrollView!
 

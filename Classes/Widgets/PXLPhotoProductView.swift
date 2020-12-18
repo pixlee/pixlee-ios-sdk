@@ -39,10 +39,6 @@ public protocol PXLPhotoProductDelegate: class {
 }
 
 public class PXLPhotoProductView: UIViewController {
-    deinit {
-        print("deallocate PXLPhotoProductView")
-    }
-    
     public static func widgetForPhoto(photo: PXLPhoto, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)

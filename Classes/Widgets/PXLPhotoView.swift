@@ -60,10 +60,6 @@ public protocol PXLPhotoViewDelegate:class {
 }
 
 public class PXLPhotoView: UIView {
-    deinit {
-        print("deallocate PXLPhotoView")
-    }
-    
     var backgroundImageView: UIImageView!
     var gifView = Gifu.GIFImageView()
     var titleLabel: UILabel?

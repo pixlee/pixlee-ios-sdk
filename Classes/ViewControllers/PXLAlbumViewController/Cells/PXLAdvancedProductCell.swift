@@ -9,9 +9,6 @@ import Nuke
 import UIKit
 
 class PXLAdvancedProductCell: UICollectionViewCell {
-    deinit{
-        print("deallocate PXLAdvancedProductCell")
-    }
     static var defaultIdentifier = "PXLAdvancedProductCell"
 
     @IBOutlet var cellContainer: UIView!
