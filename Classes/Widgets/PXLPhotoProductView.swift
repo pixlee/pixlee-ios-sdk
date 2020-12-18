@@ -215,7 +215,7 @@ public class PXLPhotoProductView: UIViewController {
         setupButtons()
     }
 
-    public func adjustMuteImages() {
+    func adjustMuteImages() {
         guard let queuePlayer = queuePlayer else { return }
         print("on: \(muteButtonOnImage), off: \(muteButtonOffImage)")
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
