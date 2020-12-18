@@ -177,15 +177,13 @@ public class PXLPhotoView: UIView {
         if keyPath == observeKey {
             
             if queuePlayer.timeControlStatus == .playing {
-//                UIView.animate(withDuration: 0.3) {
-//                    self.gifView.alpha = 0
-//                }
-                self.gifView.alpha = 0
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 0
+                }
             }else{
-//                UIView.animate(withDuration: 0.3) {
-//                    self.gifView.alpha = 1
-//                }
-                self.gifView.alpha = 1
+                UIView.animate(withDuration: 0.3) {
+                    self.gifView.alpha = 1
+                }
             }
         }
     }

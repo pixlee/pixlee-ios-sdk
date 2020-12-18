@@ -49,32 +49,6 @@ class ViewController: UIViewController {
         //loadPhoto()
         testAnalyticsAPI()
     }
-
-
-        
-    func readCredentials() {
-        if let url = Bundle.main.url(forResource:"PixleeCredentials", withExtension: "plist") {
-            do {
-                let data = try Data(contentsOf:url)
-                let swiftDictionary = try PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
-                // do something with the dictionary
-                pixleeCredentials.apiKey = swiftDictionary["PIXLEE_API_KEY"] as? String
-                pixleeCredentials.secretKey = swiftDictionary["PIXLEE_SECRET_KEY"] as? String
-                pixleeCredentials.albumId = swiftDictionary["PIXLEE_ALBUM_ID"] as? String
-                print("swiftDictionary: \(swiftDictionary)")
-                
-            } catch {
-                let message = "can't read Example/PixleeCredentials.plist \(error)"
-                showPopup(message: message)
-                print(message)
-            }
-        }else{
-            // todo: show alert
-            let message = "can't run the demo. please add Example/PixleeCredentials.plist to this project and run it again"
-            showPopup(message: message)
-            print(message)
-        }
-    }
     
     func initClient(){
         if let apiKey = pixleeCredentials.apiKey {
@@ -133,37 +107,9 @@ class ViewController: UIViewController {
         }
         
     }
-    
-//    func loadPhoto(){
-//        // Where to get an albumId Pixlee? Visit here: https://app.pixlee.com/app#albums
-//        // Get one photo example
-//        let photoAlbumId = ProcessInfo.processInfo.environment["PIXLEE_PHOTO_ALBUM_ID"]
-//        let regionId: Int = 2469 // add a region id if you have one
-//
-//        if let photoExample = photoAlbumId {
-//            _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoExample) { newPhoto, error in
-//                guard error == nil else {
-//                    print("Error during load of image with Id \(String(describing: error))")
-//                    return
-//                }
-//                guard let photo = newPhoto else {
-//                    print("cannot find photo")
-//                    return
-//                }
-//                print("New Photo: \(photo.albumPhotoId)")
-//                _ = photo.triggerEventOpenedLightbox { _ in
-//                    print("Opened lightbox logged")
-//                }
-//                _ = photo.triggerEventActionClicked(actionLink: "actionLink", completionHandler: { _ in
-//                    print("Action link click logged")
-//                })
-//            }
-//        }
-//    }
 
     func getSamplePhotos() -> [PXLPhoto]? {
         if let album = album {
-//            return [photos[0], photos[1], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[2], photos[0], photos[1], photos[2], photos[1]]
             
             guard album.photos.count < 1 else {
                 return album.photos

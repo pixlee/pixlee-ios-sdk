@@ -43,17 +43,7 @@ class TwoColumnDemoListViewController: UIViewController {
          // Pass the selected object to the new view controller.
      }
      */
-    var videoCell: PXLGridViewCell? {
-        didSet {
-//            guard let videoCell = videoCell else { return }
-//            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-//                videoCell.stopVideo()
-//                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-//                    videoCell.playVideo(muted: self.isVideoMutted())
-//                }
-//            }
-        }
-    }
+    var videoCell: PXLGridViewCell?
 }
 
 extension TwoColumnDemoListViewController: PXLPhotoViewDelegate {

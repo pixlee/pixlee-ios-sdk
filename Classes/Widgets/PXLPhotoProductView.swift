@@ -334,7 +334,7 @@ public class PXLPhotoProductView: UIViewController {
         if let queuePlayer = self.queuePlayer {
             playerLayer = AVPlayerLayer(player: queuePlayer)
 
-            //playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+            playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
             view.layer.addSublayer(playerLayer!)
 
             playerLayer?.frame = gifView.frame
@@ -343,7 +343,7 @@ public class PXLPhotoProductView: UIViewController {
             queuePlayer.addObserver(self, forKeyPath: observeKey, options: NSKeyValueObservingOptions.new, context: nil)
             isObserving = true
             queuePlayer.play()
-            queuePlayer.isMuted = false
+            queuePlayer.isMuted = true
             adjustMuteImages()
 
             view.bringSubviewToFront(productCollectionView)
