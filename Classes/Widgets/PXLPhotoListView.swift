@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol PXLPhotoListViewDelegate {
+public protocol PXLPhotoListViewDelegate: class {
     func setupPhotoCell(cell: PXLPhotoListViewCell, photo: PXLPhoto)
     func onPhotoClicked(photo: PXLPhoto)
     func onPhotoButtonClicked(photo: PXLPhoto)
@@ -29,7 +29,7 @@ public class PXLPhotoListView: UIView {
         }
     }
 
-    public var delegate: PXLPhotoListViewDelegate? {
+    public weak var delegate: PXLPhotoListViewDelegate? {
         didSet {
             guard let delegate = delegate else { return }
             let height = delegate.cellHeight()

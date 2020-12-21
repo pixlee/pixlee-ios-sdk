@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		042EB2E76FAC9226D8B11A6E /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */; };
-		5C2660C0257F4E5800C5588F /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2660BF257F4E5800C5588F /* PixleeCredentials.plist */; };
+		5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */; };
+		5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */; };
+		5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */; };
+		5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */; };
+		5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */; };
+		5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */; };
 		5CE55183257E17B5009666C1 /* PixleeCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE55182257E17B5009666C1 /* PixleeCredentials.swift */; };
 		8226E89CFFCBBDFF753AEC6B /* Pods_Example_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7846117A9263BAE1A6F58A /* Pods_Example_ExampleUITests.framework */; };
-		F23BA1A725190368009FC402 /* SingleColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1A525190368009FC402 /* SingleColumnViewController.swift */; };
-		F23BA1A825190368009FC402 /* SingleColumnViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BA1A625190368009FC402 /* SingleColumnViewController.xib */; };
+		F23BA1A725190368009FC402 /* OneColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1A525190368009FC402 /* OneColumnViewController.swift */; };
 		F23BA1AE25190384009FC402 /* PhotoProductListDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */; };
 		F23BA1AF25190384009FC402 /* PhotoProductListDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */; };
 		F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D42F423C65BBE0091E324 /* AppDelegate.swift */; };
@@ -29,12 +33,10 @@
 		F296942C242243BB003EB9DD /* WidgetsExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F296942A242243BB003EB9DD /* WidgetsExampleViewController.xib */; };
 		F296943224224BFB003EB9DD /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F296943024224BFB003EB9DD /* WidgetTableViewCell.swift */; };
 		F296943324224BFB003EB9DD /* WidgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F296943124224BFB003EB9DD /* WidgetTableViewCell.xib */; };
-		F2985AE5253364F400308398 /* MultipleColumnDemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2985AE3253364F400308398 /* MultipleColumnDemoListViewController.swift */; };
-		F2985AE6253364F400308398 /* MultipleColumnDemoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2985AE4253364F400308398 /* MultipleColumnDemoListViewController.xib */; };
-		F29866BF2535D29000308398 /* ListWithTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29866BD2535D29000308398 /* ListWithTitleViewController.swift */; };
-		F29866C02535D29000308398 /* ListWithTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29866BE2535D29000308398 /* ListWithTitleViewController.xib */; };
+		F2985AE5253364F400308398 /* TwoColumnDemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2985AE3253364F400308398 /* TwoColumnDemoListViewController.swift */; };
+		F29866BF2535D29000308398 /* ListWithTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29866BD2535D29000308398 /* ListWithTextViewController.swift */; };
 		F298768B2538246F00308398 /* wavingBear.gif in Resources */ = {isa = PBXBuildFile; fileRef = F298760825381F0300308398 /* wavingBear.gif */; };
-		F2A8AC4A255E6F10008A40BF /* ListWithGifImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */; };
+		F2A8AC4A255E6F10008A40BF /* ListWithGifFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8AC49255E6F10008A40BF /* ListWithGifFileViewController.swift */; };
 		F2A8AC4F255E7041008A40BF /* ListWithGifURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */; };
 		F85F3150BB9DEF91E686FCBA /* Pods_ExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCE6AF1F69CB38DE855DB7E /* Pods_ExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -60,7 +62,12 @@
 		09709C7B56523FEF6ADF2C49 /* Pods-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E545E1A5E7B8ADBE31AF7FD /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C2660BF257F4E5800C5588F /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
+		5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
+		5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
+		5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
+		5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPlayViewController.swift; sourceTree = "<group>"; };
+		5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotosViewController.swift; sourceTree = "<group>"; };
+		5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoViewController.swift; sourceTree = "<group>"; };
 		5CA2236C7314A391A218AFB3 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		5CE55182257E17B5009666C1 /* PixleeCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeCredentials.swift; sourceTree = "<group>"; };
 		5DCE6AF1F69CB38DE855DB7E /* Pods_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,8 +75,7 @@
 		8B7846117A9263BAE1A6F58A /* Pods_Example_ExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014A7C4C477C418F331B7C8 /* Pods-Example-ExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DCAC9142E4ADF433F94D5960 /* Pods-Example-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleUITests/Pods-Example-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F23BA1A525190368009FC402 /* SingleColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleColumnViewController.swift; sourceTree = "<group>"; };
-		F23BA1A625190368009FC402 /* SingleColumnViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleColumnViewController.xib; sourceTree = "<group>"; };
+		F23BA1A525190368009FC402 /* OneColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneColumnViewController.swift; sourceTree = "<group>"; };
 		F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoProductListDemoViewController.swift; sourceTree = "<group>"; };
 		F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoProductListDemoViewController.xib; sourceTree = "<group>"; };
 		F24D42F123C65BBE0091E324 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,12 +98,10 @@
 		F296942A242243BB003EB9DD /* WidgetsExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsExampleViewController.xib; sourceTree = "<group>"; };
 		F296943024224BFB003EB9DD /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		F296943124224BFB003EB9DD /* WidgetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetTableViewCell.xib; sourceTree = "<group>"; };
-		F2985AE3253364F400308398 /* MultipleColumnDemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleColumnDemoListViewController.swift; sourceTree = "<group>"; };
-		F2985AE4253364F400308398 /* MultipleColumnDemoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleColumnDemoListViewController.xib; sourceTree = "<group>"; };
-		F29866BD2535D29000308398 /* ListWithTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithTitleViewController.swift; sourceTree = "<group>"; };
-		F29866BE2535D29000308398 /* ListWithTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListWithTitleViewController.xib; sourceTree = "<group>"; };
+		F2985AE3253364F400308398 /* TwoColumnDemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnDemoListViewController.swift; sourceTree = "<group>"; };
+		F29866BD2535D29000308398 /* ListWithTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithTextViewController.swift; sourceTree = "<group>"; };
 		F298760825381F0300308398 /* wavingBear.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = wavingBear.gif; sourceTree = "<group>"; };
-		F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithGifImageViewController.swift; sourceTree = "<group>"; };
+		F2A8AC49255E6F10008A40BF /* ListWithGifFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithGifFileViewController.swift; sourceTree = "<group>"; };
 		F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithGifURLViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5C8143A12589F5F000C1CC1A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */,
+				5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		F24D42E823C65BBE0091E324 = {
 			isa = PBXGroup;
 			children = (
@@ -186,8 +199,8 @@
 				F24D42FD23C65BBF0091E324 /* Assets.xcassets */,
 				F24D42FF23C65BBF0091E324 /* LaunchScreen.storyboard */,
 				F24D430223C65BBF0091E324 /* Info.plist */,
-				5C2660BF257F4E5800C5588F /* PixleeCredentials.plist */,
 				5CE55182257E17B5009666C1 /* PixleeCredentials.swift */,
+				5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -213,18 +226,19 @@
 		F296942424224213003EB9DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5C8143A12589F5F000C1CC1A /* API */,
 				F296942524224213003EB9DD /* AnalyticsViewController.swift */,
 				F296942624224213003EB9DD /* AnalyticsViewController.xib */,
 				F2969429242243BB003EB9DD /* WidgetsExampleViewController.swift */,
 				F296942A242243BB003EB9DD /* WidgetsExampleViewController.xib */,
-				F23BA1A525190368009FC402 /* SingleColumnViewController.swift */,
-				F23BA1A625190368009FC402 /* SingleColumnViewController.xib */,
-				F2985AE3253364F400308398 /* MultipleColumnDemoListViewController.swift */,
-				F2985AE4253364F400308398 /* MultipleColumnDemoListViewController.xib */,
-				F29866BD2535D29000308398 /* ListWithTitleViewController.swift */,
-				F2A8AC49255E6F10008A40BF /* ListWithGifImageViewController.swift */,
+				5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */,
+				F23BA1A525190368009FC402 /* OneColumnViewController.swift */,
+				5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */,
+				5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */,
+				F2985AE3253364F400308398 /* TwoColumnDemoListViewController.swift */,
+				F2A8AC49255E6F10008A40BF /* ListWithGifFileViewController.swift */,
 				F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */,
-				F29866BE2535D29000308398 /* ListWithTitleViewController.xib */,
+				F29866BD2535D29000308398 /* ListWithTextViewController.swift */,
 				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
 				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 				F296942D24224A86003EB9DD /* Cells */,
@@ -309,7 +323,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = Pixlee;
 				TargetAttributes = {
 					F24D42F023C65BBE0091E324 = {
@@ -350,17 +364,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F23BA1A825190368009FC402 /* SingleColumnViewController.xib in Resources */,
 				F298768B2538246F00308398 /* wavingBear.gif in Resources */,
-				5C2660C0257F4E5800C5588F /* PixleeCredentials.plist in Resources */,
 				F24D430123C65BBF0091E324 /* LaunchScreen.storyboard in Resources */,
 				F23BA1AF25190384009FC402 /* PhotoProductListDemoViewController.xib in Resources */,
 				F296943324224BFB003EB9DD /* WidgetTableViewCell.xib in Resources */,
-				F2985AE6253364F400308398 /* MultipleColumnDemoListViewController.xib in Resources */,
 				F296942C242243BB003EB9DD /* WidgetsExampleViewController.xib in Resources */,
 				F24D42FE23C65BBF0091E324 /* Assets.xcassets in Resources */,
-				F29866C02535D29000308398 /* ListWithTitleViewController.xib in Resources */,
+				5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */,
 				F24D42FC23C65BBE0091E324 /* Main.storyboard in Resources */,
+				5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */,
 				F296942824224213003EB9DD /* AnalyticsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,13 +504,17 @@
 				F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */,
 				F2A8AC4F255E7041008A40BF /* ListWithGifURLViewController.swift in Sources */,
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
-				F2A8AC4A255E6F10008A40BF /* ListWithGifImageViewController.swift in Sources */,
+				5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */,
+				5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */,
+				5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */,
+				5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */,
+				F2A8AC4A255E6F10008A40BF /* ListWithGifFileViewController.swift in Sources */,
 				F296942B242243BB003EB9DD /* WidgetsExampleViewController.swift in Sources */,
 				F296943224224BFB003EB9DD /* WidgetTableViewCell.swift in Sources */,
-				F23BA1A725190368009FC402 /* SingleColumnViewController.swift in Sources */,
-				F2985AE5253364F400308398 /* MultipleColumnDemoListViewController.swift in Sources */,
+				F23BA1A725190368009FC402 /* OneColumnViewController.swift in Sources */,
+				F2985AE5253364F400308398 /* TwoColumnDemoListViewController.swift in Sources */,
 				F24D42F723C65BBE0091E324 /* SceneDelegate.swift in Sources */,
-				F29866BF2535D29000308398 /* ListWithTitleViewController.swift in Sources */,
+				F29866BF2535D29000308398 /* ListWithTextViewController.swift in Sources */,
 				F23BA1AE25190384009FC402 /* PhotoProductListDemoViewController.swift in Sources */,
 				5CE55183257E17B5009666C1 /* PixleeCredentials.swift in Sources */,
 				F296942724224213003EB9DD /* AnalyticsViewController.swift in Sources */,
@@ -582,6 +598,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -606,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -642,6 +659,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -660,7 +678,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -678,7 +696,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q28M29YQL8;
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,7 +717,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q28M29YQL8;
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

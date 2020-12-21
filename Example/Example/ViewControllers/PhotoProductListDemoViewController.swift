@@ -10,12 +10,18 @@ import PixleeSDK
 import UIKit
 
 class PhotoProductListDemoViewController: UIViewController {
+    static func getInstance(_ list: [PXLPhoto]) -> PhotoProductListDemoViewController {
+        let vc = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
+        vc.photos = list
+        return vc
+    }
+    
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var scrollView: UIScrollView!
 
     var photos = [PXLPhoto]() {
         didSet {
-            guard let stackView = stackView else { return }
+            guard stackView != nil else { return }
             setupStackView()
         }
     }
@@ -24,29 +30,24 @@ class PhotoProductListDemoViewController: UIViewController {
         stackView.arrangedSubviews.forEach { view in
             self.stackView.removeArrangedSubview(view)
         }
-        photos.forEach { photo in
-            let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-            widget.cropMode = .centerFill
-            widget.closeButtonBackgroundColor = .gray
-            widget.closeButtonCornerRadius = 22
-            widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
-            
-            widget.muteButtonBackgroundColor = .purple
-            
-//            widget.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: UIScreen.main.bounds.height)
 
-            
-            self.stackView.addArrangedSubview(widget.view)
-            
-            widget.view.translatesAutoresizingMaskIntoConstraints = false
-            let constraints = [
-                widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6),
-                widget.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            ]
-            NSLayoutConstraint.activate(constraints)
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photos[0], delegate: self)
+        widget.cropMode = .centerFit
+        widget.closeButtonBackgroundColor = .white
+        widget.closeButtonCornerRadius = 22
+        widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
+        
+        widget.muteButtonBackgroundColor = .white
+        widget.muteButtonTintColor = UIColor.red.withAlphaComponent(0.6)
 
-            
-        }
+        self.stackView.addArrangedSubview(widget.view)
+
+        widget.view.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1),
+            widget.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 
     override func viewDidLoad() {

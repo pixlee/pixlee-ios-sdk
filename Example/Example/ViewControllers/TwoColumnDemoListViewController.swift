@@ -8,7 +8,13 @@
 import PixleeSDK
 import UIKit
 
-class MultipleColumnDemoListViewController: UIViewController {
+class TwoColumnDemoListViewController: UIViewController {
+    static func getInstance(_ list: [PXLPhoto]) -> TwoColumnDemoListViewController {
+        let vc = TwoColumnDemoListViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+        vc.photos = list
+        return vc
+    }
+    
     public var photos = [PXLPhoto]() {
         didSet {
             gridView.items = photos
@@ -18,8 +24,6 @@ class MultipleColumnDemoListViewController: UIViewController {
     var gridView = PXLGridView()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        gridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
         gridView.delegate = self
         view.addSubview(gridView)
     }
@@ -27,6 +31,7 @@ class MultipleColumnDemoListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
+        
     }
 
     /*
@@ -38,20 +43,10 @@ class MultipleColumnDemoListViewController: UIViewController {
          // Pass the selected object to the new view controller.
      }
      */
-    var videoCell: PXLGridViewCell? {
-        didSet {
-            guard let videoCell = videoCell else { return }
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                videoCell.stopVideo()
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                    videoCell.playVideo()
-                }
-            }
-        }
-    }
+    var videoCell: PXLGridViewCell?
 }
 
-extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
+extension TwoColumnDemoListViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -61,12 +56,13 @@ extension MultipleColumnDemoListViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
+extension TwoColumnDemoListViewController: PXLGridViewDelegate {
+    func isVideoMutted() -> Bool {
+        false
+    }
+    
     func cellsHighlighted(cells: [PXLGridViewCell]) {
 //        print("Highlighted cells: \(cells)")
-    }
-    func headerGifName() -> String? {
-        return "wavingBear"
     }
 
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
@@ -93,6 +89,6 @@ extension MultipleColumnDemoListViewController: PXLGridViewDelegate {
     }
 
     func isInfiniteScrollEnabled() -> Bool {
-        return true
+        return false
     }
 }

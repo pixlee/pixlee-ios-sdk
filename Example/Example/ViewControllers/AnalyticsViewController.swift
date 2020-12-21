@@ -10,12 +10,25 @@ import PixleeSDK
 import UIKit
 
 class AnalyticsViewController: UIViewController {
+    static func getInstance() -> AnalyticsViewController {
+        return AnalyticsViewController(nibName: "AnalyticsViewController", bundle: Bundle.main)
+    }    
+    
     var photo: PXLPhoto?
     @IBOutlet var consoleLabel: UILabel!
-    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
+    var album = PXLAlbum(identifier: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            try album = PXLAlbum(identifier: String(PixleeCredentials.create().albumId ?? ""))
+            
+        } catch{
+            showPopup(message: error.localizedDescription)
+        }
+
+        
         
         _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
             guard error == nil else {
@@ -118,5 +131,20 @@ class AnalyticsViewController: UIViewController {
     func printToConsole(log: String) {
         consoleLabel.text = log
         print(log)
+    }
+}
+
+
+// MARK: - Show Popup
+extension AnalyticsViewController {
+    func showPopup(message:String) {
+        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
     }
 }

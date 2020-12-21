@@ -25,6 +25,12 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         didSet {
             guard let config = configuration else { return }
 
+            if let _ = config.bookmarkOffImage, let _ = config.bookmarkOnImage{
+                bookmarkButton.isHidden = false
+            }else{
+                bookmarkButton.isHidden = true
+            }
+            
             bookmarkButton.setImage(config.bookmarkOffImage, for: .normal)
 
             shopIcon.image = config.shopImage

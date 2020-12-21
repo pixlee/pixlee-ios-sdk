@@ -6,7 +6,9 @@
 //
 
 import UIKit
-public protocol PXLGridViewDelegate {
+import AVFoundation
+
+public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
     func onPhotoClicked(photo: PXLPhoto)
@@ -16,6 +18,7 @@ public protocol PXLGridViewDelegate {
     func isMultipleColumnEnabled() -> Bool
     func isHighlightingEnabled() -> Bool
     func isInfiniteScrollEnabled() -> Bool
+    func isVideoMutted() -> Bool
 
     func headerTitle() -> String?
     func headerGifName() -> String?
@@ -59,7 +62,7 @@ extension PXLGridViewDelegate {
     }
 }
 
-public class PXLGridView: UIView {
+public class PXLGridView: UIView {    
     var collectionView: UICollectionView?
     let flowLayout = UICollectionViewFlowLayout()
 
@@ -78,7 +81,7 @@ public class PXLGridView: UIView {
         }
     }
 
-    public var delegate: PXLGridViewDelegate? {
+    public weak var delegate: PXLGridViewDelegate? {
         didSet {
             setupCellSize()
             if isMultipleColumnsEnabled {
@@ -136,9 +139,34 @@ public class PXLGridView: UIView {
     private var isInifiteScrollEnabled: Bool {
         return delegate?.isInfiniteScrollEnabled() ?? true
     }
+    
+    private var isVideoMutted: Bool {
+        return delegate?.isVideoMutted() ?? true
+    }
 
     var firstHighlightLogged = false
     var secondHighlightLogged = false
+    
+    private let category = AVAudioSession.sharedInstance().category
+    
+    
+    public override func didMoveToSuperview() {
+        do{
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        }catch{
+            
+        }
+    }
+    
+    public override func didMoveToWindow() {
+        if (self.window == nil) {
+            do{
+                try AVAudioSession.sharedInstance().setCategory(category)
+            }catch{
+                
+            }
+        }
+    }
 
     override public init(frame: CGRect) {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
@@ -151,7 +179,7 @@ public class PXLGridView: UIView {
         } else {
             topRightCellIndex = nil
         }
-
+        
         if let collectionView = collectionView {
             collectionView.dataSource = self
             collectionView.prefetchDataSource = self
@@ -253,7 +281,15 @@ extension PXLGridView: UICollectionViewDataSource {
             cell.cellHeight.constant = flowLayout.itemSize.height
 
             if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
-                cell.highlightView()
+                if indexPath == topLeftCellIndex {
+                    print("## left.idx: \(indexPath)")
+                }
+                if indexPath == topRightCellIndex {
+                    print("## right.idx: \(indexPath)")
+                }
+                
+                
+                cell.highlightView(muted: isVideoMutted)
             } else {
                 cell.disableHighlightView()
             }
@@ -312,13 +348,15 @@ extension PXLGridView: UICollectionViewDelegate {
         var highlightedCells = [PXLGridViewCell]()
 
         if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLGridViewCell {
-            cell.highlightView()
+            print("left.idx: \(topLeftIndex)")
+            cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topLeftCellIndex = topLeftIndex
         }
 
         if topLeftIndex != topRightIndex, let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
-            cell.highlightView()
+            print("right.idx: \(topRightIndex)")
+            cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topRightCellIndex = topRightIndex
         }

@@ -31,7 +31,7 @@ public struct PXLProductCellConfiguration {
     }
 }
 
-public protocol PXLPhotoProductDelegate {
+public protocol PXLPhotoProductDelegate: class {
     func onProductsLoaded(products: [PXLProduct]) -> [Int: Bool]
     func onBookmarkClicked(product: PXLProduct, isSelected: Bool)
     func onProductClicked(product: PXLProduct)
@@ -144,7 +144,7 @@ public class PXLPhotoProductView: UIViewController {
 
     public var onBookmarkClicked: ((_ product: PXLProduct, _ isSelected: Bool) -> Void)?
 
-    public var delegate: PXLPhotoProductDelegate? {
+    public weak var delegate: PXLPhotoProductDelegate? {
         didSet {
             if let viewModel = viewModel {
                 bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
@@ -217,6 +217,7 @@ public class PXLPhotoProductView: UIViewController {
 
     func adjustMuteImages() {
         guard let queuePlayer = queuePlayer else { return }
+        print("on: \(muteButtonOnImage), off: \(muteButtonOffImage)")
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
         muteButton.setImage(image, for: .normal)
     }
@@ -243,10 +244,10 @@ public class PXLPhotoProductView: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    var playerLooper: NSObject?
-    var playerLayer: AVPlayerLayer?
-    var queuePlayer: AVQueuePlayer?
-    var durationLabelUpdateTimer: Timer?
+    weak var playerLooper: NSObject?
+    weak var playerLayer: AVPlayerLayer?
+    weak var queuePlayer: AVQueuePlayer?
+    weak var durationLabelUpdateTimer: Timer?
 
     public var viewModel: PXLPhoto? {
         didSet {
@@ -256,9 +257,13 @@ public class PXLPhotoProductView: UIViewController {
             setupConfiguration()
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
-                Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }else{
                 gifView.image = nil
+            }
+            
+            if let imageUrl = viewModel.photoUrl(for: .thumbnail) {
+                Nuke.loadImage(with: imageUrl, into: backgroundImageView)
+            }else{
                 backgroundImageView.image = nil
             }
 
@@ -290,8 +295,14 @@ public class PXLPhotoProductView: UIViewController {
 
     var bookmarks: [Int: Bool]?
 
+    private let category = AVAudioSession.sharedInstance().category
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        do{
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        }catch{
+        }
 
         self.view.clipsToBounds = true
         backgroundImageView.contentMode = .scaleAspectFill
@@ -370,8 +381,13 @@ public class PXLPhotoProductView: UIViewController {
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("PDPView.viewWillDisappear()")
         durationLabelUpdateTimer?.invalidate()
-        stopVideo()
+        destroyPlayer()
+        do{
+            try AVAudioSession.sharedInstance().setCategory(category)
+        }catch{
+        }
     }
 
     func setupCollectionView() {
@@ -409,6 +425,19 @@ public class PXLPhotoProductView: UIViewController {
             isObserving = false
         }
     }
+    
+    public func destroyPlayer(){
+        if(queuePlayer != nil){
+            queuePlayer?.pause()
+            queuePlayer?.removeAllItems()
+            if isObserving {
+                queuePlayer?.removeObserver(self, forKeyPath: observeKey)
+                isObserving = false
+            }
+            playerLayer?.removeFromSuperlayer()
+            queuePlayer = nil
+        }
+    }
 
     public func mutePlayer(muted: Bool) {
         queuePlayer?.isMuted = muted
@@ -425,16 +454,18 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier, for: indexPath) as! PXLAdvancedProductCell
 
         cell.configuration = cellConfiguration
-        cell.onBookmarkClicked = { product, isSelected in
-            self.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
+        cell.onBookmarkClicked = { [weak self] product, isSelected in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
         }
         let product = viewModel?.products?[indexPath.row]
         cell.viewModel = product
         if let bookmarks = bookmarks, let product = product {
             cell.isBookmarked = bookmarks[product.identifier] ?? false
         }
-        cell.actionButtonPressed = { product in
-            self.handleProductPressed(product: product)
+        cell.actionButtonPressed = { [weak self] product in
+            guard let strongSelf = self else { return }
+            strongSelf.handleProductPressed(product: product)
         }
         return cell
     }

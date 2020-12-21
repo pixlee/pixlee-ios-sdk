@@ -59,7 +59,6 @@ class PXLGridHeaderView: UICollectionReusableView {
             loadingIndicator.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
             loadingIndicator.center = center
         }
-        print("titleGIf: \(titleGifImage)")
     }
 
     func customInit() {
