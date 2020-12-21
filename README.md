@@ -65,13 +65,13 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
 5. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
 
 # Add the SDK to your App
-You can choose one of these two options to add the SDK to your app.
+You can choose one of these two options to add the SDK to your app. Plase replace `PixleeSDK version` with [![Version](https://img.shields.io/cocoapods/v/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK).
 ### Option 1: Using Cocoapods
 1. install and setup cocoapods with your projects https://guides.cocoapods.org/using/getting-started.html
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
     target 'MyApp' do
-      pod 'PixleeSDK', '~> 2.4.2' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+      pod 'PixleeSDK', '~> <PixleeSDK version>' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
     end
     ```
 3. Run Pod install
@@ -82,7 +82,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
     ```
-    github "pixlee/pixlee-ios-sdk" "2.4.2"
+    github "pixlee/pixlee-ios-sdk" "<PixleeSDK version>"
     ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
