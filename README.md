@@ -1,3 +1,7 @@
+[Version](https://img.shields.io/cocoapods/v/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
+[![License](https://img.shields.io/cocoapods/l/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
+[![Platform](https://img.shields.io/cocoapods/p/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
+
 # pixlee-ios-sdk
 
 This SDK makes it easy for Pixlee customers to easily include Pixlee albums in their native iOS apps. It includes a native wrapper to the Pixlee album API as well as some drop-in and customizable UI elements to quickly get you started. This repo includes both the Pixlee iOS SDK and an example project to show you how it's used.
