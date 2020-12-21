@@ -71,7 +71,7 @@ You can choose one of these two options to add the SDK to your app. Plase replac
 2. Add https://cocoapods.org/pods/PixleeSDK to your Podfile by adding 
     ```
     target 'MyApp' do
-      pod 'PixleeSDK', '~> <PixleeSDK version>' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
+      pod 'PixleeSDK', '~> <PixleeSDK version like 2.5.1>' (Replace with current version, you can find the current version at https://github.com/pixlee/pixlee-ios-sdk/releases)
     end
     ```
 3. Run Pod install
@@ -82,7 +82,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your Cartfile:
 
     ```
-    github "pixlee/pixlee-ios-sdk" "<PixleeSDK version>"
+    github "pixlee/pixlee-ios-sdk" "<PixleeSDK version like 2.5.1>"
     ```
 ##### If you're building for iOS, tvOS, or watchOS
 1. Create a Cartfile that lists the frameworks you’d like to use in your project.
