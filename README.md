@@ -1,4 +1,4 @@
-[Version](https://img.shields.io/cocoapods/v/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
+[![Version](https://img.shields.io/cocoapods/v/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
 [![License](https://img.shields.io/cocoapods/l/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
 [![Platform](https://img.shields.io/cocoapods/p/pixlee-ios-sdk.svg?style=flat)](https://cocoapods.org/pods/pixlee-ios-sdk)
 
