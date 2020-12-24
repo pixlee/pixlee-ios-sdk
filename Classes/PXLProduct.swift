@@ -34,9 +34,7 @@ public struct PXLProduct {
     }
 
     public var attributedPrice: NSAttributedString? {
-        print("currency: \(currency), currencySymbol: \(currencySymbol), PXLProduct.currencyFormatter: \(PXLProduct.currencyFormatter)")
-        
-        if let price = price, let decimalSeparator = PXLProduct.currencyFormatter.decimalSeparator  {
+        if let price = price {
             let doubleAsString = String(price);
             
             var mainPrice: String.SubSequence = doubleAsString[...]
@@ -51,7 +49,7 @@ public struct PXLProduct {
             
             var secondPhase = " \(currencySymbol ?? "")"
             if let decimalPrice = decimalPrice {
-                secondPhase = "\(decimalSeparator)\(decimalPrice) \(currencySymbol ?? "")"
+                secondPhase = "\(decimalPrice) \(currencySymbol ?? "")"
             }
             
             let currencyString = NSAttributedString(string: secondPhase, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
