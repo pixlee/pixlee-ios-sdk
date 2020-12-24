@@ -112,7 +112,6 @@ public class PXLGridView: UIView {
             flowLayout.minimumLineSpacing = cellPadding
         }
 
-        print("Size: \(flowLayout.itemSize)")
         collectionView?.collectionViewLayout.invalidateLayout()
         collectionView?.reloadData()
     }
@@ -281,14 +280,6 @@ extension PXLGridView: UICollectionViewDataSource {
             cell.cellHeight.constant = flowLayout.itemSize.height
 
             if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
-                if indexPath == topLeftCellIndex {
-                    print("## left.idx: \(indexPath)")
-                }
-                if indexPath == topRightCellIndex {
-                    print("## right.idx: \(indexPath)")
-                }
-                
-                
                 cell.highlightView(muted: isVideoMutted)
             } else {
                 cell.disableHighlightView()

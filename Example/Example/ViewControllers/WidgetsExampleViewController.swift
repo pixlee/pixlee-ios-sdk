@@ -13,11 +13,23 @@ class WidgetsExampleViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var consoleOutput: UILabel!
     
-    let album = PXLAlbum(identifier: ProcessInfo.processInfo.environment["PIXLEE_ALBUM_ID"])
+    var album = PXLAlbum(identifier: "")
     var widgetVisibleFired = false
-
+    var pixleeCredentials = PixleeCredentials()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            pixleeCredentials = try PixleeCredentials.create()
+            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))
+            album.regionId = pixleeCredentials.regionId
+            
+        } catch{
+            showPopup(message: error.localizedDescription)
+        }
+
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(UINib(nibName: "WidgetTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "widgetCell")
@@ -91,5 +103,19 @@ extension WidgetsExampleViewController: UITableViewDelegate, UITableViewDataSour
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+}
+
+// MARK: - Show Popup
+extension WidgetsExampleViewController {
+    func showPopup(message:String) {
+        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
     }
 }

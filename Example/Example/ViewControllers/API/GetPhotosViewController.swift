@@ -54,7 +54,8 @@ class GetPhotosViewController: UIViewController {
         }
         
         if let album = album {
-            let filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)

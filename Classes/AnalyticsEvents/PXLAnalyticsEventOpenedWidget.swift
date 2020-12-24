@@ -53,8 +53,12 @@ public struct PXLAnalyticsEventOpenedWidget: PXLAnalyticsEvent {
         let photoIds = album.photos.compactMap({ (photo) -> String? in
             String(photo.albumPhotoId)
         })
-
+        
         parameters["photos"] = photoIds.joined(separator: ",")
+        
+        if let regionId = album.regionId {
+            parameters["region_id"] = String(regionId)
+        }
 
         return parameters
     }
