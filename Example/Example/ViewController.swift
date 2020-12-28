@@ -78,7 +78,6 @@ class ViewController: UIViewController {
         
         if let album = album {
             var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-            filterOptions.hasProduct = true
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
