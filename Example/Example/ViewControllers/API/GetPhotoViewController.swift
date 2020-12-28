@@ -127,7 +127,7 @@ extension GetPhotoViewController: PXLPhotoProductDelegate {
 extension GetPhotoViewController {
     func showPopup(message:String) {
         let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let action = UIAlertAction(title: "Close", style: .default) { (action) in
             
         }
         

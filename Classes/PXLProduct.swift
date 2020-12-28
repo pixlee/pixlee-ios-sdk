@@ -29,7 +29,7 @@ public struct PXLProduct {
     }()
 
     public var formattedPrice: String? {
-        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return "" }
+        guard let currency = currency, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
         return "\(currency) \(formattedPrice)"
     }
 
@@ -58,7 +58,7 @@ public struct PXLProduct {
             return mutableAttributedString
         }
         
-        return NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        return nil
     }
 
     public var currencySymbol: String? {
