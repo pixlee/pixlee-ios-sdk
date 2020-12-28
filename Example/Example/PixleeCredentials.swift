@@ -24,6 +24,15 @@ struct PixleeCredentials {
                 pixleeCredentials.apiKey = swiftDictionary["PIXLEE_API_KEY"] as? String
                 pixleeCredentials.secretKey = swiftDictionary["PIXLEE_SECRET_KEY"] as? String
                 pixleeCredentials.albumId = swiftDictionary["PIXLEE_ALBUM_ID"] as? String
+                if swiftDictionary["PIXLEE_REGION_ID"] != nil{
+                    if let regionId = swiftDictionary["PIXLEE_REGION_ID"] as? String {
+                        pixleeCredentials.regionId = Int(regionId)
+                    } else if let regionId =  swiftDictionary["PIXLEE_REGION_ID"] as? Int {
+                        pixleeCredentials.regionId = regionId
+                    }
+                }
+                
+                
                 print("swiftDictionary: \(swiftDictionary)")
                 
             } catch {
@@ -41,4 +50,5 @@ struct PixleeCredentials {
     var apiKey:String?
     var secretKey:String?
     var albumId:String?
+    var regionId:Int?
 }

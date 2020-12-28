@@ -137,7 +137,6 @@ public class PXLPhotoView: UIView {
     var isObserving = false
 
     func playVideo(url: URL, muted:Bool = false) {
-        print("playVideo==")
         stopVideo()
         let playerItem = AVPlayerItem(url: url as URL)
         queuePlayer = AVQueuePlayer(items: [playerItem])
@@ -173,7 +172,6 @@ public class PXLPhotoView: UIView {
 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard let queuePlayer = queuePlayer else { return }
-        print("queuePlayer.timeControlStatus: \(queuePlayer.timeControlStatus.rawValue)")
         if keyPath == observeKey {
             
             if queuePlayer.timeControlStatus == .playing {
@@ -243,7 +241,6 @@ public class PXLPhotoView: UIView {
     }
 
     public func stopVideo() {
-        print("stopVideo()")
         queuePlayer?.pause()
         queuePlayer?.cancelPendingPrerolls()
         if isObserving {

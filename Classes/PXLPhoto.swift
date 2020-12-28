@@ -139,11 +139,11 @@ public struct PXLPhoto: Equatable {
         }
     }
 
-    public func triggerEventActionClicked(actionLink: String, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventActionClicked(photo: self, actionLink: actionLink), completionHandler: completionHandler)
+    public func triggerEventActionClicked(actionLink: String, regionId: Int?, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventActionClicked(photo: self, actionLink: actionLink, regionId: regionId), completionHandler: completionHandler)
     }
 
-    public func triggerEventOpenedLightbox(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: self), completionHandler: completionHandler)
+    public func triggerEventOpenedLightbox(regionId: Int?, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: self, regionId: regionId), completionHandler: completionHandler)
     }
 }

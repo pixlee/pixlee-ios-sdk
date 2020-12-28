@@ -86,11 +86,12 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if album.regionId != nil {
-                params["region_id"] = album.regionId
+            if let regionId = album.regionId {
+                params["region_id"] = regionId
             }
-
+            
             let request = try urlRequest(.get, url, parameters: params)
+            print("request: \(request)")
             return request
         } catch {
             fatalError("Worng url request")
@@ -119,8 +120,8 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if album.regionId != nil {
-                params["region_id"] = album.regionId
+            if let regionId = album.regionId {
+                params["region_id"] = regionId
             }
 
             let request = try urlRequest(.get, url, parameters: params)
@@ -146,7 +147,8 @@ class PXLApiRequests {
         do {
             var params = defaultGetParameters()
             params["album_photo_id"] = photoAlbumId
-            if regionId != nil {
+            
+            if let regionId = regionId {
                 params["region_id"] = regionId
             }
             

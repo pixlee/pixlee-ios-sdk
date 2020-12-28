@@ -54,7 +54,8 @@ class GetPhotosViewController: UIViewController {
         }
         
         if let album = album {
-            let filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
@@ -125,7 +126,7 @@ extension GetPhotosViewController: PXLGridViewDelegate {
 extension GetPhotosViewController {
     func showPopup(message:String) {
         let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let action = UIAlertAction(title: "Close", style: .default) { (action) in
             
         }
         

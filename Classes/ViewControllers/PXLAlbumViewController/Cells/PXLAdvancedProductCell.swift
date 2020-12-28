@@ -57,39 +57,39 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         }
     }
 
-    var viewModel: PXLProduct? {
+    var pxlProduct: PXLProduct? {
         didSet {
-            guard let viewModel = viewModel else { return }
+            guard let pxlProduct = pxlProduct else { return }
 
             cellContainer.layer.cornerRadius = 4
             cellContainer.backgroundColor = .white
             itemImageView.layer.cornerRadius = 4
             shopBackground.layer.cornerRadius = 20
 
-            if let imageUrl = viewModel.imageThumbUrl {
+            if let imageUrl = pxlProduct.imageThumbUrl {
                 Nuke.loadImage(with: imageUrl, into: itemImageView)
             }else{
                 itemImageView.image = nil
             }
 
-            actionButton.setAttributedTitle(viewModel.attributedPrice, for: .normal)
-            titleLabel.text = viewModel.title
-            descriptionLabel.text = viewModel.productDescription
+            actionButton.setAttributedTitle(pxlProduct.attributedPrice, for: .normal)
+            titleLabel.text = pxlProduct.title
+            descriptionLabel.text = pxlProduct.productDescription
         }
     }
 
     var actionButtonPressed: ((_ product: PXLProduct) -> Void)?
 
     @IBAction func actionButtonPressed(_ sender: Any) {
-        if let actionPressed = actionButtonPressed, let viewModel = viewModel {
-            actionPressed(viewModel)
+        if let actionPressed = actionButtonPressed, let pxlProduct = pxlProduct {
+            actionPressed(pxlProduct)
         }
     }
 
     @IBAction func bookmarkPressed(_ sender: Any) {
         isBookmarked.toggle()
-        if let bookmarkHandling = onBookmarkClicked, let viewModel = viewModel {
-            bookmarkHandling(viewModel, isBookmarked)
+        if let bookmarkHandling = onBookmarkClicked, let pxlProduct = pxlProduct {
+            bookmarkHandling(pxlProduct, isBookmarked)
         }
     }
 

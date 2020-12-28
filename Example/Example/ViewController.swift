@@ -77,15 +77,14 @@ class ViewController: UIViewController {
         }
         
         if let album = album {
-            let filterOptions = PXLAlbumFilterOptions(contentType: ["video"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            
+            // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
+            album.regionId = pixleeCredentials.regionId
         }
-        
-        
-        // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
-        // album.regionId = 2469
     }
     
     func loadPhotos(){
@@ -230,7 +229,7 @@ extension ViewController: PXLPhotoProductDelegate {
 extension ViewController {
     func showPopup(message:String) {
         let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let action = UIAlertAction(title: "Close", style: .default) { (action) in
             
         }
         

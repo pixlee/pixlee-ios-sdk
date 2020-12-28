@@ -459,7 +459,7 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
             strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
         }
         let product = viewModel?.products?[indexPath.row]
-        cell.viewModel = product
+        cell.pxlProduct = product
         if let bookmarks = bookmarks, let product = product {
             cell.isBookmarked = bookmarks[product.identifier] ?? false
         }

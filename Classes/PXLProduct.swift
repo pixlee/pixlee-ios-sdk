@@ -34,25 +34,30 @@ public struct PXLProduct {
     }
 
     public var attributedPrice: NSAttributedString? {
-        guard let currency = currencySymbol, let price = price, let formattedPrice = PXLProduct.currencyFormatter.string(from: NSNumber(value: price)) else { return nil }
-
-        if let decimalSeparator = PXLProduct.currencyFormatter.decimalSeparator {
-            let separatedPrice = formattedPrice.components(separatedBy: decimalSeparator)
-            if let mainPrice = separatedPrice.first, let decimalPrice = separatedPrice.last {
-                let priceString = "\(mainPrice)"
-                let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
-
-                var secondPhase = "\(decimalSeparator)\(decimalPrice) \(currency)"
-                if decimalPrice == mainPrice {
-                    secondPhase = " \(currency)"
-                }
-
-                let currencyString = NSAttributedString(string: secondPhase, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
-                mutableAttributedString.append(currencyString)
-
-                return mutableAttributedString
+        if let price = price {
+            let doubleAsString = String(price);
+            
+            var mainPrice: String.SubSequence = doubleAsString[...]
+            var decimalPrice: String.SubSequence? = nil
+            if let indexOfDecimal = doubleAsString.firstIndex(of: ".") {
+                mainPrice = doubleAsString[..<indexOfDecimal]
+                decimalPrice = doubleAsString[indexOfDecimal...]
             }
+            
+            let priceString = "\(mainPrice)"
+            let mutableAttributedString = NSMutableAttributedString(string: priceString, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+            
+            var secondPhase = " \(currencySymbol ?? "")"
+            if let decimalPrice = decimalPrice {
+                secondPhase = "\(decimalPrice) \(currencySymbol ?? "")"
+            }
+            
+            let currencyString = NSAttributedString(string: secondPhase, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+            mutableAttributedString.append(currencyString)
+            
+            return mutableAttributedString
         }
+        
         return nil
     }
 

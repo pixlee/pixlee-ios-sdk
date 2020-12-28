@@ -59,7 +59,7 @@ public class PXLClient {
         }
     }
 
-    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
+    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int?, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
         return AF.request(apiRequests.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId)).responseDecodable { (response: DataResponse<PXLPhotoDTO, AFError>) in
             
             //            if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
@@ -104,6 +104,7 @@ public class PXLClient {
                             completionHandler(nil, error)
                         }
                     }
+                    
                     requestsForAlbum[nextPage] = request
                     loadingOperations[identifier] = requestsForAlbum
                     return request

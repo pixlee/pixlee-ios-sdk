@@ -48,10 +48,12 @@ class GetPhotoViewController: UIViewController {
         }
         
         if let album = album {
-            let filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            
+            album.regionId = pixleeCredentials.regionId
         }
     }
     
@@ -61,9 +63,9 @@ class GetPhotoViewController: UIViewController {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 if let photos = photos {
                     if let albumPhotoId = photos.shuffled().first?.albumPhotoId {
-                        print("albumPhotoId: \(albumPhotoId)")
-                        // alternative: PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: <#T##String#>, regionId: <#T##Int#>, completionHandler: <#T##((PXLPhoto?, Error?) -> Void)?##((PXLPhoto?, Error?) -> Void)?##(PXLPhoto?, Error?) -> Void#>)
-                        PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: String(albumPhotoId)) { (pxlPhoto, error) in
+                        print("-----albumPhotoId: \(albumPhotoId)")
+                        // alternative: PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId), regionId: album.regionId) { (pxlPhoto, error) in
+                        PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId), regionId: album.regionId) { (pxlPhoto, error) in
                             if let pxlPhoto = pxlPhoto {
                                 print("a photo loaded, albumPhotoId: \(pxlPhoto.albumPhotoId)")
                                 let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, delegate: self, cellConfiguration: PXLProductCellConfiguration(bookmarkOnImage: nil, bookmarkOffImage: nil))
@@ -125,7 +127,7 @@ extension GetPhotoViewController: PXLPhotoProductDelegate {
 extension GetPhotoViewController {
     func showPopup(message:String) {
         let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let action = UIAlertAction(title: "Close", style: .default) { (action) in
             
         }
         

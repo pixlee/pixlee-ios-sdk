@@ -59,7 +59,7 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
         - PIXLEE_SECRET_KEY:(String) "replace with your own value" (find here: https://app.pixlee.com/app#settings/pixlee_api)
         - PIXLEE_ALBUM_ID:(String) "replace with your own value"  (find here: https://app.pixlee.com/app#albums)
         - PIXLEE_SKU:(String) "replace with your own value" (find here: https://app.pixlee.com/app#products)
-
+        - PIXLEE_REGION_ID:(String) "replace with your own value" (find here: https://app.pixlee.com/app#products)
       <img src="doc/img/edit_pixlee_credentials.png" width="50%">
 
 5. in Xcode, run the app by clicking **Product> Run** in the menu bar or by pressing **Command + R** on you keyboard.
@@ -313,14 +313,16 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 ```
 #### Add to Cart
 ```swift
+    val regionId:Int?
     let currency = "USD"
     let productSKU = "SL-BENJ"
     let quantity = 2
     let price = "13.0"
     let event = PXLAnalyticsEventAddCart(sku: productSKU,
-                                         quantity: quantity,
-                                         price: price,
-                                         currency: currency)
+        quantity: quantity,
+        price: price,
+        currency: currency,
+        regionId: regionId)
                                          
      //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
@@ -333,6 +335,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 ```
 #### Conversion
 ```swift
+    val regionId:Int?
     // Setup some constants
     let currency = "USD"
     // Product 1 example
@@ -353,7 +356,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let cartContents = [cart1, cart2]
 
     //EVENT converted: refers to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
+    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency, regionId: regionId)
 
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
         guard error == nil else {
@@ -381,11 +384,12 @@ It's important to trigger this event after the LoadNextPage event
 ```
 #### Opened Lightbox
 ```swift
+    val regionId:Int?
     // fire this when a PXLPhoto is displayed from your List View containing a list of PXLPhotos
     let pxlPhoto:PXLPhoto = photoFromSomewhere
 
     //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    pxlPhoto.triggerEventOpenedLightbox { (error) in
+    pxlPhoto.triggerEventOpenedLightbox(regionId: regionId) { (error) in
         print("Logged") 
     }
 
@@ -393,6 +397,7 @@ It's important to trigger this event after the LoadNextPage event
 
 #### Action Click 
 ```swift
+    val regionId:Int?
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPxlPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
@@ -404,7 +409,7 @@ It's important to trigger this event after the LoadNextPage event
         }
         print("New Photo: \(pxlPhoto.albumPhotoId)")
         if let product = pxlPhoto.products?.first, let url = product.link?.absoluteString {
-            pxlPhoto.triggerEventActionClicked(actionLink: url) { _ in
+            pxlPhoto.triggerEventActionClicked(actionLink: url, region: regionId) { _ in
                 print("triggered")
             }
         }
