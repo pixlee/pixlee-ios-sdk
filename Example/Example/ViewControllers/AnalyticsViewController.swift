@@ -136,18 +136,3 @@ class AnalyticsViewController: UIViewController {
         print(log)
     }
 }
-
-
-// MARK: - Show Popup
-extension AnalyticsViewController {
-    func showPopup(message:String) {
-        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .default) { (action) in
-            
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
-    }
-}
