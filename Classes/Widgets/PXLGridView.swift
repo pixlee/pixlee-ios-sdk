@@ -135,7 +135,7 @@ public class PXLGridView: UIView {
         return delegate?.isMultipleColumnEnabled() ?? true
     }
 
-    private var isInifiteScrollEnabled: Bool {
+    private var isInfiniteScrollEnabled: Bool {
         return delegate?.isInfiniteScrollEnabled() ?? true
     }
     
@@ -300,7 +300,7 @@ extension PXLGridView: UICollectionViewDataSource {
 
 extension PXLGridView: UICollectionViewDataSourcePrefetching {
     public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        guard isInifiteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
+        guard isInfiniteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
 
         var items = infiniteItems
         items.append(contentsOf: self.items)

@@ -14,6 +14,7 @@
 		5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */; };
 		5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */; };
 		5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */; };
+		5CCE82F625A564390040B222 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */; };
 		5CE55183257E17B5009666C1 /* PixleeCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE55182257E17B5009666C1 /* PixleeCredentials.swift */; };
 		8226E89CFFCBBDFF753AEC6B /* Pods_Example_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7846117A9263BAE1A6F58A /* Pods_Example_ExampleUITests.framework */; };
 		F23BA1A725190368009FC402 /* OneColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BA1A525190368009FC402 /* OneColumnViewController.swift */; };
@@ -69,6 +70,7 @@
 		5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotosViewController.swift; sourceTree = "<group>"; };
 		5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoViewController.swift; sourceTree = "<group>"; };
 		5CA2236C7314A391A218AFB3 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5CE55182257E17B5009666C1 /* PixleeCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeCredentials.swift; sourceTree = "<group>"; };
 		5DCE6AF1F69CB38DE855DB7E /* Pods_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B44DCFD7ACC0F08BDE34329 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				F24D430223C65BBF0091E324 /* Info.plist */,
 				5CE55182257E17B5009666C1 /* PixleeCredentials.swift */,
 				5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */,
+				5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
 				5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */,
 				5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */,
+				5CCE82F625A564390040B222 /* UIViewControllerExtension.swift in Sources */,
 				5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */,
 				5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */,
 				F2A8AC4A255E6F10008A40BF /* ListWithGifFileViewController.swift in Sources */,
