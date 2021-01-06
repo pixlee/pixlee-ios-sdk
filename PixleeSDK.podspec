@@ -29,10 +29,21 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '10.0'
   spec.swift_version = '5.0'
 
-  spec.source_files = 'Classes/**/*{swift}'
+  spec.source_files = 'Classes/**/*{swift,m,h}'
     
   spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
   spec.dependency 'Alamofire', '~> 5.0'
   spec.dependency 'Nuke', '~> 8.0'
   spec.dependency 'Gifu'
+  
+  spec.default_subspec = 'InfiniteLayout'
+    spec.subspec 'InfiniteLayout' do |core|
+      core.source_files = 'Classes/InfiniteLayout/**/*'
+      core.dependency 'PixleeSDK/CocoaProxy'
+      core.exclude_files = '**/*/SPMBridge.swift'
+    end
+    spec.subspec 'CocoaProxy' do |core|
+      core.source_files = 'Classes/CocoaProxy/**/*'
+    end
+    
 end

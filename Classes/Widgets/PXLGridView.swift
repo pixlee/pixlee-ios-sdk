@@ -301,7 +301,7 @@ extension PXLGridView: UICollectionViewDataSource {
 extension PXLGridView: UICollectionViewDataSourcePrefetching {
     public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         guard isInfiniteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
-
+        
         var items = infiniteItems
         items.append(contentsOf: self.items)
         self.items = items
