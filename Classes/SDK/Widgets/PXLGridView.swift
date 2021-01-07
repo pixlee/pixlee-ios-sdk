@@ -64,7 +64,9 @@ extension PXLGridViewDelegate {
 
 public class PXLGridView: UIView {    
     var collectionView: InfiniteCollectionView?
-    let flowLayout = UICollectionViewFlowLayout()
+    public var flowLayout: InfiniteLayout! {
+        return collectionView?.collectionViewLayout as? InfiniteLayout
+    }
 
     public var items: [PXLPhoto] = [] {
         didSet {
@@ -97,7 +99,6 @@ public class PXLGridView: UIView {
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
-
         if delegate?.headerTitle() != nil || delegate?.headerGifUrl() != nil || delegate?.headerGifName() != nil {
             flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + cellPadding)
         }
@@ -170,10 +171,11 @@ public class PXLGridView: UIView {
     }
 
     override public init(frame: CGRect) {
-        collectionView = InfiniteCollectionView(frame: frame, collectionViewLayout: flowLayout)
-        flowLayout.scrollDirection = .vertical
+        collectionView = InfiniteCollectionView(frame: frame)
 
         super.init(frame: frame)
+        
+        flowLayout.scrollDirection = .vertical
         
         if isMultipleColumnsEnabled {
             topRightCellIndex = IndexPath(item: 1, section: 0)
