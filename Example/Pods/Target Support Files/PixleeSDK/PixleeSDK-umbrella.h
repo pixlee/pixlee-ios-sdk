@@ -11,7 +11,6 @@
 #endif
 
 #import "CocoaProxy.h"
-#import "CocoaProxy.h"
 
 FOUNDATION_EXPORT double PixleeSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char PixleeSDKVersionString[];

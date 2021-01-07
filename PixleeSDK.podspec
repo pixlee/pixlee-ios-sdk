@@ -28,22 +28,23 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '10.0'
   spec.swift_version = '5.0'
-
-  spec.source_files = 'Classes/**/*{swift,m,h}'
     
-  spec.resources = "Classes/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
-  spec.dependency 'Alamofire', '~> 5.0'
-  spec.dependency 'Nuke', '~> 8.0'
-  spec.dependency 'Gifu'
-  
-  spec.default_subspec = 'InfiniteLayout'
-    spec.subspec 'InfiniteLayout' do |core|
-      core.source_files = 'Classes/InfiniteLayout/**/*'
-      core.dependency 'PixleeSDK/CocoaProxy'
-      core.exclude_files = '**/*/SPMBridge.swift'
+  spec.default_subspec = 'SDK'
+    spec.subspec 'SDK' do |sdk|
+      sdk.source_files = 'Classes/SDK/**/*{swift}'
+      sdk.resources = "Classes/SDK/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+      sdk.dependency 'Alamofire', '~> 5.0'
+      sdk.dependency 'Nuke', '~> 8.0'
+      sdk.dependency 'Gifu'
+      sdk.dependency 'PixleeSDK/Scroll'
     end
-    spec.subspec 'CocoaProxy' do |core|
-      core.source_files = 'Classes/CocoaProxy/**/*'
+    spec.subspec 'Scroll' do |scroll|
+      scroll.source_files = 'Classes/InfiniteLayout/**/*'
+      scroll.dependency 'PixleeSDK/CocoaProxy'
+      scroll.exclude_files = '**/*/SPMBridge.swift'
+    end
+    spec.subspec 'CocoaProxy' do |scroll|
+      scroll.source_files = 'Classes/CocoaProxy/**/*'
     end
     
 end

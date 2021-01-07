@@ -3,19 +3,15 @@ PODS:
   - Gifu (3.3)
   - Nuke (8.4.1)
   - PixleeSDK (1.0.0):
-    - Alamofire (~> 5.0)
-    - Gifu
-    - Nuke (~> 8.0)
-    - PixleeSDK/InfiniteLayout (= 1.0.0)
-  - PixleeSDK/CocoaProxy (1.0.0):
-    - Alamofire (~> 5.0)
-    - Gifu
-    - Nuke (~> 8.0)
-  - PixleeSDK/InfiniteLayout (1.0.0):
-    - Alamofire (~> 5.0)
-    - Gifu
-    - Nuke (~> 8.0)
+    - PixleeSDK/SDK (= 1.0.0)
+  - PixleeSDK/CocoaProxy (1.0.0)
+  - PixleeSDK/Scroll (1.0.0):
     - PixleeSDK/CocoaProxy
+  - PixleeSDK/SDK (1.0.0):
+    - Alamofire (~> 5.0)
+    - Gifu
+    - Nuke (~> 8.0)
+    - PixleeSDK/Scroll
 
 DEPENDENCIES:
   - PixleeSDK (from `../`)
@@ -34,7 +30,7 @@ SPEC CHECKSUMS:
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
   Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
-  PixleeSDK: 4693875a1e4feed3fdf2d1b47724f09911def51d
+  PixleeSDK: fc4e474a195a586b3f1cfbbcb167e33851578462
 
 PODFILE CHECKSUM: 9fcadd8d6a95fd37a19efc0937c316d7185eea5a
 
