@@ -63,7 +63,7 @@ extension PXLGridViewDelegate {
 }
 
 public class PXLGridView: UIView {    
-    var collectionView: UICollectionView?
+    var collectionView: InfiniteCollectionView?
     let flowLayout = UICollectionViewFlowLayout()
 
     public var items: [PXLPhoto] = [] {
@@ -83,6 +83,8 @@ public class PXLGridView: UIView {
 
     public weak var delegate: PXLGridViewDelegate? {
         didSet {
+            print("self.isInfiniteScrollEnabled: \(self.isInfiniteScrollEnabled)")
+            collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
             setupCellSize()
             if isMultipleColumnsEnabled {
                 topRightCellIndex = IndexPath(item: 1, section: 0)
@@ -168,11 +170,11 @@ public class PXLGridView: UIView {
     }
 
     override public init(frame: CGRect) {
-        collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
+        collectionView = InfiniteCollectionView(frame: frame, collectionViewLayout: flowLayout)
         flowLayout.scrollDirection = .vertical
 
         super.init(frame: frame)
-
+        
         if isMultipleColumnsEnabled {
             topRightCellIndex = IndexPath(item: 1, section: 0)
         } else {
@@ -181,7 +183,7 @@ public class PXLGridView: UIView {
         
         if let collectionView = collectionView {
             collectionView.dataSource = self
-            collectionView.prefetchDataSource = self
+            //collectionView.prefetchDataSource = self
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
 
@@ -274,10 +276,11 @@ extension PXLGridView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
-            delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
+            let index = self.collectionView!.indexPath(from: indexPath).row
+            delegate?.setupPhotoCell(cell: cell, photo: items[index])
             cell.isHighlihtingEnabled = isHighlightingEnabled
-            cell.cellWidth.constant = flowLayout.itemSize.width
-            cell.cellHeight.constant = flowLayout.itemSize.height
+            //cell.cellWidth.constant = flowLayout.itemSize.width
+            //cell.cellHeight.constant = flowLayout.itemSize.height
 
             if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
                 cell.highlightView(muted: isVideoMutted)
@@ -298,15 +301,37 @@ extension PXLGridView: UICollectionViewDataSource {
     }
 }
 
-extension PXLGridView: UICollectionViewDataSourcePrefetching {
-    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        guard isInfiniteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
-        
-        var items = infiniteItems
-        items.append(contentsOf: self.items)
-        self.items = items
+extension PXLGridView: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //return CGSize(width: collectionView.frame.width * 0.3, height: 100)
+        return flowLayout.itemSize
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        //return collectionView.frame.width * 0.1
+        return cellPadding
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellPadding
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: cellPadding, right: 0)
     }
 }
+
+
+//extension PXLGridView: UICollectionViewDataSourcePrefetching {
+//    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        guard isInfiniteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
+//
+//        var items = infiniteItems
+//        items.append(contentsOf: self.items)
+//        self.items = items
+//    }
+//}
 
 extension PXLGridView: UICollectionViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -339,14 +364,12 @@ extension PXLGridView: UICollectionViewDelegate {
         var highlightedCells = [PXLGridViewCell]()
 
         if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLGridViewCell {
-            print("left.idx: \(topLeftIndex)")
             cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topLeftCellIndex = topLeftIndex
         }
 
         if topLeftIndex != topRightIndex, let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
-            print("right.idx: \(topRightIndex)")
             cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topRightCellIndex = topRightIndex

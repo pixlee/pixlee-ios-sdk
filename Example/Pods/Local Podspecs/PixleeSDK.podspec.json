@@ -35,13 +35,13 @@
         "Gifu": [
 
         ],
-        "PixleeSDK/Scroll": [
+        "PixleeSDK/InfiniteLayout": [
 
         ]
       }
     },
     {
-      "name": "Scroll",
+      "name": "InfiniteLayout",
       "source_files": "Classes/InfiniteLayout/**/*",
       "dependencies": {
         "PixleeSDK/CocoaProxy": [

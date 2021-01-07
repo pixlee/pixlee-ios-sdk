@@ -36,15 +36,15 @@ Pod::Spec.new do |spec|
       sdk.dependency 'Alamofire', '~> 5.0'
       sdk.dependency 'Nuke', '~> 8.0'
       sdk.dependency 'Gifu'
-      sdk.dependency 'PixleeSDK/Scroll'
+      sdk.dependency 'PixleeSDK/InfiniteLayout'
     end
-    spec.subspec 'Scroll' do |scroll|
-      scroll.source_files = 'Classes/InfiniteLayout/**/*'
-      scroll.dependency 'PixleeSDK/CocoaProxy'
-      scroll.exclude_files = '**/*/SPMBridge.swift'
+    spec.subspec 'InfiniteLayout' do |infinite|
+      infinite.source_files = 'Classes/InfiniteLayout/**/*'
+      infinite.dependency 'PixleeSDK/CocoaProxy'
+      infinite.exclude_files = '**/*/SPMBridge.swift'
     end
-    spec.subspec 'CocoaProxy' do |scroll|
-      scroll.source_files = 'Classes/CocoaProxy/**/*'
+    spec.subspec 'CocoaProxy' do |infinite|
+      infinite.source_files = 'Classes/CocoaProxy/**/*'
     end
     
 end
