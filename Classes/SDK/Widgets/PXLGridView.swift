@@ -108,11 +108,8 @@ public class PXLGridView: UIView {
         }
         if isMultipleColumnsEnabled {
             flowLayout.itemSize = CGSize(width: width, height: height)
-            flowLayout.minimumInteritemSpacing = cellPadding
-            flowLayout.minimumLineSpacing = cellPadding
         } else {
             flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
-            flowLayout.minimumLineSpacing = cellPadding
         }
 
         collectionView?.collectionViewLayout.invalidateLayout()
@@ -281,8 +278,8 @@ extension PXLGridView: UICollectionViewDataSource {
             let index = self.collectionView!.indexPath(from: indexPath).row
             delegate?.setupPhotoCell(cell: cell, photo: items[index])
             cell.isHighlihtingEnabled = isHighlightingEnabled
-            //cell.cellWidth.constant = flowLayout.itemSize.width
-            //cell.cellHeight.constant = flowLayout.itemSize.height
+            cell.cellWidth.constant = flowLayout.itemSize.width
+            cell.cellHeight.constant = flowLayout.itemSize.height
 
             if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
                 cell.highlightView(muted: isVideoMutted)
@@ -306,12 +303,10 @@ extension PXLGridView: UICollectionViewDataSource {
 extension PXLGridView: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //return CGSize(width: collectionView.frame.width * 0.3, height: 100)
         return flowLayout.itemSize
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        //return collectionView.frame.width * 0.1
         return cellPadding
     }
     
