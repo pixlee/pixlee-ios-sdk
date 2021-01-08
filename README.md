@@ -633,4 +633,4 @@ If you get an error running `carthage update` on osx please clear your carthage 
 
 ## License
 - pixlee-ios-sdk is available under the MIT license.
-- InfiniteLayout is available under the MIT license.
+- [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is available under the MIT license.
