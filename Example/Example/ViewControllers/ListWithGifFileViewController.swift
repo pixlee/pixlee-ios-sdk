@@ -65,12 +65,12 @@ extension ListWithGifFileViewController: PXLGridViewDelegate {
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = photos.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFill), delegate: self)
         }
     }
     
     public func cellHeight() -> CGFloat {
-        return 350
+        return 600
     }
     
     func cellPadding() -> CGFloat {
