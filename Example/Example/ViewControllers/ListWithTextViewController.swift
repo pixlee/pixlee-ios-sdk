@@ -79,11 +79,11 @@ extension ListWithTextViewController: PXLGridViewDelegate {
     }
     
     func isHighlightingEnabled() -> Bool {
-        return true
+        return false
     }
     
     func isInfiniteScrollEnabled() -> Bool {
-        return true
+        return false
     }
 }
 

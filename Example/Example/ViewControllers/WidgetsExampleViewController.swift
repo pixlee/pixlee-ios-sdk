@@ -26,7 +26,7 @@ class WidgetsExampleViewController: UIViewController {
             album.regionId = pixleeCredentials.regionId
             
         } catch{
-            showPopup(message: error.localizedDescription)
+            self.showPopup(message: error.localizedDescription)
         }
 
         
@@ -103,19 +103,5 @@ extension WidgetsExampleViewController: UITableViewDelegate, UITableViewDataSour
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-}
-
-// MARK: - Show Popup
-extension WidgetsExampleViewController {
-    func showPopup(message:String) {
-        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .default) { (action) in
-            
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
     }
 }

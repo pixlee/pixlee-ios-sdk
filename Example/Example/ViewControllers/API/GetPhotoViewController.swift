@@ -32,7 +32,7 @@ class GetPhotoViewController: UIViewController {
         do {
             try pixleeCredentials = PixleeCredentials.create()
         } catch{
-            showPopup(message: error.localizedDescription)
+            self.showPopup(message: error.localizedDescription)
         }
         
         //        let dateString = "20190101"
@@ -120,19 +120,5 @@ extension GetPhotoViewController: PXLPhotoProductDelegate {
     
     public func onProductClicked(product: PXLProduct) {
         print("Pruduct: \(product.identifier) clicked")
-    }
-}
-
-// MARK: - Show Popup
-extension GetPhotoViewController {
-    func showPopup(message:String) {
-        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .default) { (action) in
-            
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
     }
 }

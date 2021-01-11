@@ -628,6 +628,10 @@ Run the project and you should see a grid of content from that album.
 If you get an error running `carthage update` on osx please clear your carthage cache by doing 
 `rm -rf ~/Library/Caches/org.carthage.CarthageKit`. 
 
-## License
+## Libraries
+- [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is used to implement the infinite scroll in the SDK.
+    - you can enable and disable the feature with **PXLGridViewDelegate.isInfiniteScrollEnabled: true / false**
 
-pixlee-ios-sdk is available under the MIT license.
+## License
+- pixlee-ios-sdk is available under the MIT license.
+- [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is available under the MIT license.

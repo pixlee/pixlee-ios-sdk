@@ -57,11 +57,15 @@ extension ListWithGifURLViewController: PXLGridViewDelegate {
     }
     
     func headerGifUrl() -> String? {
-        return "https://media.giphy.com/media/dzaUX7CAG0Ihi/giphy.gif"
+        return "https://media.giphy.com/media/xT5LMNWIOq8E1JJ3b2/giphy.gif"
     }
     
     func headerGifContentMode() -> UIView.ContentMode {
         .scaleAspectFill
+    }
+    
+    func headerHeight() -> CGFloat {
+        return 400
     }
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
@@ -83,10 +87,10 @@ extension ListWithGifURLViewController: PXLGridViewDelegate {
     }
     
     func isHighlightingEnabled() -> Bool {
-        return true
+        return false
     }
     
     func isInfiniteScrollEnabled() -> Bool {
-        return true
+        return false
     }
 }

@@ -38,7 +38,7 @@ class GetPhotosViewController: UIViewController {
         do {
             try pixleeCredentials = PixleeCredentials.create()
         } catch{
-            showPopup(message: error.localizedDescription)
+            self.showPopup(message: error.localizedDescription)
         }
         
         //        let dateString = "20190101"
@@ -119,19 +119,5 @@ extension GetPhotosViewController: PXLGridViewDelegate {
     
     func isInfiniteScrollEnabled() -> Bool {
         return false
-    }
-}
-
-// MARK: - Show Popup
-extension GetPhotosViewController {
-    func showPopup(message:String) {
-        let alert = UIAlertController(title: "No credential file", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .default) { (action) in
-            
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
     }
 }

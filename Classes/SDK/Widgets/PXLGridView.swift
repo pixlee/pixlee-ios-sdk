@@ -63,8 +63,10 @@ extension PXLGridViewDelegate {
 }
 
 public class PXLGridView: UIView {    
-    var collectionView: UICollectionView?
-    let flowLayout = UICollectionViewFlowLayout()
+    var collectionView: InfiniteCollectionView?
+    public var flowLayout: InfiniteLayout! {
+        return collectionView?.collectionViewLayout as? InfiniteLayout
+    }
 
     public var items: [PXLPhoto] = [] {
         didSet {
@@ -83,6 +85,8 @@ public class PXLGridView: UIView {
 
     public weak var delegate: PXLGridViewDelegate? {
         didSet {
+            print("self.isInfiniteScrollEnabled: \(self.isInfiniteScrollEnabled)")
+            collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
             setupCellSize()
             if isMultipleColumnsEnabled {
                 topRightCellIndex = IndexPath(item: 1, section: 0)
@@ -95,7 +99,6 @@ public class PXLGridView: UIView {
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
-
         if delegate?.headerTitle() != nil || delegate?.headerGifUrl() != nil || delegate?.headerGifName() != nil {
             flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + cellPadding)
         }
@@ -105,11 +108,8 @@ public class PXLGridView: UIView {
         }
         if isMultipleColumnsEnabled {
             flowLayout.itemSize = CGSize(width: width, height: height)
-            flowLayout.minimumInteritemSpacing = cellPadding
-            flowLayout.minimumLineSpacing = cellPadding
         } else {
             flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
-            flowLayout.minimumLineSpacing = cellPadding
         }
 
         collectionView?.collectionViewLayout.invalidateLayout()
@@ -135,7 +135,7 @@ public class PXLGridView: UIView {
         return delegate?.isMultipleColumnEnabled() ?? true
     }
 
-    private var isInifiteScrollEnabled: Bool {
+    private var isInfiniteScrollEnabled: Bool {
         return delegate?.isInfiniteScrollEnabled() ?? true
     }
     
@@ -168,11 +168,12 @@ public class PXLGridView: UIView {
     }
 
     override public init(frame: CGRect) {
-        collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
-        flowLayout.scrollDirection = .vertical
+        collectionView = InfiniteCollectionView(frame: frame)
 
         super.init(frame: frame)
-
+        
+        flowLayout.scrollDirection = .vertical
+        
         if isMultipleColumnsEnabled {
             topRightCellIndex = IndexPath(item: 1, section: 0)
         } else {
@@ -181,7 +182,7 @@ public class PXLGridView: UIView {
         
         if let collectionView = collectionView {
             collectionView.dataSource = self
-            collectionView.prefetchDataSource = self
+            //collectionView.prefetchDataSource = self
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
 
@@ -274,7 +275,8 @@ extension PXLGridView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
-            delegate?.setupPhotoCell(cell: cell, photo: items[indexPath.row])
+            let index = self.collectionView!.indexPath(from: indexPath).row
+            delegate?.setupPhotoCell(cell: cell, photo: items[index])
             cell.isHighlihtingEnabled = isHighlightingEnabled
             cell.cellWidth.constant = flowLayout.itemSize.width
             cell.cellHeight.constant = flowLayout.itemSize.height
@@ -298,13 +300,22 @@ extension PXLGridView: UICollectionViewDataSource {
     }
 }
 
-extension PXLGridView: UICollectionViewDataSourcePrefetching {
-    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        guard isInifiteScrollEnabled, let lastIndexPath = indexPaths.last, lastIndexPath.row == infiniteItems.count - 1 else { return }
-
-        var items = infiniteItems
-        items.append(contentsOf: self.items)
-        self.items = items
+extension PXLGridView: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return flowLayout.itemSize
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellPadding
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellPadding
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: cellPadding, right: 0)
     }
 }
 
@@ -339,14 +350,12 @@ extension PXLGridView: UICollectionViewDelegate {
         var highlightedCells = [PXLGridViewCell]()
 
         if let cell = collectionView.cellForItem(at: topLeftIndex) as? PXLGridViewCell {
-            print("left.idx: \(topLeftIndex)")
             cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topLeftCellIndex = topLeftIndex
         }
 
         if topLeftIndex != topRightIndex, let cell = collectionView.cellForItem(at: topRightIndex) as? PXLGridViewCell {
-            print("right.idx: \(topRightIndex)")
             cell.highlightView(muted: isVideoMutted)
             highlightedCells.append(cell)
             topRightCellIndex = topRightIndex
