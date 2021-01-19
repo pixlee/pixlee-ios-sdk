@@ -123,7 +123,12 @@ PXLClient.sharedClient.secretKey = secretKey
 ```
 
 ## Network API Caching
-We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).  
+We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
+```swift
+#!swift
+PXLClient.apiRequests.disableCaching = true // don't use cache
+PXLClient.apiRequests.disableCaching = false // use cache
+```
 
 
 ## Filtering and Sorting
