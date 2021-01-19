@@ -17,6 +17,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Option 1: Using Cocoapods](#Option-1:-Using-Cocoapods)
     - [Option 2: Using Carthage](#Option-2:-Using-Carthage)
         - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
+- [Initiate the SDK](#Initiate-the-SDK)
 - [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
 - [Getting a PXLPhoto](#getting-a-content)
@@ -104,6 +105,22 @@ If you are using Objective-C in your porject and don't want to add a framework b
     With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
 
     When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
+
+
+## Initiate the SDK
+- API key
+  - Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
+  - add your Pixlee API key.
+```swift
+#!swift
+PXLClient.sharedClient.apiKey = apiKey
+```
+- Secret Key (Optional)
+  - add your Secret Key if you are making POST requests.
+```swift
+#!swift
+PXLClient.sharedClient.secretKey = secretKey
+```
 
 ## Network API Caching
 We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).  

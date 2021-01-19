@@ -53,12 +53,12 @@ class ViewController: UIViewController {
     func initClient(){
         if let apiKey = pixleeCredentials.apiKey {
             // Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
-            //        #warning  Environment Variables, replace with your Pixlee API key.
+            // add your Pixlee API key.
             PXLClient.sharedClient.apiKey = apiKey
         }
         
         if let secretKey = pixleeCredentials.secretKey {
-            //        #warning In Environment Variables, replace with your Secret Key if you are making POST requests.
+            // add your Secret Key if you are making POST requests.
             PXLClient.sharedClient.secretKey = secretKey
         }
     }
