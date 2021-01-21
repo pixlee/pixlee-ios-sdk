@@ -32,9 +32,6 @@ struct PixleeCredentials {
                     }
                 }
                 
-                
-                print("swiftDictionary: \(swiftDictionary)")
-                
             } catch {
                 let message = "can't read Example/PixleeCredentials.plist \(error)"
                 throw ValidationError.cantRead(message)

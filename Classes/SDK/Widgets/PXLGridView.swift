@@ -12,6 +12,7 @@ public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
     func onPhotoClicked(photo: PXLPhoto)
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
     func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
@@ -31,6 +32,9 @@ public protocol PXLGridViewDelegate:class {
 
 extension PXLGridViewDelegate {
     public func cellsHighlighted(cells: [PXLGridViewCell]) {
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
 
     public func headerTitleFont() -> UIFont {
@@ -63,7 +67,7 @@ extension PXLGridViewDelegate {
 }
 
 public class PXLGridView: UIView {    
-    var collectionView: InfiniteCollectionView?
+    open var collectionView: InfiniteCollectionView?
     public var flowLayout: InfiniteLayout! {
         return collectionView?.collectionViewLayout as? InfiniteLayout
     }
@@ -85,7 +89,6 @@ public class PXLGridView: UIView {
 
     public weak var delegate: PXLGridViewDelegate? {
         didSet {
-            print("self.isInfiniteScrollEnabled: \(self.isInfiniteScrollEnabled)")
             collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
             setupCellSize()
             if isMultipleColumnsEnabled {
@@ -95,7 +98,7 @@ public class PXLGridView: UIView {
             }
         }
     }
-
+    
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
@@ -322,6 +325,7 @@ extension PXLGridView: UICollectionViewDelegateFlowLayout {
 extension PXLGridView: UICollectionViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         adjustHighlight()
+        delegate?.scrollViewDidScroll(scrollView)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

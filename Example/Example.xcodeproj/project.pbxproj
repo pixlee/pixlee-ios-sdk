@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042EB2E76FAC9226D8B11A6E /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */; };
+		5C23D91925B6B69F00530FEF /* AutoUIImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */; };
 		5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */; };
 		5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */; };
 		5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */; };
@@ -63,6 +64,7 @@
 		09709C7B56523FEF6ADF2C49 /* Pods-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E545E1A5E7B8ADBE31AF7FD /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUIImageListViewController.swift; sourceTree = "<group>"; };
 		5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
 		5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5C23D91725B6B61B00530FEF /* AutoUI */ = {
+			isa = PBXGroup;
+			children = (
+				5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */,
+			);
+			path = AutoUI;
+			sourceTree = "<group>";
+		};
 		5C8143A12589F5F000C1CC1A /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +239,7 @@
 		F296942424224213003EB9DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5C23D91725B6B61B00530FEF /* AutoUI */,
 				5C8143A12589F5F000C1CC1A /* API */,
 				F296942524224213003EB9DD /* AnalyticsViewController.swift */,
 				F296942624224213003EB9DD /* AnalyticsViewController.xib */,
@@ -506,6 +517,7 @@
 			files = (
 				F24D42F923C65BBE0091E324 /* ViewController.swift in Sources */,
 				F2A8AC4F255E7041008A40BF /* ListWithGifURLViewController.swift in Sources */,
+				5C23D91925B6B69F00530FEF /* AutoUIImageListViewController.swift in Sources */,
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
 				5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */,
 				5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */,

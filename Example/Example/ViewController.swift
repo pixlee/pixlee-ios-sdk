@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var uiStackView: UIStackView!
     @IBOutlet var analyticsStackView: UIStackView!
+    @IBOutlet weak var uiAutoAnalyticsStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class ViewController: UIViewController {
         
         addEmptySpace(to: uiStackView)
         addEmptySpace(to: analyticsStackView)
+        addEmptySpace(to: uiAutoAnalyticsStackView)
+        
                 
         do {
             try pixleeCredentials = PixleeCredentials.create()
@@ -60,7 +63,7 @@ class ViewController: UIViewController {
         if let secretKey = pixleeCredentials.secretKey {
             // add your Secret Key if you are making POST requests.
             PXLClient.sharedClient.secretKey = secretKey
-        }
+        }        
     }
     
     func initAlbum(){
@@ -77,7 +80,7 @@ class ViewController: UIViewController {
         }
         
         if let album = album {
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], deletedPhotos: true)
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
@@ -106,7 +109,7 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
     func getSamplePhotos() -> [PXLPhoto]? {
         if let album = album {
             
@@ -129,7 +132,7 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
     @IBAction func loadAlbum(_ sender: Any) {
         if let album = album {
             present(PXLAlbumViewController.viewControllerForAlbum(album: album), animated: true, completion: nil)
@@ -149,6 +152,11 @@ class ViewController: UIViewController {
     
     @IBAction func showAnalytics(_ sender: Any) {
         present(AnalyticsViewController.getInstance(), animated: true, completion: nil)
+    }
+    
+    // MARK: - UI Components + Auto Analytics
+    @IBAction func showAutoAnalyticsUI(_ sender: Any) {
+        present(AutoUIImageListViewController.getInstance(), animated: true, completion: nil)
     }
     
     // MARK: - UI Components

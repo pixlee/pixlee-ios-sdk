@@ -91,7 +91,11 @@ class PXLApiRequests {
             }
             
             let request = try urlRequest(.get, url, parameters: params)
-            print("request: \(request)")
+            
+            #if DEBUG
+            print("request: \(request)\n")
+            #endif
+            
             return request
         } catch {
             fatalError("Worng url request")
@@ -166,6 +170,11 @@ class PXLApiRequests {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
             let postHeaders = self.postHeaders(isDistilleryServer: false, headers: [:], parameters: parameters)
             let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
+            
+            #if DEBUG
+            print("request: \(request)")
+            print("parameters: \(parameters)\n")
+            #endif
             return request
         } catch {
             fatalError("Worng url request")

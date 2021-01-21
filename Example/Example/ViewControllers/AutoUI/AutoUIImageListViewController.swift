@@ -10,9 +10,9 @@ import Foundation
 import PixleeSDK
 import UIKit
 
-class GetPhotosViewController: UIViewController {
-    static func getInstance() -> GetPhotosViewController {
-        return GetPhotosViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+class AutoUIImageListViewController: UIViewController {
+    static func getInstance() -> AutoUIImageListViewController {
+        return AutoUIImageListViewController(nibName: "EmptyViewController", bundle: Bundle.main)
     }
     
     var pixleeCredentials:PixleeCredentials = PixleeCredentials()
@@ -21,17 +21,15 @@ class GetPhotosViewController: UIViewController {
     var pxlGridView = PXLGridView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pxlGridView.delegate = self
+        view.addSubview(pxlGridView)
+        initAlbum()
+        loadPhotos()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        pxlGridView.delegate = self
-        view.addSubview(pxlGridView)
-        
-        initAlbum()
-        loadPhotos()
     }
     
     func initAlbum(){
@@ -41,42 +39,41 @@ class GetPhotosViewController: UIViewController {
             self.showPopup(message: error.localizedDescription)
         }
         
-        //        let dateString = "20190101"
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyyMMdd"
-        //        let date = dateFormatter.date(from: dateString)
-        
-        //        var filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1, contentSource: [PXLContentSource.instagram_feed, PXLContentSource.instagram_story])
-        //        album.filterOptions = filterOptions
-        
         if let albumId = pixleeCredentials.albumId {
             album = PXLAlbum(identifier: albumId)
         }
         
         if let album = album {
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-            
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], deletedPhotos: true)
             album.filterOptions = filterOptions
-            
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
         }
     }
-
     
-    func loadPhotos(){
+    var isFreezingNetworking = false
+    func loadPhotos() {
         if let album = album {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            if isFreezingNetworking {
+                return
+            }
+            
+            isFreezingNetworking = true
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+                guard error == nil else {
+                    self.showPopup(message: "🛑 There was an error \(error?.localizedDescription ?? "")")
+                    return
+                }
+                
                 if let photos = photos {
-                    //self.photos = photos
-                    self.pxlGridView.items = photos
+                    self.isFreezingNetworking = false
+                    self.pxlGridView.items.append(contentsOf: photos)
                 }
             }
         }
     }
-
 }
 
-extension GetPhotosViewController: PXLPhotoViewDelegate {
+extension AutoUIImageListViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
@@ -86,7 +83,7 @@ extension GetPhotosViewController: PXLPhotoViewDelegate {
     }
 }
 
-extension GetPhotosViewController: PXLGridViewDelegate {
+extension AutoUIImageListViewController: PXLGridViewDelegate {
     func isVideoMutted() -> Bool {
         false
     }
@@ -119,5 +116,17 @@ extension GetPhotosViewController: PXLGridViewDelegate {
     
     func isInfiniteScrollEnabled() -> Bool {
         return false
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == pxlGridView.collectionView && !pxlGridView.items.isEmpty {
+            let unseenHeight = scrollView.contentSize.height - (scrollView.contentOffset.y + scrollView.frame.height)
+            // this [single page's height * singlePageRatio] pixels of the remaining scrollable height is used for smooth scroll while retrieving photos from the server.
+            let singlePageRatio = CGFloat(2.0)
+            //print("singleH: \(scrollView.frame.height * singlePageRatio), unseenHeight: \(unseenHeight)")
+            if unseenHeight < (scrollView.frame.height * singlePageRatio) {
+                loadPhotos()
+            }
+        }
     }
 }

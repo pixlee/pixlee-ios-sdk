@@ -97,14 +97,16 @@ public class PXLClient {
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
 
                         if let photos = photos, let completionHandler = completionHandler {
-                            print("Page\(nextPage) loaded allPhotos: \(album.photos.count)")
+                            print("Page\(nextPage) loaded allPhotos: \(album.photos.count), album.lastPageFetched: \(album.lastPageFetched)")
                             completionHandler(photos, nil)
-                            if nextPage > 1 {
-                                // load more
-                                album.triggerEventLoadMoreTapped { (error) in
+                            
+                            // Analytics: call loadmore if loading the page(2...) is done
+                            if nextPage >= 2 {
+                                album.triggerEventLoadMoreTapped { error in
                                     
                                 }
                             }
+                            
                         } else if let error = error, let completionHandler = completionHandler {
                             print("🛑 PIXLEE SDK Error: \(error.errorMessage)")
                             completionHandler(nil, error)
