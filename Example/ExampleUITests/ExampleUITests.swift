@@ -19,6 +19,9 @@ class ExampleUITests: XCTestCase {
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
     
     func testAnalytics() {
         let app = XCUIApplication()
@@ -34,5 +37,6 @@ class ExampleUITests: XCTestCase {
 
         app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
+        app.terminate()
     }
 }

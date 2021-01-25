@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		042EB2E76FAC9226D8B11A6E /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */; };
 		5C23D91925B6B69F00530FEF /* AutoUIImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */; };
+		5C2D02C225BEC15F004A6DC5 /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D02C125BEC15F004A6DC5 /* config.yml */; };
 		5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */; };
 		5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */; };
 		5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */; };
@@ -65,6 +66,7 @@
 		0E545E1A5E7B8ADBE31AF7FD /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUIImageListViewController.swift; sourceTree = "<group>"; };
+		5C2D02C125BEC15F004A6DC5 /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = config.yml; path = ../../.circleci/config.yml; sourceTree = "<group>"; };
 		5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
 		5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 			path = AutoUI;
 			sourceTree = "<group>";
 		};
+		5C2D02C025BEC12B004A6DC5 /* circleci */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D02C125BEC15F004A6DC5 /* config.yml */,
+			);
+			path = circleci;
+			sourceTree = "<group>";
+		};
 		5C8143A12589F5F000C1CC1A /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +190,7 @@
 		F24D42E823C65BBE0091E324 = {
 			isa = PBXGroup;
 			children = (
+				5C2D02C025BEC12B004A6DC5 /* circleci */,
 				F24D42F323C65BBE0091E324 /* Example */,
 				F24D430A23C65BC00091E324 /* ExampleTests */,
 				F24D431523C65BC00091E324 /* ExampleUITests */,
@@ -381,6 +392,7 @@
 				F298768B2538246F00308398 /* wavingBear.gif in Resources */,
 				F24D430123C65BBF0091E324 /* LaunchScreen.storyboard in Resources */,
 				F23BA1AF25190384009FC402 /* PhotoProductListDemoViewController.xib in Resources */,
+				5C2D02C225BEC15F004A6DC5 /* config.yml in Resources */,
 				F296943324224BFB003EB9DD /* WidgetTableViewCell.xib in Resources */,
 				F296942C242243BB003EB9DD /* WidgetsExampleViewController.xib in Resources */,
 				F24D42FE23C65BBF0091E324 /* Assets.xcassets in Resources */,

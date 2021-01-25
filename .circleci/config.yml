@@ -51,7 +51,7 @@ commands:
       - run:
           name: unit tests
           command:  |
-            xcodebuild test -enableCodeCoverage YES -workspace Example/Example.xcworkspace -scheme ExampleTests -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 8' | xcpretty
+            xcodebuild test -enableCodeCoverage YES -workspace Example/Example.xcworkspace -scheme ExampleUITests -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 8' | xcpretty
   deploy-cooapods:
     steps:
       - run:
