@@ -10,28 +10,32 @@ import PixleeSDK
 import UIKit
 
 class PhotoProductListDemoViewController: UIViewController {
-    static func getInstance(_ list: [PXLPhoto]) -> PhotoProductListDemoViewController {
+    static func getInstance(_ photo: PXLPhoto) -> PhotoProductListDemoViewController {
         let vc = PhotoProductListDemoViewController(nibName: "PhotoProductListDemoViewController", bundle: Bundle.main)
-        vc.photos = list
+        vc.photo = photo
         return vc
     }
     
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var scrollView: UIScrollView!
 
-    var photos = [PXLPhoto]() {
-        didSet {
-            guard stackView != nil else { return }
-            setupStackView()
-        }
-    }
+    var photo: PXLPhoto?
+    var pxlPhotoProductView: PXLPhotoProductView?
 
-    func setupStackView() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPhotoProductView()
+        enableAnalytics()
+    }
+    
+    func setupPhotoProductView() {
         stackView.arrangedSubviews.forEach { view in
             self.stackView.removeArrangedSubview(view)
         }
-
-        let widget = PXLPhotoProductView.widgetForPhoto(photo: photos[0], delegate: self)
+        
+        guard let photo = photo else {return}
+        
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
         widget.cropMode = .centerFit
         widget.closeButtonBackgroundColor = .white
         widget.closeButtonCornerRadius = 22
@@ -39,20 +43,22 @@ class PhotoProductListDemoViewController: UIViewController {
         
         widget.muteButtonBackgroundColor = .white
         widget.muteButtonTintColor = UIColor.red.withAlphaComponent(0.6)
-
+        
         self.stackView.addArrangedSubview(widget.view)
-
+        
         widget.view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1),
             widget.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
         ]
+        pxlPhotoProductView = widget
         NSLayoutConstraint.activate(constraints)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupStackView()
+    
+    func enableAnalytics() {
+        if let widget = pxlPhotoProductView {
+            widget.enableAutoAnalytics()
+        }
     }
 
     /*

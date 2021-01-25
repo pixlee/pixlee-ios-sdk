@@ -23,7 +23,9 @@ class AutoUIImageListViewController: UIViewController {
         super.viewDidLoad()
         pxlGridView.delegate = self
         view.addSubview(pxlGridView)
+        
         initAlbum()
+        enableAutoAnalytics()
         loadPhotos()
     }
     
@@ -32,10 +34,10 @@ class AutoUIImageListViewController: UIViewController {
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
     }
     
-    func initAlbum(){
+    func initAlbum() {
         do {
             try pixleeCredentials = PixleeCredentials.create()
-        } catch{
+        } catch {
             self.showPopup(message: error.localizedDescription)
         }
         
@@ -44,9 +46,19 @@ class AutoUIImageListViewController: UIViewController {
         }
         
         if let album = album {
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], deletedPhotos: true)
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], hasProduct: true)
             album.filterOptions = filterOptions
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+        }
+    }
+    
+    func enableAutoAnalytics() {
+        // alternative 1: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.horizontal)
+        // alternative 2: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
+        // alternative 3: pxlGridView.enableAutoAnalytics(album: album, widgetType: "customized widget name")
+        // alternative 4: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.other(customValue: "customized widget name"))
+        if let album = album {
+            pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
         }
     }
     
@@ -76,10 +88,16 @@ class AutoUIImageListViewController: UIViewController {
 extension AutoUIImageListViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
+        openPDP(photo: photo)
     }
     
     public func onPhotoClicked(photo: PXLPhoto) {
         print("Photo Clicked \(photo.id)")
+        openPDP(photo: photo)
+    }
+    
+    func openPDP(photo: PXLPhoto) {
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: true, completion: nil)
     }
 }
 
@@ -94,7 +112,7 @@ extension AutoUIImageListViewController: PXLGridViewDelegate {
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = pxlGridView.items.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: "Main \(photo.id)", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "PXLPhotoProductView", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
         }
     }
     

@@ -203,7 +203,7 @@ class ViewController: UIViewController {
     }
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         if let photos = getSamplePhotos() {
-            present(PhotoProductListDemoViewController.getInstance([photos[0]]), animated: true, completion: nil)
+            present(PhotoProductListDemoViewController.getInstance(photos[0]), animated: true, completion: nil)
         }
         
     }
