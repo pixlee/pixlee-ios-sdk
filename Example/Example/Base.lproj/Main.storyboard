@@ -100,7 +100,7 @@
                                                         <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="45"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
-                                                        <state key="normal" title="[Demo] PXLGridList -&gt; PXLPhotoProductView"/>
+                                                        <state key="normal" title="[Demo] PXLGridView -&gt; PXLPhotoProductView"/>
                                                         <connections>
                                                             <action selector="showAutoAnalyticsUI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TWJ-VX-k4z"/>
                                                         </connections>

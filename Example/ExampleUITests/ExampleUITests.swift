@@ -40,4 +40,21 @@ class ExampleUITests: XCTestCase {
             }
         }
     }
+    
+    func testAnalytics() {
+        
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
+        
+        //elementsQuery.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.tap()
+        
+        let format = "label CONTAINS[c] %@"
+
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
+
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
+    }
 }

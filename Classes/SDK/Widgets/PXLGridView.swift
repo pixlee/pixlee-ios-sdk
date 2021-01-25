@@ -176,92 +176,6 @@ public class PXLGridView: UIView {
         }
     }
     
-    func fireAnalytics() {
-        fireAnalyticsOpenedWidget()
-        fireAnalyticsWidgetVisible()
-    }
-    
-    var isAnalyticsOpenedWidgetFired = false
-    func fireAnalyticsOpenedWidget() {
-        if !isAnalyticsOpenedWidgetFired, let album = album {
-            guard let widgetType = widgetType else {
-                print( "can't fire OpenedWidget analytics event because pxlWidgetType is null")
-                return
-            }
-            
-            if !infiniteItems.isEmpty {
-                isAnalyticsOpenedWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: widgetType))) { error in
-                    self.isAnalyticsOpenedWidgetFired = false
-                    guard error == nil else {
-                        print("🛑 There was an error \(error?.localizedDescription ?? "")")
-                        return
-                    }
-                }
-            }
-        }
-    }
-    
-    var isAnalyticsVisibleWidgetFired = false
-    func fireAnalyticsWidgetVisible() {
-        if !isAnalyticsVisibleWidgetFired, let album = album, let customView = collectionView {
-            guard let widgetType = widgetType else {
-                print("can't fire WidgetVisible analytics event because pxlWidgetType is null")
-                return
-            }
-            
-            if !infiniteItems.isEmpty && isVisible(customView) {
-                isAnalyticsVisibleWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: widgetType))) { error in
-                    self.isAnalyticsVisibleWidgetFired = false
-                    guard error == nil else {
-                        print( "🛑 There was an error \(error?.localizedDescription ?? "")")
-                        return
-                    }
-                }
-            }
-        }
-    }
-    
-    /**
-     This is for automatic Analytics event
-     */
-    var album: PXLAlbum?
-    var widgetType: String?
-    
-    /**
-     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
-    - Parameter album: PXLKtxAlbum? Please pass the same reference that you make photoInfo: PhotoWithVideoInfo with
-    - Parameter widgetType: PXLWidgetType
-     */
-    public func enableAutoAnalytics(album: PXLAlbum, widgetType: PXLWidgetType) {
-        self.album = album
-        self.widgetType = widgetType.key
-    }
-    
-    /**
-     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
-     - Parameter album: PXLAlbum? Please pass the same reference you use in getting the list of PXLPhotos
-     - Parameter widgetType: String
-     */
-    public func enableAutoAnalytics(album: PXLAlbum, widgetType: String) {
-        self.album = album
-        self.widgetType = widgetType
-    }
-    
-    func isVisible(_ view: UIView) -> Bool {
-        func isVisible(view: UIView, inView: UIView?) -> Bool {
-            guard let inView = inView else { return true }
-            let viewFrame = inView.convert(view.bounds, from: view)
-            if viewFrame.intersects(inView.bounds) {
-                return isVisible(view: view, inView: inView.superview)
-            }
-            return false
-        }
-        return isVisible(view: view, inView: view.superview)
-    }
-
-
     override public init(frame: CGRect) {
         collectionView = InfiniteCollectionView(frame: frame)
 
@@ -314,6 +228,91 @@ public class PXLGridView: UIView {
 
     var topLeftCellIndex: IndexPath = IndexPath(item: 0, section: 0)
     var topRightCellIndex: IndexPath?
+    
+    /**
+     This is for automatic Analytics event
+     */
+    var album: PXLAlbum?
+    var widgetType: String?
+    
+    /**
+     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
+     - Parameter album: PXLKtxAlbum? Please pass the same reference that you make photoInfo: PhotoWithVideoInfo with
+     - Parameter widgetType: PXLWidgetType
+     */
+    public func enableAutoAnalytics(album: PXLAlbum, widgetType: PXLWidgetType) {
+        self.album = album
+        self.widgetType = widgetType.key
+    }
+    
+    /**
+     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
+     - Parameter album: PXLAlbum? Please pass the same reference you use in getting the list of PXLPhotos
+     - Parameter widgetType: String
+     */
+    public func enableAutoAnalytics(album: PXLAlbum, widgetType: String) {
+        self.album = album
+        self.widgetType = widgetType
+    }
+    
+    func isVisible(_ view: UIView) -> Bool {
+        func isVisible(view: UIView, inView: UIView?) -> Bool {
+            guard let inView = inView else { return true }
+            let viewFrame = inView.convert(view.bounds, from: view)
+            if viewFrame.intersects(inView.bounds) {
+                return isVisible(view: view, inView: inView.superview)
+            }
+            return false
+        }
+        return isVisible(view: view, inView: view.superview)
+    }
+    
+    func fireAnalytics() {
+        fireAnalyticsOpenedWidget()
+        fireAnalyticsWidgetVisible()
+    }
+    
+    var isAnalyticsOpenedWidgetFired = false
+    func fireAnalyticsOpenedWidget() {
+        if !isAnalyticsOpenedWidgetFired, let album = album {
+            guard let widgetType = widgetType else {
+                print( "can't fire OpenedWidget analytics event because pxlWidgetType is null")
+                return
+            }
+            
+            if !infiniteItems.isEmpty {
+                isAnalyticsOpenedWidgetFired = true
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: widgetType))) { error in
+                    self.isAnalyticsOpenedWidgetFired = false
+                    guard error == nil else {
+                        print("🛑 There was an error \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    var isAnalyticsVisibleWidgetFired = false
+    func fireAnalyticsWidgetVisible() {
+        if !isAnalyticsVisibleWidgetFired, let album = album, let customView = collectionView {
+            guard let widgetType = widgetType else {
+                print("can't fire WidgetVisible analytics event because pxlWidgetType is null")
+                return
+            }
+            
+            if !infiniteItems.isEmpty && isVisible(customView) {
+                isAnalyticsVisibleWidgetFired = true
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: widgetType))) { error in
+                    self.isAnalyticsVisibleWidgetFired = false
+                    guard error == nil else {
+                        print( "🛑 There was an error \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension PXLGridView: UICollectionViewDataSource {

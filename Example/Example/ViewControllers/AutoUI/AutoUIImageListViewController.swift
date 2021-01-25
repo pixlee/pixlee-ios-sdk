@@ -15,6 +15,11 @@ class AutoUIImageListViewController: UIViewController {
         return AutoUIImageListViewController(nibName: "EmptyViewController", bundle: Bundle.main)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    var lable:UILabel?
     var pixleeCredentials:PixleeCredentials = PixleeCredentials()
     var album: PXLAlbum?
     
@@ -24,14 +29,29 @@ class AutoUIImageListViewController: UIViewController {
         pxlGridView.delegate = self
         view.addSubview(pxlGridView)
         
+        lable = UILabel()
+        if let lable = lable{
+            lable.accessibilityIdentifier = PXLAnalyticsService.TAG
+            lable.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            lable.textColor = UIColor.white
+            view.addSubview(lable)
+        }
+        
+        
         initAlbum()
         enableAutoAnalytics()
+        monitorAnalyticsForUITests()
         loadPhotos()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
+        if let lable = lable{
+//            lable.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
+            lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
+            
+        }
     }
     
     func initAlbum() {
@@ -59,6 +79,21 @@ class AutoUIImageListViewController: UIViewController {
         // alternative 4: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.other(customValue: "customized widget name"))
         if let album = album {
             pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
+        }
+    }
+    
+    
+    // for UI Tests: start capturing notifications of all succeeded analytics APIs
+    func monitorAnalyticsForUITests() {
+        NotificationCenter.default.addObserver(self, selector: #selector(listenAnalytics), name: NSNotification.Name(rawValue: PXLAnalyticsService.TAG), object: nil)
+    }
+    
+    var analyticsStrings = [String]()
+    // for UI Tests: receive succeeded analytics API one at a time
+    @objc func listenAnalytics(_ noti: Notification) {
+        if let name:String = noti.object as? String{
+            self.analyticsStrings.append(name)
+            self.lable?.text = self.analyticsStrings.joined(separator: ",")
         }
     }
     
@@ -97,7 +132,7 @@ extension AutoUIImageListViewController: PXLPhotoViewDelegate {
     }
     
     func openPDP(photo: PXLPhoto) {
-        present(PhotoProductListDemoViewController.getInstance(photo), animated: true, completion: nil)
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
     }
 }
 
