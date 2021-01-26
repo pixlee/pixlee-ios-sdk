@@ -24,6 +24,7 @@ jobs:
       - checkout
       - set-directory
       - add-pixlee-credentials
+      - fastlane_preparation
       - ui-tests
       - store_test_results:
           path: output/scan
@@ -50,6 +51,15 @@ commands:
           command: |
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/Example/PixleeCredentials.plist
             ls -al Example/Example
+  fastlane_preparation:
+    steps:
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
   ui-tests:
     steps:
       - run:
