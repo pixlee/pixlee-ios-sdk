@@ -32,12 +32,16 @@ jobs:
       - checkout
       - set-directory
       - deploy-cooapods
+      - store_test_results:
+          path: output/scan
+      - store_artifacts:
+          path: output
       
 commands:
   set-directory:
     steps:
       - run:
-          name: set directory
+          name: Install CocoaPods + set directory
           command: pod install --project-directory=Example
   add-pixlee-credentials:
     steps:
@@ -54,6 +58,7 @@ commands:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: ExampleUITests
+          
 
   deploy-cooapods:
     steps:
