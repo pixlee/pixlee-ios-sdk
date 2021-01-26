@@ -50,7 +50,6 @@ commands:
           command: |
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/Example/PixleeCredentials.plist
             ls -al Example/Example
-            bundle exec
   ui-tests:
     steps:
       - run:
