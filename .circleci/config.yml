@@ -20,6 +20,9 @@ jobs:
   build:
     macos:  
       xcode: 11.3.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
     steps:
       - checkout
       - set-directory
@@ -64,7 +67,7 @@ commands:
     steps:
       - run:
           name: UI tests using Fastlane
-          command: bundle exe fastlane test
+          command: bundle exe fastlane $FASTLANE_LANE
 
   deploy-cooapods:
     steps:
