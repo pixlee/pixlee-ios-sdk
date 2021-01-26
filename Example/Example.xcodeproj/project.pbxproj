@@ -815,7 +815,7 @@
 			baseConfigurationReference = A014A7C4C477C418F331B7C8 /* Pods-Example-ExampleUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q28M29YQL8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -835,7 +835,7 @@
 			baseConfigurationReference = DCAC9142E4ADF433F94D5960 /* Pods-Example-ExampleUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q28M29YQL8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
