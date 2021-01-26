@@ -54,11 +54,7 @@ commands:
     steps:
       - run:
           name: UI tests
-          command: fastlane scan
-          environment:
-            SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: Example
-          
+          command: fastlane tests
 
   deploy-cooapods:
     steps:
