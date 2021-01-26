@@ -50,8 +50,7 @@ commands:
     steps:
       - run:
           name: UI tests
-          command:  |
-            fastlane scan
+          command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: ExampleUITests
