@@ -63,8 +63,8 @@ commands:
   ui-tests:
     steps:
       - run:
-          name: UI tests
-          command: bundle exe fastlane tests
+          name: UI tests using Fastlane
+          command: bundle exe fastlane test
 
   deploy-cooapods:
     steps:
