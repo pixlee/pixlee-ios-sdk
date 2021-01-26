@@ -67,7 +67,7 @@ commands:
     steps:
       - run:
           name: UI tests using Fastlane
-          command: bundle exe fastlane $FASTLANE_LANE
+          command: bundle exe fastlane test
 
   deploy-cooapods:
     steps:
