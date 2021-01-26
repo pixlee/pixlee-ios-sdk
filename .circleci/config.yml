@@ -25,6 +25,10 @@ jobs:
       - set-directory
       - add-pixlee-credentials
       - ui-tests
+      - store_test_results:
+          path: output/scan
+      - store_artifacts:
+          path: output
   deploy:
     macos:
       xcode: 11.3.0
@@ -32,10 +36,6 @@ jobs:
       - checkout
       - set-directory
       - deploy-cooapods
-      - store_test_results:
-          path: output/scan
-      - store_artifacts:
-          path: output
       
 commands:
   set-directory:
@@ -57,7 +57,7 @@ commands:
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: ExampleUITests
+            SCAN_SCHEME: Example
           
 
   deploy-cooapods:
