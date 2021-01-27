@@ -14,13 +14,13 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [About the SDK](#About-the-SDK)
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Add the SDK to your App](#Add-the-SDK-to-your-App)
-    - [Option 1: Using Cocoapods](#Option-1:-Using-Cocoapods)
-    - [Option 2: Using Carthage](#Option-2:-Using-Carthage)
-        - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
+    - [Option 1: Using Cocoapods](option-1-using-cocoapods)
+    - [Option 2: Using Carthage](#option-2-using-carthage)
+        - [If you're building for iOS, tvOS, or watchOS](#if-youre-building-for-ios-tvos-or-watchos)
 - [Initiate the SDK](#Initiate-the-SDK)
 - [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
-- [Getting a PXLPhoto](#getting-a-content)
+- [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
     - [Conversion](#Conversion)
@@ -281,7 +281,7 @@ Example of loading the detailViewController
     present(navController, animated: true, completion: nil)
 ```
 
-# Getting a PXLPhoto (a content)
+# Getting a PXLPhoto
 If you want to make a PXLPhoto using an album photo id, you can get it using our API in the SDK like below.
 ```swift
 var photoAlbumId = <one of you photo album ids>
@@ -505,6 +505,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 
 ### PXLPhotoProductView
 <img src="doc/gif/PXLPhotoProductView.gif" width="20%">
+
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
 - You can use and customize the close button on the view with the following methods:
@@ -627,14 +628,6 @@ var gridView = PXLGridView()
 // alternative: pxlGridView.enableAutoAnalytics(album: album, widgetType: "custom widget name")
 pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
 ```
-
-### Example App
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
-
-To run the project, open `Example.xcworkspace` in Xcode.
-
-Run the project and you should see a grid of content from that album.
 
 # Troubleshooting
 
