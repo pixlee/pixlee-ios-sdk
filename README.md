@@ -30,7 +30,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Load More](#Load-More)
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
 - [UI components](#UI-components)
-    - [Image & Video Viewer with PXLPhoto](#Image-and-Video-Viewer-with-PXLPhoto)
+    - [PXLPhoto](#pxlphoto)
     - [PXLPhotoProductView](#PXLPhotoProductView)
     - [PXLPhotoView](#PXLPhotoView)
     - [PXLPhotoListView](#PXLPhotoListView)
@@ -492,7 +492,8 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
 }
 ```
 # UI components
-### Image and Video Viewer with PXLPhoto
+### PXLPhoto
+- Image and Video Viewer
 - after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
 ```swift
 //Example
