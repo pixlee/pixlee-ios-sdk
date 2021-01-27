@@ -107,7 +107,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
     When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
 
 
-## Initiate the SDK
+# Initiate the SDK
 - API key
   - Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
   - add your Pixlee API key.
@@ -122,7 +122,7 @@ PXLClient.sharedClient.apiKey = apiKey
 PXLClient.sharedClient.secretKey = secretKey
 ```
 
-## Network API Caching
+# Network API Caching
 We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
 ```swift
 #!swift
@@ -131,7 +131,7 @@ PXLClient.apiRequests.disableCaching = false // use cache
 ```
 
 
-## Filtering and Sorting
+# Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
 As of now, the following filters are supported by SDK:
@@ -281,7 +281,7 @@ Example of loading the detailViewController
     present(navController, animated: true, completion: nil)
 ```
 
-## Getting a PXLPhoto (a content)
+# Getting a PXLPhoto (a content)
 If you want to make a PXLPhoto using an album photo id, you can get it using our API in the SDK like below.
 ```swift
 var photoAlbumId = <one of you photo album ids>
@@ -319,7 +319,7 @@ if let photoAlbumId = photoAlbumId {
 ```
 
 
-## Analytics
+# Analytics
 If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
 To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analytics service's `logEvent` method. 
 The following events are supported by the sdk:
@@ -452,7 +452,7 @@ It's important to trigger this event after the LoadNextPage event
     }
 
 ```
-## Uploading an Image to an album
+# Uploading an Image to an album
 ```swift
 // Example
 public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -491,8 +491,8 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
     }
 }
 ```
-## UI components
-#### Image and Video Viewer with PXLPhoto
+# UI components
+### Image and Video Viewer with PXLPhoto
 - after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
 ```swift
 //Example
@@ -503,7 +503,7 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 }
 ```
 
-#### PXLPhotoProductView
+### PXLPhotoProductView
 <img src="doc/gif/PXLPhotoProductView.gif" width="20%">
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
@@ -548,7 +548,7 @@ pxlPhotoProductView.setContent(...)
 ...
 ```
 
-#### PXLPhotoView
+### PXLPhotoView
 - Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
 ```swift
@@ -558,7 +558,7 @@ pxlPhotoProductView.setContent(...)
     self.view.addSubview(photoView)
 }
 ```
-#### PXLPhotoViewConfiguration
+### PXLPhotoViewConfiguration
 Configurator class for the PXLPhotoView.
 Configuration options:
 - `textColor:UIColor` : Color of the texts
@@ -571,7 +571,7 @@ Configuration options:
 - `delegate:PXLPhotoViewDelegate`: Delegate
 - `cropMode:PXLPhotoCropMode`: Image/ Video crop mode
 
-#### PXLPhotoListView
+### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
 ```swift
 //Basic Example
@@ -584,7 +584,7 @@ Configuration options:
 }
 ```
 
-#### PXLGridView
+### PXLGridView
 |one photo in a row|two photos in a row|
 |------|---|
 |<img src="doc/gif/PXLGridView.gif" width="50%">|<img src="doc/gif/PXLGridViewMulti.gif" width="50%">|
@@ -627,7 +627,7 @@ var gridView = PXLGridView()
 pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
 ```
 
-#### Example App
+### Example App
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
 
@@ -635,15 +635,15 @@ To run the project, open `Example.xcworkspace` in Xcode.
 
 Run the project and you should see a grid of content from that album.
 
-## Troubleshooting
+# Troubleshooting
 
 If you get an error running `carthage update` on osx please clear your carthage cache by doing 
 `rm -rf ~/Library/Caches/org.carthage.CarthageKit`. 
 
-## Libraries
+# Libraries
 - [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is used to implement the infinite scroll in the SDK.
     - you can enable and disable the feature with **PXLGridViewDelegate.isInfiniteScrollEnabled: true / false**
 
-## License
+# License
 - pixlee-ios-sdk is available under the MIT license.
 - [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is available under the MIT license.
