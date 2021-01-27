@@ -510,19 +510,19 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
 - You can use and customize the close button on the view with the following methods:
-- `closeButtonImage` : Sets the image for the close button. Default is an close x image
-- `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
-- `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
-- `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
-- `hideCloseButton`: Set to true if you don't need the close button on the view
-
+  - `closeButtonImage` : Sets the image for the close button. Default is an close x image
+  - `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
+  - `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
+  - `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
+  - `hideCloseButton`: Set to true if you don't need the close button on the view
+  
 - You can use and customize the mute button on the view with the following methods:
-- `muteButtonOnImage` : Sets the on image for the mute button.
-- `muteButtonOffImage` : Sets the off image for the mute button.
-- `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
-- `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
-- `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
-- `hideMuteButton`: Set to true if you don't need the mute button on the view
+  - `muteButtonOnImage` : Sets the on image for the mute button.
+  - `muteButtonOffImage` : Sets the off image for the mute button.
+  - `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
+  - `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
+  - `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
+  - `hideMuteButton`: Set to true if you don't need the mute button on the view
 
 ```swift
 //Basic Example
