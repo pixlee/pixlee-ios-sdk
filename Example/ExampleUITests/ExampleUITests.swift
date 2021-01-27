@@ -30,7 +30,7 @@ class ExampleUITests: XCTestCase {
         setupSnapshot(app)
         app.launch()
 
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "[Demo] PXLGridView -> PXLPhotoProductView")).count>0)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "[Demo] PXLGridView -> PXLPhotoProductView")).count>0)
         
 //        let elementsQuery = app.scrollViews.otherElements
 //        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
@@ -52,7 +52,7 @@ class ExampleUITests: XCTestCase {
 //
 //        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
 //        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
-//        app.terminate()
+        app.terminate()
     }
     
     func atestOpenedWidget() {
