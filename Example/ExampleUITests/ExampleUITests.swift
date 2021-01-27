@@ -24,38 +24,41 @@ class ExampleUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testAnalytics() {
+    func atestAnalytics() {
+        
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
         app.launch()
 
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "[Demo] PXLGridView -> PXLPhotoProductView")).count>0)
         
-//        let elementsQuery = app.scrollViews.otherElements
-//        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
-//
-//        let format = "label CONTAINS[c] %@"
-//
-//        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
-//        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
+
+        let format = "label CONTAINS[c] %@"
+
+        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
+        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
 //        waitForExpectations(timeout: 3) { error in
 //            if error != nil {
 //                assertionFailure("no openedWidget received")
 //            } else{
 //                XCTAssertTrue(true)
 //            }
-//
 //        }
-//        //XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
-//        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
-//
-//        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
-//        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
+        
+        waitForExpectations(timeout: 3, handler: nil)
+
+        
+        //XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
+
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
         app.terminate()
     }
     
-    func atestOpenedWidget() {
+    func testOpenedWidget() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -68,18 +71,11 @@ class ExampleUITests: XCTestCase {
         
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
         expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 3) { error in
-            if error != nil {
-                assertionFailure("no openedWidget received")
-            } else{
-                XCTAssertTrue(true)
-            }
-            
-        }
+        waitForExpectations(timeout: 3, handler: nil)
         app.terminate()
     }
     
-    func atestWidgetVisible() {
+    func testWidgetVisible() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -92,18 +88,11 @@ class ExampleUITests: XCTestCase {
         
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
         expectation(for: NSPredicate(format: format, "widgetVisible"), evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 3) { error in
-            if error != nil {
-                assertionFailure("no openedWidget received")
-            } else{
-                XCTAssertTrue(true)
-            }
-            
-        }
+        waitForExpectations(timeout: 3, handler: nil)
         app.terminate()
     }
     
-    func atestOpenedLightbox() {
+    func testOpenedLightbox() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -116,14 +105,7 @@ class ExampleUITests: XCTestCase {
         
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
         expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 3) { error in
-            if error != nil {
-                assertionFailure("no openedWidget received")
-            } else{
-                XCTAssertTrue(true)
-            }
-            
-        }
+        waitForExpectations(timeout: 3, handler: nil)
         app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
         app.terminate()
