@@ -560,7 +560,7 @@ pxlPhotoProductView.setContent(...)
     self.view.addSubview(photoView)
 }
 ```
-### PXLPhotoViewConfiguration
+#### PXLPhotoViewConfiguration
 Configurator class for the PXLPhotoView.
 Configuration options:
 - `textColor:UIColor` : Color of the texts
