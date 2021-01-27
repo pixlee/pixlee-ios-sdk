@@ -29,10 +29,10 @@ class ExampleUITests: XCTestCase {
 //        app.launchEnvironment = ["animations": "0"]
 //        setupSnapshot(app)
 //        app.launch()
-//        
+//
 //        let elementsQuery = app.scrollViews.otherElements
 //        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
-//        
+//
 //        let format = "label CONTAINS[c] %@"
 //
 //        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
@@ -43,7 +43,7 @@ class ExampleUITests: XCTestCase {
 //            } else{
 //                XCTAssertTrue(true)
 //            }
-//            
+//
 //        }
 //        //XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
 //        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
@@ -53,7 +53,7 @@ class ExampleUITests: XCTestCase {
 //        app.terminate()
 //    }
     
-    func openedWidget() {
+    func testOpenedWidget() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -77,7 +77,7 @@ class ExampleUITests: XCTestCase {
         app.terminate()
     }
     
-    func widgetVisible() {
+    func testWidgetVisible() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -101,7 +101,7 @@ class ExampleUITests: XCTestCase {
         app.terminate()
     }
     
-    func openedLightbox() {
+    func testOpenedLightbox() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
