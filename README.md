@@ -111,16 +111,16 @@ If you are using Objective-C in your porject and don't want to add a framework b
 - API key
   - Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
   - add your Pixlee API key.
-```swift
-#!swift
-PXLClient.sharedClient.apiKey = apiKey
-```
+    ```swift
+    #!swift
+    PXLClient.sharedClient.apiKey = apiKey
+    ```
 - Secret Key (Optional)
   - add your Secret Key if you are making POST requests.
-```swift
-#!swift
-PXLClient.sharedClient.secretKey = secretKey
-```
+    ```swift
+    #!swift
+    PXLClient.sharedClient.secretKey = secretKey
+    ```
 
 # Network API Caching
 We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
@@ -575,16 +575,16 @@ Configuration options:
 
 ### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
-```swift
-//Basic Example
-...
-    var photoView = PXLPhotoListView()
-    photoView.delegate = self
-    photoView.frame = view.frame
-    view.addSubview(photoView)
-    photoView.items = [Array Of Photos]
-}
-```
+    ```swift
+    //Basic Example
+    ...
+        var photoView = PXLPhotoListView()
+        photoView.delegate = self
+        photoView.frame = view.frame
+        view.addSubview(photoView)
+        photoView.items = [Array Of Photos]
+    }
+    ```
 
 ### PXLGridView
 |one photo in a row|two photos in a row|
@@ -609,6 +609,8 @@ Grid view with lots of customizable features, where the cells are PXLPhotoViews.
 - `headerGifContentMode`: Content mode of the header gif images
 - `headerTitleFont`: Font of the header title
 - `headerTitleColor`: Color of the header title
+
+#### Example of PXLGridView
 ```swift
 //Basic Example
 ...
