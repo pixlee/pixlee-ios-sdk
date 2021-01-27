@@ -22,7 +22,7 @@ platform :ios do
   end
   
   lane :test do
-      run_tests(workspace: "Example/Example.xcworkspace",
+    run_tests(workspace: "Example/Example.xcworkspace",
                 devices: ["iPhone 8"],
                 scheme: "ExampleUITests")
     end

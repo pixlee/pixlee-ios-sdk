@@ -24,17 +24,17 @@ class ExampleUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-//    func testAnalytics() {
-//        let app = XCUIApplication()
-//        app.launchEnvironment = ["animations": "0"]
-//        setupSnapshot(app)
-//        app.launch()
-//
-//        let elementsQuery = app.scrollViews.otherElements
-//        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
-//
-//        let format = "label CONTAINS[c] %@"
-//
+    func testAnalytics() {
+        let app = XCUIApplication()
+        app.launchEnvironment = ["animations": "0"]
+        //setupSnapshot(app)
+        app.launch()
+
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
+
+        let format = "label CONTAINS[c] %@"
+
 //        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
 //        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
 //        waitForExpectations(timeout: 3) { error in
@@ -43,17 +43,16 @@ class ExampleUITests: XCTestCase {
 //            } else{
 //                XCTAssertTrue(true)
 //            }
-//
 //        }
-//        //XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
-//        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
-//
-//        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
-//        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
-//        app.terminate()
-//    }
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedWidget")).count>0)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
+
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
+        app.terminate()
+    }
     
-    func testOpenedWidget() {
+    func atestOpenedWidget() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -77,7 +76,7 @@ class ExampleUITests: XCTestCase {
         app.terminate()
     }
     
-    func testWidgetVisible() {
+    func atestWidgetVisible() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
@@ -101,7 +100,7 @@ class ExampleUITests: XCTestCase {
         app.terminate()
     }
     
-    func testOpenedLightbox() {
+    func atestOpenedLightbox() {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
         setupSnapshot(app)
