@@ -57,7 +57,8 @@ class PhotoProductListDemoViewController: UIViewController {
     
     func enableAnalytics() {
         if let widget = pxlPhotoProductView {
-            widget.enableAutoAnalytics()
+            let regionId: Int? = nil
+            widget.enableAutoAnalytics(regionId: regionId)
         }
     }
 

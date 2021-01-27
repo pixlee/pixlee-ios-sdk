@@ -535,6 +535,19 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
     widget.showModally(hostView: self.view, animated:true)
 }
 ```
+
+- Automatic Analytics of PXLPhotoProductView
+  - If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
+  
+```swift
+#!swift
+let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+let regionId: Int? = nil
+widget.enableAutoAnalytics(regionId: regionId)
+pxlPhotoProductView.setContent(...)
+...
+```
+
 #### PXLPhotoView
 - Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
@@ -604,38 +617,15 @@ Optional options:
     gridView.items = [Array Of Photos]
 }
 ```
-#### PXLItemsView
-Show a custom set of items, with the provided title
-Customization options
-- `listTitle`: Title of the list
-- `titleGifName`: Name of the title gif bundled with the applciation
-- `titleGifURL`: URL of the gif to load instead of the title
-- `titleFont`: Font of the title
-- `cellHeight`: Height of the cells
-- `cellPadding`: Padding between the cells and rows
-- `gifHeight`: Height of the gif in the title (default 200)
-- `gifContentMode`: Content mode of the gif in the title
-
-- `setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)`: Here, you can customize your view by calling the `setupView(photoView:, title:, subtitle:, buttonTitle:, configuration:, delegate:)` To have the ability to customize all the photos one by one
+- Automatic Analytics of PXLGridView
+  - If you want to delegate firing 'VisibleWidget' and 'OpenedWidget' analytics event to PXLGridView, use this code. On the other hand, if you want to manually fire the two events, you don't use this and do need to implement our own analytics codes. Please check out AutoUIImageListViewController.swift to get the sample codes.
+  - **[Important] Please be aware of giving the same instance of PXLAlbum that you created to retrieve the list of PXLPhotos to send the correct album information to the analytics server.**
 ```swift
-//Basic Example
-...
-    var itemsView = PXLItemsView()
-    itemsView.delegate = self
-    view.addSubview(itemsView)
-    itemsView.translatesAutoresizingMaskIntoConstraints = false
-    let itemsConstraints = [
-            itemsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            itemsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            itemsView.topAnchor.constraint(equalTo: view.topAnchor),
-            itemsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-        NSLayoutConstraint.activate(itemsConstraints)
-        itemsView.items = [Array of photos]
-        itemsView.listTitle = "[List title]"
-}
+#!swift
+var gridView = PXLGridView()
+// alternative: pxlGridView.enableAutoAnalytics(album: album, widgetType: "custom widget name")
+pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
 ```
-
 
 #### Example App
 

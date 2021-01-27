@@ -170,12 +170,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		5C23D91725B6B61B00530FEF /* AutoUI */ = {
+		5C23D91725B6B61B00530FEF /* AutoAnalyticsOnUIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */,
 			);
-			path = AutoUI;
+			path = AutoAnalyticsOnUIComponents;
 			sourceTree = "<group>";
 		};
 		5C2D02C025BEC12B004A6DC5 /* circleci */ = {
@@ -262,7 +262,7 @@
 		F296942424224213003EB9DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C23D91725B6B61B00530FEF /* AutoUI */,
+				5C23D91725B6B61B00530FEF /* AutoAnalyticsOnUIComponents */,
 				5C8143A12589F5F000C1CC1A /* API */,
 				F296942524224213003EB9DD /* AnalyticsViewController.swift */,
 				F296942624224213003EB9DD /* AnalyticsViewController.xib */,
