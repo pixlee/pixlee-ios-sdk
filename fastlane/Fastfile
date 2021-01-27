@@ -25,7 +25,14 @@ platform :ios do
     run_tests(workspace: "Example/Example.xcworkspace",
                 devices: ["iPhone 8"],
                 scheme: "ExampleUITests")
-    end
+  end
+  
+  lane :screenshots do
+    capture_screenshots(workspace: "Example/Example.xcworkspace",
+                        scheme: "UITests",
+                        sdk: "iphonesimulator")
+  end
+
 end
 
 

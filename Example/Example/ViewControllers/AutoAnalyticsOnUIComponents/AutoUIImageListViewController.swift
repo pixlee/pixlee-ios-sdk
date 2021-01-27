@@ -35,7 +35,23 @@ class AutoUIImageListViewController: UIViewController {
             lable.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             lable.textColor = UIColor.white
             view.addSubview(lable)
+            
+            if let simulatorName = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] {
+                print("Running on \(simulatorName) simulator")
+            } else {
+                print("Running on device")
+            }
+
+            
+            if ProcessInfo.processInfo.arguments.contains("IS_UI_TESTING"){
+                lable.alpha = 1 // show test label
+            } else {
+                lable.alpha = 0 // hide test label
+            }
         }
+        
+        
+        
         
         
         initAlbum()

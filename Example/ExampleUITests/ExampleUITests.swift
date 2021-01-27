@@ -24,13 +24,17 @@ class ExampleUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testAllAnalytics() {
-        
+    func createApp() -> XCUIApplication {
         let app = XCUIApplication()
         app.launchEnvironment = ["animations": "0"]
+        app.launchArguments = ["IS_UI_TESTING"]
         setupSnapshot(app)
         app.launch()
-
+        return app
+    }
+    
+    func testAllAnalytics() {
+        let app = createApp()
         
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
@@ -40,19 +44,17 @@ class ExampleUITests: XCTestCase {
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
         expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
         waitForExpectations(timeout: 3, handler: nil)
-        
+        snapshot("openedWidget_widgetVisible")
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
 
         app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
+        snapshot("openedLightbox")
         app.terminate()
     }
     
     func testOpenedWidget() {
-        let app = XCUIApplication()
-        app.launchEnvironment = ["animations": "0"]
-        setupSnapshot(app)
-        app.launch()
+        let app = createApp()
         
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
@@ -66,10 +68,7 @@ class ExampleUITests: XCTestCase {
     }
     
     func testWidgetVisible() {
-        let app = XCUIApplication()
-        app.launchEnvironment = ["animations": "0"]
-        setupSnapshot(app)
-        app.launch()
+        let app = createApp()
         
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
@@ -83,10 +82,7 @@ class ExampleUITests: XCTestCase {
     }
     
     func testOpenedLightbox() {
-        let app = XCUIApplication()
-        app.launchEnvironment = ["animations": "0"]
-        setupSnapshot(app)
-        app.launch()
+        let app = createApp()
         
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery.buttons["[Demo] PXLGridView -> PXLPhotoProductView"].tap()
