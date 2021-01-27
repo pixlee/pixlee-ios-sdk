@@ -333,7 +333,7 @@ PXLAlbums:  Load More (PXLAnalyticsEventLoadMoreClicked): Call this whenever a u
 PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenever a user make an action after clicking on an item in the Pixlee widget
 
 ```
-#### Add to Cart
+### Add to Cart
 ```swift
     val regionId:Int?
     let currency = "USD"
@@ -355,7 +355,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### Conversion
+### Conversion
 ```swift
     val regionId:Int?
     // Setup some constants
@@ -388,7 +388,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### Opended Widget
+### Opended Widget
 It's important to trigger this event after the LoadNextPage event
 ```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
@@ -404,7 +404,7 @@ It's important to trigger this event after the LoadNextPage event
         }
     }
 ```
-#### Opened Lightbox
+### Opened Lightbox
 ```swift
     val regionId:Int?
     // fire this when a PXLPhoto is displayed from your List View containing a list of PXLPhotos
@@ -417,7 +417,7 @@ It's important to trigger this event after the LoadNextPage event
 
 ```
 
-#### Action Click 
+### Action Click 
 ```swift
     val regionId:Int?
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPxlPhoto, error in
@@ -438,7 +438,7 @@ It's important to trigger this event after the LoadNextPage event
     }
 ```
 
-#### Load More
+### Load More
 ```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
@@ -590,7 +590,8 @@ Configuration options:
 |<img src="doc/gif/PXLGridView.gif" width="50%">|<img src="doc/gif/PXLGridViewMulti.gif" width="50%">|
 
 Grid view with lots of customizable features, where the cells are PXLPhotoViews. You have to implement the `PXLGridViewDelegate` to customize the grid.
-Customization options
+
+#### Customization options
 - `cellHeight`: Height of the cells
 - `cellPadding`: Padding between the cells and rows
 - `isMultipleColumnsEnabled`: Two columns if true, if false then only one column
@@ -598,14 +599,14 @@ Customization options
 - `isInfiniteScrollingEnabled`: If we want to have infinite scrolling
 - `setupPhtoCell(cellPXLGridViewCell: photo:PXLPhoto)`: Here, you can customize your cell like in the basic example of `PXLPhotoView`.
 
-Optional options:
--`headerTitle`: Title of the header
--`headerGifName`: Name of header gif image bundled in the application
--`headerGifUrl`: Url of the header gif image
--`headerHeight`: Height of the header
--`headerGifContentMode`: Content mode of the header gif images
--`headerTitleFont`: Font of the header title
--`headerTitleColor`: Color of the header title
+#### Optional options
+- `headerTitle`: Title of the header
+- `headerGifName`: Name of header gif image bundled in the application
+- `headerGifUrl`: Url of the header gif image
+- `headerHeight`: Height of the header
+- `headerGifContentMode`: Content mode of the header gif images
+- `headerTitleFont`: Font of the header title
+- `headerTitleColor`: Color of the header title
 ```swift
 //Basic Example
 ...
@@ -617,7 +618,7 @@ Optional options:
     gridView.items = [Array Of Photos]
 }
 ```
-- Automatic Analytics of PXLGridView
+#### Automatic Analytics of PXLGridView
   - If you want to delegate firing 'VisibleWidget' and 'OpenedWidget' analytics event to PXLGridView, use this code. On the other hand, if you want to manually fire the two events, you don't use this and do need to implement our own analytics codes. Please check out AutoUIImageListViewController.swift to get the sample codes.
   - **[Important] Please be aware of giving the same instance of PXLAlbum that you created to retrieve the list of PXLPhotos to send the correct album information to the analytics server.**
 ```swift
