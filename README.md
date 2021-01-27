@@ -495,14 +495,14 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
 ### PXLPhoto
 - Image and Video Viewer
 - after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
-```swift
-//Example
-func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-    let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
-    let navController = UINavigationController(rootViewController: photoDetailVC)
-    present(navController, animated: true, completion: nil)
-}
-```
+    ```swift
+    //Example
+    func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
+        let navController = UINavigationController(rootViewController: photoDetailVC)
+        present(navController, animated: true, completion: nil)
+    }
+    ```
 
 ### PXLPhotoProductView
 <img src="doc/gif/PXLPhotoProductView.gif" width="20%">
@@ -524,42 +524,42 @@ func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
   - `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
   - `hideMuteButton`: Set to true if you don't need the mute button on the view
 
-```swift
-//Basic Example
-...
-    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-    widget.frame = self.view.frame
-    self.view.addSubview(widget.view)
-}
-//Show modally with animation example 
-...
-    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-    widget.showModally(hostView: self.view, animated:true)
-}
-```
+    ```swift
+    //Basic Example
+    ...
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+        widget.frame = self.view.frame
+        self.view.addSubview(widget.view)
+    }
+    //Show modally with animation example 
+    ...
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+        widget.showModally(hostView: self.view, animated:true)
+    }
+    ```
 
 - Automatic Analytics of PXLPhotoProductView
   - If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
   
-```swift
-#!swift
-let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-let regionId: Int? = nil
-widget.enableAutoAnalytics(regionId: regionId)
-pxlPhotoProductView.setContent(...)
-...
-```
+    ```swift
+    #!swift
+    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+    let regionId: Int? = nil
+    widget.enableAutoAnalytics(regionId: regionId)
+    pxlPhotoProductView.setContent(...)
+    ...
+    ```
 
 ### PXLPhotoView
 - Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
-```swift
-//Basic Example
-...
-    let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
-    self.view.addSubview(photoView)
-}
-```
+    ```swift
+    //Basic Example
+    ...
+        let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
+        self.view.addSubview(photoView)
+    }
+    ```
 #### PXLPhotoViewConfiguration
 Configurator class for the PXLPhotoView.
 Configuration options:
