@@ -80,7 +80,7 @@ public class PXLClient {
     }
 
     
-    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
+    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, firesLoadMoreIfneeded: Bool = false, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
         if album.hasNextPage {
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1
             if let identifier = album.identifier {
@@ -100,7 +100,7 @@ public class PXLClient {
                             completionHandler(photos, nil)
                             
                             // Analytics: call loadmore if loading the page(2...) is done
-                            if nextPage >= 2 {
+                            if firesLoadMoreIfneeded && nextPage >= 2 {
                                 album.triggerEventLoadMoreTapped { error in
                                     
                                 }

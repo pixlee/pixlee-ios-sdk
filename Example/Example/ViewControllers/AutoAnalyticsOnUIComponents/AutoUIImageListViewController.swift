@@ -121,7 +121,7 @@ class AutoUIImageListViewController: UIViewController {
             }
             
             isFreezingNetworking = true
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album, firesLoadMoreIfneeded: true) { photos, error in
                 guard error == nil else {
                     self.showPopup(message: "🛑 There was an error \(error?.localizedDescription ?? "")")
                     return
