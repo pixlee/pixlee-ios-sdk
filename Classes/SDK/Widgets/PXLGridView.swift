@@ -84,7 +84,7 @@ public class PXLGridView: UIView {
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                 self.logFirstHighlights()
             }
-            fireAnalytics()
+            fireOpenAndVisible()
         }
     }
 
@@ -172,7 +172,7 @@ public class PXLGridView: UIView {
             }
         } else {
             // on started
-            fireAnalytics()
+            fireOpenAndVisible()
         }
     }
     
@@ -232,8 +232,12 @@ public class PXLGridView: UIView {
     /**
      This is for automatic Analytics event
      */
-    var album: PXLAlbum?
-    var widgetType: String?
+    private var album: PXLAlbum?
+    private var widgetType: String?
+    
+    public func isAutoAnalyticsEnabled() -> Bool {
+        return album != nil && widgetType != nil
+    }
     
     /**
      If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
@@ -255,7 +259,7 @@ public class PXLGridView: UIView {
         self.widgetType = widgetType
     }
     
-    func isVisible(_ view: UIView) -> Bool {
+    private func isVisible(_ view: UIView) -> Bool {
         func isVisible(view: UIView, inView: UIView?) -> Bool {
             guard let inView = inView else { return true }
             let viewFrame = inView.convert(view.bounds, from: view)
@@ -267,13 +271,13 @@ public class PXLGridView: UIView {
         return isVisible(view: view, inView: view.superview)
     }
     
-    func fireAnalytics() {
+    private func fireOpenAndVisible() {
         fireAnalyticsOpenedWidget()
         fireAnalyticsWidgetVisible()
     }
     
-    var isAnalyticsOpenedWidgetFired = false
-    func fireAnalyticsOpenedWidget() {
+    private var isAnalyticsOpenedWidgetFired = false
+    private func fireAnalyticsOpenedWidget() {
         if !isAnalyticsOpenedWidgetFired, let album = album {
             guard let widgetType = widgetType else {
                 print( "can't fire OpenedWidget analytics event because pxlWidgetType is null")
@@ -293,8 +297,8 @@ public class PXLGridView: UIView {
         }
     }
     
-    var isAnalyticsVisibleWidgetFired = false
-    func fireAnalyticsWidgetVisible() {
+    private var isAnalyticsVisibleWidgetFired = false
+    private func fireAnalyticsWidgetVisible() {
         if !isAnalyticsVisibleWidgetFired, let album = album, let customView = collectionView {
             guard let widgetType = widgetType else {
                 print("can't fire WidgetVisible analytics event because pxlWidgetType is null")

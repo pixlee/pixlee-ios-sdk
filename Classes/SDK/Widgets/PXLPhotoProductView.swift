@@ -452,6 +452,9 @@ public class PXLPhotoProductView: UIViewController {
     private var isAutoAnalyticsEnabled = false
     private var isAnalyticsOpenLightboxFired = false
     
+    public func isAutoAnlayticsEnabled() -> Bool {
+        return isAutoAnalyticsEnabled
+    }
     
     /**
      - Parameter regionId: String (Optional) if you need to pass region id to the analytics event, set region id here.
