@@ -648,6 +648,11 @@ Grid view with lots of customizable features, where the cells are PXLPhotoViews.
 ```swift
 //Basic Example
 override func viewDidLoad() {
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = false
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+
     var gridView = PXLGridView()
     photoView.delegate = self
     gridView.frame = self.view.bounds
