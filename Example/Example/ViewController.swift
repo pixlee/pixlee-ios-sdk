@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         }
         
         if let album = album {
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], deletedPhotos: true)
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
