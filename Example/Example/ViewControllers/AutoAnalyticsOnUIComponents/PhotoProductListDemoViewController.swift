@@ -25,7 +25,6 @@ class PhotoProductListDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPhotoProductView()
-        enableAnalytics()
     }
     
     func setupPhotoProductView() {
@@ -55,13 +54,6 @@ class PhotoProductListDemoViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func enableAnalytics() {
-        if let widget = pxlPhotoProductView {
-            let regionId: Int? = nil
-            widget.enableAutoAnalytics(regionId: regionId)
-        }
-    }
-
     /*
      // MARK: - Navigation
 

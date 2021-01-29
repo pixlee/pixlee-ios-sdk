@@ -447,31 +447,14 @@ public class PXLPhotoProductView: UIViewController {
         adjustMuteImages()
     }
     
-    
-    private var regionId: Int?
-    private var isAutoAnalyticsEnabled = false
     private var isAnalyticsOpenLightboxFired = false
     
-    public func isAutoAnlayticsEnabled() -> Bool {
-        return isAutoAnalyticsEnabled
-    }
-    
-    /**
-     - Parameter regionId: String (Optional) if you need to pass region id to the analytics event, set region id here.
-     */
-    /**
-     This let this view to fire 'OpenLightbox' analytics event automatically for you. If you pass album to this method, openLightbox analytics event will get fired automatically.
-     - Parameter regionId: String (Optional) if you need to pass region id to the analytics event, set region id here.
-     - Parameter widgetType: PXLWidgetType
-     */
-    public func enableAutoAnalytics(regionId: Int? = nil) {
-        isAutoAnalyticsEnabled = true
-        self.regionId = regionId
-        fireAnalyticsOpenLightbox()
-    }
-    
     private func fireAnalyticsOpenLightbox() {
-        if (isAutoAnalyticsEnabled && !isAnalyticsOpenLightboxFired) {
+        if !PXLClient.sharedClient.autoAnalyticsEnabled {
+            return
+        }
+        
+        if (!isAnalyticsOpenLightboxFired) {
             guard let photo = viewModel else {
                 print( "can't fire OpenLightbox analytics event because photo:PXLPhoto is null")
                 return
@@ -479,7 +462,7 @@ public class PXLPhotoProductView: UIViewController {
             
             if isVisible(view) {
                 isAnalyticsOpenLightboxFired = true
-                _ = photo.triggerEventOpenedLightbox(regionId: regionId) { error in
+                _ = photo.triggerEventOpenedLightbox(regionId: PXLClient.sharedClient.regionId) { error in
                     self.isAnalyticsOpenLightboxFired = false
                     guard error == nil else {
                         print( "🛑 There was an error \(error?.localizedDescription ?? "")")

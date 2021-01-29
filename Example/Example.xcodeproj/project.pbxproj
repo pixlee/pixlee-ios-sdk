@@ -174,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				5C23D91825B6B69F00530FEF /* AutoUIImageListViewController.swift */,
+				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
+				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 			);
 			path = AutoAnalyticsOnUIComponents;
 			sourceTree = "<group>";
@@ -276,8 +278,6 @@
 				F2A8AC49255E6F10008A40BF /* ListWithGifFileViewController.swift */,
 				F2A8AC4E255E7041008A40BF /* ListWithGifURLViewController.swift */,
 				F29866BD2535D29000308398 /* ListWithTextViewController.swift */,
-				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
-				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 				F296942D24224A86003EB9DD /* Cells */,
 			);
 			path = ViewControllers;

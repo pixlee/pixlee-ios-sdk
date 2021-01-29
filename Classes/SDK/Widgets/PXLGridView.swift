@@ -11,7 +11,7 @@ import AVFoundation
 public protocol PXLGridViewAutoAnalyticsDelegate:class {
     // pass an album if you want to delegate this view to fire 'openedWidget' and 'widgetVisible' analytics events automatically. Additionaly you must set [PXLClient.sharedClient.autoAnalyticsEnabled = true] to enable auto-analytics.
     // if you manually fire analytics, you can pass 'nil' to this function.
-    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType:String)?
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType:String)
 }
 
 public protocol PXLGridViewDelegate:class {
@@ -260,10 +260,14 @@ public class PXLGridView: UIView {
     
     private var isAnalyticsOpenedWidgetFired = false
     private func fireAnalyticsOpenedWidget() {
-        if !isAnalyticsOpenedWidgetFired, let album = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.album, let widgetType = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.widgetType {
+        guard let autoAnalytics = getAutoAnalytics() else {
+            return
+        }
+        
+        if !isAnalyticsOpenedWidgetFired {
             if !infiniteItems.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: widgetType))) { error in
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     self.isAnalyticsOpenedWidgetFired = false
                     guard error == nil else {
                         print("🛑 There was an error \(error?.localizedDescription ?? "")")
@@ -276,11 +280,14 @@ public class PXLGridView: UIView {
     
     private var isAnalyticsVisibleWidgetFired = false
     private func fireAnalyticsWidgetVisible() {
-        if !isAnalyticsVisibleWidgetFired, let album = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.album, let widgetType = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.widgetType, let customView = collectionView {
-            
+        guard let autoAnalytics = getAutoAnalytics() else {
+            return
+        }
+
+        if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
             if !infiniteItems.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: widgetType))) { error in
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     self.isAnalyticsVisibleWidgetFired = false
                     guard error == nil else {
                         print( "🛑 There was an error \(error?.localizedDescription ?? "")")
@@ -290,6 +297,21 @@ public class PXLGridView: UIView {
             }
         }
     }
+    
+    private func getAutoAnalytics() -> (album: PXLAlbum, widgetType: String)? {
+        if !PXLClient.sharedClient.autoAnalyticsEnabled {
+            return nil
+        }
+        
+        if autoAnalyticsDelegate == nil {
+            print("autoAnalyticsDelegate or PXLGridViewDelegate.setupAlbumForAutoAnalytics(){..} is not spcified")
+        } else {
+            print("You need to spcify 'class YourViewController PXLGridViewDelegate.setupAlbumForAutoAnalytics(){return (yourAlbum, your widget type)}'")
+        }
+        
+        return autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()
+    }
+
 }
 
 extension PXLGridView: UICollectionViewDataSource {

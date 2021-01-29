@@ -21,7 +21,7 @@ class AutoUIImageListViewController: UIViewController {
     
     var lable:UILabel?
     var pixleeCredentials:PixleeCredentials = PixleeCredentials()
-    var album: PXLAlbum?
+    var album = PXLAlbum()
     
     var pxlGridView = PXLGridView()
     override func viewDidLoad() {
@@ -75,16 +75,16 @@ class AutoUIImageListViewController: UIViewController {
             album = PXLAlbum(identifier: albumId)
         }
         
-        if let album = album {
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], hasProduct: true)
-            album.filterOptions = filterOptions
-            album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-        }
+        var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"], hasProduct: true)
+        album.filterOptions = filterOptions
+        album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
     }
     
     func enableAutoAnalytics() {
-        // to use this feature you need to declare PXLGridViewAutoAnalyticsDelegate to let the SDK know about album:PXLAlbum and widgetType:String. There is example codes for PXLGridViewAutoAnalyticsDelegate in this file below
-        // this will delegate the SDK to read your PXLGridViewAutoAnalyticsDelegate implementation.
+        /** This is an optional feature
+         - to use this feature you need to declare PXLGridViewAutoAnalyticsDelegate to let the SDK know about album:PXLAlbum and widgetType:String. There is example codes for PXLGridViewAutoAnalyticsDelegate in this file below
+         - this will delegate the SDK to read your PXLGridViewAutoAnalyticsDelegate implementation.
+         */
         pxlGridView.autoAnalyticsDelegate = self
     }
     
@@ -106,34 +106,28 @@ class AutoUIImageListViewController: UIViewController {
     
     var isFreezingNetworking = false
     func loadPhotos() {
-        if let album = album {
-            if isFreezingNetworking {
+        if isFreezingNetworking {
+            return
+        }
+        
+        isFreezingNetworking = true
+        _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+            guard error == nil else {
+                self.showPopup(message: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
             }
             
-            isFreezingNetworking = true
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
-                guard error == nil else {
-                    self.showPopup(message: "🛑 There was an error \(error?.localizedDescription ?? "")")
-                    return
-                }
-                
-                if let photos = photos {
-                    self.isFreezingNetworking = false
-                    self.pxlGridView.items.append(contentsOf: photos)
-                }
+            if let photos = photos {
+                self.isFreezingNetworking = false
+                self.pxlGridView.items.append(contentsOf: photos)
             }
         }
     }
 }
 
 extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
-    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType: String)? {
-        if let album = album {
-            return (album, "customized_widget_type")
-        }else{
-            return nil
-        }
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType: String) {
+        (album, "customized_widget_type")
     }
 }
 
