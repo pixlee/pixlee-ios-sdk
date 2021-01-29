@@ -108,6 +108,7 @@ If you are using Objective-C in your porject and don't want to add a framework b
 
 
 # Initiate the SDK
+### Sample
 ```swift
 #!swift
 PXLClient.sharedClient.apiKey = your api key
@@ -117,48 +118,46 @@ PXLClient.sharedClient.regionId = your region id // (Optional) <--- set it if yo
 PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
 
 ```
-- API key
-  - Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
-  - add your Pixlee API key.
+### API key
+- Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
+- add your Pixlee API key.
     ```swift
     #!swift
     PXLClient.sharedClient.apiKey = apiKey
     ```
-- Secret Key (Optional)
-  - add your Secret Key if you are making POST requests.
+### Secret Key (Optional)
+- add your Secret Key if you are making POST requests.
     ```swift
     #!swift
     PXLClient.sharedClient.secretKey = secretKey
     ```
-- Disable Caching: Network API Caching  (Optional)
-    - We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
+### Disable Caching: Network API Caching  (Optional)
+- We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
     ```swift
     #!swift
     PXLClient.sharedClient.disableCaching = true // don't use cache
     PXLClient.sharedClient.disableCaching = false // use cache
     ```
-- Multi-region (Optional)
-    - if you use multi-region, you can set your region id here to get photos, a photo, and products available in the region.
+### Multi-region (Optional)
+- if you use multi-region, you can set your region id here to get photos, a photo, and products available in the region.
     ```swift
     #!swift
     PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
     ```
-- Automatic Analytics (Optional)
-    - This is to delegate this SDK to fire necessary analytics events for you
-    - if you use PXLGridView, you need an extra setting [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview).
-    ```swift
-    #!swift
-    PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
-    ```
-    - Which analytics we fire for you?:
-        - `loadmore` event: when you use `PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album)` and load the second or the next pages, we fire `loadmore` events for you.
-        - `openedWidget` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `openedWidget`.
-        - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
-        - `openedLightbox` event: when you display PXLPhotoProductView with a PXLPhoto on the screen, we fire `openedLightbox`.
-    - Notice: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
+### Automatic Analytics (Optional)
+```swift
+#!swift
+PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
+```
+- This is to delegate this SDK to fire necessary analytics events for you
+- if you use PXLGridView, you need an extra setting [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview).
+- Which analytics do we fire for you?:
+    - `loadmore` event: when you use `PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album)` and load the second or the next pages, we fire `loadmore` events for you.
+    - `openedWidget` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `openedWidget`.
+    - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
+    - `openedLightbox` event: when you display PXLPhotoProductView with a PXLPhoto on the screen, we fire `openedLightbox`.
+- **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
         
-    
-
 # Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
