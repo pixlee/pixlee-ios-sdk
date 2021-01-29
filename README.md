@@ -154,7 +154,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
 #!swift
 PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
 ```
-- This is to delegate this SDK to fire necessary analytics events for you
+- This is to delegate this SDK to fire necessary analytics events for you. If you don't want to use this, you can just ignore this part.
 - if you use PXLGridView, you need an extra setting [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview).
 - Which analytics do we fire for you?:
     - `loadmore` event: when you use `PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album)` and load the second or the next pages, we fire `loadmore` events for you.
