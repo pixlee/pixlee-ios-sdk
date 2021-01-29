@@ -15,7 +15,6 @@ class PXLApiRequests {
 
     var apiKey: String?
     var secretKey: String?
-
     var disableCaching: Bool = false
 
     private func defaultGetParameters() -> [String: Any] {
@@ -86,7 +85,7 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if let regionId = album.regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
             
@@ -124,7 +123,7 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if let regionId = album.regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
 
@@ -136,23 +135,25 @@ class PXLApiRequests {
     }
 
     func getPhotoWithPhotoAlbumId(_ photoAlbumId: String) -> URLRequest {
-        let url = baseURL + "api/v2/media/\(photoAlbumId)"
-        do {
-            let params = defaultGetParameters()
-            let request = try urlRequest(.get, url, parameters: params)
-            return request
-        } catch {
-            fatalError("Worng url request")
-        }
+        // we no longer use this API since this does not support multi-region
+//        let url = baseURL + "api/v2/media/\(photoAlbumId)"
+//        do {
+//            let params = defaultGetParameters()
+//            let request = try urlRequest(.get, url, parameters: params)
+//            return request
+//        } catch {
+//            fatalError("Worng url request")
+//        }
+        return getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId)
     }
     
-    func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int?) -> URLRequest {
+    func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String) -> URLRequest {
         let url = baseURL + "getPhoto"
         do {
             var params = defaultGetParameters()
             params["album_photo_id"] = photoAlbumId
             
-            if let regionId = regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
             

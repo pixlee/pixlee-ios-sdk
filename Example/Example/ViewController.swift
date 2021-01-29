@@ -63,7 +63,12 @@ class ViewController: UIViewController {
         if let secretKey = pixleeCredentials.secretKey {
             // add your Secret Key if you are making POST requests.
             PXLClient.sharedClient.secretKey = secretKey
-        }        
+        }
+        
+        PXLClient.sharedClient.autoAnalyticsEnabled = true
+        
+        // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
+        PXLClient.sharedClient.regionId = pixleeCredentials.regionId
     }
     
     func initAlbum(){
@@ -84,9 +89,6 @@ class ViewController: UIViewController {
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            
-            // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
-            album.regionId = pixleeCredentials.regionId
         }
     }
     

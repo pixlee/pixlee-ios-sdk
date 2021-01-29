@@ -40,7 +40,7 @@ public struct PXLAnalyticsEventWidgetVisible: PXLAnalyticsEvent {
 
         parameters["photos"] = photoIds.joined(separator: ",")
 
-        if let regionId = album.regionId {
+        if let regionId = PXLClient.sharedClient.regionId {
             parameters["region_id"] = String(regionId)
         }
         

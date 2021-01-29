@@ -46,13 +46,9 @@ class AutoUIImageListViewController: UIViewController {
             if ProcessInfo.processInfo.arguments.contains("IS_UI_TESTING"){
                 lable.alpha = 1 // show test label
             } else {
-                lable.alpha = 0 // hide test label
+                lable.alpha = 1 // hide test label
             }
         }
-        
-        
-        
-        
         
         initAlbum()
         enableAutoAnalytics()
@@ -64,9 +60,7 @@ class AutoUIImageListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
         if let lable = lable{
-//            lable.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
             lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
-            
         }
     }
     
@@ -89,13 +83,9 @@ class AutoUIImageListViewController: UIViewController {
     }
     
     func enableAutoAnalytics() {
-        // alternative 1: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.horizontal)
-        // alternative 2: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
-        // alternative 3: pxlGridView.enableAutoAnalytics(album: album, widgetType: "customized widget name")
-        // alternative 4: pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.other(customValue: "customized widget name"))
-        if let album = album {
-            pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
-        }
+        // to use this feature you need to declare PXLGridViewAutoAnalyticsDelegate to let the SDK know about album:PXLAlbum and widgetType:String. There is example codes for PXLGridViewAutoAnalyticsDelegate in this file below
+        // this will delegate the SDK to read your PXLGridViewAutoAnalyticsDelegate implementation.
+        pxlGridView.autoAnalyticsDelegate = self
     }
     
     
@@ -105,6 +95,7 @@ class AutoUIImageListViewController: UIViewController {
     }
     
     var analyticsStrings = [String]()
+    
     // for UI Tests: receive succeeded analytics API one at a time
     @objc func listenAnalytics(_ noti: Notification) {
         if let name:String = noti.object as? String{
@@ -121,7 +112,7 @@ class AutoUIImageListViewController: UIViewController {
             }
             
             isFreezingNetworking = true
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album, firesLoadMoreIfneeded: true) { photos, error in
+            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
                 guard error == nil else {
                     self.showPopup(message: "🛑 There was an error \(error?.localizedDescription ?? "")")
                     return
@@ -132,6 +123,16 @@ class AutoUIImageListViewController: UIViewController {
                     self.pxlGridView.items.append(contentsOf: photos)
                 }
             }
+        }
+    }
+}
+
+extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType: String)? {
+        if let album = album {
+            return (album, "customized_widget_type")
+        }else{
+            return nil
         }
     }
 }
@@ -188,11 +189,11 @@ extension AutoUIImageListViewController: PXLGridViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // This is an example of how to load more photos as you swipe up to go to the bottom of the scroll. You can use our own way of doing this.
         if scrollView == pxlGridView.collectionView && !pxlGridView.items.isEmpty {
             let unseenHeight = scrollView.contentSize.height - (scrollView.contentOffset.y + scrollView.frame.height)
             // this [single page's height * singlePageRatio] pixels of the remaining scrollable height is used for smooth scroll while retrieving photos from the server.
             let singlePageRatio = CGFloat(2.0)
-            //print("singleH: \(scrollView.frame.height * singlePageRatio), unseenHeight: \(unseenHeight)")
             if unseenHeight < (scrollView.frame.height * singlePageRatio) {
                 loadPhotos()
             }

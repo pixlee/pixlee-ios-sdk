@@ -8,6 +8,12 @@
 import UIKit
 import AVFoundation
 
+public protocol PXLGridViewAutoAnalyticsDelegate:class {
+    // pass an album if you want to delegate this view to fire 'openedWidget' and 'widgetVisible' analytics events automatically. Additionaly you must set [PXLClient.sharedClient.autoAnalyticsEnabled = true] to enable auto-analytics.
+    // if you manually fire analytics, you can pass 'nil' to this function.
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType:String)?
+}
+
 public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
@@ -97,6 +103,12 @@ public class PXLGridView: UIView {
             } else {
                 topRightCellIndex = nil
             }
+        }
+    }
+    
+    public weak var autoAnalyticsDelegate: PXLGridViewAutoAnalyticsDelegate?{
+        didSet{
+            fireOpenAndVisible()
         }
     }
     
@@ -229,36 +241,6 @@ public class PXLGridView: UIView {
     var topLeftCellIndex: IndexPath = IndexPath(item: 0, section: 0)
     var topRightCellIndex: IndexPath?
     
-    /**
-     This is for automatic Analytics event
-     */
-    private var album: PXLAlbum?
-    private var widgetType: String?
-    
-    public func isAutoAnalyticsEnabled() -> Bool {
-        return album != nil && widgetType != nil
-    }
-    
-    /**
-     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
-     - Parameter album: PXLKtxAlbum? Please pass the same reference that you make photoInfo: PhotoWithVideoInfo with
-     - Parameter widgetType: PXLWidgetType
-     */
-    public func enableAutoAnalytics(album: PXLAlbum, widgetType: PXLWidgetType) {
-        self.album = album
-        self.widgetType = widgetType.key
-    }
-    
-    /**
-     If you pass PXLAlbum to this method , 'VisibleWidget' and 'OpenedWidget' analytics events will get fired automatically when needed.
-     - Parameter album: PXLAlbum? Please pass the same reference you use in getting the list of PXLPhotos
-     - Parameter widgetType: String
-     */
-    public func enableAutoAnalytics(album: PXLAlbum, widgetType: String) {
-        self.album = album
-        self.widgetType = widgetType
-    }
-    
     private func isVisible(_ view: UIView) -> Bool {
         func isVisible(view: UIView, inView: UIView?) -> Bool {
             guard let inView = inView else { return true }
@@ -278,12 +260,7 @@ public class PXLGridView: UIView {
     
     private var isAnalyticsOpenedWidgetFired = false
     private func fireAnalyticsOpenedWidget() {
-        if !isAnalyticsOpenedWidgetFired, let album = album {
-            guard let widgetType = widgetType else {
-                print( "can't fire OpenedWidget analytics event because pxlWidgetType is null")
-                return
-            }
-            
+        if !isAnalyticsOpenedWidgetFired, let album = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.album, let widgetType = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.widgetType {
             if !infiniteItems.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: widgetType))) { error in
@@ -299,11 +276,7 @@ public class PXLGridView: UIView {
     
     private var isAnalyticsVisibleWidgetFired = false
     private func fireAnalyticsWidgetVisible() {
-        if !isAnalyticsVisibleWidgetFired, let album = album, let customView = collectionView {
-            guard let widgetType = widgetType else {
-                print("can't fire WidgetVisible analytics event because pxlWidgetType is null")
-                return
-            }
+        if !isAnalyticsVisibleWidgetFired, let album = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.album, let widgetType = autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()?.widgetType, let customView = collectionView {
             
             if !infiniteItems.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true

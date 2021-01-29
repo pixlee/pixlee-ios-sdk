@@ -21,23 +21,33 @@ public class PXLClient {
     private let photoConverter = PXLPhotoConverter(productConverter: PXLProductConverter())
     private var loadingOperations: [String: [Int: DataRequest?]] = [:]
 
+    // globally used with in the SDK
     public var apiKey: String? {
         didSet {
             apiRequests.apiKey = apiKey
         }
     }
 
+    // globally used with in the SDK
     public var secretKey: String? {
         didSet {
             apiRequests.secretKey = secretKey
         }
     }
 
+    // globally used with in the SDK
     public var disableCaching: Bool = true {
         didSet {
             apiRequests.disableCaching = disableCaching
         }
     }
+    
+    // globally used with in the SDK
+    public var autoAnalyticsEnabled: Bool = false
+    
+    // globally used with in the SDK
+    public var regionId: Int? = nil
+    
 
     public func getPhotoWithPhotoAlbumId(photoAlbumId: String, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
         return AF.request(apiRequests.getPhotoWithPhotoAlbumId(photoAlbumId)).responseDecodable { (response: DataResponse<PXLPhotoResponseDTO, AFError>) in
@@ -59,13 +69,8 @@ public class PXLClient {
         }
     }
 
-    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int?, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
-        return AF.request(apiRequests.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionId: regionId)).responseDecodable { (response: DataResponse<PXLPhotoDTO, AFError>) in
-            
-            //            if let data = response.data, let responseJSONString = String(data: data, encoding: .utf8) {
-            //                print("responseJson: \(responseJSONString)")
-            //            }
-            
+    public func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, completionHandler: ((PXLPhoto?, Error?) -> Void)?) -> DataRequest {
+        return AF.request(apiRequests.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId)).responseDecodable { (response: DataResponse<PXLPhotoDTO, AFError>) in
             switch response.result {
             case let .success(responseDTO):
                 let photo = self.photoConverter.convertPhotoDTOToPhoto(dto: responseDTO)
@@ -80,7 +85,7 @@ public class PXLClient {
     }
 
     
-    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, firesLoadMoreIfneeded: Bool = false, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
+    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
         if album.hasNextPage {
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1
             if let identifier = album.identifier {
@@ -100,7 +105,7 @@ public class PXLClient {
                             completionHandler(photos, nil)
                             
                             // Analytics: call loadmore if loading the page(2...) is done
-                            if firesLoadMoreIfneeded && nextPage >= 2 {
+                            if self.autoAnalyticsEnabled && nextPage >= 2 {
                                 album.triggerEventLoadMoreTapped { error in
                                     
                                 }

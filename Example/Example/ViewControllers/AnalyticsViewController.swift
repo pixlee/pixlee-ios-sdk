@@ -23,9 +23,7 @@ class AnalyticsViewController: UIViewController {
         
         do {
             pixleeCredentials = try PixleeCredentials.create()
-            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))
-            album.regionId = pixleeCredentials.regionId
-            
+            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))            
         } catch{
             showPopup(message: error.localizedDescription)
         }
