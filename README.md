@@ -177,12 +177,15 @@ dynamic - Our "secret sauce" -- a special sort that highlights high performance 
 //These parameters are examples. Please adjust, add or remove them during implementation.
 //=========================================================
 
-//Create an Instance of Album with the Identifier
-let album = PXLAlbum(identifier: PXLAlbumIdentifier)
+PXLClient.sharedClient.apiKey = <your api key>
+PXLClient.sharedClient.secretKey = <your secret key>
 
 // Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
 // note: - note: you can get the right currencies of your products by adding regionId here
-album.regionId = <your region id in Int>
+PXLClient.sharedClient.regionId = <your region id> <--- set it if you use multi-region.
+
+//Create an Instance of Album with the Identifier
+let album = PXLAlbum(identifier: PXLAlbumIdentifier)
 
 // Create and set filter options on the album.
 album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
@@ -221,13 +224,15 @@ You can load the content via the `PXLClient`, You just have to use the `loadNext
 //These parameters are examples. Please adjust, add or remove them during implementation.
 //=========================================================
 
-
-//Create an Instance of Album with the SKU Identifier
-let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
+PXLClient.sharedClient.apiKey = <your api key>
+PXLClient.sharedClient.secretKey = <your secret key>
 
 // Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
 // note: - note: you can get the right currencies of your products by adding regionId here
-album.regionId = <your region id in Int>
+PXLClient.sharedClient.regionId = <your region id> <--- set it if you use multi-region.
+
+//Create an Instance of Album with the SKU Identifier
+let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
 
 // Create and set filter options on the album.
 let dateString = "20190101"
@@ -302,9 +307,8 @@ if let photoAlbumId = photoAlbumId {
 If you want to make a PXLPhoto using an album photo id and a region id, you can get it using our API in the SDK like below.
 ```swift
 var photoAlbumId = <one of you photo album ids>
-var regionId:Int = <one of your region ids>
 if let photoAlbumId = photoAlbumId {
-    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionid: regionId) { newPhoto, error in
+    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
             return
@@ -335,7 +339,6 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 ```
 ### Add to Cart
 ```swift
-    val regionId:Int?
     let currency = "USD"
     let productSKU = "SL-BENJ"
     let quantity = 2
@@ -343,8 +346,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let event = PXLAnalyticsEventAddCart(sku: productSKU,
         quantity: quantity,
         price: price,
-        currency: currency,
-        regionId: regionId)
+        currency: currency)
                                          
      //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
@@ -357,7 +359,6 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
 ```
 ### Conversion
 ```swift
-    val regionId:Int?
     // Setup some constants
     let currency = "USD"
     // Product 1 example
@@ -378,7 +379,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let cartContents = [cart1, cart2]
 
     //EVENT converted: refers to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency, regionId: regionId)
+    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
 
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
         guard error == nil else {
@@ -406,12 +407,11 @@ It's important to trigger this event after the LoadNextPage event
 ```
 ### Opened Lightbox
 ```swift
-    val regionId:Int?
     // fire this when a PXLPhoto is displayed from your List View containing a list of PXLPhotos
     let pxlPhoto:PXLPhoto = photoFromSomewhere
 
     //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    pxlPhoto.triggerEventOpenedLightbox(regionId: regionId) { (error) in
+    pxlPhoto.triggerEventOpenedLightbox() { (error) in
         print("Logged") 
     }
 
@@ -419,7 +419,6 @@ It's important to trigger this event after the LoadNextPage event
 
 ### Action Click 
 ```swift
-    val regionId:Int?
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPxlPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
@@ -431,7 +430,7 @@ It's important to trigger this event after the LoadNextPage event
         }
         print("New Photo: \(pxlPhoto.albumPhotoId)")
         if let product = pxlPhoto.products?.first, let url = product.link?.absoluteString {
-            pxlPhoto.triggerEventActionClicked(actionLink: url, region: regionId) { _ in
+            pxlPhoto.triggerEventActionClicked(actionLink: url) { _ in
                 print("triggered")
             }
         }
@@ -543,10 +542,13 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
   
     ```swift
     #!swift
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+    
     let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-    let regionId: Int? = nil
-    widget.enableAutoAnalytics(regionId: regionId)
-    pxlPhotoProductView.setContent(...)
+
     ...
     ```
 
@@ -613,7 +615,7 @@ Grid view with lots of customizable features, where the cells are PXLPhotoViews.
 #### Example of PXLGridView
 ```swift
 //Basic Example
-...
+override func viewDidLoad() {
     var gridView = PXLGridView()
     photoView.delegate = self
     gridView.frame = self.view.bounds
@@ -621,15 +623,98 @@ Grid view with lots of customizable features, where the cells are PXLPhotoViews.
     view.addSubview(gridView)
     gridView.items = [Array Of Photos]
 }
+
+extension AutoUIImageListViewController: PXLPhotoViewDelegate {
+    public func onPhotoButtonClicked(photo: PXLPhoto) {
+        print("Action tapped \(photo.id)")
+        openPDP(photo: photo)
+    }
+
+    public func onPhotoClicked(photo: PXLPhoto) {
+        print("Photo Clicked \(photo.id)")
+        openPDP(photo: photo)
+    }
+
+    func openPDP(photo: PXLPhoto) {
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
+    }
+}
+
+extension AutoUIImageListViewController: PXLGridViewDelegate {
+    func isVideoMutted() -> Bool {
+        false
+    }
+
+    func cellsHighlighted(cells: [PXLGridViewCell]) {
+        //        print("Highlighted cells: \(cells)")
+    }
+
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
+        if let index = pxlGridView.items.firstIndex(of: photo) {
+            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "PXLPhotoProductView", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+        }
+    }
+
+    public func cellHeight() -> CGFloat {
+        return 350
+    }
+
+    func cellPadding() -> CGFloat {
+        return 8
+    }
+
+    func isMultipleColumnEnabled() -> Bool {
+        return false
+    }
+
+    func isHighlightingEnabled() -> Bool {
+        return false
+    }
+
+    func isInfiniteScrollEnabled() -> Bool {
+        return false
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // This is an example of how to load more photos as you swipe up to go to the bottom of the scroll. You can use our own way of doing this.
+        if scrollView == pxlGridView.collectionView && !pxlGridView.items.isEmpty {
+            let unseenHeight = scrollView.contentSize.height - (scrollView.contentOffset.y + scrollView.frame.height)
+            // this [single page's height * singlePageRatio] pixels of the remaining scrollable height is used for smooth scroll while retrieving photos from the server.
+            let singlePageRatio = CGFloat(2.0)
+            if unseenHeight < (scrollView.frame.height * singlePageRatio) {
+                loadPhotos()
+            }
+        }
+    }
+}
+
 ```
 #### Automatic Analytics of PXLGridView
   - If you want to delegate firing 'VisibleWidget' and 'OpenedWidget' analytics event to PXLGridView, use this code. On the other hand, if you want to manually fire the two events, you don't use this and do need to implement our own analytics codes. Please check out AutoUIImageListViewController.swift to get the sample codes.
   - **[Important] Please be aware of giving the same instance of PXLAlbum that you created to retrieve the list of PXLPhotos to send the correct album information to the analytics server.**
 ```swift
 #!swift
-var gridView = PXLGridView()
-// alternative: pxlGridView.enableAutoAnalytics(album: album, widgetType: "custom widget name")
-pxlGridView.enableAutoAnalytics(album: album, widgetType: PXLWidgetType.photowall)
+let album: PXLAlbum
+override func viewDidLoad() {
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+
+    var gridView = PXLGridView()
+    ...
+    pxlGridView.autoAnalyticsDelegate = self <-- MUST be implemented
+    ...
+}
+
+// this must be implemented to use this feature
+extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType: String) {
+        (album, "customized_widget_type")
+    }
+}
+
+
 ```
 
 # Troubleshooting
