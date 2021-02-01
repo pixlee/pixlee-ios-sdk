@@ -11,15 +11,22 @@ import PixleeSDK
 import UIKit
 
 class AutoUIImageListViewController: UIViewController {
-    static func getInstance() -> AutoUIImageListViewController {
-        return AutoUIImageListViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+    static func getInstance(_ isAutoAnalytics: Bool) -> AutoUIImageListViewController {
+        let vc = AutoUIImageListViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+        vc.isAutoAnalytics = isAutoAnalytics
+        vc.temporaryAutoAnalyticsEnabled = PXLClient.sharedClient.autoAnalyticsEnabled
+        PXLClient.sharedClient.autoAnalyticsEnabled = isAutoAnalytics
+        return vc
     }
-    
+        
     deinit {
+        PXLClient.sharedClient.autoAnalyticsEnabled = temporaryAutoAnalyticsEnabled
         NotificationCenter.default.removeObserver(self)
     }
     
-    var lable:UILabel?
+    var temporaryAutoAnalyticsEnabled:Bool = false
+    var isAutoAnalytics:Bool = false
+    var label:UILabel?
     var pixleeCredentials:PixleeCredentials = PixleeCredentials()
     var album = PXLAlbum()
     
@@ -29,12 +36,13 @@ class AutoUIImageListViewController: UIViewController {
         pxlGridView.delegate = self
         view.addSubview(pxlGridView)
         
-        lable = UILabel()
-        if let lable = lable{
-            lable.accessibilityIdentifier = PXLAnalyticsService.TAG
-            lable.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            lable.textColor = UIColor.white
-            view.addSubview(lable)
+        label = UILabel()
+        if let label = label{
+            label.accessibilityIdentifier = PXLAnalyticsService.TAG
+            label.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            label.textColor = UIColor.white
+            label.text = "no events yet"
+            view.addSubview(label)
             
             if let simulatorName = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] {
                 print("Running on \(simulatorName) simulator")
@@ -44,9 +52,9 @@ class AutoUIImageListViewController: UIViewController {
 
             
             if ProcessInfo.processInfo.arguments.contains("IS_UI_TESTING"){
-                lable.alpha = 1 // show test label
+                label.alpha = 1 // show test label
             } else {
-                lable.alpha = 0 // hide test label
+                label.alpha = 0 // hide test label
             }
         }
         
@@ -59,7 +67,7 @@ class AutoUIImageListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        if let lable = lable{
+        if let lable = label{
             lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
         }
     }
@@ -100,7 +108,7 @@ class AutoUIImageListViewController: UIViewController {
     @objc func listenAnalytics(_ noti: Notification) {
         if let name:String = noti.object as? String{
             self.analyticsStrings.append(name)
-            self.lable?.text = self.analyticsStrings.joined(separator: ",")
+            self.label?.text = self.analyticsStrings.joined(separator: ",")
         }
     }
     

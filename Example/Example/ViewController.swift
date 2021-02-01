@@ -158,7 +158,11 @@ class ViewController: UIViewController {
     
     // MARK: - UI Components + Auto Analytics
     @IBAction func showAutoAnalyticsUI(_ sender: Any) {
-        present(AutoUIImageListViewController.getInstance(), animated: true, completion: nil)
+        present(AutoUIImageListViewController.getInstance(true), animated: true, completion: nil)
+    }
+    
+    @IBAction func showAutoAnalyticsUITurnedOff(_ sender: Any) {
+        present(AutoUIImageListViewController.getInstance(false), animated: true, completion: nil)
     }
     
     // MARK: - UI Components
