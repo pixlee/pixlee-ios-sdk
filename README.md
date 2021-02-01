@@ -161,7 +161,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
     - `loadmore` event: when you use `PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album)` and load the second or the next pages, we fire `loadmore` events for you.
     - `openedWidget` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `openedWidget`.
     - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
-    - `openedLightbox` event: when you display PXLPhotoProductView with a PXLPhoto on the screen, we fire `openedLightbox`.
+    - `openedLightbox` event: when you display [PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview) with a PXLPhoto on the screen, we fire `openedLightbox`.
 - **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
         
 # Filtering and Sorting
