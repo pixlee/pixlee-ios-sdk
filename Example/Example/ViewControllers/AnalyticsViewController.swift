@@ -23,9 +23,7 @@ class AnalyticsViewController: UIViewController {
         
         do {
             pixleeCredentials = try PixleeCredentials.create()
-            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))
-            album.regionId = pixleeCredentials.regionId
-            
+            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))            
         } catch{
             showPopup(message: error.localizedDescription)
         }
@@ -79,7 +77,7 @@ class AnalyticsViewController: UIViewController {
 
     @IBAction func openedLightbox(_ sender: Any) {
         if let photo = photo {
-            _ = photo.triggerEventOpenedLightbox(regionId: pixleeCredentials.regionId) { error in
+            _ = photo.triggerEventOpenedLightbox() { error in
                 guard error == nil else {
                     self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                     return
@@ -93,7 +91,7 @@ class AnalyticsViewController: UIViewController {
 
     @IBAction func actionClicked(_ sender: Any) {
         if let photo = photo {
-            _ = photo.triggerEventActionClicked(actionLink: "actionLink", regionId: pixleeCredentials.regionId, completionHandler: { error in
+            _ = photo.triggerEventActionClicked(actionLink: "actionLink", completionHandler: { error in
                 guard error == nil else {
                     self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                     return
@@ -106,7 +104,7 @@ class AnalyticsViewController: UIViewController {
     }
 
     @IBAction func addToCart(_ sender: Any) {
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventAddCart(sku: "SL-BENJ", quantity: 1, price: "13.0", currency: "USD", regionId: pixleeCredentials.regionId)) { error in
+        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventAddCart(sku: "SL-BENJ", quantity: 1, price: "13.0", currency: "USD")) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -121,8 +119,7 @@ class AnalyticsViewController: UIViewController {
                                                            PXLAnalyticsCartContents(price: "5.0", productSKU: "AD-1324S", quantity: 2)],
                                             cartTotal: "18.0",
                                             cartTotalQuantity: 3,
-                                            currency: "USD",
-                                            regionId: pixleeCredentials.regionId)) { error in
+                                            currency: "USD")) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return

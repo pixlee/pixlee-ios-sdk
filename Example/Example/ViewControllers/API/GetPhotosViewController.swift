@@ -97,7 +97,7 @@ extension GetPhotosViewController: PXLGridViewDelegate {
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = pxlGridView.items.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: photo.title ?? "Photo title", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+            cell.setupCell(photo: photo, title: "Main \(photo.id)", subtitle: "Subtitle for \(photo.id)", buttonTitle: "Item #\(index)", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
         }
     }
     

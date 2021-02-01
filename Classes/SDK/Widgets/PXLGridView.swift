@@ -8,10 +8,17 @@
 import UIKit
 import AVFoundation
 
+public protocol PXLGridViewAutoAnalyticsDelegate:class {
+    // pass an album if you want to delegate this view to fire 'openedWidget' and 'widgetVisible' analytics events automatically. Additionaly you must set [PXLClient.sharedClient.autoAnalyticsEnabled = true] to enable auto-analytics.
+    // if you manually fire analytics, you can pass 'nil' to this function.
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType:String)
+}
+
 public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
     func onPhotoClicked(photo: PXLPhoto)
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
     func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
@@ -31,6 +38,9 @@ public protocol PXLGridViewDelegate:class {
 
 extension PXLGridViewDelegate {
     public func cellsHighlighted(cells: [PXLGridViewCell]) {
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
 
     public func headerTitleFont() -> UIFont {
@@ -63,7 +73,7 @@ extension PXLGridViewDelegate {
 }
 
 public class PXLGridView: UIView {    
-    var collectionView: InfiniteCollectionView?
+    open var collectionView: InfiniteCollectionView?
     public var flowLayout: InfiniteLayout! {
         return collectionView?.collectionViewLayout as? InfiniteLayout
     }
@@ -80,12 +90,12 @@ public class PXLGridView: UIView {
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                 self.logFirstHighlights()
             }
+            fireOpenAndVisible()
         }
     }
 
     public weak var delegate: PXLGridViewDelegate? {
         didSet {
-            print("self.isInfiniteScrollEnabled: \(self.isInfiniteScrollEnabled)")
             collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
             setupCellSize()
             if isMultipleColumnsEnabled {
@@ -95,7 +105,13 @@ public class PXLGridView: UIView {
             }
         }
     }
-
+    
+    public weak var autoAnalyticsDelegate: PXLGridViewAutoAnalyticsDelegate?{
+        didSet{
+            fireOpenAndVisible()
+        }
+    }
+    
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
@@ -158,15 +174,20 @@ public class PXLGridView: UIView {
     }
     
     public override func didMoveToWindow() {
-        if (self.window == nil) {
+        let screenSize: CGRect = UIScreen.main.bounds
+        if self.window == nil {
+            // on destroyed
             do{
                 try AVAudioSession.sharedInstance().setCategory(category)
             }catch{
                 
             }
+        } else {
+            // on started
+            fireOpenAndVisible()
         }
     }
-
+    
     override public init(frame: CGRect) {
         collectionView = InfiniteCollectionView(frame: frame)
 
@@ -182,7 +203,6 @@ public class PXLGridView: UIView {
         
         if let collectionView = collectionView {
             collectionView.dataSource = self
-            //collectionView.prefetchDataSource = self
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
 
@@ -220,6 +240,78 @@ public class PXLGridView: UIView {
 
     var topLeftCellIndex: IndexPath = IndexPath(item: 0, section: 0)
     var topRightCellIndex: IndexPath?
+    
+    private func isVisible(_ view: UIView) -> Bool {
+        func isVisible(view: UIView, inView: UIView?) -> Bool {
+            guard let inView = inView else { return true }
+            let viewFrame = inView.convert(view.bounds, from: view)
+            if viewFrame.intersects(inView.bounds) {
+                return isVisible(view: view, inView: inView.superview)
+            }
+            return false
+        }
+        return isVisible(view: view, inView: view.superview)
+    }
+    
+    private func fireOpenAndVisible() {
+        fireAnalyticsOpenedWidget()
+        fireAnalyticsWidgetVisible()
+    }
+    
+    private var isAnalyticsOpenedWidgetFired = false
+    private func fireAnalyticsOpenedWidget() {
+        guard let autoAnalytics = getAutoAnalytics() else {
+            return
+        }
+        
+        if !isAnalyticsOpenedWidgetFired {
+            if !infiniteItems.isEmpty {
+                isAnalyticsOpenedWidgetFired = true
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                    self.isAnalyticsOpenedWidgetFired = false
+                    guard error == nil else {
+                        print("🛑 There was an error \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    private var isAnalyticsVisibleWidgetFired = false
+    private func fireAnalyticsWidgetVisible() {
+        guard let autoAnalytics = getAutoAnalytics() else {
+            return
+        }
+
+        if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
+            if !infiniteItems.isEmpty && isVisible(customView) {
+                isAnalyticsVisibleWidgetFired = true
+                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                    self.isAnalyticsVisibleWidgetFired = false
+                    guard error == nil else {
+                        print( "🛑 There was an error \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    private func getAutoAnalytics() -> (album: PXLAlbum, widgetType: String)? {
+        if !PXLClient.sharedClient.autoAnalyticsEnabled {
+            return nil
+        }
+        
+        if autoAnalyticsDelegate == nil {
+            print("autoAnalyticsDelegate or PXLGridViewDelegate.setupAlbumForAutoAnalytics(){..} is not specified")
+        } else {
+            print("You need to specify 'class YourViewController PXLGridViewDelegate.setupAlbumForAutoAnalytics(){return (yourAlbum, your widget type)}'")
+        }
+        
+        return autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()
+    }
+
 }
 
 extension PXLGridView: UICollectionViewDataSource {
@@ -322,6 +414,7 @@ extension PXLGridView: UICollectionViewDelegateFlowLayout {
 extension PXLGridView: UICollectionViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         adjustHighlight()
+        delegate?.scrollViewDidScroll(scrollView)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

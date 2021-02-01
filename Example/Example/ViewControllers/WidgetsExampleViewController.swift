@@ -22,9 +22,7 @@ class WidgetsExampleViewController: UIViewController {
         
         do {
             pixleeCredentials = try PixleeCredentials.create()
-            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))
-            album.regionId = pixleeCredentials.regionId
-            
+            album = PXLAlbum(identifier: String(pixleeCredentials.albumId ?? ""))            
         } catch{
             self.showPopup(message: error.localizedDescription)
         }

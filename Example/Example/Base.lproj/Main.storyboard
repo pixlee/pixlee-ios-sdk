@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="428" height="882"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="left" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7" userLabel="Body Stack View">
-                                        <rect key="frame" x="20" y="20" width="428" height="687"/>
+                                        <rect key="frame" x="20" y="20" width="428" height="819.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm" userLabel="Title StackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
@@ -88,10 +88,45 @@
                                                     <constraint firstAttribute="height" constant="20" id="CRh-p7-hFy"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
-                                                <rect key="frame" x="0.0" y="282.66666666666674" width="428" height="404.33333333333326"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aq5-SL-xbA" userLabel="UI-auto-analytics">
+                                                <rect key="frame" x="0.0" y="282.66666666666669" width="428" height="110.33333333333331"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Analytics with UI Components" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgb-yX-7Uw" userLabel="UI Components">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8n-Lo-VNb">
+                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="45"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[ON] PXLGridView -&gt; PXLPhotoProductView"/>
+                                                        <connections>
+                                                            <action selector="showAutoAnalyticsUI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TWJ-VX-k4z"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC7-hi-Gcb">
+                                                        <rect key="frame" x="0.0" y="65.333333333333314" width="428" height="45"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="[OFF] PXLGridView -&gt; PXLPhotoProductView"/>
+                                                        <connections>
+                                                            <action selector="showAutoAnalyticsUITurnedOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2B0-fG-r0T"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIy-yA-Tsr">
+                                                <rect key="frame" x="0.0" y="394" width="428" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="ieO-UP-WxD"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
+                                                <rect key="frame" x="0.0" y="415" width="428" height="404.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Components" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,7 +140,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5S-8G-FhZ" userLabel="One-column + auto play">
-                                                        <rect key="frame" x="0.0" y="68.333333333333314" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="68.333333333333371" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] One-column + auto play"/>
                                                         <connections>
@@ -113,7 +148,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-rq-dUI" userLabel="One-column + infinite">
-                                                        <rect key="frame" x="0.0" y="116.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="116.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] One-column + infinite scroll"/>
                                                         <connections>
@@ -121,7 +156,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n" userLabel="Two-column">
-                                                        <rect key="frame" x="0.0" y="164.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="164.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] Two-column"/>
                                                         <connections>
@@ -129,7 +164,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-1j-IO3" userLabel="GIF file header">
-                                                        <rect key="frame" x="0.0" y="212.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="212.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Gif file"/>
                                                         <connections>
@@ -137,7 +172,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSC-4B-q7T" userLabel="GIF URL header">
-                                                        <rect key="frame" x="0.0" y="260.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="260.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Gif URL"/>
                                                         <connections>
@@ -145,7 +180,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kE-Z4-MDJ" userLabel="Text header">
-                                                        <rect key="frame" x="0.0" y="308.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="308.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Text"/>
                                                         <connections>
@@ -153,7 +188,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
-                                                        <rect key="frame" x="0.0" y="356.33333333333331" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="356.33333333333337" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="A photo with products"/>
                                                         <connections>
@@ -166,9 +201,11 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="A1x-oQ-oH7" secondAttribute="trailing" constant="20" id="BIy-Oq-gIB"/>
+                                            <constraint firstItem="aq5-SL-xbA" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="OMB-F2-Egd"/>
                                             <constraint firstItem="A1x-oQ-oH7" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="Uav-8v-kyK"/>
                                             <constraint firstAttribute="trailing" secondItem="x9k-Li-OaM" secondAttribute="trailing" constant="20" id="ljh-VR-f5g"/>
                                             <constraint firstItem="x9k-Li-OaM" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="sEe-Ei-KXH"/>
+                                            <constraint firstAttribute="trailing" secondItem="aq5-SL-xbA" secondAttribute="trailing" constant="20" id="wcw-z4-HEc"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -193,6 +230,7 @@
                     <navigationItem key="navigationItem" title="PixleeSDK example app" id="Tjw-Mr-lNa"/>
                     <connections>
                         <outlet property="analyticsStackView" destination="A1x-oQ-oH7" id="hCZ-jQ-vUW"/>
+                        <outlet property="uiAutoAnalyticsStackView" destination="aq5-SL-xbA" id="7l1-6g-hu6"/>
                         <outlet property="uiStackView" destination="x9k-Li-OaM" id="wlE-1Y-bT6"/>
                     </connections>
                 </viewController>

@@ -20,11 +20,19 @@ jobs:
   build:
     macos:  
       xcode: 11.3.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
     steps:
       - checkout
       - set-directory
       - add-pixlee-credentials
-      - unit-tests
+      - fastlane_preparation
+      - ui-tests
+      - store_test_results:
+          path: output/scan
+      - store_artifacts:
+          path: output
   deploy:
     macos:
       xcode: 11.3.0
@@ -37,7 +45,7 @@ commands:
   set-directory:
     steps:
       - run:
-          name: set directory
+          name: Install CocoaPods + set directory
           command: pod install --project-directory=Example
   add-pixlee-credentials:
     steps:
@@ -46,12 +54,22 @@ commands:
           command: |
             echo $PIXLEE_CREDENTIALS | base64 --decode > Example/Example/PixleeCredentials.plist
             ls -al Example/Example
-  unit-tests:
+  fastlane_preparation:
+    steps:
+      - run: bundle update fastlane
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+  ui-tests:
     steps:
       - run:
-          name: unit tests
-          command:  |
-            xcodebuild test -enableCodeCoverage YES -workspace Example/Example.xcworkspace -scheme ExampleTests -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 8' | xcpretty
+          name: UI tests using Fastlane
+          command: bundle exe fastlane test
+
   deploy-cooapods:
     steps:
       - run:

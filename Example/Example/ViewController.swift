@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var uiStackView: UIStackView!
     @IBOutlet var analyticsStackView: UIStackView!
+    @IBOutlet weak var uiAutoAnalyticsStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class ViewController: UIViewController {
         
         addEmptySpace(to: uiStackView)
         addEmptySpace(to: analyticsStackView)
+        addEmptySpace(to: uiAutoAnalyticsStackView)
+        
                 
         do {
             try pixleeCredentials = PixleeCredentials.create()
@@ -53,14 +56,19 @@ class ViewController: UIViewController {
     func initClient(){
         if let apiKey = pixleeCredentials.apiKey {
             // Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
-            //        #warning  Environment Variables, replace with your Pixlee API key.
+            // add your Pixlee API key.
             PXLClient.sharedClient.apiKey = apiKey
         }
         
         if let secretKey = pixleeCredentials.secretKey {
-            //        #warning In Environment Variables, replace with your Secret Key if you are making POST requests.
+            // add your Secret Key if you are making POST requests.
             PXLClient.sharedClient.secretKey = secretKey
         }
+        
+        PXLClient.sharedClient.autoAnalyticsEnabled = true
+        
+        // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
+        PXLClient.sharedClient.regionId = pixleeCredentials.regionId
     }
     
     func initAlbum(){
@@ -81,9 +89,6 @@ class ViewController: UIViewController {
             album.filterOptions = filterOptions
             
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            
-            // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
-            album.regionId = pixleeCredentials.regionId
         }
     }
     
@@ -106,7 +111,7 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
     func getSamplePhotos() -> [PXLPhoto]? {
         if let album = album {
             
@@ -129,7 +134,7 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
     @IBAction func loadAlbum(_ sender: Any) {
         if let album = album {
             present(PXLAlbumViewController.viewControllerForAlbum(album: album), animated: true, completion: nil)
@@ -149,6 +154,15 @@ class ViewController: UIViewController {
     
     @IBAction func showAnalytics(_ sender: Any) {
         present(AnalyticsViewController.getInstance(), animated: true, completion: nil)
+    }
+    
+    // MARK: - UI Components + Auto Analytics
+    @IBAction func showAutoAnalyticsUI(_ sender: Any) {
+        present(AutoUIImageListViewController.getInstance(true), animated: true, completion: nil)
+    }
+    
+    @IBAction func showAutoAnalyticsUITurnedOff(_ sender: Any) {
+        present(AutoUIImageListViewController.getInstance(false), animated: true, completion: nil)
     }
     
     // MARK: - UI Components
@@ -195,7 +209,7 @@ class ViewController: UIViewController {
     }
     @IBAction func loadPhotoProductsView(_ sender: Any) {
         if let photos = getSamplePhotos() {
-            present(PhotoProductListDemoViewController.getInstance([photos[0]]), animated: true, completion: nil)
+            present(PhotoProductListDemoViewController.getInstance(photos[0]), animated: true, completion: nil)
         }
         
     }

@@ -15,7 +15,6 @@ class PXLApiRequests {
 
     var apiKey: String?
     var secretKey: String?
-
     var disableCaching: Bool = false
 
     private func defaultGetParameters() -> [String: Any] {
@@ -86,12 +85,16 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if let regionId = album.regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
             
             let request = try urlRequest(.get, url, parameters: params)
-            print("request: \(request)")
+            
+            #if DEBUG
+            print("request: \(request)\n")
+            #endif
+            
             return request
         } catch {
             fatalError("Worng url request")
@@ -120,7 +123,7 @@ class PXLApiRequests {
                 params["filters"] = filterParamString
             }
             
-            if let regionId = album.regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
 
@@ -132,23 +135,25 @@ class PXLApiRequests {
     }
 
     func getPhotoWithPhotoAlbumId(_ photoAlbumId: String) -> URLRequest {
-        let url = baseURL + "api/v2/media/\(photoAlbumId)"
-        do {
-            let params = defaultGetParameters()
-            let request = try urlRequest(.get, url, parameters: params)
-            return request
-        } catch {
-            fatalError("Worng url request")
-        }
+        // we no longer use this API since this does not support multi-region
+//        let url = baseURL + "api/v2/media/\(photoAlbumId)"
+//        do {
+//            let params = defaultGetParameters()
+//            let request = try urlRequest(.get, url, parameters: params)
+//            return request
+//        } catch {
+//            fatalError("Worng url request")
+//        }
+        return getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId)
     }
     
-    func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String, regionId: Int?) -> URLRequest {
+    func getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String) -> URLRequest {
         let url = baseURL + "getPhoto"
         do {
             var params = defaultGetParameters()
             params["album_photo_id"] = photoAlbumId
             
-            if let regionId = regionId {
+            if let regionId = PXLClient.sharedClient.regionId {
                 params["region_id"] = regionId
             }
             
@@ -166,6 +171,11 @@ class PXLApiRequests {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
             let postHeaders = self.postHeaders(isDistilleryServer: false, headers: [:], parameters: parameters)
             let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
+            
+            #if DEBUG
+            print("request: \(request)")
+            print("parameters: \(parameters)\n")
+            #endif
             return request
         } catch {
             fatalError("Worng url request")

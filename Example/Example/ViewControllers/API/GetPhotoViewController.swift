@@ -49,11 +49,8 @@ class GetPhotoViewController: UIViewController {
         
         if let album = album {
             var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-            album.filterOptions = filterOptions
-            
+            album.filterOptions = filterOptions            
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            
-            album.regionId = pixleeCredentials.regionId
         }
     }
     
@@ -65,7 +62,7 @@ class GetPhotoViewController: UIViewController {
                     if let albumPhotoId = photos.shuffled().first?.albumPhotoId {
                         print("-----albumPhotoId: \(albumPhotoId)")
                         // alternative: PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId), regionId: album.regionId) { (pxlPhoto, error) in
-                        PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId), regionId: album.regionId) { (pxlPhoto, error) in
+                        PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId)) { (pxlPhoto, error) in
                             if let pxlPhoto = pxlPhoto {
                                 print("a photo loaded, albumPhotoId: \(pxlPhoto.albumPhotoId)")
                                 let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, delegate: self, cellConfiguration: PXLProductCellConfiguration(bookmarkOnImage: nil, bookmarkOffImage: nil))

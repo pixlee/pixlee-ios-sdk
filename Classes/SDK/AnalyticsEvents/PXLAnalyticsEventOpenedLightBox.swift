@@ -10,12 +10,10 @@ import UIKit
 
 public struct PXLAnalyticsEventOpenedLightBox: PXLAnalyticsEvent {
     let photo: PXLPhoto
-    let regionId: Int?
     public var eventName = "openedLightbox"
 
-    public init(photo: PXLPhoto, regionId:Int?) {
+    public init(photo: PXLPhoto) {
         self.photo = photo
-        self.regionId = regionId
     }
 
     public var logParameters: [String: Any] {
@@ -27,7 +25,7 @@ public struct PXLAnalyticsEventOpenedLightBox: PXLAnalyticsEvent {
             "platform": "ios",
             "uid": udid]
 
-        if let regionId = regionId {
+        if let regionId = PXLClient.sharedClient.regionId {
             parameters["region_id"] = String(regionId)
         }
         

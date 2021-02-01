@@ -11,14 +11,12 @@ import UIKit
 public struct PXLAnalyticsEventActionClicked: PXLAnalyticsEvent {
     let photo: PXLPhoto
     let actionLink: String
-    let regionId: Int?
 
     public var eventName = "actionClicked"
 
-    public init(photo: PXLPhoto, actionLink: String, regionId: Int?) {
+    public init(photo: PXLPhoto, actionLink: String) {
         self.photo = photo
         self.actionLink = actionLink
-        self.regionId = regionId
     }
 
     public var logParameters: [String: Any] {
@@ -31,7 +29,7 @@ public struct PXLAnalyticsEventActionClicked: PXLAnalyticsEvent {
             "platform": "ios",
             "uid": udid]
 
-        if let regionId = regionId {
+        if let regionId = PXLClient.sharedClient.regionId {
             parameters["region_id"] = regionId
         }
         

@@ -13,16 +13,14 @@ public struct PXLAnalyticsEventAddCart: PXLAnalyticsEvent {
     let quantity: Int
     let price: String
     let currency: String?
-    let regionId: Int?
 
     public var eventName = "addToCart"
 
-    public init(sku: String, quantity: Int, price: String, currency: String? = nil, regionId: Int?) {
+    public init(sku: String, quantity: Int, price: String, currency: String? = nil) {
         self.sku = sku
         self.quantity = quantity
         self.price = price
         self.currency = currency
-        self.regionId = regionId
     }
 
     public var logParameters: [String: Any] {
@@ -38,7 +36,7 @@ public struct PXLAnalyticsEventAddCart: PXLAnalyticsEvent {
             parameters["currency"] = currency
         }
         
-        if let regionId = regionId {
+        if let regionId = PXLClient.sharedClient.regionId {
             parameters["region_id"] = regionId
         }
 

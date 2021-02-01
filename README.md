@@ -14,12 +14,18 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [About the SDK](#About-the-SDK)
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Add the SDK to your App](#Add-the-SDK-to-your-App)
-    - [Option 1: Using Cocoapods](#Option-1:-Using-Cocoapods)
-    - [Option 2: Using Carthage](#Option-2:-Using-Carthage)
-        - [If you're building for iOS, tvOS, or watchOS](#If-you're-building-for-iOS,-tvOS,-or-watchOS)
+    - [Option 1: Using Cocoapods](option-1-using-cocoapods)
+    - [Option 2: Using Carthage](#option-2-using-carthage)
+        - [If you're building for iOS, tvOS, or watchOS](#if-youre-building-for-ios-tvos-or-watchos)
+- [Initiate the SDK](#Initiate-the-SDK)
+    - [API Key](#api-key)
+    - [Secret Key (Optional)](#secret-key-optional)
+    - [Disable Caching: Network API Caching (Optional)](#disable-caching-network-api-caching--optional)
+    - [Multi-region (Optional)](#multi-region-optional)
+    - [Automatic Analytics (Optional)](#automatic-analytics-optional)
 - [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
-- [Getting a PXLPhoto](#getting-a-content)
+- [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
     - [Conversion](#Conversion)
@@ -29,12 +35,12 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Load More](#Load-More)
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
 - [UI components](#UI-components)
-    - [Image & Video Viewer with PXLPhoto](#Image-and-Video-Viewer-with-PXLPhoto)
+    - [PXLPhoto](#pxlphoto)
     - [PXLPhotoProductView](#PXLPhotoProductView)
     - [PXLPhotoView](#PXLPhotoView)
     - [PXLPhotoListView](#PXLPhotoListView)
     - [PXLGridView](#PXLGridView)
-    - [PXLItemsView](#PXLItemsView)
+       - [Automatic analytics of pxlgridview](#automatic-analytics-of-pxlgridview)
 - [Troubleshooting](#Troubleshooting)
 - [License](#License)
 
@@ -105,11 +111,59 @@ If you are using Objective-C in your porject and don't want to add a framework b
 
     When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
 
-## Network API Caching
-We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).  
 
+# Initiate the SDK
+### Sample
+```swift
+#!swift
+PXLClient.sharedClient.apiKey = your api key
+PXLClient.sharedClient.secretKey = your secret key // (Optional) <----- use this if you use analytics or image-upload
+PXLClient.sharedClient.disableCaching = true // (Optional) don't use cache
+PXLClient.sharedClient.regionId = your region id // (Optional) <--- set it if you use multi-region.
+PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
 
-## Filtering and Sorting
+```
+### API key
+- Where to get Pixlee API credentials? visit here: https://app.pixlee.com/app#settings/pixlee_api
+- add your Pixlee API key.
+    ```swift
+    #!swift
+    PXLClient.sharedClient.apiKey = apiKey
+    ```
+### Secret Key (Optional)
+- add your Secret Key if you are making POST requests.
+    ```swift
+    #!swift
+    PXLClient.sharedClient.secretKey = secretKey
+    ```
+### Disable Caching: Network API Caching  (Optional)
+- We've seen issues with the phones caching the requests. So if you want you can enable the network API caching by setting  `PXLClient`'s `disableCaching` property to `false`. The default is disabled (disableCaching=true).
+    ```swift
+    #!swift
+    PXLClient.sharedClient.disableCaching = true // don't use cache
+    PXLClient.sharedClient.disableCaching = false // use cache
+    ```
+### Multi-region (Optional)
+- if you use multi-region, you can set your region id here to get photos, a photo, and products available in the region.
+    ```swift
+    #!swift
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+    ```
+### Automatic Analytics (Optional)
+```swift
+#!swift
+PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This activates this auto-analytics on PXLGridView and PXLPhotoProductView
+```
+- This is to delegate this SDK to fire necessary analytics events for you. If you don't want to use this, you can just ignore this part.
+- if you use PXLGridView, you need an extra setting [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview).
+- Which analytics do we fire for you?:
+    - `loadmore` event: when you use `PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album)` and load the second or the next pages, we fire `loadmore` events for you.
+    - `openedWidget` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `openedWidget`.
+    - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
+    - `openedLightbox` event: when you display PXLPhotoProductView with a PXLPhoto on the screen, we fire `openedLightbox`.
+- **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
+        
+# Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
 As of now, the following filters are supported by SDK:
@@ -155,12 +209,15 @@ dynamic - Our "secret sauce" -- a special sort that highlights high performance 
 //These parameters are examples. Please adjust, add or remove them during implementation.
 //=========================================================
 
-//Create an Instance of Album with the Identifier
-let album = PXLAlbum(identifier: PXLAlbumIdentifier)
+PXLClient.sharedClient.apiKey = <your api key>
+PXLClient.sharedClient.secretKey = <your secret key>
 
 // Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
 // note: - note: you can get the right currencies of your products by adding regionId here
-album.regionId = <your region id in Int>
+PXLClient.sharedClient.regionId = <your region id> <--- set it if you use multi-region.
+
+//Create an Instance of Album with the Identifier
+let album = PXLAlbum(identifier: PXLAlbumIdentifier)
 
 // Create and set filter options on the album.
 album.filterOptions = PXLAlbumFilterOptions(minInstagramFollowers: 1)
@@ -199,13 +256,15 @@ You can load the content via the `PXLClient`, You just have to use the `loadNext
 //These parameters are examples. Please adjust, add or remove them during implementation.
 //=========================================================
 
-
-//Create an Instance of Album with the SKU Identifier
-let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
+PXLClient.sharedClient.apiKey = <your api key>
+PXLClient.sharedClient.secretKey = <your secret key>
 
 // Added regionId to get the currency of the specific region when searching for photos of an album. Here's how you can use it.
 // note: - note: you can get the right currencies of your products by adding regionId here
-album.regionId = <your region id in Int>
+PXLClient.sharedClient.regionId = <your region id> <--- set it if you use multi-region.
+
+//Create an Instance of Album with the SKU Identifier
+let album = PXLAlbum(identifier: PXLSkuAlbumIdentifier)
 
 // Create and set filter options on the album.
 let dateString = "20190101"
@@ -259,7 +318,7 @@ Example of loading the detailViewController
     present(navController, animated: true, completion: nil)
 ```
 
-## Getting a PXLPhoto (a content)
+# Getting a PXLPhoto
 If you want to make a PXLPhoto using an album photo id, you can get it using our API in the SDK like below.
 ```swift
 var photoAlbumId = <one of you photo album ids>
@@ -280,9 +339,8 @@ if let photoAlbumId = photoAlbumId {
 If you want to make a PXLPhoto using an album photo id and a region id, you can get it using our API in the SDK like below.
 ```swift
 var photoAlbumId = <one of you photo album ids>
-var regionId:Int = <one of your region ids>
 if let photoAlbumId = photoAlbumId {
-    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: photoAlbumId, regionid: regionId) { newPhoto, error in
+    _ = PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: photoAlbumId) { newPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
             return
@@ -297,7 +355,7 @@ if let photoAlbumId = photoAlbumId {
 ```
 
 
-## Analytics
+# Analytics
 If you would like to make analytics calls you can use our analytics service `PXLAnalyticsService`. What is a singleton, you can reach it as `PXLAnalyticsService.sharedAnalytics`.
 To log an event. You need to instantiate the event's class what is inherited from the `PXLAnalyticsEvent` (listed available types bellow). And pass it to the analytics service's `logEvent` method. 
 The following events are supported by the sdk:
@@ -311,9 +369,8 @@ PXLAlbums:  Load More (PXLAnalyticsEventLoadMoreClicked): Call this whenever a u
 PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenever a user make an action after clicking on an item in the Pixlee widget
 
 ```
-#### Add to Cart
+### Add to Cart
 ```swift
-    val regionId:Int?
     let currency = "USD"
     let productSKU = "SL-BENJ"
     let quantity = 2
@@ -321,8 +378,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let event = PXLAnalyticsEventAddCart(sku: productSKU,
         quantity: quantity,
         price: price,
-        currency: currency,
-        regionId: regionId)
+        currency: currency)
                                          
      //EVENT add:cart refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
@@ -333,9 +389,8 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### Conversion
+### Conversion
 ```swift
-    val regionId:Int?
     // Setup some constants
     let currency = "USD"
     // Product 1 example
@@ -356,7 +411,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
     let cartContents = [cart1, cart2]
 
     //EVENT converted: refers to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency, regionId: regionId)
+    let event = PXLAnalyticsEventConvertedPhoto(cartContents: cartContents, cartTotal: cartTotal, cartTotalQuantity: quantityTotal, orderId: orderId, currency: currency)
 
     PXLAnalyticsService.sharedAnalytics.logEvent(event: event) { error in
         guard error == nil else {
@@ -366,7 +421,7 @@ PXLPhoto: Action Link Clicked (PXLAnalyticsEventActionClicked): Call this whenev
         print("Logged")
     }
 ```
-#### Opended Widget
+### Opended Widget
 It's important to trigger this event after the LoadNextPage event
 ```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
@@ -382,22 +437,20 @@ It's important to trigger this event after the LoadNextPage event
         }
     }
 ```
-#### Opened Lightbox
+### Opened Lightbox
 ```swift
-    val regionId:Int?
     // fire this when a PXLPhoto is displayed from your List View containing a list of PXLPhotos
     let pxlPhoto:PXLPhoto = photoFromSomewhere
 
     //EVENT opened:lightbox refer to pixlee_sdk/PXLAbum.h or The Readme or https://developers.pixlee.com/docs/analytics-events-tracking-pixel-guide
-    pxlPhoto.triggerEventOpenedLightbox(regionId: regionId) { (error) in
+    pxlPhoto.triggerEventOpenedLightbox() { (error) in
         print("Logged") 
     }
 
 ```
 
-#### Action Click 
+### Action Click 
 ```swift
-    val regionId:Int?
     PXLClient.sharedClient.getPhotoWithPhotoAlbumId(photoAlbumId: "299469263") { newPxlPhoto, error in
         guard error == nil else {
             print("Error during load of image with Id \(String(describing: error))")
@@ -409,14 +462,14 @@ It's important to trigger this event after the LoadNextPage event
         }
         print("New Photo: \(pxlPhoto.albumPhotoId)")
         if let product = pxlPhoto.products?.first, let url = product.link?.absoluteString {
-            pxlPhoto.triggerEventActionClicked(actionLink: url, region: regionId) { _ in
+            pxlPhoto.triggerEventActionClicked(actionLink: url) { _ in
                 print("triggered")
             }
         }
     }
 ```
 
-#### Load More
+### Load More
 ```swift
     let album = PXLAlbum(sku: PXLSkuAlbumIdentifier)
     // If you are using  https://developers.pixlee.com/reference#get-approved-content-from-album // api/v2/album/@album_id/Photos
@@ -430,7 +483,7 @@ It's important to trigger this event after the LoadNextPage event
     }
 
 ```
-## Uploading an Image to an album
+# Uploading an Image to an album
 ```swift
 // Example
 public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -469,60 +522,78 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
     }
 }
 ```
-## UI components
-#### Image and Video Viewer with PXLPhoto
+# UI components
+### PXLPhoto
+- Image and Video Viewer
 - after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
-```swift
-//Example
-func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-    let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
-    let navController = UINavigationController(rootViewController: photoDetailVC)
-    present(navController, animated: true, completion: nil)
-}
-```
+    ```swift
+    //Example
+    func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
+        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
+        let navController = UINavigationController(rootViewController: photoDetailVC)
+        present(navController, animated: true, completion: nil)
+    }
+    ```
 
-#### PXLPhotoProductView
+### PXLPhotoProductView
 <img src="doc/gif/PXLPhotoProductView.gif" width="20%">
+
 - You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
-- You can use and customize the close button on the view with the following methods:
-- `closeButtonImage` : Sets the image for the close button. Default is an close x image
-- `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
-- `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
-- `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
-- `hideCloseButton`: Set to true if you don't need the close button on the view
+- You can use and customize the **_close button_** on the view with the following methods:
+  - `closeButtonImage` : Sets the image for the close button. Default is an close x image
+  - `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
+  - `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
+  - `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
+  - `hideCloseButton`: Set to true if you don't need the close button on the view
+  
+- You can use and customize the **_mute button_** on the view with the following methods:
+  - `muteButtonOnImage` : Sets the on image for the mute button.
+  - `muteButtonOffImage` : Sets the off image for the mute button.
+  - `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
+  - `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
+  - `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
+  - `hideMuteButton`: Set to true if you don't need the mute button on the view
 
-- You can use and customize the mute button on the view with the following methods:
-- `muteButtonOnImage` : Sets the on image for the mute button.
-- `muteButtonOffImage` : Sets the off image for the mute button.
-- `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
-- `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
-- `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
-- `hideMuteButton`: Set to true if you don't need the mute button on the view
+    ```swift
+    //Basic Example
+    ...
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+        widget.frame = self.view.frame
+        self.view.addSubview(widget.view)
+    }
+    //Show modally with animation example 
+    ...
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+        widget.showModally(hostView: self.view, animated:true)
+    }
+    ```
 
-```swift
-//Basic Example
-...
+- Automatic Analytics of PXLPhotoProductView
+  - If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
+  
+    ```swift
+    #!swift
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+    
     let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-    widget.frame = self.view.frame
-    self.view.addSubview(widget.view)
-}
-//Show modally with animation example 
-...
-    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-    widget.showModally(hostView: self.view, animated:true)
-}
-```
-#### PXLPhotoView
+
+    ...
+    ```
+
+### PXLPhotoView
 - Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
 - To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
-```swift
-//Basic Example
-...
-    let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
-    self.view.addSubview(photoView)
-}
-```
+    ```swift
+    //Basic Example
+    ...
+        let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
+        self.view.addSubview(photoView)
+    }
+    ```
 #### PXLPhotoViewConfiguration
 Configurator class for the PXLPhotoView.
 Configuration options:
@@ -536,26 +607,27 @@ Configuration options:
 - `delegate:PXLPhotoViewDelegate`: Delegate
 - `cropMode:PXLPhotoCropMode`: Image/ Video crop mode
 
-#### PXLPhotoListView
+### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
-```swift
-//Basic Example
-...
-    var photoView = PXLPhotoListView()
-    photoView.delegate = self
-    photoView.frame = view.frame
-    view.addSubview(photoView)
-    photoView.items = [Array Of Photos]
-}
-```
+    ```swift
+    //Basic Example
+    ...
+        var photoView = PXLPhotoListView()
+        photoView.delegate = self
+        photoView.frame = view.frame
+        view.addSubview(photoView)
+        photoView.items = [Array Of Photos]
+    }
+    ```
 
-#### PXLGridView
+### PXLGridView
 |one photo in a row|two photos in a row|
 |------|---|
 |<img src="doc/gif/PXLGridView.gif" width="50%">|<img src="doc/gif/PXLGridViewMulti.gif" width="50%">|
 
 Grid view with lots of customizable features, where the cells are PXLPhotoViews. You have to implement the `PXLGridViewDelegate` to customize the grid.
-Customization options
+
+#### Customization options
 - `cellHeight`: Height of the cells
 - `cellPadding`: Padding between the cells and rows
 - `isMultipleColumnsEnabled`: Two columns if true, if false then only one column
@@ -563,17 +635,24 @@ Customization options
 - `isInfiniteScrollingEnabled`: If we want to have infinite scrolling
 - `setupPhtoCell(cellPXLGridViewCell: photo:PXLPhoto)`: Here, you can customize your cell like in the basic example of `PXLPhotoView`.
 
-Optional options:
--`headerTitle`: Title of the header
--`headerGifName`: Name of header gif image bundled in the application
--`headerGifUrl`: Url of the header gif image
--`headerHeight`: Height of the header
--`headerGifContentMode`: Content mode of the header gif images
--`headerTitleFont`: Font of the header title
--`headerTitleColor`: Color of the header title
+#### Optional options
+- `headerTitle`: Title of the header
+- `headerGifName`: Name of header gif image bundled in the application
+- `headerGifUrl`: Url of the header gif image
+- `headerHeight`: Height of the header
+- `headerGifContentMode`: Content mode of the header gif images
+- `headerTitleFont`: Font of the header title
+- `headerTitleColor`: Color of the header title
+
+#### Example of PXLGridView
 ```swift
 //Basic Example
-...
+override func viewDidLoad() {
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = false
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+
     var gridView = PXLGridView()
     photoView.delegate = self
     gridView.frame = self.view.bounds
@@ -581,57 +660,109 @@ Optional options:
     view.addSubview(gridView)
     gridView.items = [Array Of Photos]
 }
-```
-#### PXLItemsView
-Show a custom set of items, with the provided title
-Customization options
-- `listTitle`: Title of the list
-- `titleGifName`: Name of the title gif bundled with the applciation
-- `titleGifURL`: URL of the gif to load instead of the title
-- `titleFont`: Font of the title
-- `cellHeight`: Height of the cells
-- `cellPadding`: Padding between the cells and rows
-- `gifHeight`: Height of the gif in the title (default 200)
-- `gifContentMode`: Content mode of the gif in the title
 
-- `setupPhotoView(itemsView: PXLItemsView, photoView: PXLPhotoView, photo: PXLPhoto)`: Here, you can customize your view by calling the `setupView(photoView:, title:, subtitle:, buttonTitle:, configuration:, delegate:)` To have the ability to customize all the photos one by one
-```swift
-//Basic Example
-...
-    var itemsView = PXLItemsView()
-    itemsView.delegate = self
-    view.addSubview(itemsView)
-    itemsView.translatesAutoresizingMaskIntoConstraints = false
-    let itemsConstraints = [
-            itemsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            itemsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            itemsView.topAnchor.constraint(equalTo: view.topAnchor),
-            itemsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-        NSLayoutConstraint.activate(itemsConstraints)
-        itemsView.items = [Array of photos]
-        itemsView.listTitle = "[List title]"
+extension AutoUIImageListViewController: PXLPhotoViewDelegate {
+    public func onPhotoButtonClicked(photo: PXLPhoto) {
+        print("Action tapped \(photo.id)")
+        openPDP(photo: photo)
+    }
+
+    public func onPhotoClicked(photo: PXLPhoto) {
+        print("Photo Clicked \(photo.id)")
+        openPDP(photo: photo)
+    }
+
+    func openPDP(photo: PXLPhoto) {
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
+    }
 }
+
+extension AutoUIImageListViewController: PXLGridViewDelegate {
+    func isVideoMutted() -> Bool {
+        false
+    }
+
+    func cellsHighlighted(cells: [PXLGridViewCell]) {
+        //        print("Highlighted cells: \(cells)")
+    }
+
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
+        if let index = pxlGridView.items.firstIndex(of: photo) {
+            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "PXLPhotoProductView", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+        }
+    }
+
+    public func cellHeight() -> CGFloat {
+        return 350
+    }
+
+    func cellPadding() -> CGFloat {
+        return 8
+    }
+
+    func isMultipleColumnEnabled() -> Bool {
+        return false
+    }
+
+    func isHighlightingEnabled() -> Bool {
+        return false
+    }
+
+    func isInfiniteScrollEnabled() -> Bool {
+        return false
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // This is an example of how to load more photos as you swipe up to go to the bottom of the scroll. You can use our own way of doing this.
+        if scrollView == pxlGridView.collectionView && !pxlGridView.items.isEmpty {
+            let unseenHeight = scrollView.contentSize.height - (scrollView.contentOffset.y + scrollView.frame.height)
+            // this [single page's height * singlePageRatio] pixels of the remaining scrollable height is used for smooth scroll while retrieving photos from the server.
+            let singlePageRatio = CGFloat(2.0)
+            if unseenHeight < (scrollView.frame.height * singlePageRatio) {
+                loadPhotos()
+            }
+        }
+    }
+}
+
+```
+#### Automatic Analytics of PXLGridView
+  - If you want to delegate firing 'VisibleWidget' and 'OpenedWidget' analytics event to PXLGridView, use this code. On the other hand, if you want to manually fire the two events, you don't use this and do need to implement our own analytics codes. Please check out AutoUIImageListViewController.swift to get the sample codes.
+  - **[Important] Please be aware of giving the same instance of PXLAlbum that you created to retrieve the list of PXLPhotos to send the correct album information to the analytics server.**
+```swift
+#!swift
+let album: PXLAlbum
+override func viewDidLoad() {
+    PXLClient.sharedClient.apiKey = your api key
+    PXLClient.sharedClient.secretKey = your secret key
+    PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
+    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+
+    var gridView = PXLGridView()
+    ...
+    pxlGridView.autoAnalyticsDelegate = self <-- MUST be implemented
+    ...
+}
+
+// this must be implemented to use this feature
+extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
+    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType: String) {
+        (album, "customized_widget_type")
+    }
+}
+
+
 ```
 
-
-#### Example App
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first. Then in `ViewController.swift` set `PXLClient.sharedClient.apiKey` to your API key (available from the Pixlee dashboard). and set the album id that you wish to display as `PXLAlbumIdentifier`.
-
-To run the project, open `Example.xcworkspace` in Xcode.
-
-Run the project and you should see a grid of content from that album.
-
-## Troubleshooting
+# Troubleshooting
 
 If you get an error running `carthage update` on osx please clear your carthage cache by doing 
 `rm -rf ~/Library/Caches/org.carthage.CarthageKit`. 
 
-## Libraries
+# Libraries
 - [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is used to implement the infinite scroll in the SDK.
     - you can enable and disable the feature with **PXLGridViewDelegate.isInfiniteScrollEnabled: true / false**
 
-## License
+# License
 - pixlee-ios-sdk is available under the MIT license.
 - [InfiniteLayout](https://github.com/arnauddorgans/InfiniteLayout) is available under the MIT license.

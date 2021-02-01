@@ -290,6 +290,8 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(muteButton)
 
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
+            
+            fireAnalyticsOpenLightbox()
         }
     }
 
@@ -325,6 +327,7 @@ public class PXLPhotoProductView: UIViewController {
         }
 
         setupButtons()
+        fireAnalyticsOpenLightbox()
     }
 
     func playVideo(url: URL) {
@@ -443,6 +446,46 @@ public class PXLPhotoProductView: UIViewController {
         queuePlayer?.isMuted = muted
         adjustMuteImages()
     }
+    
+    private var isAnalyticsOpenLightboxFired = false
+    
+    private func fireAnalyticsOpenLightbox() {
+        if !PXLClient.sharedClient.autoAnalyticsEnabled {
+            return
+        }
+        
+        if (!isAnalyticsOpenLightboxFired) {
+            guard let photo = viewModel else {
+                print( "can't fire OpenLightbox analytics event because photo:PXLPhoto is null")
+                return
+            }
+            
+            if isVisible(view) {
+                isAnalyticsOpenLightboxFired = true
+                _ = photo.triggerEventOpenedLightbox() { error in
+                    self.isAnalyticsOpenLightboxFired = false
+                    guard error == nil else {
+                        print( "🛑 There was an error \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                    print( "Opened lightbox fired")
+                }
+            }
+        }
+    }
+    
+    func isVisible(_ view: UIView) -> Bool {
+        func isVisible(view: UIView, inView: UIView?) -> Bool {
+            guard let inView = inView else { return true }
+            let viewFrame = inView.convert(view.bounds, from: view)
+            if viewFrame.intersects(inView.bounds) {
+                return isVisible(view: view, inView: inView.superview)
+            }
+            return false
+        }
+        return isVisible(view: view, inView: view.superview)
+    }
+
 }
 
 extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSource {

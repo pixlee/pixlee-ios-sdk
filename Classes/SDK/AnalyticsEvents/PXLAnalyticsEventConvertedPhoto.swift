@@ -32,17 +32,15 @@ public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
     let cartTotalQuantity: Int
     let orderId: String?
     let currency: String?
-    let regionId: Int?
 
     public var eventName = "conversion"
 
-    public init(cartContents: [PXLAnalyticsCartContents], cartTotal: String, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil, regionId: Int?) {
+    public init(cartContents: [PXLAnalyticsCartContents], cartTotal: String, cartTotalQuantity: Int, orderId: String? = nil, currency: String? = nil) {
         self.cartContents = cartContents
         self.cartTotal = cartTotal
         self.cartTotalQuantity = cartTotalQuantity
         self.orderId = orderId
         self.currency = currency
-        self.regionId = regionId
     }
 
     public var logParameters: [String: Any] {
@@ -64,7 +62,7 @@ public struct PXLAnalyticsEventConvertedPhoto: PXLAnalyticsEvent {
             parameters["currency"] = currency
         }
 
-        if let regionId = regionId {
+        if let regionId = PXLClient.sharedClient.regionId {
             parameters["region_id"] = regionId
         }
         
