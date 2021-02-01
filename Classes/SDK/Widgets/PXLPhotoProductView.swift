@@ -463,8 +463,8 @@ public class PXLPhotoProductView: UIViewController {
             if isVisible(view) {
                 isAnalyticsOpenLightboxFired = true
                 _ = photo.triggerEventOpenedLightbox() { error in
-                    self.isAnalyticsOpenLightboxFired = false
                     guard error == nil else {
+                        self.isAnalyticsOpenLightboxFired = false
                         print( "🛑 There was an error \(error?.localizedDescription ?? "")")
                         return
                     }
