@@ -54,7 +54,7 @@ class AutoUIImageListViewController: UIViewController {
             if ProcessInfo.processInfo.arguments.contains("IS_UI_TESTING"){
                 label.alpha = 1 // show test label
             } else {
-                label.alpha = 0 // hide test label
+                label.alpha = 0 // hide test label. If you want to see the events in the demo, make it label.alpha = 1.
             }
         }
         
