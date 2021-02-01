@@ -268,8 +268,8 @@ public class PXLGridView: UIView {
             if !infiniteItems.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
-                    self.isAnalyticsOpenedWidgetFired = false
                     guard error == nil else {
+                        self.isAnalyticsOpenedWidgetFired = false
                         print("🛑 There was an error \(error?.localizedDescription ?? "")")
                         return
                     }
@@ -288,8 +288,8 @@ public class PXLGridView: UIView {
             if !infiniteItems.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
-                    self.isAnalyticsVisibleWidgetFired = false
                     guard error == nil else {
+                        self.isAnalyticsVisibleWidgetFired = false
                         print( "🛑 There was an error \(error?.localizedDescription ?? "")")
                         return
                     }
