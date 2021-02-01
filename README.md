@@ -37,6 +37,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [UI components](#UI-components)
     - [PXLPhoto](#pxlphoto)
     - [PXLPhotoProductView](#PXLPhotoProductView)
+       - [Automatic Analytics of PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview)
     - [PXLPhotoView](#PXLPhotoView)
     - [PXLPhotoListView](#PXLPhotoListView)
     - [PXLGridView](#PXLGridView)
