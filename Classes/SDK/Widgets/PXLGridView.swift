@@ -304,9 +304,9 @@ public class PXLGridView: UIView {
         }
         
         if autoAnalyticsDelegate == nil {
-            print("autoAnalyticsDelegate or PXLGridViewDelegate.setupAlbumForAutoAnalytics(){..} is not spcified")
+            print("autoAnalyticsDelegate or PXLGridViewDelegate.setupAlbumForAutoAnalytics(){..} is not specified")
         } else {
-            print("You need to spcify 'class YourViewController PXLGridViewDelegate.setupAlbumForAutoAnalytics(){return (yourAlbum, your widget type)}'")
+            print("You need to specify 'class YourViewController PXLGridViewDelegate.setupAlbumForAutoAnalytics(){return (yourAlbum, your widget type)}'")
         }
         
         return autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()
