@@ -569,7 +569,7 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
     }
     ```
 
-- Automatic Analytics of PXLPhotoProductView
+#### Automatic Analytics of PXLPhotoProductView
   - If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
   
     ```swift
