@@ -40,6 +40,8 @@ class AutoUIImageListViewController: UIViewController {
         if let label = label{
             label.accessibilityIdentifier = PXLAnalyticsService.TAG
             label.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            label.lineBreakMode = .byWordWrapping
+            label.numberOfLines = 0
             label.textColor = UIColor.white
             label.text = "no events yet"
             view.addSubview(label)
@@ -108,7 +110,7 @@ class AutoUIImageListViewController: UIViewController {
     @objc func listenAnalytics(_ noti: Notification) {
         if let name:String = noti.object as? String{
             self.analyticsStrings.append(name)
-            self.label?.text = self.analyticsStrings.joined(separator: ",")
+            self.label?.text = self.analyticsStrings.joined(separator: " ,")
         }
     }
     
