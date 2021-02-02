@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042EB2E76FAC9226D8B11A6E /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */; };
+		5C03231025C8EB60006622F7 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03230F25C8EB60006622F7 /* EmptyViewController.swift */; };
 		5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */; };
 		5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */; };
 		5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */; };
@@ -62,6 +63,7 @@
 		09709C7B56523FEF6ADF2C49 /* Pods-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E545E1A5E7B8ADBE31AF7FD /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		4A4CE72FFDFA73435F673FD4 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C03230F25C8EB60006622F7 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
 		5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				F23BA1AC25190384009FC402 /* PhotoProductListDemoViewController.swift */,
 				F23BA1AD25190384009FC402 /* PhotoProductListDemoViewController.xib */,
 				F296942D24224A86003EB9DD /* Cells */,
+				5C03230F25C8EB60006622F7 /* EmptyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */,
 				5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */,
 				5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */,
+				5C03231025C8EB60006622F7 /* EmptyViewController.swift in Sources */,
 				5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */,
 				F2A8AC4A255E6F10008A40BF /* ListWithGifFileViewController.swift in Sources */,
 				F296942B242243BB003EB9DD /* WidgetsExampleViewController.swift in Sources */,
