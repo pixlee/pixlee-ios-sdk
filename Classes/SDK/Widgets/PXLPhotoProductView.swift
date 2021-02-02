@@ -366,7 +366,7 @@ public class PXLPhotoProductView: UIViewController {
         if keyPath == observeKey {
             if queuePlayer.timeControlStatus == .playing {
                 UIView.animate(withDuration: 0.3) {
-                    self.gifView.alpha = 0
+                    //self.gifView.alpha = 0
                 }
             }
         }
@@ -379,17 +379,23 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     override public func viewWillAppear(_ animated: Bool) {
+        print("PDPView.viewWillAppear()")
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        playVideo()
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("PDPView.viewWillDisappear()")
+        stopVideo()
+    }
+    
+    override public func didReceiveMemoryWarning() {
         durationLabelUpdateTimer?.invalidate()
         destroyPlayer()
-        do{
+        do {
             try AVAudioSession.sharedInstance().setCategory(category)
-        }catch{
+        } catch {
         }
     }
 

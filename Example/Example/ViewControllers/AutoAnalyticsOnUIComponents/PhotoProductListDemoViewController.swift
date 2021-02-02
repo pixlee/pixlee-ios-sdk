@@ -80,6 +80,11 @@ extension PhotoProductListDemoViewController: PXLPhotoProductDelegate {
 
     public func shouldOpenURL(url: URL) -> Bool {
         print("url: \(url)")
+        let vc = EmptyViewController.getInstance()
+        if PXLClient.sharedClient.autoAnalyticsEnabled {
+            vc.modalPresentationStyle = .fullScreen
+        }
+        present(vc, animated: true, completion: nil)
         return false
     }
 
