@@ -377,11 +377,16 @@ public class PXLPhotoProductView: UIViewController {
 
     override public func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        playVideo()
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("PDPView.viewWillDisappear()")
+        stopVideo()
+    }
+    
+    public override func didReceiveMemoryWarning() {
         durationLabelUpdateTimer?.invalidate()
         destroyPlayer()
         do{
