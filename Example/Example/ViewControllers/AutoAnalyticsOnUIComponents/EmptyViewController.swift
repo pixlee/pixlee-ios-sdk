@@ -38,7 +38,7 @@ class EmptyViewController: UIViewController {
         bodyLabel.lineBreakMode = .byWordWrapping
         bodyLabel.numberOfLines = 0
         bodyLabel.textColor = UIColor.black
-        bodyLabel.text = "This is just an example of your product page. You can replace this with your own one.\n\nClicked product url: \(url)"
+        bodyLabel.text = "This is just an example of your product page. You need to implement this inside your app.\n\nClicked product url: \(url)"
         bodyLabel.textAlignment = .center
         bodyLabel.font = UIFont.boldSystemFont(ofSize: 15)
         view.addSubview(bodyLabel)
