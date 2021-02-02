@@ -366,7 +366,7 @@ public class PXLPhotoProductView: UIViewController {
         if keyPath == observeKey {
             if queuePlayer.timeControlStatus == .playing {
                 UIView.animate(withDuration: 0.3) {
-                    //self.gifView.alpha = 0
+                    self.gifView.alpha = 0
                 }
             }
         }
