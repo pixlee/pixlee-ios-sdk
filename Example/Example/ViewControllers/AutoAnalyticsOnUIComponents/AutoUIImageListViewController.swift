@@ -85,7 +85,7 @@ class AutoUIImageListViewController: UIViewController {
             album = PXLAlbum(identifier: albumId)
         }
         
-        var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+        var filterOptions = PXLAlbumFilterOptions(contentType: ["video"])
         album.filterOptions = filterOptions
         album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
     }

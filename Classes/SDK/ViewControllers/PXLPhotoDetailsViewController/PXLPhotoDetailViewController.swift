@@ -184,7 +184,7 @@ public class PXLPhotoDetailViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         playVideo()
     }
-
+    
     override public func viewDidDisappear(_ animated: Bool) {
         stopVideo()
     }

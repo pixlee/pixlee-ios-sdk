@@ -80,6 +80,23 @@ extension PhotoProductListDemoViewController: PXLPhotoProductDelegate {
 
     public func shouldOpenURL(url: URL) -> Bool {
         print("url: \(url)")
+        
+        let alert = UIAlertController(title: "Select a Modal Presentation Style.", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "fullScreen", style: UIAlertAction.Style.default, handler: {_ in
+            let vc = EmptyViewController.getInstance(url)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+
+        }))
+
+        alert.addAction(UIAlertAction(title: "popover", style: UIAlertAction.Style.default, handler: {_ in
+            let vc = EmptyViewController.getInstance(url)
+            self.present(vc, animated: true, completion: nil)
+
+        }))
+        self.present(alert, animated: true, completion: nil)
+
+        
         return false
     }
 
