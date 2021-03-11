@@ -18,7 +18,7 @@ public class PXLClient {
 
     private let apiRequests = PXLApiRequests()
 
-    private let photoConverter = PXLPhotoConverter(productConverter: PXLProductConverter())
+    private let photoConverter = PXLPhotoConverter(productConverter: PXLProductConverter(), timeBasedProductConverter: PXLTimeBasedProductConverter())
     private var loadingOperations: [String: [Int: DataRequest?]] = [:]
 
     // globally used with in the SDK

@@ -64,6 +64,7 @@ public struct PXLPhoto: Equatable {
     public let instUserHasLiked: Bool?
     public let platformLink: URL?
     public let products: [PXLProduct]?
+    public let timeBasedProducts: [PXLTimeBasedProduct]?
     public let cdnSmallUrl: URL?
     public let cdnMediumUrl: URL?
     public let cdnLargeUrl: URL?

@@ -35,7 +35,7 @@ class PhotoProductListDemoViewController: UIViewController {
         guard let photo = photo else {return}
         
         let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-        widget.cropMode = .centerFit
+        widget.cropMode = .centerFill
         widget.closeButtonBackgroundColor = .white
         widget.closeButtonCornerRadius = 22
         widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)

@@ -71,6 +71,7 @@ struct PXLPhotoDTO: Codable {
     let resized: Bool?
     let pageID: String
     let products: [PXLProductDTO]
+    let timeBasedProducts: [PXLTimeBasedProductDTO]
     let pixleeCDNPhotos: PixleeCDNPhotos
 
     enum CodingKeys: String, CodingKey {
@@ -144,6 +145,7 @@ struct PXLPhotoDTO: Codable {
         case resized
         case pageID = "page_id"
         case products
+        case timeBasedProducts = "time_based_products"
         case pixleeCDNPhotos = "pixlee_cdn_photos"
     }
 }

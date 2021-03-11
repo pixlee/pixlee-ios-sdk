@@ -10,9 +10,11 @@ import Foundation
 
 class PXLPhotoConverter {
     let productConverter: PXLProductConverter
+    let timeBasedProductConverter: PXLTimeBasedProductConverter
 
-    init(productConverter: PXLProductConverter) {
+    init(productConverter: PXLProductConverter, timeBasedProductConverter: PXLTimeBasedProductConverter) {
         self.productConverter = productConverter
+        self.timeBasedProductConverter = timeBasedProductConverter
     }
 
     func convertPhotoDTOsToPhotos(photoDtos: [PXLPhotoDTO]) -> [PXLPhoto] {
@@ -82,6 +84,9 @@ class PXLPhotoConverter {
                         platformLink: platformLink,
                         products: dto.products.map({ (productDto) -> PXLProduct in
                             productConverter.convertProductDTOtoProduct(dto: productDto)
+                        }),
+                        timeBasedProducts: dto.timeBasedProducts.map({ (timeBasedProductDto) -> PXLTimeBasedProduct in
+                            timeBasedProductConverter.convert(dto: timeBasedProductDto)
                         }),
                         cdnSmallUrl: URL(string: dto.pixleeCDNPhotos.smallURL),
                         cdnMediumUrl: URL(string: dto.pixleeCDNPhotos.mediumURL),
