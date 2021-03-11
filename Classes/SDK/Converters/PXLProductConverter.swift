@@ -9,7 +9,7 @@
 import Foundation
 
 class PXLProductConverter {
-    func convertProductDTOtoProduct(dto: PXLProductDTO) ->
+    func convertProductDTOtoProduct(dto: PXLProductDTO, timeBasedProduct: PXLTimeBasedProduct?) ->
         PXLProduct {
         var link: URL?
         if let dtoLink = dto.link {
@@ -38,6 +38,7 @@ class PXLProductConverter {
                           sku: dto.sku,
                           productDescription: dto.productDescription,
                           price:dto.price,
-                          currency: dto.currency)
+                          currency: dto.currency,
+                          timeBasedProduct: timeBasedProduct)
     }
 }

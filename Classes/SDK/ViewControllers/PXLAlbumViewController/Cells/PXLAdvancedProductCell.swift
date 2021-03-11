@@ -20,7 +20,8 @@ class PXLAdvancedProductCell: UICollectionViewCell {
     @IBOutlet var bookmarkButton: UIButton!
     @IBOutlet var actionButton: UIButton!
     @IBOutlet var itemImageView: UIImageView!
-
+    @IBOutlet var timestampButton: UIButton!
+    
     var configuration: PXLProductCellConfiguration? {
         didSet {
             guard let config = configuration else { return }
@@ -74,6 +75,8 @@ class PXLAdvancedProductCell: UICollectionViewCell {
 
             actionButton.setAttributedTitle(pxlProduct.attributedPrice, for: .normal)
             titleLabel.text = pxlProduct.title
+            
+            timestampButton.setAttributedTitle(pxlProduct.attributedTimestamp, for: .normal)
             descriptionLabel.text = pxlProduct.productDescription
         }
     }
@@ -82,10 +85,15 @@ class PXLAdvancedProductCell: UICollectionViewCell {
 
     @IBAction func actionButtonPressed(_ sender: Any) {
         if let actionPressed = actionButtonPressed, let pxlProduct = pxlProduct {
+            debugPrint("actionButtonPressed")
             actionPressed(pxlProduct)
         }
     }
 
+    @IBAction func timestampPressed(_ sender: Any) {
+        debugPrint("timestampPressed")
+    }
+    
     @IBAction func bookmarkPressed(_ sender: Any) {
         isBookmarked.toggle()
         if let bookmarkHandling = onBookmarkClicked, let pxlProduct = pxlProduct {

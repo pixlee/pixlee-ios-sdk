@@ -20,6 +20,7 @@ public struct PXLProduct {
     public let productDescription: String?
     public let price: Double?
     public let currency: String?
+    public let timeBasedProduct: PXLTimeBasedProduct?
 
     static var currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -60,6 +61,17 @@ public struct PXLProduct {
         
         return nil
     }
+    
+    public var attributedTimestamp: NSAttributedString? {
+        if let timeBasedProduct = timeBasedProduct {
+            let timestampText = "\(String(format: "%02d", timeBasedProduct.timestamp / 60)):\(String(format: "%02d", timeBasedProduct.timestamp % 60))"
+            let mutableAttributedString = NSMutableAttributedString(string: timestampText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+            return mutableAttributedString
+        }
+        
+        return nil
+    }
+
 
     public var currencySymbol: String? {
         switch currency {

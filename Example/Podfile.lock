@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.0)
+  - Alamofire (5.4.1)
   - Gifu (3.3)
   - Nuke (8.4.1)
   - PixleeSDK (1.0.0):
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
   Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
   PixleeSDK: 92a1b78f09305608f7216a876f7efe274f40e34b
