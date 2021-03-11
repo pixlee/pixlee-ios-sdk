@@ -44,7 +44,7 @@ class PXLPhotoConverter {
         let timeBasedProducts = dto.timeBasedProducts.map({ (timeBasedProductDto) -> PXLTimeBasedProduct in
             timeBasedProductConverter.convert(dto: timeBasedProductDto)
         })
-        debugPrint("timeBasedProducts.size: \(timeBasedProducts.count)")
+        
         var productTimestampMap = [Int: PXLTimeBasedProduct]() // [productId: timestamp]
         timeBasedProducts.forEach{ timeBasedProduct in
             productTimestampMap[timeBasedProduct.productId] = timeBasedProduct
@@ -93,12 +93,9 @@ class PXLPhotoConverter {
                         instUserHasLiked: dto.socialUserHasLiked,
                         platformLink: platformLink,
                         products: dto.products.map({ (productDto) -> PXLProduct in
-                            debugPrint("productDto.id: \(productDto.id), timestamp: \(productTimestampMap[productDto.id])")
                             return productConverter.convertProductDTOtoProduct(dto: productDto, timeBasedProduct:  productTimestampMap[productDto.id])
                         }),
-                        timeBasedProducts: dto.timeBasedProducts.map({ (timeBasedProductDto) -> PXLTimeBasedProduct in
-                            timeBasedProductConverter.convert(dto: timeBasedProductDto)
-                        }),
+                        timeBasedProducts: timeBasedProducts,
                         cdnSmallUrl: URL(string: dto.pixleeCDNPhotos.smallURL),
                         cdnMediumUrl: URL(string: dto.pixleeCDNPhotos.mediumURL),
                         cdnLargeUrl: URL(string: dto.pixleeCDNPhotos.largeURL),
