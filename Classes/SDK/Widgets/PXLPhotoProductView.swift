@@ -286,21 +286,7 @@ public class PXLPhotoProductView: UIViewController {
 
             gifView.alpha = 1
 
-            if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
-                muteButton.isHidden = false
-                playVideo(url: videoURL)
-            } else {
-                durationLabelUpdateTimer?.invalidate()
-                durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                    let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-                }
-
-                muteButton.isHidden = true
-                queuePlayer?.pause()
-                if let playerLayer = self.playerLayer {
-                    playerLayer.removeFromSuperlayer()
-                }
-            }
+            playVideoIfItIsVideo()
 
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
@@ -309,6 +295,25 @@ public class PXLPhotoProductView: UIViewController {
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
             
             fireAnalyticsOpenLightbox()
+        }
+    }
+    
+    private func playVideoIfItIsVideo() {
+        guard let viewModel = viewModel else { return }
+        if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
+            muteButton.isHidden = false
+            playVideo(url: videoURL)
+        } else {
+            durationLabelUpdateTimer?.invalidate()
+            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
+            }
+            
+            muteButton.isHidden = true
+            queuePlayer?.pause()
+            if let playerLayer = self.playerLayer {
+                playerLayer.removeFromSuperlayer()
+            }
         }
     }
 
@@ -374,6 +379,7 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
+            durationLabelUpdateTimer?.invalidate()
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 if !self.isScrolling() {
                     let seconds = Int(self.queuePlayer?.currentItem?.currentTime().seconds ?? 0)
@@ -382,6 +388,10 @@ public class PXLPhotoProductView: UIViewController {
                         var indexPath: IndexPath = IndexPath(item: position, section: 0)
                         self.productCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
                     }
+                }
+                
+                if self.isVideoStopped() {
+                    self.gifView.alpha = 1
                 }
             }
         }
@@ -451,6 +461,10 @@ public class PXLPhotoProductView: UIViewController {
 
     public func playVideo() {
         queuePlayer?.play()
+    }
+    
+    private func isVideoStopped() -> Bool {
+        return self.queuePlayer?.currentItem == nil
     }
 
     public func stopVideo() {
@@ -544,7 +558,11 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
             strongSelf.handleProductPressed(product: product)
         }
         cell.timestampPressed = { [weak self] product in
-            // todo: seek to the timestamp
+            if self?.isVideoStopped() ?? true {
+                // play the video if stopped
+                self?.playVideoIfItIsVideo()
+            }
+            
             self?.queuePlayer?.seek(to: CMTimeMake(value: Int64(product.timeBasedProduct?.timestamp ?? 0), timescale: 1))
         }
         return cell
