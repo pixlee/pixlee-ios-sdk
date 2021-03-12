@@ -379,11 +379,8 @@ public class PXLPhotoProductView: UIViewController {
                     let seconds = Int(self.queuePlayer?.currentItem?.currentTime().seconds ?? 0)
                     let position = self.timestampMap[seconds]?.position ?? -1
                     if position > -1 {
-                        debugPrint("hasProductTag! on time!!!!!: \(seconds))")
                         var indexPath: IndexPath = IndexPath(item: position, section: 0)
                         self.productCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-                    }else {
-                        debugPrint("time: \(seconds)")
                     }
                 }
             }
@@ -411,14 +408,12 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     override public func viewWillAppear(_ animated: Bool) {
-        print("PDPView.viewWillAppear()")
         navigationController?.setNavigationBarHidden(true, animated: animated)
         playVideo()
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("PDPView.viewWillDisappear()")
         stopVideo()
     }
     
