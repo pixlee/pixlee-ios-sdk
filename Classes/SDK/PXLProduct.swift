@@ -65,7 +65,13 @@ public struct PXLProduct {
     public var attributedTimestamp: NSAttributedString? {
         if let timeBasedProduct = timeBasedProduct {
             let timestampText = "\(String(format: "%02d", timeBasedProduct.timestamp / 60)):\(String(format: "%02d", timeBasedProduct.timestamp % 60))"
-            let mutableAttributedString = NSMutableAttributedString(string: timestampText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .bold)])
+            
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 12),
+                .foregroundColor: UIColor.gray,
+                .underlineStyle: NSUnderlineStyle.single.rawValue]
+
+            let mutableAttributedString = NSMutableAttributedString(string: timestampText, attributes: attrs)
             return mutableAttributedString
         }
         

@@ -62,6 +62,7 @@
 		5801D0292DAD1541641F2B3276860EA6 /* PixleeSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 951070099610CE244D1A1EC734AF3C2E /* PixleeSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5857E4CC0AAF89BB24A5DA2EC2CB6481 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA780BB455F25408AC675FC6BF0F921F /* ImageRequest.swift */; };
 		5CCE866525F9D3110049855C /* PXLTimeBasedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE866425F9D3110049855C /* PXLTimeBasedProduct.swift */; };
+		5CCE866F25FB46330049855C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE866E25FB46330049855C /* ColorExtension.swift */; };
 		5DA2B11F9A41C6EAEC8B31F281A6E549 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647926C9A73B65D8110C829E08FA151 /* ImageViewExtensions.swift */; };
 		5DA856CD7EF0E439CAD0BD886FEF1DAC /* PXLAnalyticsEventActionClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FE45820D62378CE9180604F229BCE8 /* PXLAnalyticsEventActionClicked.swift */; };
 		5E3FBCC22A309F501DE94731B6176684 /* PXLImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DCF03210BB161ED4C2AEEFF6712CA5 /* PXLImageCell.xib */; };
@@ -321,6 +322,7 @@
 		57E972920293FCF68BD5E3C67A632BCF /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		597D1CA11ED6CE8E18253E4E3EBDF9D4 /* UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Sources/Gifu/Extensions/UIImage.swift; sourceTree = "<group>"; };
 		5CCE866425F9D3110049855C /* PXLTimeBasedProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PXLTimeBasedProduct.swift; path = Classes/SDK/PXLTimeBasedProduct.swift; sourceTree = "<group>"; };
+		5CCE866E25FB46330049855C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD83B3503EC880E3CBDEB6F8F708089 /* Gifu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Gifu.h; path = Sources/Gifu.h; sourceTree = "<group>"; };
 		630CABE8F692FCDBFD1B122A2D0CE388 /* Pods_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -556,6 +558,7 @@
 				A1C8B9F030A926AE5AABEECBD8FCE582 /* DateExtension.swift */,
 				57E972920293FCF68BD5E3C67A632BCF /* StringExtension.swift */,
 				F513E5AEC0170E7E8D3CA71B8A622D03 /* SwiftCrypto.swift */,
+				5CCE866E25FB46330049855C /* ColorExtension.swift */,
 			);
 			name = Helpers;
 			path = Classes/SDK/Helpers;
@@ -1395,6 +1398,7 @@
 				C2EB19D577776564F6A5ECB5B83F5EAB /* InfiniteLayout.swift in Sources */,
 				4AB5852B37CF2090423F92FFD5F8D370 /* PixleeSDK-dummy.m in Sources */,
 				92AC84D1DFD8057353022242CF7CB8EF /* PXLAdvancedProductCell.swift in Sources */,
+				5CCE866F25FB46330049855C /* ColorExtension.swift in Sources */,
 				EF6C6247729168C60A53F5CC1546501C /* PXLAlbum.swift in Sources */,
 				FF96E87A024CC9B07C8C81219D9BDDD6 /* PXLAlbumFilterOptions.swift in Sources */,
 				7529F8DF34B5A46F1C27D8B8CC4CF66C /* PXLAlbumNexPageResponseDTO.swift in Sources */,

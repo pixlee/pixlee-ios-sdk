@@ -248,11 +248,28 @@ public class PXLPhotoProductView: UIViewController {
     weak var playerLayer: AVPlayerLayer?
     weak var queuePlayer: AVQueuePlayer?
     weak var durationLabelUpdateTimer: Timer?
-
+    
+    struct TimeBasedProductWithPosition {
+        let position: Int
+        let timeBasedProduct: PXLTimeBasedProduct
+    }
+    var timestampMap = [Int: TimeBasedProductWithPosition] ()
+    
     public var viewModel: PXLPhoto? {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
+            
+            var productPositionMap = [Int: Int]() // id, position
+            if let products = viewModel.products {
+                for (index, product) in products.enumerated() {
+                    productPositionMap[product.identifier] = index
+                }
+            }
+                        
+            viewModel.timeBasedProducts?.forEach { timeBasedProduct in
+                timestampMap[timeBasedProduct.timestamp] = TimeBasedProductWithPosition(position: productPositionMap[timeBasedProduct.productId] ?? -1, timeBasedProduct: timeBasedProduct)
+            }
 
             setupConfiguration()
             if let imageUrl = viewModel.photoUrl(for: .medium) {
@@ -329,6 +346,11 @@ public class PXLPhotoProductView: UIViewController {
         setupButtons()
         fireAnalyticsOpenLightbox()
     }
+    
+    private func isScrolling() -> Bool {
+        return (self.productCollectionView.isDragging || self.productCollectionView.isDecelerating)
+
+    }
 
     func playVideo(url: URL) {
         let playerItem = AVPlayerItem(url: url as URL)
@@ -352,8 +374,18 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
-            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
+            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                if !self.isScrolling() {
+                    let seconds = Int(self.queuePlayer?.currentItem?.currentTime().seconds ?? 0)
+                    let position = self.timestampMap[seconds]?.position ?? -1
+                    if position > -1 {
+                        debugPrint("hasProductTag! on time!!!!!: \(seconds))")
+                        var indexPath: IndexPath = IndexPath(item: position, section: 0)
+                        self.productCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+                    }else {
+                        debugPrint("time: \(seconds)")
+                    }
+                }
             }
         }
     }
@@ -515,6 +547,10 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
         cell.actionButtonPressed = { [weak self] product in
             guard let strongSelf = self else { return }
             strongSelf.handleProductPressed(product: product)
+        }
+        cell.timestampPressed = { [weak self] product in
+            // todo: seek to the timestamp
+            self?.queuePlayer?.seek(to: CMTimeMake(value: Int64(product.timeBasedProduct?.timestamp ?? 0), timescale: 1))
         }
         return cell
     }

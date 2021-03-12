@@ -91,7 +91,6 @@
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="actionButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="baq-FV-zHA"/>
                                     <action selector="timestampPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="774-w3-hpv"/>
                                 </connections>
                             </button>

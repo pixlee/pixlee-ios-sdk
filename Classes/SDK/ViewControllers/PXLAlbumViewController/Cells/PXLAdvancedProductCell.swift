@@ -84,20 +84,24 @@ class PXLAdvancedProductCell: UICollectionViewCell {
     var actionButtonPressed: ((_ product: PXLProduct) -> Void)?
 
     @IBAction func actionButtonPressed(_ sender: Any) {
-        if let actionPressed = actionButtonPressed, let pxlProduct = pxlProduct {
-            debugPrint("actionButtonPressed")
-            actionPressed(pxlProduct)
+        if let pressed = actionButtonPressed, let pxlProduct = pxlProduct {
+            pressed(pxlProduct)
         }
     }
+    
+    var timestampPressed: ((_ product: PXLProduct) -> Void)?
 
     @IBAction func timestampPressed(_ sender: Any) {
-        debugPrint("timestampPressed")
+        // seek to the timestamp
+        if let pressed = timestampPressed, let pxlProduct = pxlProduct {
+            pressed(pxlProduct)
+        }
     }
     
     @IBAction func bookmarkPressed(_ sender: Any) {
         isBookmarked.toggle()
-        if let bookmarkHandling = onBookmarkClicked, let pxlProduct = pxlProduct {
-            bookmarkHandling(pxlProduct, isBookmarked)
+        if let pressed = onBookmarkClicked, let pxlProduct = pxlProduct {
+            pressed(pxlProduct, isBookmarked)
         }
     }
 
