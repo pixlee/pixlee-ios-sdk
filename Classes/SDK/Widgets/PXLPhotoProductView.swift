@@ -381,6 +381,7 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(muteButton)
             durationLabelUpdateTimer?.invalidate()
             durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                // automatically swipe between products when reaching its video timestamp and the scrolling is idle (for good user experience)
                 if !self.isScrolling() {
                     let seconds = Int(self.queuePlayer?.currentItem?.currentTime().seconds ?? 0)
                     let position = self.timestampMap[seconds]?.position ?? -1
