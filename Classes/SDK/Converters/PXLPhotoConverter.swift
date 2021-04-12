@@ -86,6 +86,7 @@ class PXLPhotoConverter {
                         cdnSmallUrl: URL(string: dto.pixleeCDNPhotos.smallURL),
                         cdnMediumUrl: URL(string: dto.pixleeCDNPhotos.mediumURL),
                         cdnLargeUrl: URL(string: dto.pixleeCDNPhotos.largeURL),
-                        cdnOriginalUrl: URL(string: dto.pixleeCDNPhotos.originalURL))
+                        cdnOriginalUrl: URL(string: dto.pixleeCDNPhotos.originalURL),
+                        cdnSquareMediumUrl: URL(string: dto.pixleeCDNPhotos.squareMediumURL))
     }
 }

@@ -13,7 +13,7 @@ public class PXLAlbum {
     public static let PXLAlbumDefaultPerPage: Int = 20
 
     public let identifier: String?
-    public let sku: Int?
+    public let sku: String?
 
     public var photos: [PXLPhoto]
     public var lastPageFetched: Int
@@ -43,7 +43,7 @@ public class PXLAlbum {
         hasNextPage = true
     }
 
-    public init(identifier: String? = nil, sku: Int? = nil, perPage: Int = PXLAlbum.PXLAlbumDefaultPerPage, photos: [PXLPhoto] = [PXLPhoto](), lastPageFetched: Int = 0, hasNextPage: Bool = true, sortOptions: PXLAlbumSortOptions? = nil, filterOptions: PXLAlbumFilterOptions? = nil) {
+    public init(identifier: String? = nil, sku: String? = nil, perPage: Int = PXLAlbum.PXLAlbumDefaultPerPage, photos: [PXLPhoto] = [PXLPhoto](), lastPageFetched: Int = 0, hasNextPage: Bool = true, sortOptions: PXLAlbumSortOptions? = nil, filterOptions: PXLAlbumFilterOptions? = nil) {
         self.identifier = identifier
         self.sku = sku
         self.perPage = perPage
@@ -65,7 +65,7 @@ public class PXLAlbum {
                         filterOptions: filterOptions)
     }
 
-    public func changeSKU(newSKU: Int) -> PXLAlbum {
+    public func changeSKU(newSKU: String) -> PXLAlbum {
         return PXLAlbum(identifier: identifier,
                         sku: newSKU,
                         perPage: PXLAlbum.PXLAlbumDefaultPerPage,

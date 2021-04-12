@@ -124,7 +124,7 @@ public class PXLClient {
                     completionHandler?(nil, nil)
                     return nil
                 }
-            } else if let sku = album.identifier {
+            } else if let sku = album.sku {
                 var requestsForAlbum = loadingOperations[sku]
                 if requestsForAlbum == nil {
                     requestsForAlbum = [:]
