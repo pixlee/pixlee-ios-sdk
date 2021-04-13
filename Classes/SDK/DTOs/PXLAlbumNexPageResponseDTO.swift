@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - PXLAlbumNextPageResponse
 
-struct PXLAlbumNextPageResponse: Codable {
+struct PXLAlbumNextPageResponse: Decodable {
     let accountID, albumID, page, perPage: Int
     let total: Int
     let next: Bool
