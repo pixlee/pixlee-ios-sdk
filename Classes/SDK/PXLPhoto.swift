@@ -69,6 +69,7 @@ public struct PXLPhoto: Equatable {
     public let cdnLargeUrl: URL?
     public let cdnOriginalUrl: URL?
     public let cdnSquareMediumUrl: URL?
+    public let uploaderAdditionalFields: [String: Any]?
 
     public var coordinate: CLLocationCoordinate2D? {
         guard let latitude = self.latitude, let longitude = self.longitude else { return nil }

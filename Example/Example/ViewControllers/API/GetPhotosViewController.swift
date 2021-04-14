@@ -69,6 +69,21 @@ class GetPhotosViewController: UIViewController {
                 if let photos = photos {
                     //self.photos = photos
                     self.pxlGridView.items = photos
+
+                    // demonstrating the customized json uploaded by API
+                    for photo in photos {
+                        if let item = photo.uploaderAdditionalFields?["age"] as? Int {
+                            debugPrint(" - age: \(item)")
+                        }
+
+                        if let item = photo.uploaderAdditionalFields?["points"] as? [Double] {
+                            debugPrint(" - points: \(item)")
+                        }
+
+                        if let item = photo.uploaderAdditionalFields?["goods"] as? [String:Any] {
+                            debugPrint(" - goods: \(item)")
+                        }
+                    }
                 }
             }
         }
