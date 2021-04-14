@@ -147,7 +147,6 @@ struct PXLPhotoDTO: Decodable {
         case pixleeCDNPhotos = "pixlee_cdn_photos"
     }
 
-    // photoTitle = (try? values.decode(String.self, forKey: .photoTitle)) ?? ""
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = (try? values.decode(Int.self, forKey: .id)) ?? 0
