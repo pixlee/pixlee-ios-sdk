@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 
     var photos: [PXLPhoto] = []
     
+    @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet var uiStackView: UIStackView!
     @IBOutlet var analyticsStackView: UIStackView!
     @IBOutlet weak var uiAutoAnalyticsStackView: UIStackView!
@@ -38,6 +39,7 @@ class ViewController: UIViewController {
         addEmptySpace(to: uiStackView)
         addEmptySpace(to: analyticsStackView)
         addEmptySpace(to: uiAutoAnalyticsStackView)
+        addEmptySpace(to: widgetStackView)
         
                 
         do {
@@ -143,6 +145,9 @@ class ViewController: UIViewController {
     }
 
     // MARK: - APIs
+    @IBAction func showWidget(_ sender: Any) {
+        present(WidgetViewController.getInstance(), animated: true, completion: nil)
+    }
     
     @IBAction func showAPIGetPhotos(_ sender: Any) {
         present(GetPhotosViewController.getInstance(), animated: true, completion: nil)
