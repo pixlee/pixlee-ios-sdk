@@ -40,6 +40,7 @@ class WidgetViewController: UIViewController {
     var videoCell: PXLGridViewCell?
 }
 
+// MARK: - Photo's click-event listeners
 extension WidgetViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
@@ -50,9 +51,11 @@ extension WidgetViewController: PXLPhotoViewDelegate {
     }
 }
 
+// MARK: Widget's UI settings and scroll events
 extension WidgetViewController: PXLWidgetViewDelegate {
     func setWidgetSpec() -> WidgetSpec {
-        WidgetSpec.grid(WidgetSpec.Grid(cellHeight: 350, header: nil, cellPadding: 4))
+        //WidgetSpec.grid(WidgetSpec.Grid(cellHeight: 350, header: nil, cellPadding: 4))
+        WidgetSpec.list(WidgetSpec.List(cellHeight: 350, isInfiniteScrollEnabled: true, isVideoMutted: false, autoVideoPlayEnabled: false))
     }
 
     func setWidgetType() -> String {
@@ -63,7 +66,7 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video"/*, "image"*/])
             album.filterOptions = filterOptions
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             return album
@@ -71,14 +74,18 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         fatalError("no album set")
     }
 
-    func cellsHighlighted(cells: [PXLGridViewCell]) {
-        //        print("Highlighted cells: \(cells)")
-    }
-
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if photo.isVideo {
             videoCell = cell
         }
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+    }
+
+    func cellsHighlighted(cells: [PXLGridViewCell]) {
+        //        print("Highlighted cells: \(cells)")
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
     }
 }

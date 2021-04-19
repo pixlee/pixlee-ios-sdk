@@ -17,9 +17,7 @@ public protocol PXLGridViewAutoAnalyticsDelegate:class {
 public protocol PXLGridViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
-    func onPhotoClicked(photo: PXLPhoto)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
-    func onPhotoButtonClicked(photo: PXLPhoto)
     func cellHeight() -> CGFloat
     func cellPadding() -> CGFloat
     func isMultipleColumnEnabled() -> Bool

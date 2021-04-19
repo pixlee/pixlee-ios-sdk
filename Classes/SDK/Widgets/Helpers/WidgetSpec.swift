@@ -16,16 +16,16 @@ public enum WidgetSpec {
     }
     
     open class List:WidgetDefault {
-        public init(cellHeight: CGFloat, isInfiniteScrollEnabled: Bool, isVideoMutted: Bool, isHighlightingEnabled: Bool) {
+        public init(cellHeight: CGFloat, isInfiniteScrollEnabled: Bool, isVideoMutted: Bool, autoVideoPlayEnabled: Bool) {
             self.isInfiniteScrollEnabled = isInfiniteScrollEnabled
             self.isVideoMutted = isVideoMutted
-            self.isHighlightingEnabled = isHighlightingEnabled
+            self.autoVideoPlayEnabled = autoVideoPlayEnabled
             super.init(cellHeight: cellHeight)
         }
         
         let isInfiniteScrollEnabled: Bool
         let isVideoMutted: Bool
-        let isHighlightingEnabled: Bool
+        let autoVideoPlayEnabled: Bool
     }
     
     open class Grid: WidgetDefault {

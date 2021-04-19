@@ -16,8 +16,6 @@ public protocol PXLWidgetViewDelegate:class {
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
     func scrollViewDidScroll(_ scrollView: UIScrollView)
-    func onPhotoClicked(photo: PXLPhoto)
-    func onPhotoButtonClicked(photo: PXLPhoto)
 }
 
 extension PXLWidgetViewDelegate {
@@ -135,9 +133,9 @@ public class PXLWidgetView: UIView {
         }
     }
 
-    private var isHighlightingEnabled: Bool {
+    private var autoVideoPlayEnabled: Bool {
         guard case let .list(list) = delegate?.setWidgetSpec() else { return false}
-        return list.isHighlightingEnabled
+        return list.autoVideoPlayEnabled
     }
     
     private var isMultipleColumnsEnabled: Bool {
@@ -363,7 +361,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
             let index = self.collectionView!.indexPath(from: indexPath).row
             delegate?.setupPhotoCell(cell: cell, photo: items[index])
-            cell.isHighlihtingEnabled = isHighlightingEnabled
+            cell.isHighlihtingEnabled = autoVideoPlayEnabled
             cell.cellWidth.constant = flowLayout.itemSize.width
             cell.cellHeight.constant = flowLayout.itemSize.height
             
