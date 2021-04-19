@@ -62,6 +62,7 @@
 		57B31AE955ABBC6ACA9E7157844E1003 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AED41A1EEDF3A154834B2716532C59 /* ImageTask.swift */; };
 		5857E4CC0AAF89BB24A5DA2EC2CB6481 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA780BB455F25408AC675FC6BF0F921F /* ImageRequest.swift */; };
 		5C54947C26295ED7005C2270 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54947B26295ED7005C2270 /* PXLWidgetView.swift */; };
+		5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBAFA0D262D394500C77832 /* WidgetSpec.swift */; };
 		5DA2B11F9A41C6EAEC8B31F281A6E549 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647926C9A73B65D8110C829E08FA151 /* ImageViewExtensions.swift */; };
 		606AD2468F2BF411CBEC67D55C42A295 /* PXLAdvancedProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB94E860162CBFF375603C11EA864940 /* PXLAdvancedProductCell.xib */; };
 		613FE4D1DC4463EBE3B6775EA056A487 /* PXLPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0453EEC6AF6A2763ABDDCB86F393645 /* PXLPhotoListView.swift */; };
@@ -317,6 +318,7 @@
 		5649A07B7C7B7B4073AC814C14E68042 /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = "<group>"; };
 		597D1CA11ED6CE8E18253E4E3EBDF9D4 /* UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Sources/Gifu/Extensions/UIImage.swift; sourceTree = "<group>"; };
 		5C54947B26295ED7005C2270 /* PXLWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
+		5CBAFA0D262D394500C77832 /* WidgetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D88053FB36AF416D6957E43FF69908B /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		5D8E735B1913FCCB61CD066E8D47D098 /* PXLGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridView.swift; sourceTree = "<group>"; };
@@ -772,6 +774,7 @@
 		869326E8B85A99D859CED9CA9B7EA69F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5CBAFA0D262D394500C77832 /* WidgetSpec.swift */,
 				652CCD7FDE1C289730B759AB0C1BF020 /* UIImage+Gif.swift */,
 			);
 			path = Helpers;
@@ -1344,6 +1347,7 @@
 				1A2975DEC9DB1EE80CB4623A244374EE /* CocoaProxy.m in Sources */,
 				9B56D753C4732622DC93E11A219AC206 /* DateExtension.swift in Sources */,
 				56398373820A88B240E6AA83E292715F /* InfiniteCollectionView.swift in Sources */,
+				5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */,
 				1963DEC23D85F44615920F40ED62E08B /* InfiniteCollectionViewController.swift in Sources */,
 				765511236FC591E70E2014FB49491338 /* InfiniteCollectionViewProxy.swift in Sources */,
 				61807D29849EEFBF8B568C79A4AF3445 /* InfiniteDataSource.swift in Sources */,

@@ -6,36 +6,18 @@
 //
 
 import UIKit
-
-import UIKit
 import AVFoundation
 
-public protocol PXLWidgetViewAutoAnalyticsDelegate:class {
-    // pass an album if you want to delegate this view to fire 'openedWidget' and 'widgetVisible' analytics events automatically. Additionaly you must set [PXLClient.sharedClient.autoAnalyticsEnabled = true] to enable auto-analytics.
-    // if you manually fire analytics, you can pass 'nil' to this function.
-    func setupAlbumForAutoAnalytics() -> (album: PXLAlbum, widgetType:String)
-}
-
 public protocol PXLWidgetViewDelegate:class {
+    func setWidgetSpec() -> WidgetSpec
+    func setWidgetType() -> String
+    func setPXLAlbum() -> PXLAlbum
+
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
     func cellsHighlighted(cells: [PXLGridViewCell])
-    func onPhotoClicked(photo: PXLPhoto)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func onPhotoClicked(photo: PXLPhoto)
     func onPhotoButtonClicked(photo: PXLPhoto)
-    func cellHeight() -> CGFloat
-    func cellPadding() -> CGFloat
-    func isMultipleColumnEnabled() -> Bool
-    func isHighlightingEnabled() -> Bool
-    func isInfiniteScrollEnabled() -> Bool
-    func isVideoMutted() -> Bool
-    
-    func headerTitle() -> String?
-    func headerGifName() -> String?
-    func headerGifUrl() -> String?
-    func headerHeight() -> CGFloat
-    func headerGifContentMode() -> UIView.ContentMode
-    func headerTitleFont() -> UIFont
-    func headerTitleColor() -> UIColor
 }
 
 extension PXLWidgetViewDelegate {
@@ -44,43 +26,9 @@ extension PXLWidgetViewDelegate {
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
-    
-    public func headerTitleFont() -> UIFont {
-        return UIFont.systemFont(ofSize: 21)
-    }
-    
-    public func headerTitleColor() -> UIColor {
-        return .black
-    }
-    
-    public func headerGifContentMode() -> UIView.ContentMode {
-        return .scaleAspectFill
-    }
-    
-    public func headerHeight() -> CGFloat {
-        return 200
-    }
-    
-    public func headerTitle() -> String? {
-        return nil
-    }
-    
-    public func headerGifName() -> String? {
-        return nil
-    }
-    
-    public func headerGifUrl() -> String? {
-        return nil
-    }
 }
 
 public class PXLWidgetView: UIView {
-    public var album: PXLAlbum? = nil {
-        didSet {
-            loadPhotos()
-        }
-    }
-        
     open var collectionView: InfiniteCollectionView?
     public var flowLayout: InfiniteLayout! {
         return collectionView?.collectionViewLayout as? InfiniteLayout
@@ -102,7 +50,7 @@ public class PXLWidgetView: UIView {
         }
     }
     
-    public weak var delegate: PXLGridViewDelegate? {
+    public weak var delegate: PXLWidgetViewDelegate? {
         didSet {
             collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
             setupCellSize()
@@ -111,31 +59,52 @@ public class PXLWidgetView: UIView {
             } else {
                 topRightCellIndex = nil
             }
+            loadPhotos()
         }
     }
-    
-    public weak var autoAnalyticsDelegate: PXLGridViewAutoAnalyticsDelegate?{
-        didSet{
-            fireOpenAndVisible()
-        }
-    }
-    
+
     func loadPhotos() {
-        if let album = album {
+        debugPrint("loadPhotos() before")
+        if let album = delegate?.setPXLAlbum() {
+            debugPrint("loadPhotos() set album")
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+                debugPrint("loadPhotos() received photos: \(photos)")
                 if let photos = photos {
                     //self.photos = photos
                     self.items = photos
                 }
             }
+        }else {
+            debugPrint("loadPhotos() no album")
         }
     }
     
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
         let height = cellHeight
-        if delegate?.headerTitle() != nil || delegate?.headerGifUrl() != nil || delegate?.headerGifName() != nil {
-            flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + cellPadding)
+
+        if let widgetSpec = delegate?.setWidgetSpec() {
+            switch widgetSpec {
+            case .grid(let grid):
+                if let header = grid.header {
+                    let headerHeight: CGFloat
+                    switch header {
+                        case .text(let text):
+                            headerHeight = text.headerHeight
+                        case .image(let image):
+                            switch image {
+                                case .localPath(let localPath):
+                                    headerHeight = localPath.headerHeight
+                                case .remotePath(let remotePath):
+                                    headerHeight = remotePath.headerHeight
+                            }
+                    }
+                    flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + grid.cellPadding)
+
+                }
+            case .list(_):
+                debugPrint("")
+            }
         }
         
         guard width > 0, height > 0 else {
@@ -150,32 +119,40 @@ public class PXLWidgetView: UIView {
         collectionView?.collectionViewLayout.invalidateLayout()
         collectionView?.reloadData()
     }
+
+    private var cellPadding: CGFloat {
+        guard case let .grid(grid) = delegate?.setWidgetSpec() else { return 4}
+        return grid.cellPadding
+    }
     
     private var cellHeight: CGFloat {
-        return delegate?.cellHeight() ?? 200
+        guard let widgetSpec = delegate?.setWidgetSpec() else { return 200.0 }
+        switch widgetSpec {
+            case .grid(let grid):
+                return grid.cellHeight
+            case .list(let list):
+                return list.cellHeight
+        }
     }
-    private var headerHeight: CGFloat {
-        return delegate?.headerHeight() ?? 200
-    }
-    
-    private var cellPadding: CGFloat {
-        return delegate?.cellPadding() ?? 4
-    }
-    
+
     private var isHighlightingEnabled: Bool {
-        return delegate?.isHighlightingEnabled() ?? false
+        guard case let .list(list) = delegate?.setWidgetSpec() else { return false}
+        return list.isHighlightingEnabled
     }
     
     private var isMultipleColumnsEnabled: Bool {
-        return delegate?.isMultipleColumnEnabled() ?? true
+        guard case let .grid(grid) = delegate?.setWidgetSpec() else { return false}
+        return true
     }
     
     private var isInfiniteScrollEnabled: Bool {
-        return delegate?.isInfiniteScrollEnabled() ?? true
+        guard case let .list(list) = delegate?.setWidgetSpec() else { return false}
+        return list.isInfiniteScrollEnabled
     }
     
     private var isVideoMutted: Bool {
-        return delegate?.isVideoMutted() ?? true
+        guard case let .list(list) = delegate?.setWidgetSpec() else { return true}
+        return list.isVideoMutted
     }
     
     var firstHighlightLogged = false
@@ -322,13 +299,12 @@ public class PXLWidgetView: UIView {
             return nil
         }
         
-        if autoAnalyticsDelegate == nil {
-            print("autoAnalyticsDelegate or PXLGridViewDelegate.setupAlbumForAutoAnalytics(){..} is not specified")
-        } else {
-            print("You need to specify 'class YourViewController PXLGridViewDelegate.setupAlbumForAutoAnalytics(){return (yourAlbum, your widget type)}'")
+        guard let album = delegate?.setPXLAlbum(), let widgetType = delegate?.setWidgetType() else {
+            print("PXLGridViewDelegate, PXLGridViewDelegate.setPXLAlbum(){..}, or PXLGridViewDelegate.setWidgetType(){..} is not specified")
+            return nil
         }
-        
-        return autoAnalyticsDelegate?.setupAlbumForAutoAnalytics()
+
+        return (album, widgetType)
     }
     
 }
@@ -336,34 +312,33 @@ public class PXLWidgetView: UIView {
 extension PXLWidgetView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? PXLGridHeaderView {
-            guard let delegate = delegate else { fatalError("Needs to add the delegate first") }
-            
-            let headerHeight = delegate.headerHeight()
-            let contentMode = delegate.headerGifContentMode()
-            if let title = delegate.headerTitle() {
-                let titleFont = delegate.headerTitleFont()
-                let titleColor = delegate.headerTitleColor()
-                header.viewModel = PXLGridHeaderSettings(title: title,
-                                                         height: headerHeight,
-                                                         width: collectionView.frame.size.width,
-                                                         padding: cellPadding,
-                                                         titleFont: titleFont,
-                                                         titleColor: titleColor,
-                                                         gifContentMode: contentMode)
-            } else if let url = delegate.headerGifUrl() {
-                header.viewModel = PXLGridHeaderSettings(titleGifUrl: url,
-                                                         height: headerHeight,
-                                                         width: collectionView.frame.size.width,
-                                                         padding: cellPadding,
-                                                         gifContentMode: contentMode)
-            } else if let name = delegate.headerGifName() {
-                header.viewModel = PXLGridHeaderSettings(titleGifName: name,
-                                                         height: headerHeight,
-                                                         width: collectionView.frame.size.width,
-                                                         padding: cellPadding,
-                                                         gifContentMode: contentMode)
+            guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else { fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header") }
+
+            switch gridHeader {
+                case .text(let text):
+                    header.viewModel = PXLGridHeaderSettings(title: text.headerTitle,
+                            height: text.headerHeight,
+                            width: collectionView.frame.size.width,
+                            padding: grid.cellPadding,
+                            titleFont: text.headerTitleFont,
+                            titleColor: text.headerTitleColor,
+                            gifContentMode: text.headerContentMode)
+                case .image(let image):
+                    switch image {
+                        case .remotePath(let remotePath):
+                            header.viewModel = PXLGridHeaderSettings(titleGifUrl: remotePath.headerGifUrl,
+                                    height: remotePath.headerHeight,
+                                    width: collectionView.frame.size.width,
+                                    padding: grid.cellPadding,
+                                    gifContentMode: remotePath.headerContentMode)
+                        case .localPath(let localPath):
+                            header.viewModel = PXLGridHeaderSettings(titleGifName: localPath.headerGifName,
+                                    height: localPath.headerHeight,
+                                    width: collectionView.frame.size.width,
+                                    padding: grid.cellPadding,
+                                    gifContentMode: localPath.headerContentMode)
+                    }
             }
-            
             return header
         }
         fatalError()

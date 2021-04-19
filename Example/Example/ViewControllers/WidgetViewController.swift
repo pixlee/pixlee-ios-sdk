@@ -14,33 +14,18 @@ class WidgetViewController: UIViewController {
         let vc = WidgetViewController(nibName: "EmptyViewController", bundle: Bundle.main)
         return vc
     }
-    
+
     var widgetView = PXLWidgetView()
     override func viewDidLoad() {
         super.viewDidLoad()
         widgetView.delegate = self
         view.addSubview(widgetView)
-        
-        do {
-            let pixleeCredentials = try PixleeCredentials.create()
-            if let albumId = pixleeCredentials.albumId {
-                let album = PXLAlbum(identifier: albumId)
-                var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-                
-                album.filterOptions = filterOptions
-                
-                album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-                widgetView.album = album
-            }
-        } catch{
-            self.showPopup(message: error.localizedDescription)
-        }
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        widgetView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        
+        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
     
     /*
@@ -59,45 +44,41 @@ extension WidgetViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
     }
-    
+
     public func onPhotoClicked(photo: PXLPhoto) {
         print("Photo Clicked \(photo.id)")
     }
 }
 
-extension WidgetViewController: PXLGridViewDelegate {
-    func isVideoMutted() -> Bool {
-        false
+extension WidgetViewController: PXLWidgetViewDelegate {
+    func setWidgetSpec() -> WidgetSpec {
+        WidgetSpec.grid(WidgetSpec.Grid(cellHeight: 350, header: nil, cellPadding: 4))
     }
-    
+
+    func setWidgetType() -> String {
+        "replace_this_with_yours"
+    }
+
+    func setPXLAlbum() -> PXLAlbum {
+        if let pixleeCredentials = try? PixleeCredentials.create() {
+            let albumId = pixleeCredentials.albumId
+            let album = PXLAlbum(identifier: albumId)
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            album.filterOptions = filterOptions
+            album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            return album
+        }
+        fatalError("no album set")
+    }
+
     func cellsHighlighted(cells: [PXLGridViewCell]) {
         //        print("Highlighted cells: \(cells)")
     }
-    
+
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if photo.isVideo {
             videoCell = cell
         }
         cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
-    }
-    
-    public func cellHeight() -> CGFloat {
-        return 350
-    }
-    
-    func cellPadding() -> CGFloat {
-        return 8
-    }
-    
-    func isMultipleColumnEnabled() -> Bool {
-        return true
-    }
-    
-    func isHighlightingEnabled() -> Bool {
-        return false
-    }
-    
-    func isInfiniteScrollEnabled() -> Bool {
-        return false
     }
 }
