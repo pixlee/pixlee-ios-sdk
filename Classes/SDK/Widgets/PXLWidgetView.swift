@@ -50,7 +50,7 @@ public class PXLWidgetView: UIView {
     
     public weak var delegate: PXLWidgetViewDelegate? {
         didSet {
-            collectionView?.infiniteLayout.isEnabled = self.isInfiniteScrollEnabled
+            collectionView?.infiniteLayout.isEnabled = false
             setupCellSize()
             if isMultipleColumnsEnabled {
                 topRightCellIndex = IndexPath(item: 1, section: 0)
@@ -61,19 +61,35 @@ public class PXLWidgetView: UIView {
         }
     }
 
+    @objc func loadMoreClicked(_ sender: UITapGestureRecognizer){
+        loadPhotos()
+    }
+
+    var searchingAlbum: PXLAlbum? = nil
+    var loadMoreType: LoadMoreType? = nil
     func loadPhotos() {
-        debugPrint("loadPhotos() before")
-        if let album = delegate?.setPXLAlbum() {
-            debugPrint("loadPhotos() set album")
+        loadMoreType = .loading
+        if let searchingAlbum = searchingAlbum {
+
+        }
+        if let oldAlbum = delegate?.setPXLAlbum(), let album = (searchingAlbum != nil) ? searchingAlbum : oldAlbum {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
-                debugPrint("loadPhotos() received photos: \(photos)")
+                self.searchingAlbum = album
                 if let photos = photos {
-                    //self.photos = photos
-                    self.items = photos
+                    for photo in photos {
+                        self.items.append(photo)
+                    }
+                }
+
+                if album.hasNextPage {
+                    self.loadMoreType = .loadMore
+                } else {
+                    self.loadMoreType = nil
                 }
             }
-        }else {
+        } else {
             debugPrint("loadPhotos() no album")
+            self.loadMoreType = nil
         }
     }
     
@@ -98,8 +114,9 @@ public class PXLWidgetView: UIView {
                             }
                     }
                     flowLayout.headerReferenceSize = CGSize(width: frame.size.width, height: headerHeight + grid.cellPadding)
-
                 }
+
+                flowLayout.footerReferenceSize = CGSize(width: frame.size.width, height: grid.loadMore.cellHeight + grid.loadMore.cellPadding)
             case .list(_):
                 debugPrint("")
             }
@@ -141,11 +158,6 @@ public class PXLWidgetView: UIView {
     private var isMultipleColumnsEnabled: Bool {
         guard case let .grid(grid) = delegate?.setWidgetSpec() else { return false}
         return true
-    }
-    
-    private var isInfiniteScrollEnabled: Bool {
-        guard case let .list(list) = delegate?.setWidgetSpec() else { return false}
-        return list.isInfiniteScrollEnabled
     }
     
     private var isVideoMutted: Bool {
@@ -202,7 +214,8 @@ public class PXLWidgetView: UIView {
             
             collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: Bundle(for: PXLGridViewCell.self)), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
             collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
-            
+            collectionView.register(PXLLoadMoreFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+
             addSubview(collectionView)
             backgroundColor = .clear
             collectionView.backgroundColor = .clear
@@ -309,10 +322,12 @@ public class PXLWidgetView: UIView {
 
 extension PXLWidgetView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? PXLGridHeaderView {
-            guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else { fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header") }
-
-            switch gridHeader {
+        switch (kind) {
+            case UICollectionView.elementKindSectionHeader:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! PXLGridHeaderView
+                debugPrint("adding header")
+                guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else { fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header") }
+                switch gridHeader {
                 case .text(let text):
                     header.viewModel = PXLGridHeaderSettings(title: text.headerTitle,
                             height: text.headerHeight,
@@ -323,23 +338,51 @@ extension PXLWidgetView: UICollectionViewDataSource {
                             gifContentMode: text.headerContentMode)
                 case .image(let image):
                     switch image {
-                        case .remotePath(let remotePath):
-                            header.viewModel = PXLGridHeaderSettings(titleGifUrl: remotePath.headerGifUrl,
-                                    height: remotePath.headerHeight,
-                                    width: collectionView.frame.size.width,
-                                    padding: grid.cellPadding,
-                                    gifContentMode: remotePath.headerContentMode)
-                        case .localPath(let localPath):
-                            header.viewModel = PXLGridHeaderSettings(titleGifName: localPath.headerGifName,
-                                    height: localPath.headerHeight,
-                                    width: collectionView.frame.size.width,
-                                    padding: grid.cellPadding,
-                                    gifContentMode: localPath.headerContentMode)
+                    case .remotePath(let remotePath):
+                        header.viewModel = PXLGridHeaderSettings(titleGifUrl: remotePath.headerGifUrl,
+                                height: remotePath.headerHeight,
+                                width: collectionView.frame.size.width,
+                                padding: grid.cellPadding,
+                                gifContentMode: remotePath.headerContentMode)
+                    case .localPath(let localPath):
+                        header.viewModel = PXLGridHeaderSettings(titleGifName: localPath.headerGifName,
+                                height: localPath.headerHeight,
+                                width: collectionView.frame.size.width,
+                                padding: grid.cellPadding,
+                                gifContentMode: localPath.headerContentMode)
                     }
-            }
-            return header
+                }
+                return header
+            case UICollectionView.elementKindSectionFooter:
+                guard let loadMoreType = loadMoreType else { return UICollectionReusableView() }
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! PXLLoadMoreFooterView
+                debugPrint("adding footer")
+                guard let widgetSpec = delegate?.setWidgetSpec() else { fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header") }
+                //guard case let .grid(grid) = delegate?.setWidgetSpec() else { fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header") }
+                let loadMore: WidgetSpec.LoadMore
+                switch (widgetSpec) {
+                    case .grid(let grid):
+                        loadMore = grid.loadMore
+                    case .list(let list):
+                        loadMore = list.loadMore
+                }
+                footer.viewModel = .init(loadMoreType: loadMoreType,
+                        width: collectionView.frame.size.width,
+                        height: loadMore.cellHeight,
+                        padding: loadMore.cellPadding,
+                        title: loadMore.text,
+                        titleFont: loadMore.textFont,
+                        titleColor: loadMore.textColor,
+                        loadingStyle: loadMore.loadingStyle)
+
+                //add click listner
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(loadMoreClicked(_:)))
+                footer.addGestureRecognizer(tapGestureRecognizer)
+
+                return footer
+            default:
+                return UICollectionReusableView()
         }
-        fatalError()
     }
     
     func logFirstHighlights() {
@@ -385,7 +428,11 @@ extension PXLWidgetView: UICollectionViewDataSource {
 }
 
 extension PXLWidgetView: UICollectionViewDelegateFlowLayout {
-    
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//
+//        return CGSize(width: collectionView.bounds.width, height: 90)
+//    }
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return flowLayout.itemSize
     }

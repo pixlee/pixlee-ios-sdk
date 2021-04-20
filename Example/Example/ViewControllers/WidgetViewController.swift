@@ -9,6 +9,7 @@
 import Foundation
 import PixleeSDK
 import UIKit
+
 class WidgetViewController: UIViewController {
     static func getInstance() -> WidgetViewController {
         let vc = WidgetViewController(nibName: "EmptyViewController", bundle: Bundle.main)
@@ -16,18 +17,19 @@ class WidgetViewController: UIViewController {
     }
 
     var widgetView = PXLWidgetView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         widgetView.delegate = self
         view.addSubview(widgetView)
 
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
-    
+
     /*
      // MARK: - Navigation
      
@@ -54,8 +56,20 @@ extension WidgetViewController: PXLPhotoViewDelegate {
 // MARK: Widget's UI settings and scroll events
 extension WidgetViewController: PXLWidgetViewDelegate {
     func setWidgetSpec() -> WidgetSpec {
-        //WidgetSpec.grid(WidgetSpec.Grid(cellHeight: 350, header: nil, cellPadding: 4))
-        WidgetSpec.list(WidgetSpec.List(cellHeight: 350, isInfiniteScrollEnabled: true, isVideoMutted: false, autoVideoPlayEnabled: false))
+        WidgetSpec.grid(
+                WidgetSpec.Grid(
+                        cellHeight: 350,
+                        cellPadding: 4,
+                        loadMore: .init(cellHeight: 100.0,
+                                cellPadding: 10.0,
+                                text: "LoadMore",
+                                textColor: UIColor.darkGray,
+                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+                                loadingStyle: .large),
+                        header: .image(.remotePath(.init(headerHeight: 200,
+                                                headerContentMode: .scaleAspectFill,
+                                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+//        WidgetSpec.list(WidgetSpec.List(cellHeight: 350, isVideoMutted: false, autoVideoPlayEnabled: false))
     }
 
     func setWidgetType() -> String {
@@ -66,9 +80,10 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video"/*, "image"*/])
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
             album.filterOptions = filterOptions
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            album.perPage = 10
             return album
         }
         fatalError("no album set")
