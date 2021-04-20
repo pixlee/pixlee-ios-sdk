@@ -16,22 +16,23 @@ public enum WidgetSpec {
     }
     
     open class List:WidgetDefault {
-        public init(cellHeight: CGFloat, isInfiniteScrollEnabled: Bool, isVideoMutted: Bool, autoVideoPlayEnabled: Bool) {
-            self.isInfiniteScrollEnabled = isInfiniteScrollEnabled
+        public init(cellHeight: CGFloat, isVideoMutted: Bool, autoVideoPlayEnabled: Bool, loadMore: LoadMore) {
             self.isVideoMutted = isVideoMutted
             self.autoVideoPlayEnabled = autoVideoPlayEnabled
+            self.loadMore = loadMore
             super.init(cellHeight: cellHeight)
         }
         
-        let isInfiniteScrollEnabled: Bool
         let isVideoMutted: Bool
         let autoVideoPlayEnabled: Bool
+        let loadMore: LoadMore
     }
     
     open class Grid: WidgetDefault {
-        public init(cellHeight: CGFloat, header: Header?, cellPadding: CGFloat) {
-            self.header = header
+        public init(cellHeight: CGFloat, cellPadding: CGFloat, loadMore: LoadMore, header: Header?) {
             self.cellPadding = cellPadding
+            self.loadMore = loadMore
+            self.header = header
             super.init(cellHeight: cellHeight)
         }
         
@@ -42,6 +43,25 @@ public enum WidgetSpec {
         //func scrollViewDidScroll(_ scrollView: UIScrollView)
         //func onPhotoButtonClicked(photo: PXLPhoto)
         let cellPadding: CGFloat
+        let loadMore: LoadMore
+    }
+
+    open class LoadMore {
+        public init(cellHeight: CGFloat, cellPadding: CGFloat, text: String, textColor: UIColor, textFont: UIFont, loadingStyle: UIActivityIndicatorView.Style) {
+            self.cellHeight = cellHeight
+            self.cellPadding = cellPadding
+            self.text = text
+            self.textColor = textColor
+            self.textFont = textFont
+            self.loadingStyle = loadingStyle
+        }
+
+        let cellHeight: CGFloat
+        let cellPadding: CGFloat
+        let text:String
+        let textColor: UIColor
+        let textFont: UIFont
+        let loadingStyle: UIActivityIndicatorView.Style
     }
     
     public enum Header {

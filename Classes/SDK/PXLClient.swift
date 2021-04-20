@@ -87,6 +87,7 @@ public class PXLClient {
     
     public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
         if album.hasNextPage {
+            debugPrint("album.lastPageFetched == NSNotFound: \(album.lastPageFetched == NSNotFound), page:\(album.lastPageFetched), NSNotFound: \(NSNotFound)")
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1
             if let identifier = album.identifier {
                 var requestsForAlbum = loadingOperations[identifier]
@@ -100,7 +101,7 @@ public class PXLClient {
                         requestsForAlbum[nextPage] = nil
                         self.loadingOperations[identifier] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
-
+                        debugPrint("AF.request() received album.lastPageFetched: \(album.lastPageFetched)")
                         if let photos = photos, let completionHandler = completionHandler {
                             completionHandler(photos, nil)
                             
