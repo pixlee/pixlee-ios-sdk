@@ -35,7 +35,7 @@ public class PXLGridViewCell: UICollectionViewCell {
 
     func disableHighlightView() {
         if isHighlihtingEnabled {
-            photoView.alpha = 0.5
+            photoView.alpha = 1
             photoView.resetPlayer()
         }
     }

@@ -26,7 +26,7 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            album.filterOptions = PXLAlbumFilterOptions(hasPermission: true, hasProduct: true)
+            album.filterOptions = PXLAlbumFilterOptions(/*hasPermission: true, hasProduct: true*/)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             album.perPage = 30
             widgetView.searchingAlbum = album
@@ -70,8 +70,17 @@ extension WidgetViewController: PXLPhotoViewDelegate {
 // MARK: Widget's UI settings and scroll events
 extension WidgetViewController: PXLWidgetViewDelegate {
     func setWidgetSpec() -> WidgetSpec {
-        WidgetSpec.grid(
-                WidgetSpec.Grid(
+        WidgetSpec.list(.init(cellHeight: 350,
+                isVideoMutted: true,
+                autoVideoPlayEnabled: true,
+                loadMore: .init(cellHeight: 100.0,
+                        cellPadding: 10.0,
+                        text: "LoadMore",
+                        textColor: UIColor.darkGray,
+                        textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+                        loadingStyle: .gray)))
+        /*WidgetSpec.grid(
+                .init(
                         cellHeight: 350,
                         cellPadding: 4,
                         loadMore: .init(cellHeight: 100.0,
@@ -81,8 +90,8 @@ extension WidgetViewController: PXLWidgetViewDelegate {
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
                                 loadingStyle: .gray),
                         header: .image(.remotePath(.init(headerHeight: 200,
-                                                headerContentMode: .scaleAspectFill,
-                                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+                                headerContentMode: .scaleAspectFill,
+                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))*/
     }
 
     func setWidgetType() -> String {
