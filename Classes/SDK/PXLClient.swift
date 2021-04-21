@@ -101,7 +101,6 @@ public class PXLClient {
                         requestsForAlbum[nextPage] = nil
                         self.loadingOperations[identifier] = nil
                         let (photos, error) = self.handleAlbumResponse(response, album: album)
-                        debugPrint("AF.request() received album.lastPageFetched: \(album.lastPageFetched)")
                         if let photos = photos, let completionHandler = completionHandler {
                             completionHandler(photos, nil)
                             

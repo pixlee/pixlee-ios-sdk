@@ -8,22 +8,16 @@
 import UIKit
 import AVFoundation
 
+
 public protocol PXLWidgetViewDelegate: class {
     func setWidgetSpec() -> WidgetSpec
     func setWidgetType() -> String
-    //func setPXLAlbum() -> PXLAlbum
 
+    // the developers can change UI elements in each cell via this
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
-    func cellsHighlighted(cells: [PXLGridViewCell])
+
+    // while you are scrolling, this continuously gets called
     func scrollViewDidScroll(_ scrollView: UIScrollView)
-}
-
-extension PXLWidgetViewDelegate {
-    public func cellsHighlighted(cells: [PXLGridViewCell]) {
-    }
-
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    }
 }
 
 public class PXLWidgetView: UIView {
@@ -425,8 +419,6 @@ extension PXLWidgetView: UICollectionViewDataSource {
         if let topRightCellIndex = topRightCellIndex, let cell = collectionView.cellForItem(at: topRightCellIndex) as? PXLGridViewCell {
             highlightedCells.append(cell)
         }
-
-        delegate?.cellsHighlighted(cells: highlightedCells)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -542,7 +534,5 @@ extension PXLWidgetView: UICollectionViewDelegate {
             highlightedCells.append(cell)
             topRightCellIndex = topRightIndex
         }
-
-        delegate?.cellsHighlighted(cells: highlightedCells)
     }
 }

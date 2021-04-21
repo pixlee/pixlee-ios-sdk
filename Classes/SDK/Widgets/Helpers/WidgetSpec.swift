@@ -37,15 +37,11 @@ public enum WidgetSpec {
         }
         
         let header: Header?
-        //func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto)
-        //func cellsHighlighted(cells: [PXLGridViewCell])
-        //func onPhotoClicked(photo: PXLPhoto)
-        //func scrollViewDidScroll(_ scrollView: UIScrollView)
-        //func onPhotoButtonClicked(photo: PXLPhoto)
         let cellPadding: CGFloat
         let loadMore: LoadMore
     }
 
+    // Foot UI: LoadMore Button with an IndicatorView
     open class LoadMore {
         public init(cellHeight: CGFloat, cellPadding: CGFloat, text: String, textColor: UIColor, textFont: UIFont, loadingStyle: UIActivityIndicatorView.Style) {
             self.cellHeight = cellHeight
@@ -63,7 +59,8 @@ public enum WidgetSpec {
         let textFont: UIFont
         let loadingStyle: UIActivityIndicatorView.Style
     }
-    
+
+    // Header UI
     public enum Header {
         case text(Text)
         case image(Image)
@@ -77,7 +74,8 @@ public enum WidgetSpec {
             let headerHeight: CGFloat
             let headerContentMode: UIView.ContentMode
         }
-        
+
+        // Text Header
         open class Text: HeaderDefault {
             public init(headerHeight: CGFloat, headerContentMode: UIView.ContentMode, headerTitle: String?, headerTitleFont: UIFont, headerTitleColor: UIColor) {
                 self.headerTitle = headerTitle
@@ -90,11 +88,12 @@ public enum WidgetSpec {
             let headerTitleFont: UIFont
             let headerTitleColor: UIColor
         }
-        
+
+        // Image Header
         public enum Image {
             case localPath(LocalPath)
             case remotePath(RemotePath)
-            
+
             open class LocalPath: HeaderDefault {
                 public init(headerHeight: CGFloat, headerContentMode: UIView.ContentMode, headerGifName: String?) {
                     self.headerGifName = headerGifName
