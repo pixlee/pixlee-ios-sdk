@@ -36,11 +36,7 @@ public struct PXLGridHeaderSettings {
 }
 
 class PXLGridHeaderView: UICollectionReusableView {
-    var viewModel: PXLGridHeaderSettings? {
-        didSet {
-            customInit()
-        }
-    }
+    var viewModel: PXLGridHeaderSettings?
 
     var titleGifImage = Gifu.GIFImageView()
     let loadingIndicator = UIActivityIndicatorView(style: .gray)
@@ -59,6 +55,7 @@ class PXLGridHeaderView: UICollectionReusableView {
             loadingIndicator.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
             loadingIndicator.center = center
         }
+        customInit()
     }
 
     func customInit() {

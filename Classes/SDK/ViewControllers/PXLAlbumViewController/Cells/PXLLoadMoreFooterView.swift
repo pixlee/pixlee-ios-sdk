@@ -37,34 +37,33 @@ public struct PXLLoadMoreFooterSettings {
 }
 
 class PXLLoadMoreFooterView: UICollectionReusableView {
-    var viewModel: PXLLoadMoreFooterSettings? {
-        didSet {
-            customInit()
-        }
-    }
-    
+    var viewModel: PXLLoadMoreFooterSettings?
+
     let loadingIndicator = UIActivityIndicatorView(style: .gray)
     var titleLabel = UILabel()
-    
+
     override func prepareForReuse() {
         subviews.forEach { view in
             view.removeFromSuperview()
         }
+        debugPrint("footer.prepareForReuse()")
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        debugPrint("footer.layoutSubviews()")
         if let viewModel = viewModel {
-            loadingIndicator.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
-            loadingIndicator.center = center
+            loadingIndicator.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - viewModel.padding)
+            //loadingIndicator.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
+            //loadingIndicator.center = center
             titleLabel.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         }
+        customInit()
     }
-    
+
     func customInit() {
         guard let viewModel = viewModel else { return }
         clipsToBounds = true
-
         switch (viewModel.loadMoreType) {
             case .loading:
                 loadingIndicator.style = viewModel.loadingStyle

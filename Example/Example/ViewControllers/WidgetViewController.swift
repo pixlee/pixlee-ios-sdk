@@ -23,6 +23,16 @@ class WidgetViewController: UIViewController {
         widgetView.delegate = self
         view.addSubview(widgetView)
 
+        if let pixleeCredentials = try? PixleeCredentials.create() {
+            let albumId = pixleeCredentials.albumId
+            let album = PXLAlbum(identifier: albumId)
+            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
+            album.filterOptions = filterOptions
+            album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            album.perPage = 30
+            widgetView.searchingAlbum = album
+        }
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -46,10 +56,16 @@ class WidgetViewController: UIViewController {
 extension WidgetViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
+        openPhotoProduct(photo: photo)
     }
 
     public func onPhotoClicked(photo: PXLPhoto) {
         print("Photo Clicked \(photo.id)")
+        openPhotoProduct(photo: photo)
+    }
+
+    func openPhotoProduct(photo: PXLPhoto) {
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
     }
 }
 
@@ -65,35 +81,22 @@ extension WidgetViewController: PXLWidgetViewDelegate {
                                 text: "LoadMore",
                                 textColor: UIColor.darkGray,
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
-                                loadingStyle: .large),
+                                loadingStyle: .gray),
                         header: .image(.remotePath(.init(headerHeight: 200,
                                                 headerContentMode: .scaleAspectFill,
                                                 headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
-//        WidgetSpec.list(WidgetSpec.List(cellHeight: 350, isVideoMutted: false, autoVideoPlayEnabled: false))
     }
 
     func setWidgetType() -> String {
         "replace_this_with_yours"
     }
 
-    func setPXLAlbum() -> PXLAlbum {
-        if let pixleeCredentials = try? PixleeCredentials.create() {
-            let albumId = pixleeCredentials.albumId
-            let album = PXLAlbum(identifier: albumId)
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-            album.filterOptions = filterOptions
-            album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            album.perPage = 10
-            return album
-        }
-        fatalError("no album set")
-    }
-
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if photo.isVideo {
             videoCell = cell
         }
-        cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        // Example - all : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
     func cellsHighlighted(cells: [PXLGridViewCell]) {

@@ -144,15 +144,15 @@ extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
 extension AutoUIImageListViewController: PXLPhotoViewDelegate {
     public func onPhotoButtonClicked(photo: PXLPhoto) {
         print("Action tapped \(photo.id)")
-        openPDP(photo: photo)
+        openPhotoProduct(photo: photo)
     }
     
     public func onPhotoClicked(photo: PXLPhoto) {
         print("Photo Clicked \(photo.id)")
-        openPDP(photo: photo)
+        openPhotoProduct(photo: photo)
     }
     
-    func openPDP(photo: PXLPhoto) {
+    func openPhotoProduct(photo: PXLPhoto) {
         present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
     }
 }
