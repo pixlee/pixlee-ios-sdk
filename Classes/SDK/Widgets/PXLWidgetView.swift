@@ -10,7 +10,10 @@ import AVFoundation
 
 
 public protocol PXLWidgetViewDelegate: class {
+    // UI spec
     func setWidgetSpec() -> WidgetSpec
+
+    // widget type for Analytics
     func setWidgetType() -> String
 
     // the developers can change UI elements in each cell via this
@@ -18,6 +21,11 @@ public protocol PXLWidgetViewDelegate: class {
 
     // while you are scrolling, this continuously gets called
     func scrollViewDidScroll(_ scrollView: UIScrollView)
+}
+
+extension PXLWidgetViewDelegate {
+    // (Optional from the app-side)
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) { }
 }
 
 public class PXLWidgetView: UIView {
