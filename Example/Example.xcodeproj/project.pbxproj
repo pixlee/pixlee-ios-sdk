@@ -196,6 +196,14 @@
 			path = circleci;
 			sourceTree = "<group>";
 		};
+		5C6BE3C226300C4C0000CC18 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				5C54948B262970EF005C2270 /* WidgetViewController.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
 		5C8143A12589F5F000C1CC1A /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,9 +277,9 @@
 		F296942424224213003EB9DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5C6BE3C226300C4C0000CC18 /* Widget */,
 				5C23D91725B6B61B00530FEF /* AutoAnalyticsOnUIComponents */,
 				5C8143A12589F5F000C1CC1A /* API */,
-				5C54948B262970EF005C2270 /* WidgetViewController.swift */,
 				F296942524224213003EB9DD /* AnalyticsViewController.swift */,
 				F296942624224213003EB9DD /* AnalyticsViewController.xib */,
 				F2969429242243BB003EB9DD /* WidgetsExampleViewController.swift */,

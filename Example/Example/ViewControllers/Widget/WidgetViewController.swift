@@ -26,13 +26,11 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            var filterOptions = PXLAlbumFilterOptions(contentType: ["video", "image"])
-            album.filterOptions = filterOptions
+            album.filterOptions = PXLAlbumFilterOptions(hasPermission: true, hasProduct: true)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             album.perPage = 30
             widgetView.searchingAlbum = album
         }
-
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,7 +93,7 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         if photo.isVideo {
             videoCell = cell
         }
-        // Example - all : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
         cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
