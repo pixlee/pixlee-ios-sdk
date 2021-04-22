@@ -202,7 +202,6 @@ public class PXLPhotoProductView: UIViewController {
     @IBOutlet var backButton: UIButton!
 
     @IBAction func muteButtonPressed(_ sender: Any) {
-        print("mute pressed")
         queuePlayer?.isMuted.toggle()
         adjustMuteImages()
     }
@@ -217,13 +216,11 @@ public class PXLPhotoProductView: UIViewController {
 
     func adjustMuteImages() {
         guard let queuePlayer = queuePlayer else { return }
-        print("on: \(muteButtonOnImage), off: \(muteButtonOffImage)")
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
         muteButton.setImage(image, for: .normal)
     }
 
     @IBAction func backButtonPressed(_ sender: Any) {
-        print("back pressed")
         if isModal {
             dismissModal()
         } else {
@@ -244,10 +241,9 @@ public class PXLPhotoProductView: UIViewController {
 
     @IBOutlet var productCollectionView: UICollectionView!
 
-    weak var playerLooper: NSObject?
-    weak var playerLayer: AVPlayerLayer?
-    weak var queuePlayer: AVQueuePlayer?
-    weak var durationLabelUpdateTimer: Timer?
+    var playerLooper: NSObject?
+    var playerLayer: AVPlayerLayer?
+    var queuePlayer: AVQueuePlayer?
 
     public var viewModel: PXLPhoto? {
         didSet {
@@ -260,7 +256,7 @@ public class PXLPhotoProductView: UIViewController {
             }else{
                 gifView.image = nil
             }
-            
+
             if let imageUrl = viewModel.photoUrl(for: .thumbnail) {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
             }else{
@@ -273,11 +269,6 @@ public class PXLPhotoProductView: UIViewController {
                 muteButton.isHidden = false
                 playVideo(url: videoURL)
             } else {
-                durationLabelUpdateTimer?.invalidate()
-                durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                    let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-                }
-
                 muteButton.isHidden = true
                 queuePlayer?.pause()
                 if let playerLayer = self.playerLayer {
@@ -290,7 +281,7 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(muteButton)
 
             bookmarks = delegate?.onProductsLoaded(products: viewModel.products ?? [])
-            
+
             fireAnalyticsOpenLightbox()
         }
     }
@@ -300,7 +291,7 @@ public class PXLPhotoProductView: UIViewController {
     private let category = AVAudioSession.sharedInstance().category
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+
         do{
             try AVAudioSession.sharedInstance().setCategory(.playback)
         }catch{
@@ -352,9 +343,6 @@ public class PXLPhotoProductView: UIViewController {
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
-            durationLabelUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                let _: Double = self.queuePlayer?.currentItem?.duration.seconds ?? 0
-            }
         }
     }
 
@@ -379,19 +367,20 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     override public func viewWillAppear(_ animated: Bool) {
-        print("PDPView.viewWillAppear()")
         navigationController?.setNavigationBarHidden(true, animated: animated)
         playVideo()
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("PDPView.viewWillDisappear()")
         stopVideo()
+        do {
+            try AVAudioSession.sharedInstance().setCategory(category)
+        } catch {
+        }
     }
-    
+
     override public func didReceiveMemoryWarning() {
-        durationLabelUpdateTimer?.invalidate()
         destroyPlayer()
         do {
             try AVAudioSession.sharedInstance().setCategory(category)
