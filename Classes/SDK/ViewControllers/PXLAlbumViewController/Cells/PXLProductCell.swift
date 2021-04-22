@@ -14,7 +14,7 @@ class PXLProductCell: UICollectionViewCell {
 
     @IBOutlet var productImageView: UIImageView!
 
-    @IBOutlet weak var productTitleLabel: UILabel!
+    @IBOutlet var productTitleLabel: UILabel!
     @IBOutlet var productActionButton: UIButton!
 
     var viewModel: PXLProduct? {

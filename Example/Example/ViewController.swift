@@ -16,10 +16,10 @@ class ViewController: UIViewController {
 
     var photos: [PXLPhoto] = []
     
-    @IBOutlet weak var widgetStackView: UIStackView!
+    @IBOutlet var widgetStackView: UIStackView!
     @IBOutlet var uiStackView: UIStackView!
     @IBOutlet var analyticsStackView: UIStackView!
-    @IBOutlet weak var uiAutoAnalyticsStackView: UIStackView!
+    @IBOutlet var uiAutoAnalyticsStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         PXLClient.sharedClient.autoAnalyticsEnabled = true
         
         // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
-        PXLClient.sharedClient.regionId = pixleeCredentials.regionId
+        //PXLClient.sharedClient.regionId = pixleeCredentials.regionId
     }
     
     func initAlbum(){

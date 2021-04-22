@@ -94,7 +94,6 @@ public class PXLWidgetView: UIView {
                 self.collectionView?.reloadData()
             }
         } else {
-            debugPrint("loadPhotos() no album")
             self.loadMoreType = nil
         }
     }

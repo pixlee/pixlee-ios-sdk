@@ -11,7 +11,7 @@ import UIKit
 
 class WidgetsExampleViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var consoleOutput: UILabel!
+    @IBOutlet var consoleOutput: UILabel!
     
     var album = PXLAlbum(identifier: "")
     var widgetVisibleFired = false
