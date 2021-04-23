@@ -15,7 +15,7 @@ public class PXLGridViewCell: UICollectionViewCell {
 
     var isHighlihtingEnabled: Bool = false
 
-    public func setupCell(photo: PXLPhoto, title: String, subtitle: String, buttonTitle: String, configuration: PXLPhotoViewConfiguration = PXLPhotoViewConfiguration(), delegate: PXLPhotoViewDelegate? = nil) {
+    public func setupCell(photo: PXLPhoto, title: String?, subtitle: String?, buttonTitle: String?, configuration: PXLPhotoViewConfiguration = PXLPhotoViewConfiguration(), delegate: PXLPhotoViewDelegate? = nil) {
         photoModel = photo
         photoView.photo = photo
         photoView.title = title
@@ -35,7 +35,7 @@ public class PXLGridViewCell: UICollectionViewCell {
 
     func disableHighlightView() {
         if isHighlihtingEnabled {
-            photoView.alpha = 0.5
+            photoView.alpha = 1
             photoView.resetPlayer()
         }
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="428" height="882"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="left" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-jc-DM7" userLabel="Body Stack View">
-                                        <rect key="frame" x="20" y="20" width="428" height="819.33333333333337"/>
+                                        <rect key="frame" x="20" y="20" width="428" height="909.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lh8-kY-0pm" userLabel="Title StackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="26.333333333333332"/>
@@ -123,8 +123,33 @@
                                                     <constraint firstAttribute="height" constant="20" id="ieO-UP-WxD"/>
                                                 </constraints>
                                             </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RjM-tj-KIp" userLabel="WidgetView">
+                                                <rect key="frame" x="0.0" y="415" width="428" height="68.333333333333314"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget with [UI + API + Analytics]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhL-2w-1LL" userLabel="UI Components">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nm-wn-L5f" userLabel="One-column">
+                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="48"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
+                                                        <state key="normal" title="PXLWidgetView"/>
+                                                        <connections>
+                                                            <action selector="showWidget:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xLf-Yp-CeG"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iz-7O-yOC">
+                                                <rect key="frame" x="0.0" y="484.33333333333337" width="428" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="SVd-Lg-3T4"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="x9k-Li-OaM">
-                                                <rect key="frame" x="0.0" y="415" width="428" height="404.33333333333326"/>
+                                                <rect key="frame" x="0.0" y="505.33333333333337" width="428" height="404.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Components" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-bf-zAx" userLabel="UI Components">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
@@ -132,7 +157,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-dZ-e9a" userLabel="One-column">
-                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="20.333333333333258" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] One-column"/>
                                                         <connections>
@@ -140,7 +165,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5S-8G-FhZ" userLabel="One-column + auto play">
-                                                        <rect key="frame" x="0.0" y="68.333333333333371" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="68.333333333333258" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] One-column + auto play"/>
                                                         <connections>
@@ -148,7 +173,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-rq-dUI" userLabel="One-column + infinite">
-                                                        <rect key="frame" x="0.0" y="116.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="116.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] One-column + infinite scroll"/>
                                                         <connections>
@@ -156,7 +181,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h82-Eg-Z8n" userLabel="Two-column">
-                                                        <rect key="frame" x="0.0" y="164.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="164.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List type] Two-column"/>
                                                         <connections>
@@ -164,7 +189,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-1j-IO3" userLabel="GIF file header">
-                                                        <rect key="frame" x="0.0" y="212.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="212.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Gif file"/>
                                                         <connections>
@@ -172,7 +197,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSC-4B-q7T" userLabel="GIF URL header">
-                                                        <rect key="frame" x="0.0" y="260.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="260.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Gif URL"/>
                                                         <connections>
@@ -180,7 +205,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kE-Z4-MDJ" userLabel="Text header">
-                                                        <rect key="frame" x="0.0" y="308.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="308.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="[List header] Text"/>
                                                         <connections>
@@ -188,7 +213,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-iv-bei">
-                                                        <rect key="frame" x="0.0" y="356.33333333333337" width="428" height="48"/>
+                                                        <rect key="frame" x="0.0" y="356.33333333333326" width="428" height="48"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="15" maxX="0.0" maxY="15"/>
                                                         <state key="normal" title="A photo with products"/>
                                                         <connections>
@@ -201,7 +226,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="A1x-oQ-oH7" secondAttribute="trailing" constant="20" id="BIy-Oq-gIB"/>
+                                            <constraint firstItem="RjM-tj-KIp" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="EOc-wi-Bnq"/>
                                             <constraint firstItem="aq5-SL-xbA" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="OMB-F2-Egd"/>
+                                            <constraint firstAttribute="trailing" secondItem="RjM-tj-KIp" secondAttribute="trailing" constant="20" id="TWS-s9-43J"/>
                                             <constraint firstItem="A1x-oQ-oH7" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="Uav-8v-kyK"/>
                                             <constraint firstAttribute="trailing" secondItem="x9k-Li-OaM" secondAttribute="trailing" constant="20" id="ljh-VR-f5g"/>
                                             <constraint firstItem="x9k-Li-OaM" firstAttribute="leading" secondItem="FgL-jc-DM7" secondAttribute="leading" constant="20" id="sEe-Ei-KXH"/>
@@ -232,6 +259,7 @@
                         <outlet property="analyticsStackView" destination="A1x-oQ-oH7" id="hCZ-jQ-vUW"/>
                         <outlet property="uiAutoAnalyticsStackView" destination="aq5-SL-xbA" id="7l1-6g-hu6"/>
                         <outlet property="uiStackView" destination="x9k-Li-OaM" id="wlE-1Y-bT6"/>
+                        <outlet property="widgetStackView" destination="RjM-tj-KIp" id="ltD-qG-y04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

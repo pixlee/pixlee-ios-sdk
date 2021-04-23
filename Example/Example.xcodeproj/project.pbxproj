@@ -16,6 +16,7 @@
 		5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */; };
 		5C53E3A825BFBE550028FE38 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C53E3A725BFBE550028FE38 /* SnapshotHelper.swift */; };
 		5C53E3B625BFE5A40028FE38 /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = 5C53E3B525BFE5A40028FE38 /* Appfile */; };
+		5C54948C262970EF005C2270 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54948B262970EF005C2270 /* WidgetViewController.swift */; };
 		5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */; };
 		5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */; };
 		5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */; };
@@ -78,6 +79,7 @@
 		5C2D21AC25830CC1002EB673 /* PixleeCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixleeCredentials.plist; sourceTree = "<group>"; };
 		5C53E3A725BFBE550028FE38 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		5C53E3B525BFE5A40028FE38 /* Appfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Appfile; path = ../../fastlane/Appfile; sourceTree = "<group>"; };
+		5C54948B262970EF005C2270 /* WidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewController.swift; sourceTree = "<group>"; };
 		5C81433F2589D2AA00C1CC1A /* EmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		5C8143812589E99F00C1CC1A /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
 		5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPlayViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,14 @@
 			path = circleci;
 			sourceTree = "<group>";
 		};
+		5C6BE3C226300C4C0000CC18 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				5C54948B262970EF005C2270 /* WidgetViewController.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
 		5C8143A12589F5F000C1CC1A /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 		F296942424224213003EB9DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5C6BE3C226300C4C0000CC18 /* Widget */,
 				5C23D91725B6B61B00530FEF /* AutoAnalyticsOnUIComponents */,
 				5C8143A12589F5F000C1CC1A /* API */,
 				F296942524224213003EB9DD /* AnalyticsViewController.swift */,
@@ -552,6 +563,7 @@
 				F24D42F523C65BBE0091E324 /* AppDelegate.swift in Sources */,
 				5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */,
 				5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */,
+				5C54948C262970EF005C2270 /* WidgetViewController.swift in Sources */,
 				5CCE82F625A564390040B222 /* UIViewControllerExtension.swift in Sources */,
 				5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */,
 				5C8143822589E99F00C1CC1A /* InfiniteScrollViewController.swift in Sources */,
