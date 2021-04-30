@@ -20,6 +20,9 @@ public struct PXLProduct {
     public let productDescription: String?
     public let price: Double?
     public let currency: String?
+    public let salesPrice: Double?
+    public let salesStartDate: Date?
+    public let salesEndDate: Date?
 
     static var currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()

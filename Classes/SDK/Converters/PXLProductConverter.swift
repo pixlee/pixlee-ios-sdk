@@ -27,7 +27,15 @@ class PXLProductConverter {
         if let imageThumbSquareUrl = dto.imageThumb {
             imageThumbSquareURL = URL(string: imageThumbSquareUrl)
         }
+        var salesStartDate: Date?
+        if let _salesStartDate = dto.salesStartDate {
+            salesStartDate = Date(timeIntervalSince1970: TimeInterval(_salesStartDate / 1000))
+        }
 
+        var salesEndDate: Date?
+        if let _salesEndDate = dto.salesEndDate {
+            salesEndDate = Date(timeIntervalSince1970: TimeInterval(_salesEndDate / 1000))
+        }
         return PXLProduct(identifier: dto.id,
                           linkText: dto.linkText,
                           link: link,
@@ -38,6 +46,9 @@ class PXLProductConverter {
                           sku: dto.sku,
                           productDescription: dto.productDescription,
                           price:dto.price,
-                          currency: dto.currency)
+                          currency: dto.currency,
+                salesPrice: dto.salesPrice,
+                salesStartDate: salesStartDate,
+                salesEndDate: salesEndDate)
     }
 }

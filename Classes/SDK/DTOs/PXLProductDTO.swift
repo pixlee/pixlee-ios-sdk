@@ -29,6 +29,9 @@ struct PXLProductDTO: Codable {
     let reviewsInfo: PXLReviewsInfo?
     let productRegionLinks: [PXLProductRegionLink]?
     let productTaggedAt: Int?
+    let salesPrice: Double?
+    let salesStartDate: Int?
+    let salesEndDate: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -47,6 +50,9 @@ struct PXLProductDTO: Codable {
         case reviewsInfo = "reviews_info"
         case productRegionLinks = "product_region_links"
         case productTaggedAt = "product_tagged_at"
+        case salesPrice = "sales_price"
+        case salesStartDate = "sales_start_date"
+        case salesEndDate = "sales_end_date"
     }
 }
 

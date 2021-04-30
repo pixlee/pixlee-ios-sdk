@@ -28,7 +28,7 @@ class WidgetViewController: UIViewController {
             let album = PXLAlbum(identifier: albumId)
             album.filterOptions = PXLAlbumFilterOptions(hasPermission: true, hasProduct: true)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            album.perPage = 30
+            album.perPage = 18
             widgetView.searchingAlbum = album
         }
     }
