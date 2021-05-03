@@ -63,6 +63,7 @@
 		5857E4CC0AAF89BB24A5DA2EC2CB6481 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA780BB455F25408AC675FC6BF0F921F /* ImageRequest.swift */; };
 		5C54947C26295ED7005C2270 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54947B26295ED7005C2270 /* PXLWidgetView.swift */; };
 		5C6BE395262E46200000CC18 /* PXLLoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */; };
+		5C7DB6F2263FC8CE00175BB2 /* MultiLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DB6F1263FC8CE00175BB2 /* MultiLanguage.swift */; };
 		5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBAFA0D262D394500C77832 /* WidgetSpec.swift */; };
 		5DA2B11F9A41C6EAEC8B31F281A6E549 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647926C9A73B65D8110C829E08FA151 /* ImageViewExtensions.swift */; };
 		606AD2468F2BF411CBEC67D55C42A295 /* PXLAdvancedProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB94E860162CBFF375603C11EA864940 /* PXLAdvancedProductCell.xib */; };
@@ -320,6 +321,7 @@
 		597D1CA11ED6CE8E18253E4E3EBDF9D4 /* UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Sources/Gifu/Extensions/UIImage.swift; sourceTree = "<group>"; };
 		5C54947B26295ED7005C2270 /* PXLWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
 		5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLLoadMoreFooterView.swift; sourceTree = "<group>"; };
+		5C7DB6F1263FC8CE00175BB2 /* MultiLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLanguage.swift; sourceTree = "<group>"; };
 		5CBAFA0D262D394500C77832 /* WidgetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D88053FB36AF416D6957E43FF69908B /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				0FA9DE2919C24E31E59AD4891EB70232 /* Resources */,
 				B3ACBA8682117D553756B260AC2A0755 /* ViewControllers */,
 				7F05634ABBFC2E8C7590F53AC136FDFE /* Widgets */,
+				5C7DB6F1263FC8CE00175BB2 /* MultiLanguage.swift */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				8CB1A232D776502A48666DC83B3D485A /* PixleeSDK-dummy.m in Sources */,
 				EDD735D0B0A407F02999B57F5A56FBEE /* PXLAdvancedProductCell.swift in Sources */,
 				509A01AB4FA2C8E99E2D4056A14E29A1 /* PXLAlbum.swift in Sources */,
+				5C7DB6F2263FC8CE00175BB2 /* MultiLanguage.swift in Sources */,
 				7ED4ABF73644F6E8945C2950B0DF77D7 /* PXLAlbumFilterOptions.swift in Sources */,
 				EE47EB2C9488AE81F449C430FE5F7A2C /* PXLAlbumNexPageResponseDTO.swift in Sources */,
 				5C6BE395262E46200000CC18 /* PXLLoadMoreFooterView.swift in Sources */,

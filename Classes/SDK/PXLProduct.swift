@@ -36,6 +36,11 @@ public struct PXLProduct {
         return "\(currency) \(formattedPrice)"
     }
 
+    private func getDiscountPercentage() -> Int? {
+        guard let salesPrice = salesPrice, let price = price else {return nil}
+        return Int(((1.0 - (salesPrice / price)) * 100.0).rounded())
+    }
+
     public func getAttributedPrice(discountPrice: DiscountPrice?) -> NSAttributedString? {
         guard let price = price else { return nil }
 
@@ -46,7 +51,7 @@ public struct PXLProduct {
         let salesColor = UIColor.red
         let disabledColor = UIColor.darkText.withAlphaComponent(0.5)
 
-        let mutableAttributedString = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        let mutableAttributedString = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7, weight: .bold)])
 
         // Sales Price UI
         let availableSalesPrice = hasAvailableSalesPrice()
@@ -62,25 +67,35 @@ public struct PXLProduct {
         }
 
         // Default Price UI
-        let priceStrings: [NSAttributedString]
+        var priceStrings: [NSAttributedString]
         if let discountPrice = discountPrice {
-            let disabledAttributedString:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .bold), NSAttributedString.Key.foregroundColor: disabledColor, NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: disabledColor]
+            let disabledAttributedString:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .bold), NSAttributedString.Key.foregroundColor: disabledColor]
+            let disabledAttributedStringWithUnderline:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .bold), NSAttributedString.Key.foregroundColor: disabledColor, NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: disabledColor]
             switch (discountPrice.discountLayout) {
             case .CROSS_THROUGH:
                 priceStrings = getAttributedString(discountPrice: discountPrice,
                         price: price,
-                        integerAttributs: disabledAttributedString,
-                        decimalAttributes: disabledAttributedString)
+                        integerAttributs: disabledAttributedStringWithUnderline,
+                        decimalAttributes: disabledAttributedStringWithUnderline)
             case .WAS_OLD_PRICE:
                 priceStrings = getAttributedString(discountPrice: discountPrice,
                         price: price,
                         integerAttributs: disabledAttributedString,
-                        decimalAttributes: disabledAttributedString)
+                        decimalAttributes: disabledAttributedString, formattedString: MultiLanguage.getWasOldPrice()) // percent off UI
             case .WITH_DISCOUNT_LABEL:
-                priceStrings = getAttributedString(discountPrice: discountPrice,
-                        price: price,
-                        integerAttributs: disabledAttributedString,
-                        decimalAttributes: disabledAttributedString)
+                if let discountPercentage = getDiscountPercentage() {
+                    priceStrings = getAttributedString(discountPrice: discountPrice,
+                            price: price,
+                            integerAttributs: disabledAttributedStringWithUnderline,
+                            decimalAttributes: disabledAttributedStringWithUnderline)
+                    priceStrings.append(NSAttributedString(string: String(format:MultiLanguage.getPercentOff(), " \(discountPercentage)"),
+                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .regular), NSAttributedString.Key.foregroundColor: salesColor]))
+                } else {
+                    priceStrings = getAttributedString(discountPrice: discountPrice,
+                            price: price,
+                            integerAttributs: disabledAttributedString,
+                            decimalAttributes: disabledAttributedString)
+                }
             }
         } else {
             priceStrings = getAttributedString(discountPrice: discountPrice,
@@ -95,15 +110,13 @@ public struct PXLProduct {
         return mutableAttributedString
     }
 
-    private func getAttributedString(discountPrice: DiscountPrice?, price:Double?, integerAttributs: [NSAttributedString.Key : Any], decimalAttributes:[NSAttributedString.Key : Any]) -> [NSAttributedString] {
-
+    private func getAttributedString(discountPrice: DiscountPrice?, price:Double?, integerAttributs: [NSAttributedString.Key : Any], decimalAttributes:[NSAttributedString.Key : Any], formattedString: String? = nil) -> [NSAttributedString] {
         guard let price = price else {
             return []
         }
+
         let isCurrencyLeading = discountPrice?.isCurrencyLeading ?? false
-
         let doubleAsString = String(price);
-
         var integerString: String.SubSequence = doubleAsString[...]
         var decimalString: String.SubSequence? = nil
         if let indexOfDecimal = doubleAsString.firstIndex(of: ".") {
@@ -112,18 +125,26 @@ public struct PXLProduct {
         }
 
         var nsAttributedStrings:[NSAttributedString] = []
-        var symbol = currencySymbol ?? ""
-        var space = " "
+        var leadingSymbol = isCurrencyLeading ? (currencySymbol ?? "") : ""
+        var trailingSymbol = isCurrencyLeading ? "" : (currencySymbol ?? "")
         if let decimalPrice = decimalString {
-            nsAttributedStrings.append(NSAttributedString(string: isCurrencyLeading ? "\(symbol)\(space)\(integerString)" : "\(integerString)", attributes: integerAttributs))
-            nsAttributedStrings.append(NSAttributedString(string: isCurrencyLeading ? "\(decimalPrice)" : "\(decimalPrice)\(space)\(symbol)", attributes: decimalAttributes))
+            if let formattedString = formattedString {
+                nsAttributedStrings.append(NSAttributedString(string: String(format: formattedString, "\(leadingSymbol)\(integerString)\(decimalPrice)\(trailingSymbol)"), attributes: integerAttributs))
+            }else {
+                nsAttributedStrings.append(NSAttributedString(string: "\(leadingSymbol)\(integerString)", attributes: integerAttributs))
+                nsAttributedStrings.append(NSAttributedString(string: "\(decimalPrice)\(trailingSymbol)", attributes: decimalAttributes))
+            }
         }else {
-            nsAttributedStrings.append(NSAttributedString(string: isCurrencyLeading ? "\(symbol)\(space)\(integerString)" : "\(integerString) \(symbol)", attributes: integerAttributs))
+            if let formattedString = formattedString {
+                nsAttributedStrings.append(NSAttributedString(string: String(format: formattedString, "\(leadingSymbol)\(integerString)\(trailingSymbol)"), attributes: integerAttributs))
+            } else {
+                nsAttributedStrings.append(NSAttributedString(string: "\(leadingSymbol)\(integerString)\(trailingSymbol)", attributes: integerAttributs))
+            }
         }
         return nsAttributedStrings
     }
 
-    func hasAvailableSalesPrice() -> Bool {
+    private func hasAvailableSalesPrice() -> Bool {
         // we show price if the displayOptions has productPrice true, and the product actually has an actual price > 0
         var salesPriceLessThanStandard = false
         if let price = price, let salesPrice = salesPrice, price > salesPrice{
@@ -144,6 +165,7 @@ public struct PXLProduct {
 
         return salesPriceLessThanStandard && isWithinSalesDateRange;
     }
+
     public var currencySymbol: String? {
         switch currency {
         case "EUR": return "€"
