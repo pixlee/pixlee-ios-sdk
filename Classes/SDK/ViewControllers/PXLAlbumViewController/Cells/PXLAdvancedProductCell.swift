@@ -72,7 +72,7 @@ class PXLAdvancedProductCell: UICollectionViewCell {
                 itemImageView.image = nil
             }
 
-            actionButton.setAttributedTitle(pxlProduct.attributedPrice, for: .normal)
+            actionButton.setAttributedTitle(pxlProduct.getAttributedPrice(discountPrice: configuration?.discountPrice), for: .normal)
             titleLabel.text = pxlProduct.title
             descriptionLabel.text = pxlProduct.productDescription
         }
