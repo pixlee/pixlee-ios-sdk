@@ -68,7 +68,7 @@ public struct PXLProduct {
 
         // Default Price UI
         var priceStrings: [NSAttributedString]
-        if let discountPrice = discountPrice {
+        if availableSalesPrice, let discountPrice = discountPrice {
             let disabledAttributedString:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .bold), NSAttributedString.Key.foregroundColor: disabledColor]
             let disabledAttributedStringWithUnderline:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .bold), NSAttributedString.Key.foregroundColor: disabledColor, NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: disabledColor]
             switch (discountPrice.discountLayout) {
@@ -88,7 +88,7 @@ public struct PXLProduct {
                             price: price,
                             integerAttributs: disabledAttributedStringWithUnderline,
                             decimalAttributes: disabledAttributedStringWithUnderline)
-                    priceStrings.append(NSAttributedString(string: String(format:MultiLanguage.getPercentOff(), " \(discountPercentage)"),
+                    priceStrings.append(NSAttributedString(string: String(format:MultiLanguage.getPercentOff(), "\n\(discountPercentage)"),
                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .regular), NSAttributedString.Key.foregroundColor: salesColor]))
                 } else {
                     priceStrings = getAttributedString(discountPrice: discountPrice,

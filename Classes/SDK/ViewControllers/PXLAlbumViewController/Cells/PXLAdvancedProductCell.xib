@@ -72,8 +72,8 @@
                                     <constraint firstAttribute="height" constant="40" id="fD8-gX-fu0"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlK-1H-vJs">
-                                <rect key="frame" x="116" y="147" width="162" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AlK-1H-vJs">
+                                <rect key="frame" x="116" y="147" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="7"/>
                                 <color key="tintColor" systemColor="darkTextColor"/>
                                 <state key="normal" title="Button">
@@ -91,7 +91,7 @@
                             <constraint firstItem="Wdo-V6-Ad2" firstAttribute="top" secondItem="3To-d4-VHE" secondAttribute="bottom" constant="4" id="Abv-WX-HIv"/>
                             <constraint firstAttribute="bottom" secondItem="cJV-qJ-eaA" secondAttribute="bottom" constant="16" id="Dwd-lB-5Nq"/>
                             <constraint firstItem="3To-d4-VHE" firstAttribute="leading" secondItem="9Jf-bP-H6l" secondAttribute="trailing" constant="8" id="EC8-RZ-8Fr"/>
-                            <constraint firstItem="cJV-qJ-eaA" firstAttribute="leading" secondItem="AlK-1H-vJs" secondAttribute="trailing" id="O93-y6-azp"/>
+                            <constraint firstItem="cJV-qJ-eaA" firstAttribute="leading" secondItem="AlK-1H-vJs" secondAttribute="trailing" constant="5" id="O93-y6-azp"/>
                             <constraint firstItem="tj7-7E-MVr" firstAttribute="leading" secondItem="3To-d4-VHE" secondAttribute="trailing" constant="8" id="Pc4-aK-YYf"/>
                             <constraint firstItem="tj7-7E-MVr" firstAttribute="leading" secondItem="Wdo-V6-Ad2" secondAttribute="trailing" constant="8" id="V2k-0S-TmX"/>
                             <constraint firstAttribute="trailing" secondItem="tj7-7E-MVr" secondAttribute="trailing" constant="16" id="YfX-ze-Grh"/>

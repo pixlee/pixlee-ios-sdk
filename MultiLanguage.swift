@@ -26,7 +26,8 @@ enum Languages: String {
 
 public class MultiLanguage {
     private static func getLanguage() -> Languages{
-        Languages.init(rawValue: Locale.current.languageCode ?? "") ?? Languages.en
+        //Languages.init(rawValue: Locale.current.languageCode ?? "") ?? Languages.en
+        Languages.en
     }
     public static func getPercentOff() -> String {
         switch (getLanguage()) {
