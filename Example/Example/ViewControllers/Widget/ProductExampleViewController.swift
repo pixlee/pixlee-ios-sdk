@@ -16,14 +16,17 @@ class ProductExampleViewController: UIViewController {
         return vc
     }
 
-    let cellConfigurations:[PXLProductCellConfiguration] = [
+    let cellConfigurations: [PXLProductCellConfiguration] = [
+        PXLProductCellConfiguration(),
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.CROSS_THROUGH, isCurrencyLeading: false)),
         PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.CROSS_THROUGH, isCurrencyLeading: true)),
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WAS_OLD_PRICE, isCurrencyLeading: false)),
         PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WAS_OLD_PRICE, isCurrencyLeading: true)),
-        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true)),
-        PXLProductCellConfiguration()
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: false)),
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true))
     ]
 
-    var pixleeCredentials:PixleeCredentials = PixleeCredentials()
+    var pixleeCredentials: PixleeCredentials = PixleeCredentials()
     var collectionView: UICollectionView? = nil
     var album = PXLAlbum()
     public var products: [PXLProduct]?
@@ -42,6 +45,7 @@ class ProductExampleViewController: UIViewController {
     }
 
     var flowLayout: UICollectionViewFlowLayout? = nil
+
     func setupCollectionView() {
         flowLayout = UICollectionViewFlowLayout()
         if let flowLayout = flowLayout {
@@ -79,7 +83,6 @@ class ProductExampleViewController: UIViewController {
         }
     }
 
-
     func initAlbum() {
         do {
             try pixleeCredentials = PixleeCredentials.create()
@@ -96,9 +99,9 @@ class ProductExampleViewController: UIViewController {
         album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
     }
 
-
     var sections: [Int] = [1]
     var isFreezingNetworking = false
+
     func loadPhotos() {
         if isFreezingNetworking {
             return
@@ -112,7 +115,7 @@ class ProductExampleViewController: UIViewController {
             }
 
             self.isFreezingNetworking = false
-            if let photos = photos , let newProducts = photos.first?.products{
+            if let photos = photos, let newProducts = photos.first?.products {
                 self.products = newProducts
                 self.collectionView?.reloadData()
             }
@@ -130,54 +133,42 @@ extension ProductExampleViewController: UICollectionViewDelegate, UICollectionVi
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(2, products?.count ?? 0)
+        if section == 0 {
+            return min(1, products?.count ?? 0)
+        } else {
+            return min(2, products?.count ?? 0)
+        }
+
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier, for: indexPath) as! PXLAdvancedProductCell
         cell.configuration = cellConfigurations[indexPath.section]
-        cell.onBookmarkClicked = { [weak self] product, isSelected in
-//            guard let strongSelf = self else { return }
-//            strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
-        }
-        let product = products?[indexPath.row]
-        cell.pxlProduct = product
-//        if let bookmarks = bookmarks, let product = product {
-//            cell.isBookmarked = bookmarks[product.identifier] ?? false
-//        }
-        cell.actionButtonPressed = { [weak self] product in
-//            guard let strongSelf = self else { return }
-//            strongSelf.handleProductPressed(product: product)
-        }
         return cell
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let product = products?[indexPath.item] {
-            //handleProductPressed(product: product)
-        }
+
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView,
-                                 viewForSupplementaryElementOfKind kind: String,
-                                 at indexPath: IndexPath) -> UICollectionReusableView {
-        debugPrint("collectionView(viewForSupplementaryElementOfKind): \(indexPath)")
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProductSectionCell.defaultIdentifier, for: indexPath) as? ProductSectionCell
-            else {
+                    else {
                 fatalError("Invalid view type")
             }
-            
-            if let text = cellConfigurations[indexPath.section].discountPrice?.discountLayout.rawValue {
-                headerView.titleText = text
+
+            if let discountPrice = cellConfigurations[indexPath.section].discountPrice {
+                let isCurrencyLeading = discountPrice.isCurrencyLeading ? ", isCurrencyLeading: true" : ""
+                headerView.titleText = "\(discountPrice.discountLayout.rawValue)\(isCurrencyLeading)"
             } else {
                 headerView.titleText = "No option"
             }
-            
             return headerView
         default:
-            // 4
             assert(false, "Invalid element type")
         }
     }

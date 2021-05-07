@@ -23,7 +23,7 @@ public class ProductSectionCell: UICollectionReusableView {
         super.layoutSubviews()
         addSubview(titleLabel)
         titleLabel.text = titleText
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
         titleLabel.textColor = .black
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         let titleConstraints = [
