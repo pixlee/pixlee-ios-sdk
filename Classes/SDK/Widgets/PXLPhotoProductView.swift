@@ -36,8 +36,8 @@ public struct PXLProductCellConfiguration {
 }
 
 public struct DiscountPrice {
-    let discountLayout: DiscountLayout
-    let isCurrencyLeading: Bool
+    public let discountLayout: DiscountLayout
+    public let isCurrencyLeading: Bool
 
     public init(discountLayout: DiscountLayout, isCurrencyLeading: Bool) {
         self.discountLayout = discountLayout
@@ -52,7 +52,7 @@ public struct DiscountPrice {
      *  - theres actually a sales price > 0
      *  - we're also showing the price as well
      */
-public enum DiscountLayout {
+public enum DiscountLayout : String {
     case CROSS_THROUGH // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/c5fad7cd-a861-415f-8916-cabf8b50f32b/
     case WAS_OLD_PRICE // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/21486793-b111-47ab-8029-038ee1544818/
     case WITH_DISCOUNT_LABEL // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/ec1004e6-d7ad-4d7a-92e2-4fcbb26877eb/

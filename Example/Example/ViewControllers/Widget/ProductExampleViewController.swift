@@ -16,7 +16,13 @@ class ProductExampleViewController: UIViewController {
         return vc
     }
 
-    let cellConfiguration = PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true))
+    let cellConfigurations:[PXLProductCellConfiguration] = [
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.CROSS_THROUGH, isCurrencyLeading: true)),
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WAS_OLD_PRICE, isCurrencyLeading: true)),
+        PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true)),
+        PXLProductCellConfiguration()
+    ]
+
     var pixleeCredentials:PixleeCredentials = PixleeCredentials()
     var collectionView: UICollectionView? = nil
     var album = PXLAlbum()
@@ -34,23 +40,42 @@ class ProductExampleViewController: UIViewController {
         initAlbum()
         loadPhotos()
     }
+
+    var flowLayout: UICollectionViewFlowLayout? = nil
     func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 350, height: 150)
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        flowLayout = UICollectionViewFlowLayout()
+        if let flowLayout = flowLayout {
+            flowLayout.scrollDirection = .vertical
+            flowLayout.itemSize = CGSize(width: 350, height: 150)
+            flowLayout.headerReferenceSize = CGSize(width: 350, height: 50)
+            collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
+        }
+
 
         if let collectionView = collectionView {
             //collectionView.setCollectionViewLayout(layout, animated: false)
             collectionView.delegate = self
+            collectionView.isPrefetchingEnabled = true
             collectionView.dataSource = self
             collectionView.backgroundColor = .systemGray5
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            collectionView.isPagingEnabled = false
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+
             let bundle = Bundle(for: PXLAdvancedProductCell.self)
             collectionView.register(UINib(nibName: "PXLAdvancedProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier)
             collectionView.register(ProductSectionCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionCell.defaultIdentifier)
-            collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            collectionView.isPagingEnabled = false
+
             view.addSubview(collectionView)
+
+            let margins = view.layoutMarginsGuide
+            let constraints = [
+                collectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+                collectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+                collectionView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+                collectionView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
+            ]
+            NSLayoutConstraint.activate(constraints)
         }
     }
 
@@ -90,24 +115,27 @@ class ProductExampleViewController: UIViewController {
             if let photos = photos , let newProducts = photos.first?.products{
                 self.products = newProducts
                 self.collectionView?.reloadData()
-
-//                self.collectionView?.performBatchUpdates({
-//                    self.collectionView?.insertSections(IndexSet(integer: 0))
-//                }, completion: nil)
             }
         }
     }
 }
 
 extension ProductExampleViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if products?.isEmpty ?? true {
+            return 0
+        } else {
+            return cellConfigurations.count
+        }
+    }
+
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products?.count ?? 0
+        return min(2, products?.count ?? 0)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier, for: indexPath) as! PXLAdvancedProductCell
-
-        cell.configuration = cellConfiguration
+        cell.configuration = cellConfigurations[indexPath.section]
         cell.onBookmarkClicked = { [weak self] product, isSelected in
 //            guard let strongSelf = self else { return }
 //            strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
@@ -141,24 +169,34 @@ extension ProductExampleViewController: UICollectionViewDelegate, UICollectionVi
                 fatalError("Invalid view type")
             }
             
-            headerView.titleText = "layout option1"
+            if let text = cellConfigurations[indexPath.section].discountPrice?.discountLayout.rawValue {
+                headerView.titleText = text
+            } else {
+                headerView.titleText = "No option"
+            }
+            
             return headerView
         default:
             // 4
             assert(false, "Invalid element type")
         }
     }
+}
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 10
+extension ProductExampleViewController: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return flowLayout?.itemSize ?? CGSize(width: 350, height: 50)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        if section == 0 {
-//            return CGSize(width: 0, height: 0)
-//        } else {
-            return CGSize(width: 350, height: 150)
-//        }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 }

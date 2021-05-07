@@ -23,7 +23,6 @@
 		5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */; };
 		5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */; };
 		5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */; };
-		5CA483392640FEEF008D1B99 /* ProductSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA483382640FEEF008D1B99 /* ProductSectionCell.xib */; };
 		5CA4833E264100AC008D1B99 /* ProductSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4833D264100AC008D1B99 /* ProductSectionCell.swift */; };
 		5CCE82F625A564390040B222 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */; };
 		5CE55183257E17B5009666C1 /* PixleeCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE55182257E17B5009666C1 /* PixleeCredentials.swift */; };
@@ -90,7 +89,6 @@
 		5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotosViewController.swift; sourceTree = "<group>"; };
 		5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoViewController.swift; sourceTree = "<group>"; };
 		5CA2236C7314A391A218AFB3 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		5CA483382640FEEF008D1B99 /* ProductSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSectionCell.xib; sourceTree = "<group>"; };
 		5CA4833D264100AC008D1B99 /* ProductSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSectionCell.swift; sourceTree = "<group>"; };
 		5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5CE55182257E17B5009666C1 /* PixleeCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixleeCredentials.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			children = (
 				5C54948B262970EF005C2270 /* WidgetViewController.swift */,
 				5C7DB7032640E13B00175BB2 /* ProductExampleViewController.swift */,
-				5CA483382640FEEF008D1B99 /* ProductSectionCell.xib */,
 				5CA4833D264100AC008D1B99 /* ProductSectionCell.swift */,
 			);
 			path = Widget;
@@ -435,7 +432,6 @@
 				5C8143412589D2AA00C1CC1A /* EmptyViewController.xib in Resources */,
 				5C2D02DD25BFA8CB004A6DC5 /* .Gemfile in Resources */,
 				F24D42FC23C65BBE0091E324 /* Main.storyboard in Resources */,
-				5CA483392640FEEF008D1B99 /* ProductSectionCell.xib in Resources */,
 				5C2D21AD25830CC1002EB673 /* PixleeCredentials.plist in Resources */,
 				F296942824224213003EB9DD /* AnalyticsViewController.xib in Resources */,
 			);

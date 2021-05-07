@@ -10,21 +10,28 @@ import Foundation
 import Nuke
 import UIKit
 
-public class ProductSectionCell: UICollectionViewCell {
+public class ProductSectionCell: UICollectionReusableView {
     public static let defaultIdentifier = "ProductSectionCell"
-
-    @IBOutlet weak var cellContainer: UIView!
-    
-    @IBOutlet weak var title: UILabel!
-    
-    public var titleText:String? = nil{
-        didSet {
-            title.text = titleText
+    var titleText:String?
+    public override func prepareForReuse() {
+        subviews.forEach { view in
+            view.removeFromSuperview()
         }
     }
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        //cellContainer.layer.cornerRadius = 4
+    var titleLabel = UILabel()
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        addSubview(titleLabel)
+        titleLabel.text = titleText
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        titleLabel.textColor = .black
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        let titleConstraints = [
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+        ]
+        NSLayoutConstraint.activate(titleConstraints)
     }
 }
