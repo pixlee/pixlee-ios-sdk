@@ -24,7 +24,7 @@ enum Languages: String {
     case zh_Hant_TW = "zh-Hant-TW"
 }
 
-public class MultiLanguageTexts {
+public class MultiLanguage {
     private static func getLanguage() -> Languages{
         Languages.init(rawValue: Locale.current.languageCode ?? "") ?? Languages.en
     }
