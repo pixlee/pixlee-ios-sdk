@@ -144,6 +144,7 @@ extension ProductExampleViewController: UICollectionViewDelegate, UICollectionVi
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier, for: indexPath) as! PXLAdvancedProductCell
         cell.configuration = cellConfigurations[indexPath.section]
+        cell.pxlProduct = products?[indexPath.row]
         return cell
     }
 
