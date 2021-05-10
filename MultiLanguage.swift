@@ -46,7 +46,7 @@ public class MultiLanguage {
         case .zh_Hant_TW: return "%@%% 離開"
         }
     }
-
+    
     public static func getWasOldPrice() -> String {
         switch (getLanguage()) {
         case .en: return "was %@"
