@@ -318,6 +318,7 @@ public class PXLPhotoView: UIView {
 
         actionButton = UIButton(type: .system)
 
+        actionButton?.setTitle(buttonTitle, for: .normal)
         actionButton?.tintColor = textColor
         actionButton?.layer.borderColor = textColor.cgColor
         actionButton?.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)

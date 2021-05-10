@@ -36,13 +36,6 @@ public class PXLWidgetView: UIView {
 
     public var items: [PXLPhoto] = [] {
         didSet {
-            infiniteItems = items
-        }
-    }
-
-    private var infiniteItems: [PXLPhoto] = [] {
-        didSet {
-            collectionView?.reloadData()
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                 self.logFirstHighlights()
             }
@@ -75,8 +68,8 @@ public class PXLWidgetView: UIView {
 
     func loadPhotos() {
         loadMoreType = .loading
-        //collectionView?.collectionViewLayout.invalidateLayout()
-        collectionView?.reloadData()
+
+        self.collectionView?.reloadSections(IndexSet(0 ..< 1))
         if let album = self.searchingAlbum {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 if let photos = photos {
@@ -90,8 +83,7 @@ public class PXLWidgetView: UIView {
                 } else {
                     self.loadMoreType = nil
                 }
-                //self.collectionView?.collectionViewLayout.invalidateLayout()
-                self.collectionView?.reloadData()
+                self.collectionView?.reloadSections(IndexSet(0 ..< 1))
             }
         } else {
             self.loadMoreType = nil
@@ -135,9 +127,6 @@ public class PXLWidgetView: UIView {
         } else {
             flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
         }
-
-        collectionView?.collectionViewLayout.invalidateLayout()
-        collectionView?.reloadData()
     }
 
     private var cellPadding: CGFloat {
@@ -291,7 +280,7 @@ public class PXLWidgetView: UIView {
         }
 
         if !isAnalyticsOpenedWidgetFired {
-            if !infiniteItems.isEmpty {
+            if !items.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
@@ -312,7 +301,7 @@ public class PXLWidgetView: UIView {
         }
 
         if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
-            if !infiniteItems.isEmpty && isVisible(customView) {
+            if !items.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
@@ -451,7 +440,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return infiniteItems.count
+        return items.count
     }
 }
 
