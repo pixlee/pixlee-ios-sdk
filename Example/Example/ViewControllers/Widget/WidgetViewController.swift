@@ -26,9 +26,9 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            album.filterOptions = PXLAlbumFilterOptions(hasPermission: true, hasProduct: true)
+            album.filterOptions = PXLAlbumFilterOptions(/*hasPermission: true, hasProduct: true*/)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
-            album.perPage = 30
+            album.perPage = 18
             widgetView.searchingAlbum = album
         }
     }
@@ -105,7 +105,8 @@ extension WidgetViewController: PXLWidgetViewDelegate {
             videoCell = cell
         }
         // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
-        cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+
+        cell.setupCell(photo: photo, title: "\(photo.id)", subtitle: "\(photo.id)", buttonTitle: "\(photo.id)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

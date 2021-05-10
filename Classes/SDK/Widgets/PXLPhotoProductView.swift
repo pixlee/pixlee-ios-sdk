@@ -17,18 +17,45 @@ public struct PXLProductCellConfiguration {
     public let shopImage: UIImage?
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
+    public let discountPrice: DiscountPrice?
+
 
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopImage: UIImage? = UIImage(named: "shoppingBag", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopBackgroundColor: UIColor = UIColor.systemYellow,
-                shopBackgroundHidden: Bool = false) {
+                shopBackgroundHidden: Bool = false,
+                discountPrice: DiscountPrice? = nil) {
         self.bookmarkOnImage = bookmarkOnImage
         self.bookmarkOffImage = bookmarkOffImage
         self.shopImage = shopImage
         self.shopBackgroundColor = shopBackgroundColor
         self.shopBackgroundHidden = shopBackgroundHidden
+        self.discountPrice = discountPrice
     }
+}
+
+public struct DiscountPrice {
+    public let discountLayout: DiscountLayout
+    public let isCurrencyLeading: Bool
+
+    public init(discountLayout: DiscountLayout, isCurrencyLeading: Bool) {
+        self.discountLayout = discountLayout
+        self.isCurrencyLeading = isCurrencyLeading
+    }
+}
+
+/**
+     * Only show the sales price if its acceptable in case:
+     *  - its a time based sale
+     *  - the sales price is less than the standard price
+     *  - theres actually a sales price > 0
+     *  - we're also showing the price as well
+     */
+public enum DiscountLayout : String {
+    case CROSS_THROUGH // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/c5fad7cd-a861-415f-8916-cabf8b50f32b/
+    case WAS_OLD_PRICE // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/21486793-b111-47ab-8029-038ee1544818/
+    case WITH_DISCOUNT_LABEL // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/ec1004e6-d7ad-4d7a-92e2-4fcbb26877eb/
 }
 
 public protocol PXLPhotoProductDelegate: class {
@@ -423,7 +450,7 @@ public class PXLPhotoProductView: UIViewController {
             isObserving = false
         }
     }
-    
+
     public func destroyPlayer(){
         if(queuePlayer != nil){
             queuePlayer?.pause()
@@ -441,20 +468,20 @@ public class PXLPhotoProductView: UIViewController {
         queuePlayer?.isMuted = muted
         adjustMuteImages()
     }
-    
+
     private var isAnalyticsOpenLightboxFired = false
-    
+
     private func fireAnalyticsOpenLightbox() {
         if !PXLClient.sharedClient.autoAnalyticsEnabled {
             return
         }
-        
+
         if (!isAnalyticsOpenLightboxFired) {
             guard let photo = viewModel else {
                 print( "can't fire OpenLightbox analytics event because photo:PXLPhoto is null")
                 return
             }
-            
+
             if isVisible(view) {
                 isAnalyticsOpenLightboxFired = true
                 _ = photo.triggerEventOpenedLightbox() { error in
@@ -468,7 +495,7 @@ public class PXLPhotoProductView: UIViewController {
             }
         }
     }
-    
+
     func isVisible(_ view: UIView) -> Bool {
         func isVisible(view: UIView, inView: UIView?) -> Bool {
             guard let inView = inView else { return true }

@@ -8,8 +8,8 @@
 import Nuke
 import UIKit
 
-class PXLAdvancedProductCell: UICollectionViewCell {
-    static var defaultIdentifier = "PXLAdvancedProductCell"
+public class PXLAdvancedProductCell: UICollectionViewCell {
+    public static let defaultIdentifier = "PXLAdvancedProductCell"
 
     @IBOutlet var cellContainer: UIView!
     @IBOutlet var titleLabel: UILabel!
@@ -21,7 +21,7 @@ class PXLAdvancedProductCell: UICollectionViewCell {
     @IBOutlet var actionButton: UIButton!
     @IBOutlet var itemImageView: UIImageView!
 
-    var configuration: PXLProductCellConfiguration? {
+    public var configuration: PXLProductCellConfiguration? {
         didSet {
             guard let config = configuration else { return }
 
@@ -43,9 +43,9 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         }
     }
 
-    var onBookmarkClicked: ((_ product: PXLProduct, _ isSelected: Bool) -> Void)?
+    public var onBookmarkClicked: ((_ product: PXLProduct, _ isSelected: Bool) -> Void)?
 
-    var isBookmarked: Bool = false {
+    public var isBookmarked: Bool = false {
         didSet {
             guard let config = configuration else { return }
 
@@ -57,7 +57,7 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         }
     }
 
-    var pxlProduct: PXLProduct? {
+    public var pxlProduct: PXLProduct? {
         didSet {
             guard let pxlProduct = pxlProduct else { return }
 
@@ -72,13 +72,13 @@ class PXLAdvancedProductCell: UICollectionViewCell {
                 itemImageView.image = nil
             }
 
-            actionButton.setAttributedTitle(pxlProduct.attributedPrice, for: .normal)
+            actionButton.setAttributedTitle(pxlProduct.getAttributedPrice(discountPrice: configuration?.discountPrice), for: .normal)
             titleLabel.text = pxlProduct.title
             descriptionLabel.text = pxlProduct.productDescription
         }
     }
 
-    var actionButtonPressed: ((_ product: PXLProduct) -> Void)?
+    public var actionButtonPressed: ((_ product: PXLProduct) -> Void)?
 
     @IBAction func actionButtonPressed(_ sender: Any) {
         if let actionPressed = actionButtonPressed, let pxlProduct = pxlProduct {
@@ -93,7 +93,7 @@ class PXLAdvancedProductCell: UICollectionViewCell {
         }
     }
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         cellContainer.layer.cornerRadius = 4

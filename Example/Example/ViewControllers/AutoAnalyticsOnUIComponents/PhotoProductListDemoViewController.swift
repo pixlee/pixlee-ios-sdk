@@ -15,7 +15,7 @@ class PhotoProductListDemoViewController: UIViewController {
         vc.photo = photo
         return vc
     }
-    
+
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var scrollView: UIScrollView!
 
@@ -26,25 +26,29 @@ class PhotoProductListDemoViewController: UIViewController {
         super.viewDidLoad()
         setupPhotoProductView()
     }
-    
+
     func setupPhotoProductView() {
         stackView.arrangedSubviews.forEach { view in
             self.stackView.removeArrangedSubview(view)
         }
-        
-        guard let photo = photo else {return}
-        
-        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+
+        guard let photo = photo else {
+            return
+        }
+
+        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo,
+                delegate: self,
+                cellConfiguration: PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true)))
         widget.cropMode = .centerFit
         widget.closeButtonBackgroundColor = .white
         widget.closeButtonCornerRadius = 22
         widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)
-        
+
         widget.muteButtonBackgroundColor = .white
         widget.muteButtonTintColor = UIColor.red.withAlphaComponent(0.6)
-        
+
         self.stackView.addArrangedSubview(widget.view)
-        
+
         widget.view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             widget.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1),
@@ -53,7 +57,7 @@ class PhotoProductListDemoViewController: UIViewController {
         pxlPhotoProductView = widget
         NSLayoutConstraint.activate(constraints)
     }
-    
+
     /*
      // MARK: - Navigation
 
@@ -80,23 +84,23 @@ extension PhotoProductListDemoViewController: PXLPhotoProductDelegate {
 
     public func shouldOpenURL(url: URL) -> Bool {
         print("url: \(url)")
-        
+
         let alert = UIAlertController(title: "Select a Modal Presentation Style.", message: "", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "fullScreen", style: UIAlertAction.Style.default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "fullScreen", style: UIAlertAction.Style.default, handler: { _ in
             let vc = EmptyViewController.getInstance(url)
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
 
         }))
 
-        alert.addAction(UIAlertAction(title: "popover", style: UIAlertAction.Style.default, handler: {_ in
+        alert.addAction(UIAlertAction(title: "popover", style: UIAlertAction.Style.default, handler: { _ in
             let vc = EmptyViewController.getInstance(url)
             self.present(vc, animated: true, completion: nil)
 
         }))
         self.present(alert, animated: true, completion: nil)
 
-        
+
         return false
     }
 

@@ -61,6 +61,7 @@
 		579C1FBFB7E8AB0557C8FD0D89A9AD05 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601654E9ACDA21F2CE99E0EE02E0A84 /* Animator.swift */; };
 		57B31AE955ABBC6ACA9E7157844E1003 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AED41A1EEDF3A154834B2716532C59 /* ImageTask.swift */; };
 		5857E4CC0AAF89BB24A5DA2EC2CB6481 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA780BB455F25408AC675FC6BF0F921F /* ImageRequest.swift */; };
+		5C2A7C0B26492E1600C8CD19 /* MultiLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2A7C0A26492E1600C8CD19 /* MultiLanguage.swift */; };
 		5C54947C26295ED7005C2270 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54947B26295ED7005C2270 /* PXLWidgetView.swift */; };
 		5C6BE395262E46200000CC18 /* PXLLoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */; };
 		5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBAFA0D262D394500C77832 /* WidgetSpec.swift */; };
@@ -318,6 +319,7 @@
 		55ADA6AAA49533206F41923FBF0D524A /* PXLAdvancedProductCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAdvancedProductCell.swift; sourceTree = "<group>"; };
 		5649A07B7C7B7B4073AC814C14E68042 /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = "<group>"; };
 		597D1CA11ED6CE8E18253E4E3EBDF9D4 /* UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Sources/Gifu/Extensions/UIImage.swift; sourceTree = "<group>"; };
+		5C2A7C0A26492E1600C8CD19 /* MultiLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiLanguage.swift; path = Classes/SDK/MultiLanguage.swift; sourceTree = "<group>"; };
 		5C54947B26295ED7005C2270 /* PXLWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
 		5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLLoadMoreFooterView.swift; sourceTree = "<group>"; };
 		5CBAFA0D262D394500C77832 /* WidgetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				0FA9DE2919C24E31E59AD4891EB70232 /* Resources */,
 				B3ACBA8682117D553756B260AC2A0755 /* ViewControllers */,
 				7F05634ABBFC2E8C7590F53AC136FDFE /* Widgets */,
+				5C2A7C0A26492E1600C8CD19 /* MultiLanguage.swift */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				F472F394E99B1A196777150DA02DDD08 /* PXLPhotoListViewCell.swift in Sources */,
 				19A2C31903C59845EE079873B5B137B4 /* PXLPhotoProductView.swift in Sources */,
 				71C8538F1A2E0F38CCA5DBE6438C4132 /* PXLPhotoResponseDTO.swift in Sources */,
+				5C2A7C0B26492E1600C8CD19 /* MultiLanguage.swift in Sources */,
 				0392D57E9F924DC799C9840F238C4BF8 /* PXLPhotoView.swift in Sources */,
 				80C248837B2C88AD92F589219331EF32 /* PXLPlainErrorDTO.swift in Sources */,
 				FE9263E58AE329027733D4263351D2EC /* PXLProduct.swift in Sources */,

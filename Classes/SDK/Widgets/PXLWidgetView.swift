@@ -36,13 +36,6 @@ public class PXLWidgetView: UIView {
 
     public var items: [PXLPhoto] = [] {
         didSet {
-            infiniteItems = items
-        }
-    }
-
-    private var infiniteItems: [PXLPhoto] = [] {
-        didSet {
-            collectionView?.reloadData()
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                 self.logFirstHighlights()
             }
@@ -74,28 +67,31 @@ public class PXLWidgetView: UIView {
     var loadMoreType: LoadMoreType? = nil
 
     func loadPhotos() {
-        loadMoreType = .loading
-        //collectionView?.collectionViewLayout.invalidateLayout()
-        collectionView?.reloadData()
+        refreshFooter(loadMoreType: .loading)
         if let album = self.searchingAlbum {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+                var indexPaths = [IndexPath]()
                 if let photos = photos {
-                    for photo in photos {
-                        self.items.append(photo)
+                    let firstIndex = self.items.count
+                    for (index, _) in photos.enumerated() {
+                        self.items.append(photos[index])
+                        let itemNumber = firstIndex + index
+                        indexPaths.append(IndexPath(item: itemNumber, section: 0))
                     }
                 }
 
-                if album.hasNextPage {
-                    self.loadMoreType = .loadMore
-                } else {
-                    self.loadMoreType = nil
-                }
-                //self.collectionView?.collectionViewLayout.invalidateLayout()
-                self.collectionView?.reloadData()
+                // notify list the additions
+                self.collectionView?.insertItems(at: indexPaths)
+                self.refreshFooter(loadMoreType: album.hasNextPage ? .loadMore : nil)
             }
         } else {
-            self.loadMoreType = nil
+            self.refreshFooter(loadMoreType: nil)
         }
+    }
+
+    private func refreshFooter(loadMoreType: LoadMoreType?) {
+        self.loadMoreType = loadMoreType
+        self.collectionView?.reloadSections(IndexSet(0 ..< 1))
     }
 
     func setupCellSize() {
@@ -135,9 +131,6 @@ public class PXLWidgetView: UIView {
         } else {
             flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
         }
-
-        collectionView?.collectionViewLayout.invalidateLayout()
-        collectionView?.reloadData()
     }
 
     private var cellPadding: CGFloat {
@@ -291,7 +284,7 @@ public class PXLWidgetView: UIView {
         }
 
         if !isAnalyticsOpenedWidgetFired {
-            if !infiniteItems.isEmpty {
+            if !items.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
@@ -312,7 +305,7 @@ public class PXLWidgetView: UIView {
         }
 
         if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
-            if !infiniteItems.isEmpty && isVisible(customView) {
+            if !items.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
                 _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
@@ -345,7 +338,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
         switch (kind) {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! PXLGridHeaderView
-            debugPrint("adding header")
+            debugPrint("adding reusable header, indexPath:\(indexPath)")
             guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
             }
@@ -380,7 +373,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! PXLLoadMoreFooterView
-            debugPrint("adding footer")
+            debugPrint("adding reusable footer, indexPath:\(indexPath)")
             guard let widgetSpec = delegate?.setWidgetSpec() else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
             }
@@ -451,7 +444,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return infiniteItems.count
+        return items.count
     }
 }
 

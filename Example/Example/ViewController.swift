@@ -149,6 +149,10 @@ class ViewController: UIViewController {
         present(WidgetViewController.getInstance(), animated: true, completion: nil)
     }
     
+    @IBAction func showProductUIExample(_ sender: Any) {
+        present(ProductExampleViewController.getInstance(), animated: true, completion: nil)
+    }
+
     @IBAction func showAPIGetPhotos(_ sender: Any) {
         present(GetPhotosViewController.getInstance(), animated: true, completion: nil)
     }
