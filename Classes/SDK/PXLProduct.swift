@@ -81,14 +81,14 @@ public struct PXLProduct {
                 priceStrings = getAttributedString(discountPrice: discountPrice,
                         price: price,
                         integerAttributs: disabledAttributedString,
-                        decimalAttributes: disabledAttributedString, formattedString: MultiLanguage.getWasOldPrice()) // percent off UI
+                        decimalAttributes: disabledAttributedString, formattedString: MultiLanguage().getWasOldPrice()) // percent off UI
             case .WITH_DISCOUNT_LABEL:
                 if let discountPercentage = getDiscountPercentage() {
                     priceStrings = getAttributedString(discountPrice: discountPrice,
                             price: price,
                             integerAttributs: disabledAttributedStringWithUnderline,
                             decimalAttributes: disabledAttributedStringWithUnderline)
-                    priceStrings.append(NSAttributedString(string: String(format:MultiLanguage.getPercentOff(), "\n\(discountPercentage)"),
+                    priceStrings.append(NSAttributedString(string: String(format:MultiLanguage().getPercentOff(), "\n\(discountPercentage)"),
                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: middleFontSize, weight: .regular), NSAttributedString.Key.foregroundColor: salesColor]))
                 } else {
                     priceStrings = getAttributedString(discountPrice: discountPrice,

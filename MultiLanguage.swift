@@ -25,11 +25,10 @@ enum Languages: String {
 }
 
 public class MultiLanguage {
-    private static func getLanguage() -> Languages{
-        //Languages.init(rawValue: Locale.current.languageCode ?? "") ?? Languages.en
-        Languages.en
+    private func getLanguage() -> Languages{
+        Languages.init(rawValue: Locale.current.languageCode ?? "") ?? Languages.en
     }
-    public static func getPercentOff() -> String {
+    func getPercentOff() -> String {
         switch (getLanguage()) {
         case .en: return "%@%% Off"
         case .de: return "%@%% Aus"
@@ -48,7 +47,7 @@ public class MultiLanguage {
         }
     }
 
-    public static func getWasOldPrice() -> String {
+    func getWasOldPrice() -> String {
         switch (getLanguage()) {
         case .en: return "was %@"
         case .de: return "war %@"
