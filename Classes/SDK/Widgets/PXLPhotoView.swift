@@ -184,21 +184,21 @@ public class PXLPhotoView: UIView {
 
     public var title: String? {
         didSet {
-            titleLabel?.isHidden = title == nil
+            //titleLabel?.isHidden = title == nil
             titleLabel?.text = title
         }
     }
 
     public var subtitle: String? {
         didSet {
-            subtitleLabel?.isHidden = subtitle == nil
+            //subtitleLabel?.isHidden = subtitle == nil
             subtitleLabel?.text = subtitle
         }
     }
 
     public var buttonTitle: String? {
         didSet {
-            actionButton?.isHidden = buttonTitle == nil
+            //actionButton?.isHidden = buttonTitle == nil
             actionButton?.setTitle(buttonTitle, for: .normal)
         }
     }
@@ -307,14 +307,14 @@ public class PXLPhotoView: UIView {
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
         titleLabel?.textColor = textColor
-        titleLabel?.isHidden = title == nil
+        //titleLabel?.isHidden = title == nil
 
         subtitleLabel = UILabel()
         subtitleLabel?.font = subtitleFont
         subtitleLabel?.text = subtitle
         subtitleLabel?.textAlignment = .center
         subtitleLabel?.textColor = textColor
-        subtitleLabel?.isHidden = subtitle == nil
+        //subtitleLabel?.isHidden = subtitle == nil
 
         actionButton = UIButton(type: .system)
 
