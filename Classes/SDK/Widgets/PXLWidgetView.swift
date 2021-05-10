@@ -67,27 +67,31 @@ public class PXLWidgetView: UIView {
     var loadMoreType: LoadMoreType? = nil
 
     func loadPhotos() {
-        loadMoreType = .loading
-
-        self.collectionView?.reloadSections(IndexSet(0 ..< 1))
+        refreshFooter(loadMoreType: .loading)
         if let album = self.searchingAlbum {
             _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+                var indexPaths = [IndexPath]()
                 if let photos = photos {
-                    for photo in photos {
-                        self.items.append(photo)
+                    let firstIndex = self.items.count
+                    for (index, _) in photos.enumerated() {
+                        self.items.append(photos[index])
+                        let itemNumber = firstIndex + index
+                        indexPaths.append(IndexPath(item: itemNumber, section: 0))
                     }
                 }
 
-                if album.hasNextPage {
-                    self.loadMoreType = .loadMore
-                } else {
-                    self.loadMoreType = nil
-                }
-                self.collectionView?.reloadSections(IndexSet(0 ..< 1))
+                // notify list the additions
+                self.collectionView?.insertItems(at: indexPaths)
+                self.refreshFooter(loadMoreType: album.hasNextPage ? .loadMore : nil)
             }
         } else {
-            self.loadMoreType = nil
+            self.refreshFooter(loadMoreType: nil)
         }
+    }
+
+    private func refreshFooter(loadMoreType: LoadMoreType?) {
+        self.loadMoreType = loadMoreType
+        self.collectionView?.reloadSections(IndexSet(0 ..< 1))
     }
 
     func setupCellSize() {
@@ -334,7 +338,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
         switch (kind) {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! PXLGridHeaderView
-            debugPrint("adding header")
+            debugPrint("adding reusable header, indexPath:\(indexPath)")
             guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
             }
@@ -369,7 +373,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! PXLLoadMoreFooterView
-            debugPrint("adding footer")
+            debugPrint("adding reusable footer, indexPath:\(indexPath)")
             guard let widgetSpec = delegate?.setWidgetSpec() else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
             }

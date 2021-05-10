@@ -106,7 +106,7 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         }
         // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
 
-        cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        cell.setupCell(photo: photo, title: "\(photo.id)", subtitle: "\(photo.id)", buttonTitle: "\(photo.id)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
