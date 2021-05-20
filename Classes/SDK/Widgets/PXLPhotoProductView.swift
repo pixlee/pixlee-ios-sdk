@@ -66,22 +66,18 @@ public protocol PXLPhotoProductDelegate: class {
 }
 
 public class PXLPhotoProductView: UIViewController {
-    public static func widgetForPhoto(photo: PXLPhoto, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
+    public static func widgetForPhoto(photo: PXLPhoto, cropMode:PXLPhotoCropMode, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
         widget.delegate = delegate
+        widget.cropMode = cropMode
         widget.viewModel = photo
         widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
 
         return widget
     }
 
-    public var cropMode: PXLPhotoCropMode = .centerFill {
-        didSet {
-            gifView.contentMode = cropMode.asImageContentMode
-            playerLayer?.videoGravity = cropMode.asVideoContentMode
-        }
-    }
+    private var cropMode: PXLPhotoCropMode = .centerFill
 
     public var closeButtonImage: UIImage? = UIImage(named: "closeIcon", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
         didSet {
@@ -263,6 +259,9 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+    
+    @IBOutlet weak var hotspotView: UIView!
+    
     @IBOutlet var backgroundImageView: UIImageView!
     var gifView = Gifu.GIFImageView()
 
@@ -292,6 +291,9 @@ public class PXLPhotoProductView: UIViewController {
 
             gifView.alpha = 1
 
+            gifView.contentMode = cropMode.asImageContentMode
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
+
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
                 muteButton.isHidden = false
                 playVideo(url: videoURL)
@@ -303,6 +305,41 @@ public class PXLPhotoProductView: UIViewController {
                 }
             }
 
+            if !viewModel.isVideo {
+                debugPrint("w0: \(gifView.frame.width), h0: \(gifView.frame.height)")
+                debugPrint("w0: \(gifView.frame.width), h0: \(gifView.frame.height)")
+                debugPrint("w1: \(backgroundImageView.frame.width), h1: \(backgroundImageView.frame.height)")
+
+                let image = UIImage(named: "outline_local_offer_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil)
+                if let paddingImage = image?.addPadding(insets: UIEdgeInsets.init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)) {
+                    let imageView = UIImageView(image: paddingImage)
+
+
+
+//                let reader = HotspotsReader(cropMode,
+//                                            backgroundImageView.frame.width, backgroundImageView.frame.height,
+//                                            resource.width, resource.height
+//                )
+
+                    let xPosition = 0
+                    let yPosition = 0
+
+                    imageView.frame = CGRect.init(x: CGFloat(xPosition) - (imageView.frame.width / 2),
+                            y: CGFloat(yPosition) - (imageView.frame.height / 2) + gifView.frame.height,
+                            width: imageView.frame.width,
+                            height: imageView.frame.height)
+                    imageView.layer.cornerRadius = 22
+                    imageView.backgroundColor = .white
+                    imageView.tintColor = .black
+                    imageView.layer.shadowColor = UIColor.black.cgColor
+                    imageView.layer.shadowOpacity = 0.7
+                    imageView.layer.shadowOffset = .zero
+                    imageView.layer.shadowRadius = 5
+                    hotspotView.addSubview(imageView)
+                }
+            }
+
+            view.bringSubviewToFront(hotspotView)
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
@@ -367,6 +404,7 @@ public class PXLPhotoProductView: UIViewController {
             queuePlayer.isMuted = true
             adjustMuteImages()
 
+            view.bringSubviewToFront(hotspotView)
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)

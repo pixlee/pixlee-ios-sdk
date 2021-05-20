@@ -26,7 +26,7 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            album.filterOptions = PXLAlbumFilterOptions(/*hasPermission: true, hasProduct: true*/)
+            album.filterOptions = PXLAlbumFilterOptions(hasProduct: true)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             album.perPage = 18
             widgetView.searchingAlbum = album

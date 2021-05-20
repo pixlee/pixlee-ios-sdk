@@ -37,9 +37,9 @@ class PhotoProductListDemoViewController: UIViewController {
         }
 
         let widget = PXLPhotoProductView.widgetForPhoto(photo: photo,
+                cropMode: .centerFit,
                 delegate: self,
                 cellConfiguration: PXLProductCellConfiguration(discountPrice: DiscountPrice(discountLayout: DiscountLayout.WITH_DISCOUNT_LABEL, isCurrencyLeading: true)))
-        widget.cropMode = .centerFit
         widget.closeButtonBackgroundColor = .white
         widget.closeButtonCornerRadius = 22
         widget.closeButtonTintColor = UIColor.red.withAlphaComponent(0.6)

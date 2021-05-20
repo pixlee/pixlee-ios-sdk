@@ -65,6 +65,8 @@
 		5C54947C26295ED7005C2270 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54947B26295ED7005C2270 /* PXLWidgetView.swift */; };
 		5C6BE395262E46200000CC18 /* PXLLoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */; };
 		5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBAFA0D262D394500C77832 /* WidgetSpec.swift */; };
+		5CF3EEE22656393E0014805D /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3EEE12656393E0014805D /* ImageExtension.swift */; };
+		5CF3EEE4265641000014805D /* HotspotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3EEE3265641000014805D /* HotspotReader.swift */; };
 		5DA2B11F9A41C6EAEC8B31F281A6E549 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647926C9A73B65D8110C829E08FA151 /* ImageViewExtensions.swift */; };
 		606AD2468F2BF411CBEC67D55C42A295 /* PXLAdvancedProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB94E860162CBFF375603C11EA864940 /* PXLAdvancedProductCell.xib */; };
 		613FE4D1DC4463EBE3B6775EA056A487 /* PXLPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0453EEC6AF6A2763ABDDCB86F393645 /* PXLPhotoListView.swift */; };
@@ -323,6 +325,8 @@
 		5C54947B26295ED7005C2270 /* PXLWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
 		5C6BE394262E46200000CC18 /* PXLLoadMoreFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PXLLoadMoreFooterView.swift; sourceTree = "<group>"; };
 		5CBAFA0D262D394500C77832 /* WidgetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
+		5CF3EEE12656393E0014805D /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		5CF3EEE3265641000014805D /* HotspotReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotspotReader.swift; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D88053FB36AF416D6957E43FF69908B /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		5D8E735B1913FCCB61CD066E8D47D098 /* PXLGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridView.swift; sourceTree = "<group>"; };
@@ -781,6 +785,7 @@
 			children = (
 				5CBAFA0D262D394500C77832 /* WidgetSpec.swift */,
 				652CCD7FDE1C289730B759AB0C1BF020 /* UIImage+Gif.swift */,
+				5CF3EEE3265641000014805D /* HotspotReader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 				34164D0489BA71172E16DCC404C2536E /* DateExtension.swift */,
 				5D88053FB36AF416D6957E43FF69908B /* StringExtension.swift */,
 				0C1FC73656D9211EC582F5081FCC6B26 /* SwiftCrypto.swift */,
+				5CF3EEE12656393E0014805D /* ImageExtension.swift */,
 			);
 			name = Helpers;
 			path = Classes/SDK/Helpers;
@@ -1355,6 +1361,7 @@
 				56398373820A88B240E6AA83E292715F /* InfiniteCollectionView.swift in Sources */,
 				5CBAFA0E262D394500C77832 /* WidgetSpec.swift in Sources */,
 				1963DEC23D85F44615920F40ED62E08B /* InfiniteCollectionViewController.swift in Sources */,
+				5CF3EEE4265641000014805D /* HotspotReader.swift in Sources */,
 				765511236FC591E70E2014FB49491338 /* InfiniteCollectionViewProxy.swift in Sources */,
 				61807D29849EEFBF8B568C79A4AF3445 /* InfiniteDataSource.swift in Sources */,
 				EB51BCF3EB17D6D1D04712FC5BACB741 /* InfiniteLayout.swift in Sources */,
@@ -1372,6 +1379,7 @@
 				373C3C59E6C8BFB6D784E7E9EF8AB964 /* PXLAnalyticsEventActionClicked.swift in Sources */,
 				FDA5D3F8E85EB286285725B8B83AD01B /* PXLAnalyticsEventAddCart.swift in Sources */,
 				3F992521123102AED33212B092B05869 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
+				5CF3EEE22656393E0014805D /* ImageExtension.swift in Sources */,
 				7938BBE1D8CBB93B2193FDB72CD4D7F6 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */,
 				B9CE56C35704442826CB40537965B002 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
 				EB2127B92357F7E4DAFE91CF0EAFD895 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
