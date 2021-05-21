@@ -314,6 +314,10 @@ public class PXLPhotoProductView: UIViewController {
             if cellConfiguration.showHotspots && !viewModel.isVideo {
                 if let imageURL: URL = viewModel.photoUrl(for: .original) {
                     let fetcher = ImageSizeFetcher()
+
+                    // read original image's width and height without downloading the file entirely for the performance
+                    // reference: https://medium.com/ios-os-x-development/prefetching-images-size-without-downloading-them-entirely-in-swift-5c2f8a6f82e9
+                    // github: https://github.com/malcommac/ImageSizeFetcher
                     fetcher.sizeFor(atURL: imageURL) { (err, result) in
                         if let result = result {
                             DispatchQueue.main.sync {
