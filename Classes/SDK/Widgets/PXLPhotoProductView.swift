@@ -18,20 +18,22 @@ public struct PXLProductCellConfiguration {
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
     public let discountPrice: DiscountPrice?
-
+    public let showHotspots: Bool
 
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopImage: UIImage? = UIImage(named: "shoppingBag", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopBackgroundColor: UIColor = UIColor.systemYellow,
                 shopBackgroundHidden: Bool = false,
-                discountPrice: DiscountPrice? = nil) {
+                discountPrice: DiscountPrice? = nil,
+                showHotspots: Bool = true) {
         self.bookmarkOnImage = bookmarkOnImage
         self.bookmarkOffImage = bookmarkOffImage
         self.shopImage = shopImage
         self.shopBackgroundColor = shopBackgroundColor
         self.shopBackgroundHidden = shopBackgroundHidden
         self.discountPrice = discountPrice
+        self.showHotspots = showHotspots
     }
 }
 
@@ -69,10 +71,10 @@ public class PXLPhotoProductView: UIViewController {
     public static func widgetForPhoto(photo: PXLPhoto, cropMode: PXLPhotoCropMode, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
+        widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
         widget.delegate = delegate
         widget.cropMode = cropMode
         widget.viewModel = photo
-        widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
 
         return widget
     }
@@ -309,7 +311,7 @@ public class PXLPhotoProductView: UIViewController {
                 }
             }
 
-            if !viewModel.isVideo {
+            if cellConfiguration.showHotspots && !viewModel.isVideo {
                 if let imageURL: URL = viewModel.photoUrl(for: .original) {
                     let fetcher = ImageSizeFetcher()
                     fetcher.sizeFor(atURL: imageURL) { (err, result) in
@@ -317,32 +319,64 @@ public class PXLPhotoProductView: UIViewController {
                             DispatchQueue.main.sync {
                                 let image = UIImage(named: "outline_local_offer_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil)
                                 if let paddingImage = image?.addPadding(insets: UIEdgeInsets.init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)) {
+                                    // declare x y position converter
                                     let reader = HotspotsReader(imageScaleType: self.cropMode,
                                             screenWidth: self.backgroundImageView.frame.width,
                                             screenHeight: self.backgroundImageView.frame.height,
                                             contentWidth: result.size.width,
                                             contentHeight: result.size.height)
 
+                                    // add a click event listener if there isn't one
                                     if self.hotspotView.gestureRecognizers?.isEmpty ?? true {
                                         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnHotspotBox(_:)))
                                         self.hotspotView.addGestureRecognizer(tap)
                                     }
 
+                                    // remove previously added child views
+                                    self.hotspotView.subviews.forEach { view in
+                                        view.removeFromSuperview()
+                                    }
+
+                                    // make a map for quick searching for products index in the UI
+                                    var productMap = [Int: Int]() // productId: the index of the products array
+                                    if let products = viewModel.products {
+                                        for (index, product) in products.enumerated() {
+                                            debugPrint("index: \(index)")
+                                            productMap[product.identifier] = index
+                                        }
+                                    }
+
+                                    // draw all hotspots
                                     viewModel.boundingBoxProducts?.forEach { boundingBoxProduct in
-                                        let position = reader.getHotspotsPosition(pxlBoundingBoxProduct: boundingBoxProduct)
-                                        let imageView = UIImageView(image: paddingImage)
-                                        imageView.frame = CGRect.init(x: CGFloat(position.x) - (imageView.frame.width / 2),
-                                                y: CGFloat(position.y) - (imageView.frame.height / 2),
-                                                width: imageView.frame.width,
-                                                height: imageView.frame.height)
-                                        imageView.layer.cornerRadius = 22
-                                        imageView.backgroundColor = .white
-                                        imageView.tintColor = .black
-                                        imageView.layer.shadowColor = UIColor.black.cgColor
-                                        imageView.layer.shadowOpacity = 0.7
-                                        imageView.layer.shadowOffset = .zero
-                                        imageView.layer.shadowRadius = 5
-                                        self.hotspotView.addSubview(imageView)
+                                        // draw hotspots available in the region
+                                        if let index = productMap[boundingBoxProduct.productID] {
+                                            let position = reader.getHotspotsPosition(pxlBoundingBoxProduct: boundingBoxProduct)
+                                            let imageView = UIImageView(image: paddingImage)
+                                            imageView.frame = CGRect.init(x: CGFloat(position.x) - (imageView.frame.width / 2),
+                                                    y: CGFloat(position.y) - (imageView.frame.height / 2),
+                                                    width: imageView.frame.width,
+                                                    height: imageView.frame.height)
+                                            imageView.layer.cornerRadius = 22
+                                            imageView.backgroundColor = .white
+                                            imageView.tintColor = .black
+                                            imageView.layer.shadowColor = UIColor.black.cgColor
+                                            imageView.layer.shadowOpacity = 0.7
+                                            imageView.layer.shadowOffset = .zero
+                                            imageView.layer.shadowRadius = 5
+                                            imageView.isHidden = true
+                                            imageView.alpha = 0.0
+
+                                            // assign the product's index to view.tag for searching
+                                            imageView.tag = index
+                                            imageView.isUserInteractionEnabled = true
+                                            let tap = UITapGestureRecognizer(target: self, action: #selector(self.onHotspotClicked(_:)))
+                                            imageView.addGestureRecognizer(tap)
+
+                                            // add this view to the parent view
+                                            self.hotspotView.addSubview(imageView)
+                                        }
+
+
                                     }
                                     self.isHotspotVisible = false
                                     self.toggleHotspots()
@@ -364,36 +398,44 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+    // the click event listener of a hotspot
+    @objc func onHotspotClicked(_ sender: UITapGestureRecognizer? = nil) {
+        productCollectionView.scrollToItem(
+                at: IndexPath(item: sender?.view?.tag ?? 0, section: 0),
+                at: .centeredHorizontally,
+                animated: true
+        )
+    }
+
     var isHotspotVisible = false
 
+    // the click event listener of the background of hotspots
     @objc func handleTapOnHotspotBox(_ sender: UITapGestureRecognizer? = nil) {
         toggleHotspots()
     }
 
+    // show or hide all hotspots with animation
     func toggleHotspots() {
         isHotspotVisible = !isHotspotVisible
-        let alphaFrom: CGFloat
         let alphaTo: CGFloat
-        let isHiddenFrom: Bool
         let isHiddenTo: Bool
         if isHotspotVisible {
-            alphaFrom = 0.0
             alphaTo = 1.0
-            isHiddenFrom = true
             isHiddenTo = false
         } else {
-            alphaFrom = 1.0
             alphaTo = 0.0
-            isHiddenFrom = false
             isHiddenTo = true
         }
+
         hotspotView.subviews.forEach { view in
-            view.isHidden = isHiddenFrom
-            view.alpha = alphaFrom
-            UIView.animate(withDuration: 0.3) {
-                view.alpha = alphaTo
-                view.isHidden = isHiddenTo
+            if isHotspotVisible {
+                view.isHidden = false
             }
+            UIView.animate(withDuration: 0.7, animations: {
+                view.alpha = alphaTo
+            }, completion: { b in
+                view.isHidden = isHiddenTo
+            })
         }
     }
 

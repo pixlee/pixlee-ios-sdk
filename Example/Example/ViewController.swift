@@ -70,10 +70,10 @@ class ViewController: UIViewController {
         PXLClient.sharedClient.autoAnalyticsEnabled = true
         
         // this is for multi-region products. if you don't have a set of region ids, please reach out your account manager to get it
-        PXLClient.sharedClient.regionId = pixleeCredentials.regionId
+         PXLClient.sharedClient.regionId = pixleeCredentials.regionId
     }
     
-    func initAlbum(){
+    func initAlbum() {
         //        let dateString = "20190101"
         //        let dateFormatter = DateFormatter()
         //        dateFormatter.dateFormat = "yyyyMMdd"
