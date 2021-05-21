@@ -9,17 +9,17 @@ import Foundation
 
 class HotspotsReader {
     let imageScaleType: PXLPhotoCropMode
-    let screenWidth: Int
-    let screenHeight: Int
-    let contentWidth: Int
-    let contentHeight: Int
+    let screenWidth: CGFloat
+    let screenHeight: CGFloat
+    let contentWidth: CGFloat
+    let contentHeight: CGFloat
     
-    let topPadding: Int
-    let leftPadding: Int
-    let contentScreenWidth: Int
-    let contentScreenHeight: Int
+    let topPadding: CGFloat
+    let leftPadding: CGFloat
+    let contentScreenWidth: CGFloat
+    let contentScreenHeight: CGFloat
 
-    init(imageScaleType: PXLPhotoCropMode, screenWidth: Int, screenHeight: Int, contentWidth: Int, contentHeight: Int) {
+    public init(imageScaleType: PXLPhotoCropMode, screenWidth: CGFloat, screenHeight: CGFloat, contentWidth: CGFloat, contentHeight: CGFloat) {
         self.imageScaleType = imageScaleType
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
@@ -34,10 +34,10 @@ class HotspotsReader {
                 (imageScaleType == PXLPhotoCropMode.centerFill && viewRatio > screenRatio)) {
             // content's ratio is shorter than screen's ratio.
             contentScreenWidth = screenWidth
-            contentScreenHeight = Int(Float(screenWidth) * viewRatio)
+            contentScreenHeight = CGFloat(Float(screenWidth) * viewRatio)
         } else {
             // content's ratio is taller than screen's ratio.
-            contentScreenWidth = Int(Float(screenHeight) * (Float(contentWidth) / Float(contentHeight)))
+            contentScreenWidth = CGFloat(Float(screenHeight) * (Float(contentWidth) / Float(contentHeight)))
             contentScreenHeight = screenHeight
         }
 
@@ -52,8 +52,8 @@ class HotspotsReader {
         let topThird = pxlBoundingBoxProduct.height / 3
 
         // convert the [x, y] to be displayed inside the content size of the screen
-        let x = contentScreenWidth * (pxlBoundingBoxProduct.x + (leftThird)) / contentWidth
-        let y = contentScreenHeight * (pxlBoundingBoxProduct.y + (topThird)) / contentHeight
+        let x = contentScreenWidth * (CGFloat(pxlBoundingBoxProduct.x) + (CGFloat(leftThird))) / contentWidth
+        let y = contentScreenHeight * (CGFloat(pxlBoundingBoxProduct.y) + (CGFloat(topThird))) / contentHeight
 
         // return it with paddings
         return HotspotPosition(

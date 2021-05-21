@@ -14,6 +14,7 @@ public enum PXLPhotoSize {
     case thumbnail
     case medium
     case big
+    case original
 }
 
 public struct PXLPhoto: Equatable {
@@ -70,6 +71,7 @@ public struct PXLPhoto: Equatable {
     public let cdnOriginalUrl: URL?
     public let cdnSquareMediumUrl: URL?
     public let uploaderAdditionalFields: [String: Any]?
+    public let boundingBoxProducts: [BoundingBoxProduct]?
 
     public var coordinate: CLLocationCoordinate2D? {
         guard let latitude = self.latitude, let longitude = self.longitude else { return nil }
@@ -107,6 +109,8 @@ public struct PXLPhoto: Equatable {
             return mediumUrl
         case .big:
             return bigUrl
+        case .original:
+            return sourceUrl
         }
     }
 
@@ -118,6 +122,8 @@ public struct PXLPhoto: Equatable {
             return cdnMediumUrl
         case .big:
             return cdnLargeUrl
+        case .original:
+            return cdnOriginalUrl
         }
     }
 

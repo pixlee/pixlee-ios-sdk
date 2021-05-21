@@ -29,7 +29,7 @@ struct PXLAlbumNextPageResponse: Decodable {
 
 // MARK: - BoundingBoxProduct
 
-struct BoundingBoxProduct: Codable {
+public struct BoundingBoxProduct: Codable {
     let x, y, width, height: Int
     let aspectRatio, productID: Int
 
