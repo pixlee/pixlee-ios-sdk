@@ -23,6 +23,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Disable Caching: Network API Caching (Optional)](#disable-caching-network-api-caching--optional)
     - [Multi-region (Optional)](#multi-region-optional)
     - [Automatic Analytics (Optional)](#automatic-analytics-optional)
+- [Quick Start with UI Components](#quick-start-with-ui-components)
 - [Filtering and Sorting](#Filtering-and-Sorting)
 - [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
@@ -169,7 +170,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
 - **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
 
 # Quick Start with UI Components
-- Faster integration of the SDK is possible using this section with UI Components.
+- With this guide, you can quickly implement most features of the SDK on your app. 
 
 ### Step 1: Initiate the SDK and Auto Analytics
 ```swift
