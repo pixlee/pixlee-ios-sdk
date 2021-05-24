@@ -23,7 +23,6 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Disable Caching: Network API Caching (Optional)](#disable-caching-network-api-caching--optional)
     - [Multi-region (Optional)](#multi-region-optional)
     - [Automatic Analytics (Optional)](#automatic-analytics-optional)
-- [Network API Caching](#Network-API-Caching)
 - [Filtering and Sorting](#Filtering-and-Sorting)
 - [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
@@ -168,6 +167,24 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
     - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
     - `openedLightbox` event: when you display [PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview) with a PXLPhoto on the screen, we fire `openedLightbox`.
 - **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
+
+# Quick Start with UI Components
+- Faster integration of the SDK is possible using this section with UI Components.
+
+### Step 1: Initiate the SDK and Auto Analytics
+```swift
+PXLClient.sharedClient.apiKey = your api key
+PXLClient.sharedClient.secretKey = your secret key // (Optional) <----- use this if you use analytics or image-upload
+PXLClient.sharedClient.regionId = your region id // (Optional) <--- set it if you use multi-region.
+PXLClient.sharedClient.autoAnalyticsEnabled = true // make sure this is true
+#!swift
+```
+
+### Step 2: Load List UI and its data
+ - implement this: [PXLWidgetView (similar to Pixlee web Widget)](#pxlwidgetview-similar-to-pixlee-web-widget)
+
+### Step 3: Load Detail UI
+- implement this: [PXLPhotoProductView](#pxlphotoproductview)
         
 # Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
@@ -827,13 +844,13 @@ extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
       ```swift
       //Basic Example
       ...
-          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self, ...)
           widget.frame = self.view.frame
           self.view.addSubview(widget.view)
       }
       //Show modally with animation example 
       ...
-          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self, ...)
           widget.showModally(hostView: self.view, animated:true)
       }
       ```
