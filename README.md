@@ -26,7 +26,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [Basic Development Guide](#basic-development-guide)
 
 # Advanced: Table of Content
-- [Filtering and Sorting](#Filtering-and-Sorting)
+- [API: Filtering and Sorting](#api-filtering-and-sorting)
 - [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
@@ -173,7 +173,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
 
 # Basic Development Guide
 - With this guide, you can use our UI Components and quickly implement most features of the SDK on your app.
-- If you're looking for firing the API and present the data into your own UI, please check out this 
+- If you're looking for firing the API and present the data into your own UI, please check out [API: Filtering and Sorting](#api-filtering-and-sorting) 
 
 ### Step 1: Initiate the SDK and Auto Analytics
 ```swift
