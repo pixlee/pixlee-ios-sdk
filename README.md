@@ -43,7 +43,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
           - [Automatic analytics of pxlgridview](#automatic-analytics-of-pxlgridview)
     - [Detail](#detail)
       - [PXLPhotoProductView](#pxlphotoproductview)
-          - [show hotspots if available](#show-hotspots-if-available)
+          - [Show hotspots if available](#show-hotspots-if-available)
           - [Automatic Analytics of PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview)
     - [Advanced](#advanced)
        - [PXLPhotoView](#pxlphotoview)
@@ -837,7 +837,7 @@ extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
           widget.showModally(hostView: self.view, animated:true)
       }
       ```
-#### show hotspots if available
+#### Show hotspots if available
 - If a certain content has hotspots data in PXLPhoto.boundingBoxProducts, you can display the hotspots on the UI with this option.
 ```swift
 #!swift
