@@ -35,18 +35,18 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Load More](#Load-More)
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
 - [UI components](#UI-components)
-    - List version 2 (recommended)
-        - [PXLWidgetView](#PXLWidgetView)
-    - List version 1
+    - [List version 2 (recommended)](#list-version-2-recommended)
+        - [PXLWidgetView (similar to Pixlee web Widget)](#pxlwidgetview-similar-to-pixlee-web-widget)
+    - [List version 1](#list-version-1)
         - [PXLPhotoListView](#PXLPhotoListView)
         - [PXLGridView](#PXLGridView)
           - [Automatic analytics of pxlgridview](#automatic-analytics-of-pxlgridview)
-    - Detail
-      - [PXLPhotoProductView](#PXLPhotoProductView)
+    - [Detail](#detail)
+      - [PXLPhotoProductView](#pxlphotoproductview)
           - [show hotspots if available](#show-hotspots-if-available)
           - [Automatic Analytics of PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview)
-    - Advanced
-       - [PXLPhotoView](#PXLPhotoView)
+    - [Advanced](#advanced)
+       - [PXLPhotoView](#pxlphotoview)
 - [Troubleshooting](#Troubleshooting)
 - [License](#License)
 
