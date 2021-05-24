@@ -10,7 +10,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - the word 'content' is used in the documentation. this means a photo or video.
 - The PXLPhoto class represents a piece of content, which can be a photo or video
 
-# Table of Content
+# Basic: Table of Content
 - [About the SDK](#About-the-SDK)
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Add the SDK to your App](#Add-the-SDK-to-your-App)
@@ -24,6 +24,8 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Multi-region (Optional)](#multi-region-optional)
     - [Automatic Analytics (Optional)](#automatic-analytics-optional)
 - [Quick Start with UI Components](#quick-start-with-ui-components)
+
+# Advanced: Table of Content
 - [Filtering and Sorting](#Filtering-and-Sorting)
 - [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
