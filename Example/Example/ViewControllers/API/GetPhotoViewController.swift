@@ -65,7 +65,7 @@ class GetPhotoViewController: UIViewController {
                         PXLClient.sharedClient.getPhotoWithPhotoAlbumIdAndRegionId(photoAlbumId: String(albumPhotoId)) { (pxlPhoto, error) in
                             if let pxlPhoto = pxlPhoto {
                                 print("a photo loaded, albumPhotoId: \(pxlPhoto.albumPhotoId)")
-                                let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, cropMode: .centerFit, delegate: self, cellConfiguration: PXLProductCellConfiguration(bookmarkOnImage: nil, bookmarkOffImage: nil))
+                                let widget = PXLPhotoProductView.widgetForPhoto(photo: pxlPhoto, cropMode: .centerFit, showHotspots: true, delegate: self, cellConfiguration: PXLProductCellConfiguration(bookmarkOnImage: nil, bookmarkOffImage: nil))
                                 
                                 widget.closeButtonBackgroundColor = .white
                                 widget.closeButtonCornerRadius = 22

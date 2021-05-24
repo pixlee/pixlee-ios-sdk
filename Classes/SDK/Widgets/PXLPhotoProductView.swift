@@ -18,22 +18,19 @@ public struct PXLProductCellConfiguration {
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
     public let discountPrice: DiscountPrice?
-    public let showHotspots: Bool
 
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopImage: UIImage? = UIImage(named: "shoppingBag", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopBackgroundColor: UIColor = UIColor.systemYellow,
                 shopBackgroundHidden: Bool = false,
-                discountPrice: DiscountPrice? = nil,
-                showHotspots: Bool = true) {
+                discountPrice: DiscountPrice? = nil) {
         self.bookmarkOnImage = bookmarkOnImage
         self.bookmarkOffImage = bookmarkOffImage
         self.shopImage = shopImage
         self.shopBackgroundColor = shopBackgroundColor
         self.shopBackgroundHidden = shopBackgroundHidden
         self.discountPrice = discountPrice
-        self.showHotspots = showHotspots
     }
 }
 
@@ -68,17 +65,18 @@ public protocol PXLPhotoProductDelegate: class {
 }
 
 public class PXLPhotoProductView: UIViewController {
-    public static func widgetForPhoto(photo: PXLPhoto, cropMode: PXLPhotoCropMode, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
+    public static func widgetForPhoto(photo: PXLPhoto, cropMode: PXLPhotoCropMode, showHotspots: Bool, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
         widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
+        widget.showHotspots = showHotspots
         widget.delegate = delegate
         widget.cropMode = cropMode
         widget.viewModel = photo
-
         return widget
     }
 
+    public var showHotspots: Bool = true
     private var cropMode: PXLPhotoCropMode = .centerFill
 
     public var closeButtonImage: UIImage? = UIImage(named: "closeIcon", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
@@ -311,7 +309,7 @@ public class PXLPhotoProductView: UIViewController {
                 }
             }
 
-            if cellConfiguration.showHotspots && !viewModel.isVideo {
+            if showHotspots && !viewModel.isVideo {
                 if let imageURL: URL = viewModel.photoUrl(for: .original) {
                     let fetcher = ImageSizeFetcher()
 
