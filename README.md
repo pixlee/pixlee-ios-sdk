@@ -23,7 +23,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Disable Caching: Network API Caching (Optional)](#disable-caching-network-api-caching--optional)
     - [Multi-region (Optional)](#multi-region-optional)
     - [Automatic Analytics (Optional)](#automatic-analytics-optional)
-- [Quick Start with UI Components](#quick-start-with-ui-components)
+- [Basic Development Guide](#basic-development-guide)
 
 # Advanced: Table of Content
 - [Filtering and Sorting](#Filtering-and-Sorting)
@@ -171,8 +171,9 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
     - `openedLightbox` event: when you display [PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview) with a PXLPhoto on the screen, we fire `openedLightbox`.
 - **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
 
-# Quick Start with UI Components
-- With this guide, you can quickly implement most features of the SDK on your app. 
+# Basic Development Guide
+- With this guide, you can use our UI Components and quickly implement most features of the SDK on your app.
+- If you're looking for firing the API and present the data into your own UI, please check out this 
 
 ### Step 1: Initiate the SDK and Auto Analytics
 ```swift
@@ -189,7 +190,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // make sure this is true
 ### Step 3: Load Detail UI
 - implement this: [PXLPhotoProductView](#pxlphotoproductview)
         
-# Filtering and Sorting
+# API: Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
 As of now, the following filters are supported by SDK:
