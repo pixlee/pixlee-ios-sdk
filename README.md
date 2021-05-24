@@ -173,7 +173,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
 
 # Basic Development Guide
 - With this guide, you can use our UI Components and quickly implement most features of the SDK on your app.
-- If you're looking for firing the APIs to get the content and present them into your own UI, please check out [API: Filtering and Sorting](#api-filtering-and-sorting) 
+- However, if you're looking for firing the APIs to get the content and present them into your own UI, please check out [API: Filtering and Sorting](#api-filtering-and-sorting).
 
 ### Step 1: Initiate the SDK and Auto Analytics
 ```swift
