@@ -19,7 +19,6 @@ public struct PXLProductCellConfiguration {
     public let shopBackgroundHidden: Bool
     public let discountPrice: DiscountPrice?
 
-
     public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopImage: UIImage? = UIImage(named: "shoppingBag", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
@@ -52,7 +51,7 @@ public struct DiscountPrice {
      *  - theres actually a sales price > 0
      *  - we're also showing the price as well
      */
-public enum DiscountLayout : String {
+public enum DiscountLayout: String {
     case CROSS_THROUGH // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/c5fad7cd-a861-415f-8916-cabf8b50f32b/
     case WAS_OLD_PRICE // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/21486793-b111-47ab-8029-038ee1544818/
     case WITH_DISCOUNT_LABEL // screenshot: https://xd.adobe.com/view/af65a724-66c0-4d78-bf8c-7e860a2b7595-fa36/screen/ec1004e6-d7ad-4d7a-92e2-4fcbb26877eb/
@@ -66,22 +65,19 @@ public protocol PXLPhotoProductDelegate: class {
 }
 
 public class PXLPhotoProductView: UIViewController {
-    public static func widgetForPhoto(photo: PXLPhoto, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
+    public static func widgetForPhoto(photo: PXLPhoto, cropMode: PXLPhotoCropMode, showHotspots: Bool, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
         let bundle = Bundle(for: PXLPhotoProductView.self)
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
-        widget.delegate = delegate
-        widget.viewModel = photo
         widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
-
+        widget.showHotspots = showHotspots
+        widget.delegate = delegate
+        widget.cropMode = cropMode
+        widget.viewModel = photo
         return widget
     }
 
-    public var cropMode: PXLPhotoCropMode = .centerFill {
-        didSet {
-            gifView.contentMode = cropMode.asImageContentMode
-            playerLayer?.videoGravity = cropMode.asVideoContentMode
-        }
-    }
+    public var showHotspots: Bool = true
+    private var cropMode: PXLPhotoCropMode = .centerFill
 
     public var closeButtonImage: UIImage? = UIImage(named: "closeIcon", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
         didSet {
@@ -242,7 +238,9 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     func adjustMuteImages() {
-        guard let queuePlayer = queuePlayer else { return }
+        guard let queuePlayer = queuePlayer else {
+            return
+        }
         let image = queuePlayer.isMuted ? muteButtonOnImage : muteButtonOffImage
         muteButton.setImage(image, for: .normal)
     }
@@ -263,6 +261,9 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+
+    @IBOutlet weak var hotspotView: UIView!
+
     @IBOutlet var backgroundImageView: UIImageView!
     var gifView = Gifu.GIFImageView()
 
@@ -274,23 +275,28 @@ public class PXLPhotoProductView: UIViewController {
 
     public var viewModel: PXLPhoto? {
         didSet {
-            guard let viewModel = viewModel else { return }
+            guard let viewModel = viewModel else {
+                return
+            }
             _ = view
 
             setupConfiguration()
             if let imageUrl = viewModel.photoUrl(for: .medium) {
                 Nuke.loadImage(with: imageUrl, into: gifView)
-            }else{
+            } else {
                 gifView.image = nil
             }
 
             if let imageUrl = viewModel.photoUrl(for: .thumbnail) {
                 Nuke.loadImage(with: imageUrl, into: backgroundImageView)
-            }else{
+            } else {
                 backgroundImageView.image = nil
             }
 
             gifView.alpha = 1
+
+            gifView.contentMode = cropMode.asImageContentMode
+            playerLayer?.videoGravity = cropMode.asVideoContentMode
 
             if viewModel.isVideo, let videoURL = viewModel.videoUrl() {
                 muteButton.isHidden = false
@@ -303,6 +309,87 @@ public class PXLPhotoProductView: UIViewController {
                 }
             }
 
+            if showHotspots && !viewModel.isVideo {
+                if let imageURL: URL = viewModel.photoUrl(for: .original) {
+                    let fetcher = ImageSizeFetcher()
+
+                    // read original image's width and height without downloading the file entirely for the performance
+                    // reference: https://medium.com/ios-os-x-development/prefetching-images-size-without-downloading-them-entirely-in-swift-5c2f8a6f82e9
+                    // github: https://github.com/malcommac/ImageSizeFetcher
+                    fetcher.sizeFor(atURL: imageURL) { (err, result) in
+                        if let result = result {
+                            DispatchQueue.main.sync {
+                                let image = UIImage(named: "outline_local_offer_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil)
+                                if let paddingImage = image?.addPadding(insets: UIEdgeInsets.init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)) {
+                                    // declare x y position converter
+                                    let reader = HotspotsReader(imageScaleType: self.cropMode,
+                                            screenWidth: self.backgroundImageView.frame.width,
+                                            screenHeight: self.backgroundImageView.frame.height,
+                                            contentWidth: result.size.width,
+                                            contentHeight: result.size.height)
+
+                                    // add a click event listener if there isn't one
+                                    if self.hotspotView.gestureRecognizers?.isEmpty ?? true {
+                                        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnHotspotBox(_:)))
+                                        self.hotspotView.addGestureRecognizer(tap)
+                                    }
+
+                                    // remove previously added child views
+                                    self.hotspotView.subviews.forEach { view in
+                                        view.removeFromSuperview()
+                                    }
+
+                                    // make a map for quick searching for products index in the UI
+                                    var productMap = [Int: Int]() // productId: the index of the products array
+                                    if let products = viewModel.products {
+                                        for (index, product) in products.enumerated() {
+                                            debugPrint("index: \(index)")
+                                            productMap[product.identifier] = index
+                                        }
+                                    }
+
+                                    // draw all hotspots
+                                    viewModel.boundingBoxProducts?.forEach { boundingBoxProduct in
+                                        // draw hotspots available in the region
+                                        if let index = productMap[boundingBoxProduct.productID] {
+                                            let position = reader.getHotspotsPosition(pxlBoundingBoxProduct: boundingBoxProduct)
+                                            let imageView = UIImageView(image: paddingImage)
+                                            imageView.frame = CGRect.init(x: CGFloat(position.x) - (imageView.frame.width / 2),
+                                                    y: CGFloat(position.y) - (imageView.frame.height / 2),
+                                                    width: imageView.frame.width,
+                                                    height: imageView.frame.height)
+                                            imageView.layer.cornerRadius = 22
+                                            imageView.backgroundColor = .white
+                                            imageView.tintColor = .black
+                                            imageView.layer.shadowColor = UIColor.black.cgColor
+                                            imageView.layer.shadowOpacity = 0.7
+                                            imageView.layer.shadowOffset = .zero
+                                            imageView.layer.shadowRadius = 5
+                                            imageView.isHidden = true
+                                            imageView.alpha = 0.0
+
+                                            // assign the product's index to view.tag for searching
+                                            imageView.tag = index
+                                            imageView.isUserInteractionEnabled = true
+                                            let tap = UITapGestureRecognizer(target: self, action: #selector(self.onHotspotClicked(_:)))
+                                            imageView.addGestureRecognizer(tap)
+
+                                            // add this view to the parent view
+                                            self.hotspotView.addSubview(imageView)
+                                        }
+
+
+                                    }
+                                    self.isHotspotVisible = false
+                                    self.toggleHotspots()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            view.bringSubviewToFront(hotspotView)
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
@@ -313,15 +400,57 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
+    // the click event listener of a hotspot
+    @objc func onHotspotClicked(_ sender: UITapGestureRecognizer? = nil) {
+        productCollectionView.scrollToItem(
+                at: IndexPath(item: sender?.view?.tag ?? 0, section: 0),
+                at: .centeredHorizontally,
+                animated: true
+        )
+    }
+
+    var isHotspotVisible = false
+
+    // the click event listener of the background of hotspots
+    @objc func handleTapOnHotspotBox(_ sender: UITapGestureRecognizer? = nil) {
+        toggleHotspots()
+    }
+
+    // show or hide all hotspots with animation
+    func toggleHotspots() {
+        isHotspotVisible = !isHotspotVisible
+        let alphaTo: CGFloat
+        let isHiddenTo: Bool
+        if isHotspotVisible {
+            alphaTo = 1.0
+            isHiddenTo = false
+        } else {
+            alphaTo = 0.0
+            isHiddenTo = true
+        }
+
+        hotspotView.subviews.forEach { view in
+            if isHotspotVisible {
+                view.isHidden = false
+            }
+            UIView.animate(withDuration: 0.7, animations: {
+                view.alpha = alphaTo
+            }, completion: { b in
+                view.isHidden = isHiddenTo
+            })
+        }
+    }
+
     var bookmarks: [Int: Bool]?
 
     private let category = AVAudioSession.sharedInstance().category
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        do{
+        do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
-        }catch{
+        } catch {
         }
 
         self.view.clipsToBounds = true
@@ -367,6 +496,7 @@ public class PXLPhotoProductView: UIViewController {
             queuePlayer.isMuted = true
             adjustMuteImages()
 
+            view.bringSubviewToFront(hotspotView)
             view.bringSubviewToFront(productCollectionView)
             view.bringSubviewToFront(backButton)
             view.bringSubviewToFront(muteButton)
@@ -377,11 +507,13 @@ public class PXLPhotoProductView: UIViewController {
     var isObserving = false
 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let queuePlayer = queuePlayer else { return }
+        guard let queuePlayer = queuePlayer else {
+            return
+        }
         if keyPath == observeKey {
             if queuePlayer.timeControlStatus == .playing {
                 self.gifView.alpha = 0
-            }else{
+            } else {
                 self.gifView.alpha = 1
             }
         }
@@ -451,8 +583,8 @@ public class PXLPhotoProductView: UIViewController {
         }
     }
 
-    public func destroyPlayer(){
-        if(queuePlayer != nil){
+    public func destroyPlayer() {
+        if (queuePlayer != nil) {
             queuePlayer?.pause()
             queuePlayer?.removeAllItems()
             if isObserving {
@@ -478,7 +610,7 @@ public class PXLPhotoProductView: UIViewController {
 
         if (!isAnalyticsOpenLightboxFired) {
             guard let photo = viewModel else {
-                print( "can't fire OpenLightbox analytics event because photo:PXLPhoto is null")
+                print("can't fire OpenLightbox analytics event because photo:PXLPhoto is null")
                 return
             }
 
@@ -487,10 +619,10 @@ public class PXLPhotoProductView: UIViewController {
                 _ = photo.triggerEventOpenedLightbox() { error in
                     guard error == nil else {
                         self.isAnalyticsOpenLightboxFired = false
-                        print( "🛑 There was an error \(error?.localizedDescription ?? "")")
+                        print("🛑 There was an error \(error?.localizedDescription ?? "")")
                         return
                     }
-                    print( "Opened lightbox fired")
+                    print("Opened lightbox fired")
                 }
             }
         }
@@ -498,13 +630,16 @@ public class PXLPhotoProductView: UIViewController {
 
     func isVisible(_ view: UIView) -> Bool {
         func isVisible(view: UIView, inView: UIView?) -> Bool {
-            guard let inView = inView else { return true }
+            guard let inView = inView else {
+                return true
+            }
             let viewFrame = inView.convert(view.bounds, from: view)
             if viewFrame.intersects(inView.bounds) {
                 return isVisible(view: view, inView: inView.superview)
             }
             return false
         }
+
         return isVisible(view: view, inView: view.superview)
     }
 
@@ -520,7 +655,9 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
 
         cell.configuration = cellConfiguration
         cell.onBookmarkClicked = { [weak self] product, isSelected in
-            guard let strongSelf = self else { return }
+            guard let strongSelf = self else {
+                return
+            }
             strongSelf.delegate?.onBookmarkClicked(product: product, isSelected: isSelected)
         }
         let product = viewModel?.products?[indexPath.row]
@@ -529,7 +666,9 @@ extension PXLPhotoProductView: UICollectionViewDelegate, UICollectionViewDataSou
             cell.isBookmarked = bookmarks[product.identifier] ?? false
         }
         cell.actionButtonPressed = { [weak self] product in
-            guard let strongSelf = self else { return }
+            guard let strongSelf = self else {
+                return
+            }
             strongSelf.handleProductPressed(product: product)
         }
         return cell

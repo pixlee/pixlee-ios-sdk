@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="backButton" destination="KL6-vl-pPF" id="zl8-U7-YjR"/>
                 <outlet property="backgroundImageView" destination="YLD-Dh-cIG" id="gui-pH-uKO"/>
+                <outlet property="hotspotView" destination="74c-AG-SYK" id="G5E-oe-gpO"/>
                 <outlet property="muteButton" destination="3Vb-cA-qAY" id="nZf-QF-f3Z"/>
                 <outlet property="productCollectionView" destination="8oN-Pe-RmG" id="HZT-Ea-IQ1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,6 +34,9 @@
                     </view>
                     <blurEffect style="regular"/>
                 </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74c-AG-SYK" userLabel="HotspotView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KL6-vl-pPF" userLabel="backButton">
                     <rect key="frame" x="24" y="68" width="44" height="44"/>
                     <constraints>
@@ -83,10 +87,14 @@
                 <constraint firstAttribute="bottom" secondItem="I8Q-Jc-6AS" secondAttribute="bottom" id="CfH-gW-QCM"/>
                 <constraint firstItem="KL6-vl-pPF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="IhT-8u-dcm"/>
                 <constraint firstAttribute="trailing" secondItem="I8Q-Jc-6AS" secondAttribute="trailing" id="MJR-1h-3TL"/>
+                <constraint firstAttribute="bottom" secondItem="74c-AG-SYK" secondAttribute="bottom" id="PuS-7p-oB7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="74c-AG-SYK" secondAttribute="trailing" id="R50-Y6-J6P"/>
                 <constraint firstItem="8oN-Pe-RmG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SA2-TR-Udn"/>
                 <constraint firstItem="YLD-Dh-cIG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="W0W-D7-4JT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8oN-Pe-RmG" secondAttribute="bottom" constant="24" id="YiP-nz-kKt"/>
+                <constraint firstItem="74c-AG-SYK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="av2-N7-2La"/>
                 <constraint firstAttribute="bottom" secondItem="YLD-Dh-cIG" secondAttribute="bottom" id="d1l-Wp-fQj"/>
+                <constraint firstItem="74c-AG-SYK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jkn-EW-gFv"/>
                 <constraint firstItem="KL6-vl-pPF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="nTa-Za-sEy"/>
                 <constraint firstItem="I8Q-Jc-6AS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rSh-9h-UDL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8oN-Pe-RmG" secondAttribute="trailing" id="wLd-Lb-8Iz"/>

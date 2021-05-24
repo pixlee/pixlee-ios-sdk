@@ -10,7 +10,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - the word 'content' is used in the documentation. this means a photo or video.
 - The PXLPhoto class represents a piece of content, which can be a photo or video
 
-# Table of Content
+# Basic: Table of Content
 - [About the SDK](#About-the-SDK)
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Add the SDK to your App](#Add-the-SDK-to-your-App)
@@ -23,8 +23,10 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Disable Caching: Network API Caching (Optional)](#disable-caching-network-api-caching--optional)
     - [Multi-region (Optional)](#multi-region-optional)
     - [Automatic Analytics (Optional)](#automatic-analytics-optional)
-- [Network API Caching](#Network-API-Caching)
-- [Filtering and Sorting](#Filtering-and-Sorting)
+- [Basic Development Guide](#basic-development-guide)
+
+# Advanced: Table of Content
+- [API: Filtering and Sorting](#api-filtering-and-sorting)
 - [Getting a PXLPhoto](#getting-a-pxlphoto)
 - [Analytics](#Analytics)
     - [Add to Cart](#Add-to-Cart)
@@ -35,13 +37,18 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
     - [Load More](#Load-More)
 - [Uploading an Image to an album](#Uploading-an-Image-to-an-album)
 - [UI components](#UI-components)
-    - [PXLPhoto](#pxlphoto)
-    - [PXLPhotoProductView](#PXLPhotoProductView)
-       - [Automatic Analytics of PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview)
-    - [PXLPhotoView](#PXLPhotoView)
-    - [PXLPhotoListView](#PXLPhotoListView)
-    - [PXLGridView](#PXLGridView)
-       - [Automatic analytics of pxlgridview](#automatic-analytics-of-pxlgridview)
+    - [List version 2 (recommended)](#list-version-2-recommended)
+        - [PXLWidgetView (similar to Pixlee web Widget)](#pxlwidgetview-similar-to-pixlee-web-widget)
+    - [List version 1](#list-version-1)
+        - [PXLPhotoListView](#PXLPhotoListView)
+        - [PXLGridView](#PXLGridView)
+          - [Automatic analytics of pxlgridview](#automatic-analytics-of-pxlgridview)
+    - [Detail](#detail)
+      - [PXLPhotoProductView](#pxlphotoproductview)
+          - [Show hotspots if available](#show-hotspots-if-available)
+          - [Automatic Analytics of PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview)
+    - [Advanced](#advanced)
+       - [PXLPhotoView](#pxlphotoview)
 - [Troubleshooting](#Troubleshooting)
 - [License](#License)
 
@@ -163,8 +170,28 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // (Optional) <----- This act
     - `widgetVisible` event: if you implemente [Document: Automatic analytics of PXLGridView](#automatic-analytics-of-pxlgridview) and try to display the PXLGridView with a number of PXLPhotos on the screen we fire `widgetVisible`.
     - `openedLightbox` event: when you display [PXLPhotoProductView](#automatic-analytics-of-pxlphotoproductview) with a PXLPhoto on the screen, we fire `openedLightbox`.
 - **Notice**: you can see the fired events on the console. If there's a problem of your setting, you can see error messages we display in the console.
+
+# Basic Development Guide
+- With this guide, you can use our UI Components and quickly implement most features of the SDK on your app.
+- However, if you're looking for firing the APIs to get the content and present them into your own UI, please check out [API: Filtering and Sorting](#api-filtering-and-sorting).
+
+### Step 1: Initiate the SDK and Auto Analytics
+```swift
+PXLClient.sharedClient.apiKey = your api key
+PXLClient.sharedClient.secretKey = your secret key // (Optional) <----- use this if you use analytics or image-upload
+PXLClient.sharedClient.regionId = your region id // (Optional) <--- set it if you use multi-region.
+PXLClient.sharedClient.autoAnalyticsEnabled = true // make sure this is true
+#!swift
+```
+
+### Step 2: Load List UI and its data
+ - implement this: [PXLWidgetView (similar to Pixlee web Widget)](#pxlwidgetview-similar-to-pixlee-web-widget)
+
+### Step 3: Load Detail UI
+- implement this: [PXLPhotoProductView](#pxlphotoproductview)
+- Not that you need to make sure that PXLPhotoProductView should be loaded when a cell of PXLWidgetView is clicked. You can get examples in the demo app in this project. 
         
-# Filtering and Sorting
+# API: Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
 
 As of now, the following filters are supported by SDK:
@@ -524,90 +551,136 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
 }
 ```
 # UI components
-### PXLPhoto
-- Image and Video Viewer
-- after receiving PXLPhoto list, you can launch UINavigationController. Depending on its content_type, UINavigationController will play a video or display a photo.
-    ```swift
-    //Example
-    func pxlImageCellPlayTapped(viewModel: PXLPhoto) {
-        let photoDetailVC = PXLPhotoDetailViewController.viewControllerForPhoto(photo: viewModel, "a customizable title")
-        let navController = UINavigationController(rootViewController: photoDetailVC)
-        present(navController, animated: true, completion: nil)
+## List Version 2 (Recommended)
+### PXLWidgetView (similar to Pixlee web Widget)
+- automatically fire APIs[api/v2/albums/from_sku, api/v2/albums/{album_id}/photos] to get and display photos
+- automatically fire Analytics[openedWidget, widgetVisible]
+- provide grid (2 columns) and list layouts
+
+#### UI Options
+For both Grid and List: load more UI (customizable color, font, text, height of the cell, padding)
+- List
+    - turn auto video playing on/off: play a video located at the top of the list
+
+- Grid
+    - Line Size between items
+    - Header
+        - Image URL
+        - Customizable text
+
+|Grid Mode|List Mode|
+|------|---|
+|<img src="https://i.ibb.co/YWxZfJ7/ezgif-com-gif-maker.gif" width="200">|<img src="https://i.ibb.co/ZWjVyJp/ezgif-com-gif-maker-1.gif" width="200">|
+
+#### Example
+
+```swift
+#!swift Your View controller
+class WidgetExampleViewController: UIViewController {
+    static func getInstance() -> WidgetExampleViewController {
+        let vc = WidgetExampleViewController(nibName: "EmptyViewController", bundle: Bundle.main)
+        return vc
     }
-    ```
 
-### PXLPhotoProductView
-<img src="doc/gif/PXLPhotoProductView.gif" width="20%">
+    var widgetView = PXLWidgetView()
 
-- You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
-- To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
-- You can use and customize the **_close button_** on the view with the following methods:
-  - `closeButtonImage` : Sets the image for the close button. Default is an close x image
-  - `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
-  - `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
-  - `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
-  - `hideCloseButton`: Set to true if you don't need the close button on the view
-  
-- You can use and customize the **_mute button_** on the view with the following methods:
-  - `muteButtonOnImage` : Sets the on image for the mute button.
-  - `muteButtonOffImage` : Sets the off image for the mute button.
-  - `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
-  - `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
-  - `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
-  - `hideMuteButton`: Set to true if you don't need the mute button on the view
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        widgetView.delegate = self
+        view.addSubview(widgetView)
 
-    ```swift
-    //Basic Example
-    ...
-        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-        widget.frame = self.view.frame
-        self.view.addSubview(widget.view)
+        if let pixleeCredentials = try? PixleeCredentials.create() {
+            let albumId = pixleeCredentials.albumId
+            let album = PXLAlbum(identifier: albumId)
+            album.filterOptions = PXLAlbumFilterOptions(hasPermission: true, hasProduct: true)
+            album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
+            album.perPage = 30
+            widgetView.searchingAlbum = album
+        }
     }
-    //Show modally with animation example 
-    ...
-        let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
-        widget.showModally(hostView: self.view, animated:true)
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
-    ```
 
-#### Automatic Analytics of PXLPhotoProductView
-  - If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
-  
-    ```swift
-    #!swift
-    PXLClient.sharedClient.apiKey = your api key
-    PXLClient.sharedClient.secretKey = your secret key
-    PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
-    PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
-    
-    let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    var videoCell: PXLGridViewCell?
+}
 
-    ...
-    ```
-
-### PXLPhotoView
-- Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
-- To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
-    ```swift
-    //Basic Example
-    ...
-        let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
-        self.view.addSubview(photoView)
+// MARK: - Photo's click-event listeners
+extension WidgetViewController: PXLPhotoViewDelegate {
+    public func onPhotoButtonClicked(photo: PXLPhoto) {
+        print("Action tapped \(photo.id)")
+        openPhotoProduct(photo: photo)
     }
-    ```
-#### PXLPhotoViewConfiguration
-Configurator class for the PXLPhotoView.
-Configuration options:
-- `textColor:UIColor` : Color of the texts
-- `titleFont:UIFont`: Font for the title
-- `subtitleFont:UIFont`: Font for the subtitle
-- `buttonFont:UIFont`: Font for the button
-- `buttonImage:UIImage`: Image for the button
-- `buttonBorderWidth:CGFloat`: Border width for the button
-- `enableVideoPlayback:Bool`: Should play videos or not
-- `delegate:PXLPhotoViewDelegate`: Delegate
-- `cropMode:PXLPhotoCropMode`: Image/ Video crop mode
 
+    public func onPhotoClicked(photo: PXLPhoto) {
+        print("Photo Clicked \(photo.id)")
+        openPhotoProduct(photo: photo)
+    }
+
+    func openPhotoProduct(photo: PXLPhoto) {
+        present(PhotoProductListDemoViewController.getInstance(photo), animated: false, completion: nil)
+    }
+}
+
+// MARK: Widget's UI settings and scroll events
+extension WidgetViewController: PXLWidgetViewDelegate {
+    func setWidgetSpec() -> WidgetSpec {
+        // A example of List
+        /*WidgetSpec.list(.init(cellHeight: 350,
+                isVideoMutted: true,
+                autoVideoPlayEnabled: true,
+                loadMore: .init(cellHeight: 100.0,
+                        cellPadding: 10.0,
+                        text: "LoadMore",
+                        textColor: UIColor.darkGray,
+                        textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+                        loadingStyle: .gray)))*/
+        // A example of Grid
+        WidgetSpec.grid(
+                .init(
+                        cellHeight: 350,
+                        cellPadding: 4,
+                        loadMore: .init(cellHeight: 100.0,
+                                cellPadding: 10.0,
+                                text: "LoadMore",
+                                textColor: UIColor.darkGray,
+                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+                                loadingStyle: .gray),
+                        header: .image(.remotePath(.init(headerHeight: 200,
+                                headerContentMode: .scaleAspectFill,
+                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+    }
+
+    func setWidgetType() -> String {
+        "replace_this_with_yours"
+    }
+
+    func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
+        if photo.isVideo {
+            videoCell = cell
+        }
+        // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
+}
+```
+
+## List Version 1
 ### PXLPhotoListView
 - Infinite scrolling list from the given PXLPhoto objects. It create PXLPhotoView views with an infinite scrolling UITableView. You have to add an array of PXLPhoto objects.
     ```swift
@@ -751,9 +824,89 @@ extension AutoUIImageListViewController: PXLGridViewAutoAnalyticsDelegate {
         (album, "customized_widget_type")
     }
 }
-
-
 ```
+## Detail
+### PXLPhotoProductView
+<img src="doc/gif/PXLPhotoProductView.gif" width="20%">
+
+- You can load this view with a specific `PXLPhoto` object. It is capable of playing a video or showing an image, with the products provided with the image. It also has a delegate (`PXLPhotoProductDelegate`), what can tell you if the users tapped on the product, or they would like to buy the product, it has a bookmarking feature included. With the delegate you can provide witch products are already bookmarked and keep the list updated after the bookmark button taps.
+- To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
+- You can use and customize the **_close button_** on the view with the following methods:
+    - `closeButtonImage` : Sets the image for the close button. Default is an close x image
+    - `closeButtonBackgroundColor`: Background color of the close button. Default is clear color.
+    - `closeButtonTintColor`: Tint color of the close button, the image will get this tint color. Default: white
+    - `closeButtonCornerRadius`: Corner radius of the close button. Default is 22, what is the perfect circle.
+    - `hideCloseButton`: Set to true if you don't need the close button on the view
+
+- You can use and customize the **_mute button_** on the view with the following methods:
+    - `muteButtonOnImage` : Sets the on image for the mute button.
+    - `muteButtonOffImage` : Sets the off image for the mute button.
+    - `muteButtonBackgroundColor`: Background color of the mute button. Default is clear color.
+    - `muteButtonTintColor`: Tint color of the mute button, the image will get this tint color. Default: white
+    - `muteButtonCornerRadius`: Corner radius of the mute button. Default is 22, what is the perfect circle.
+    - `hideMuteButton`: Set to true if you don't need the mute button on the view
+
+      ```swift
+      //Basic Example
+      ...
+          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self, ...)
+          widget.frame = self.view.frame
+          self.view.addSubview(widget.view)
+      }
+      //Show modally with animation example 
+      ...
+          let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self, ...)
+          widget.showModally(hostView: self.view, animated:true)
+      }
+      ```
+#### Show hotspots if available
+- If a certain content has hotspots data in PXLPhoto.boundingBoxProducts, you can display the hotspots on the UI with this option.
+```swift
+#!swift
+let widget = PXLPhotoProductView.widgetForPhoto(
+    ...
+    showHotspots: true,
+    ...)
+```
+
+#### Automatic Analytics of PXLPhotoProductView
+- If you want to delegate firing `OpenLightbox` analytics event to PXLPhotoProductView, use this code. On the other hand, if you want to manually fire the event, you don't use this and implement our own analytics codes. Please check out PhotoProductListDemoViewController.swift to get the sample codes.
+
+  ```swift
+  #!swift
+  PXLClient.sharedClient.apiKey = your api key
+  PXLClient.sharedClient.secretKey = your secret key
+  PXLClient.sharedClient.autoAnalyticsEnabled = true <----- This activates this feature
+  PXLClient.sharedClient.regionId = your region id <--- set it if you use multi-region.
+  
+  let widget = PXLPhotoProductView.widgetForPhoto(photo: photo, delegate: self)
+
+  ...
+  ```
+## Advanced
+### PXLPhotoView
+- Showing a content with a title, subtitle, and an action button. You can customize the look of the PXLPhotoView, with setting up the `PXLPhotoViewConfiguration`. Implement the delegate (`PXLPhotoViewDelegate`) to know about the content clicked and the action button click events.
+- To start playing video use the `playVideo()` and to stop playing use the `stopVideo()` methods, to mute / unmute the playbacks volume use the `mutePlayer(muted:Bool)` method.
+    ```swift
+    //Basic Example
+    ...
+        let photoView = PXLPhotoView(frame:CGRectMake(0,0,200,80), photo:PXLPhoto, title:"Photo Title", subtitle:"Subtitle for it", buttonTitle:"Open it", buttonImage:UIImage(named:"Open button"))
+        self.view.addSubview(photoView)
+    }
+    ```
+#### PXLPhotoViewConfiguration
+Configurator class for the PXLPhotoView.
+Configuration options:
+- `textColor:UIColor` : Color of the texts
+- `titleFont:UIFont`: Font for the title
+- `subtitleFont:UIFont`: Font for the subtitle
+- `buttonFont:UIFont`: Font for the button
+- `buttonImage:UIImage`: Image for the button
+- `buttonBorderWidth:CGFloat`: Border width for the button
+- `enableVideoPlayback:Bool`: Should play videos or not
+- `delegate:PXLPhotoViewDelegate`: Delegate
+- `cropMode:PXLPhotoCropMode`: Image/ Video crop mode
+
 
 # Troubleshooting
 
