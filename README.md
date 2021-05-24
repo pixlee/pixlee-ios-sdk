@@ -189,6 +189,7 @@ PXLClient.sharedClient.autoAnalyticsEnabled = true // make sure this is true
 
 ### Step 3: Load Detail UI
 - implement this: [PXLPhotoProductView](#pxlphotoproductview)
+- Not that you need to make sure that PXLPhotoProductView should be loaded when a cell of PXLWidgetView is clicked. You can get examples in the demo app in this project. 
         
 # API: Filtering and Sorting
 Information on the filters and sorts available are here: https://developers.pixlee.com/reference#consuming-content
