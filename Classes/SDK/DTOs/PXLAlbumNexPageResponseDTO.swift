@@ -62,6 +62,7 @@ struct PXLReview: Codable {
     let votesUp: Int
     let votesDown: Int
     let verifiedBuyer: Bool
+    let incentivized: Bool
     let userName: String
 
     enum CodingKeys: String, CodingKey {
@@ -72,6 +73,7 @@ struct PXLReview: Codable {
         case votesUp = "votes_up"
         case votesDown = "votes_down"
         case verifiedBuyer = "verified_buyer"
+        case incentivized = "incentivized"
         case userName = "user_name"
     }
 }
