@@ -43,13 +43,9 @@ public struct BoundingBoxProduct: Codable {
 // MARK: - ReviewsInfo
 
 struct PXLReviewsInfo: Codable {
-    let numReviews: Int
-    let averageRating: Double
     let reviews: [PXLReview]
 
     enum CodingKeys: String, CodingKey {
-        case numReviews = "num_reviews"
-        case averageRating = "average_rating"
         case reviews
     }
 }
