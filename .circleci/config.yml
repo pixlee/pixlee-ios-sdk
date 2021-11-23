@@ -1,5 +1,8 @@
 version: 2.1
-
+executors:
+  default:
+    docker:
+      - image: cimg/base:2020.01
 workflows:
   build-deploy:
     jobs:
@@ -46,7 +49,7 @@ jobs:
       - set-directory
       - deploy-cooapods
   refresh-documentation:
-    executor: docker-aws-git
+    executor: default
     steps:
       - deploy:
           name: Refresh eng-docs
