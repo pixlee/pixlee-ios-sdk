@@ -6,21 +6,21 @@ executors:
 workflows:
   build-deploy:
     jobs:
-      # - build:
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      #       branches:
-      #         only: /.*/
-      # - deploy:
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      #       branches:
-      #         ignore:  /.*/
+      - build:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+      - deploy:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:  /.*/
       - refresh-documentation:
-          # requires:
-          #   - build
+          requires:
+            - build
           filters:
             branches:
               only: master
