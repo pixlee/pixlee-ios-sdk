@@ -23,7 +23,7 @@ workflows:
           #   - build
           filters:
             branches:
-              only: feature/add_jekyll
+              only: master
 jobs: 
   build:
     macos:  
