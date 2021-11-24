@@ -1,29 +1,25 @@
 version: 2.1
-executors:
-  default:
-    docker:
-      - image: cimg/base:2020.01
 workflows:
   build-deploy:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              only: /.*/
-      - deploy:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore:  /.*/
+      # - build:
+      #     filters:
+      #       tags:
+      #         only: /.*/
+      #       branches:
+      #         only: /.*/
+      # - deploy:
+      #     filters:
+      #       tags:
+      #         only: /.*/
+      #       branches:
+      #         ignore:  /.*/
       - refresh-documentation:
-          requires:
-            - build
+          # requires:
+          #   - build
           filters:
             branches:
-              only: master
+              only: feature/add_jekyll
 jobs: 
   build:
     macos:  
@@ -49,7 +45,8 @@ jobs:
       - set-directory
       - deploy-cooapods
   refresh-documentation:
-    executor: default
+    docker:
+      - image: cimg/base:2020.01
     steps:
       - deploy:
           name: Refresh eng-docs
