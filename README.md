@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /iOS-SDK
+permalink: /ios-sdk
 currentPage: iOS-SDK
 githubLink: https://github.com/pixlee/pixlee-ios-sdk
 ---
