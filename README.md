@@ -1,3 +1,10 @@
+---
+layout: default
+permalink: /iOS-SDK
+currentPage: iOS-SDK
+githubLink: https://github.com/pixlee/pixlee-ios-sdk
+---
+
 [![Version](https://img.shields.io/cocoapods/v/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
 [![License](https://img.shields.io/cocoapods/l/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
 [![Platform](https://img.shields.io/cocoapods/p/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
