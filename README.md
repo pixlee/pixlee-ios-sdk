@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /ios-sdk
-currentPage: iOS-SDK
+currentPage: iOS SDK
 githubLink: https://github.com/pixlee/pixlee-ios-sdk
 ---
 
