@@ -532,13 +532,11 @@ public class PXLPhotoProductView: UIViewController {
     
     // this gets called when the app moves to foreground. This's added for ios 15.
     @objc func appMovedToForeground() {
-        print("App moved to foreground!")
         playVideo()
     }
     
     // this gets called when the app moves to background. This's added for ios 15.
     @objc func appMovedToBackground() {
-        print("App moved to background!")
         stopVideo()
     }
 
