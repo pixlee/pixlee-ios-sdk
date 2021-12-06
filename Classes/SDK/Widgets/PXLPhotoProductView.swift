@@ -448,6 +448,10 @@ public class PXLPhotoProductView: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
         } catch {
@@ -524,12 +528,26 @@ public class PXLPhotoProductView: UIViewController {
         gifView.frame = view.bounds
         playerLayer?.frame = gifView.frame
     }
+    
+    
+    // this gets called when the app moves to foreground. This's added for ios 15.
+    @objc func appMovedToForeground() {
+        playVideo()
+    }
+    
+    // this gets called when the app moves to background. This's added for ios 15.
+    @objc func appMovedToBackground() {
+        stopVideo()
+    }
 
+    // this gets called when the view controller moves to foreground
     override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         playVideo()
     }
 
+    // this gets called when the view controller moves to background
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopVideo()
