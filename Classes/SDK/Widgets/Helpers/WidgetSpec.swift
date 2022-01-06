@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 public enum WidgetSpec {
     open class WidgetDefault {
         public init(cellHeight: CGFloat) {

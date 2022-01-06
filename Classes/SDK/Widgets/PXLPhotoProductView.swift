@@ -18,10 +18,9 @@ public struct PXLProductCellConfiguration {
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
     public let discountPrice: DiscountPrice?
-
-    public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
-                bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
-                shopImage: UIImage? = UIImage(named: "shoppingBag", in: Bundle(for: PXLPhotoProductView.self), compatibleWith: nil),
+    public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: PXLDefaults.bundleModule, compatibleWith: nil),
+                bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: PXLDefaults.bundleModule, compatibleWith: nil),
+                shopImage: UIImage? = UIImage(named: "shoppingBag", in: PXLDefaults.bundleModule, compatibleWith: nil),
                 shopBackgroundColor: UIColor = UIColor.systemYellow,
                 shopBackgroundHidden: Bool = false,
                 discountPrice: DiscountPrice? = nil) {
@@ -66,7 +65,13 @@ public protocol PXLPhotoProductDelegate: class {
 
 public class PXLPhotoProductView: UIViewController {
     public static func widgetForPhoto(photo: PXLPhoto, cropMode: PXLPhotoCropMode, showHotspots: Bool, delegate: PXLPhotoProductDelegate?, cellConfiguration: PXLProductCellConfiguration? = PXLProductCellConfiguration()) -> PXLPhotoProductView {
+        // TODO: test it in Cocoapods
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: PXLPhotoProductView.self)
+        #endif
+        
         let widget = PXLPhotoProductView(nibName: "PXLPhotoProductView", bundle: bundle)
         widget.cellConfiguration = cellConfiguration ?? PXLProductCellConfiguration()
         widget.showHotspots = showHotspots
@@ -110,7 +115,9 @@ public class PXLPhotoProductView: UIViewController {
     }
 
     static var ownBundle: Bundle {
-        Bundle(for: PXLPhotoProductView.self)
+        // todo: test it in cocoapods
+        //Bundle(for: PXLPhotoProductView.self)
+        Bundle.module
     }
 
     public var muteButtonOnImage: UIImage? = UIImage(named: "outline_volume_off_black_24pt", in: PXLPhotoProductView.ownBundle, compatibleWith: nil) {
@@ -573,7 +580,12 @@ public class PXLPhotoProductView: UIViewController {
         productCollectionView.setCollectionViewLayout(layout, animated: false)
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
+
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: PXLAdvancedProductCell.self)
+        #endif
         productCollectionView.register(UINib(nibName: "PXLAdvancedProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier)
 
         productCollectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)

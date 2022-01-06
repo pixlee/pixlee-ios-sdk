@@ -14,7 +14,11 @@ enum PXLAlbumViewControllerDisplayDisplayMode {
 
 public class PXLAlbumViewController: UIViewController {
     public static func viewControllerForAlbum(album: PXLAlbum) -> PXLAlbumViewController {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: PXLAlbumViewController.self)
+        #endif
         let albumVC = PXLAlbumViewController(nibName: "PXLAlbumViewController", bundle: bundle)
         albumVC.viewModel = PXLAlbumViewModel(album: album)
         return albumVC

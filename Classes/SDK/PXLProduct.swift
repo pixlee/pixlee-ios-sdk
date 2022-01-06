@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 public struct PXLProduct {
     public let identifier: Int
     public let linkText: String?

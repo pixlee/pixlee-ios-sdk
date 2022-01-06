@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 class HotspotsReader {
     let imageScaleType: PXLPhotoCropMode
     let screenWidth: CGFloat

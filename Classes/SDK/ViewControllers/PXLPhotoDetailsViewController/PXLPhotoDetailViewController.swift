@@ -14,7 +14,11 @@ import UIKit
 
 public class PXLPhotoDetailViewController: UIViewController {
     public static func viewControllerForPhoto(photo: PXLPhoto, title: String?) -> PXLPhotoDetailViewController {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: PXLPhotoDetailViewController.self)
+        #endif
         let imageDetailsVC = PXLPhotoDetailViewController(nibName: "PXLPhotoDetailViewController", bundle: bundle)
         imageDetailsVC.viewModel = photo
         imageDetailsVC.titleString = title

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UIImage {
     func addPadding(insets: UIEdgeInsets) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(

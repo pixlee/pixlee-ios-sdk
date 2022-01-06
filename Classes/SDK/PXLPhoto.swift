@@ -128,7 +128,9 @@ public struct PXLPhoto: Equatable {
     }
 
     public var sourceIconImage: UIImage? {
-        let bundle = Bundle(for: PXLAlbum.self)
+        // test it in Cocoapods
+        // let bundle = Bundle(for: PXLAlbum.self)
+        let bundle = Bundle.module
         switch source {
         case "instagram":
             return UIImage(named: "instagram", in: bundle, compatibleWith: nil)

@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-
+import InfiniteLayout
 
 public protocol PXLWidgetViewDelegate: class {
     // UI spec
@@ -220,7 +220,13 @@ public class PXLWidgetView: UIView {
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
 
-            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: Bundle(for: PXLGridViewCell.self)), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
+            #if SWIFT_PACKAGE
+            let bundle = Bundle.module
+            #else
+            let bundle = Bundle(for: PXLGridViewCell.self)
+            #endif
+            
+            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: bundle), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
             collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
             collectionView.register(PXLLoadMoreFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
 

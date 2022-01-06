@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-
+import InfiniteLayout
 public protocol PXLGridViewAutoAnalyticsDelegate:class {
     // pass an album if you want to delegate this view to fire 'openedWidget' and 'widgetVisible' analytics events automatically. Additionaly you must set [PXLClient.sharedClient.autoAnalyticsEnabled = true] to enable auto-analytics.
     // if you manually fire analytics, you can pass 'nil' to this function.
@@ -204,8 +204,13 @@ public class PXLGridView: UIView {
             collectionView.dataSource = self
             collectionView.isPrefetchingEnabled = true
             collectionView.delegate = self
-
-            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: Bundle(for: PXLGridViewCell.self)), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
+            
+            #if SWIFT_PACKAGE
+            let bundle = Bundle.module
+            #else
+            let bundle = Bundle(for: PXLGridViewCell.self)
+            #endif
+            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: bundle), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
             collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
 
             addSubview(collectionView)
