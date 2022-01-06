@@ -17,17 +17,17 @@ workflows:
             tags:
               only: /.*/
             branches:
-              ignore:  /.*/
+              ignore: /.*/
       - refresh-documentation:
           requires:
             - build
           filters:
             branches:
               only: master
-jobs: 
+jobs:
   build:
-    macos:  
-      xcode: 11.3.0
+    macos:
+      xcode: 13.2.1
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
@@ -43,7 +43,7 @@ jobs:
           path: output
   deploy:
     macos:
-      xcode: 11.3.0
+      xcode: 13.2.1
     steps:
       - checkout
       - set-directory
@@ -91,6 +91,6 @@ commands:
     steps:
       - run:
           name: deploy cooapods
-          command:  |
+          command: |
             pod lib lint --allow-warnings
             pod trunk push --allow-warnings

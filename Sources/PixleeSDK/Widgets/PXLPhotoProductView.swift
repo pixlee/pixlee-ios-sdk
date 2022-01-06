@@ -11,6 +11,7 @@ import Gifu
 import Nuke
 import UIKit
 
+
 public struct PXLProductCellConfiguration {
     public let bookmarkOnImage: UIImage?
     public let bookmarkOffImage: UIImage?
@@ -18,9 +19,9 @@ public struct PXLProductCellConfiguration {
     public let shopBackgroundColor: UIColor
     public let shopBackgroundHidden: Bool
     public let discountPrice: DiscountPrice?
-    public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: PXLDefaults.bundleModule, compatibleWith: nil),
-                bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: PXLDefaults.bundleModule, compatibleWith: nil),
-                shopImage: UIImage? = UIImage(named: "shoppingBag", in: PXLDefaults.bundleModule, compatibleWith: nil),
+    public init(bookmarkOnImage: UIImage? = UIImage(named: "bookmarkOn", in: PXLDefaults.getBundleForApp(for: PXLPhotoProductView.self), compatibleWith: nil),
+                bookmarkOffImage: UIImage? = UIImage(named: "bookmarkOff", in: PXLDefaults.getBundleForApp(for: PXLPhotoProductView.self), compatibleWith: nil),
+                shopImage: UIImage? = UIImage(named: "shoppingBag", in: PXLDefaults.getBundleForApp(for: PXLPhotoProductView.self), compatibleWith: nil),
                 shopBackgroundColor: UIColor = UIColor.systemYellow,
                 shopBackgroundHidden: Bool = false,
                 discountPrice: DiscountPrice? = nil) {
