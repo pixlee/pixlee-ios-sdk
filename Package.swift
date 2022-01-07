@@ -19,7 +19,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.5.0")),
         .package(url: "https://github.com/kean/Nuke.git", .upToNextMajor(from: "8.0.0")),
-        .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.3")),
+        .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.2.2")),
         .package(url: "https://github.com/arnauddorgans/InfiniteLayout.git", .upToNextMajor(from: "0.4.2")),
     ],
     targets: [
