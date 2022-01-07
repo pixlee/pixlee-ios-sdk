@@ -378,7 +378,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F24D42EC23C65BBE0091E324 /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = F24D42EC23C65BBE0091E324 /* Build configuration list for PBXProject "ExamplePod" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -834,6 +834,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PXL.ExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Example;
@@ -854,6 +855,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PXL.ExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Example;
@@ -863,7 +865,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F24D42EC23C65BBE0091E324 /* Build configuration list for PBXProject "Example" */ = {
+		F24D42EC23C65BBE0091E324 /* Build configuration list for PBXProject "ExamplePod" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F24D431923C65BC00091E324 /* Debug */,
