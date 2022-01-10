@@ -33,7 +33,7 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
-      - set-directory
+#      - set-directory
       - add-pixlee-credentials
       - fastlane_preparation
       - ui-tests
