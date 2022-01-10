@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios test
 ```
 
-Description of before_all do
+Testing SDK's demo project to make sure PixleeSDK has no erros.
 
 ### ios screenshots
 
