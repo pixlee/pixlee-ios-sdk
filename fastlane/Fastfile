@@ -73,14 +73,6 @@ platform :ios do
                         scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
-
-  lane :test_all_sdks do
-    cocoapods_sdk_test
-    # cocoapods_sdk_screenshot
-    spm_sdk_test
-    # spm_sdk_screenshot
-  end
-
 end
 
 

@@ -84,8 +84,11 @@ commands:
   ui-tests:
     steps:
       - run:
-          name: UI tests using Fastlane
-          command: bundle exe fastlane test_all_sdks
+          name: Cocoapods SDK UI tests
+          command: bundle exe fastlane cocoapods_sdk_test
+      - run:
+          name: SPM SDK UI tests
+          command: bundle exe fastlane spm_sdk_test
 
   deploy-cooapods:
     steps:
