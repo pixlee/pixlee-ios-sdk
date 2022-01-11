@@ -47,14 +47,6 @@ Testing SDK's demo project to make sure PixleeSDK has no erros.
 
 
 
-### ios test_all_sdks
-
-```sh
-[bundle exec] fastlane ios test_all_sdks
-```
-
-
-
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

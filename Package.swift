@@ -13,9 +13,6 @@ let package = Package(
         .library(
             name: "PixleeSDK",
             targets: ["PixleeSDK"]),
-        .library(
-            name: "InfiniteLayout",
-            targets: ["InfiniteLayout"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,7 +20,7 @@ let package = Package(
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.5.0")),
         .package(url: "https://github.com/kean/Nuke.git", .upToNextMajor(from: "8.0.0")),
         .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.2.2")),
-//        .package(url: "https://github.com/arnauddorgans/InfiniteLayout.git", .upToNextMajor(from: "0.4.2")),
+       .package(url: "https://github.com/arnauddorgans/InfiniteLayout.git", .upToNextMajor(from: "0.4.2")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -37,15 +34,6 @@ let package = Package(
                 "InfiniteLayout",
             ],
             path:"Sources/PixleeSDK"),
-        .target(
-            name: "CocoaProxy",
-            path:"Sources/CocoaProxy",
-            publicHeadersPath: "./"
-        ),
-        .target(
-            name: "InfiniteLayout",
-            dependencies: ["CocoaProxy"],
-            path:"Sources/InfiniteLayout"),
         .testTarget(
             name: "PixleeSDKTests",
             dependencies: ["PixleeSDK"],
