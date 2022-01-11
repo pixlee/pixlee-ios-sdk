@@ -16,9 +16,6 @@ let package = Package(
         .library(
             name: "InfiniteLayout",
             targets: ["InfiniteLayout"]),
-//        .library(
-//            name: "CocoaProxy",
-//            targets: ["CocoaProxy"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
