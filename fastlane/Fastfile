@@ -44,35 +44,41 @@ platform :ios do
   #                       sdk: "iphonesimulator")
   # end
 
-  lane :spm_sdk do
+  lane :spm_sdk_test do
     desc "Test Swift Package Manager"
       run_tests(
         project: 'Example/Example.xcodeproj',
         devices: ["iPhone 13 Pro"],
         scheme: "ExampleUITests")
-    
-    desc "Screenshot Swift Package Manager"
-      capture_screenshots(project: "Example/Example.xcodeproj",
-                          scheme: "UITests",
-                          sdk: "iphonesimulator")
   end
 
-  lane :cocoapods_sdk do
+  lane :spm_sdk_screenshot do
+    desc "Screenshot Swift Package Manager"
+    capture_screenshots(project: "Example/Example.xcodeproj",
+                        scheme: "ExampleUITests",
+                        sdk: "iphonesimulator")
+  end
+
+  lane :cocoapods_sdk_test do
     desc "Test Cocoapods"
     run_tests(
       workspace: 'Example/ExamplePod.xcworkspace',
       devices: ["iPhone 13 Pro"],
       scheme: "ExampleUITests")
+  end
 
+  lane :cocoapods_sdk_screenshot do
     desc "Screenshot Cocoapods"
     capture_screenshots(workspace: "Example/ExamplePod.xcworkspace",
-                        scheme: "UITests",
+                        scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
 
   lane :test_all_sdks do
-    cocoapods_sdk
-    spm_sdk
+    cocoapods_sdk_test
+    # cocoapods_sdk_screenshot
+    spm_sdk_test
+    # spm_sdk_screenshot
   end
 
 end

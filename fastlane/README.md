@@ -15,18 +15,34 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios spm_sdk
+### ios spm_sdk_test
 
 ```sh
-[bundle exec] fastlane ios spm_sdk
+[bundle exec] fastlane ios spm_sdk_test
 ```
 
 Testing SDK's demo project to make sure PixleeSDK has no erros.
 
-### ios cocoapods_sdk
+### ios spm_sdk_screenshot
 
 ```sh
-[bundle exec] fastlane ios cocoapods_sdk
+[bundle exec] fastlane ios spm_sdk_screenshot
+```
+
+
+
+### ios cocoapods_sdk_test
+
+```sh
+[bundle exec] fastlane ios cocoapods_sdk_test
+```
+
+
+
+### ios cocoapods_sdk_screenshot
+
+```sh
+[bundle exec] fastlane ios cocoapods_sdk_screenshot
 ```
 
 
