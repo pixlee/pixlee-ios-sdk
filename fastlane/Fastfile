@@ -21,29 +21,6 @@ platform :ios do
     setup_circle_ci
   end
   
-  # lane :test do
-  #   # desc "Test ExamplePod"
-  #   # run_tests(project: "Example/ExamplePod.xcworkspace",
-  #   #   devices: ["iPhone 13 Pro"],
-  #   #   scheme: "ExampleUITests")
-    
-  #   run_tests(
-  #     project: 'Example/Example.xcodeproj',
-  #     devices: ["iPhone 13 Pro"],
-  #     scheme: "ExampleUITests")
-  # end
-  
-  # lane :screenshots do
-  #   # desc "Screenshot ExamplePod"
-  #   # capture_screenshots(project: "Example/ExamplePod.xcworkspace",
-  #   #   scheme: "UITests",
-  #   #   sdk: "iphonesimulator")
-
-  #   capture_screenshots(project: "Example/Example.xcodeproj",
-  #                       scheme: "UITests",
-  #                       sdk: "iphonesimulator")
-  # end
-
   lane :spm_sdk_test do
     desc "Test Swift Package Manager"
       run_tests(
