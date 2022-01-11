@@ -17,15 +17,19 @@ default_platform(:ios)
 
 platform :ios do
   desc "Testing SDK's demo project to make sure PixleeSDK has no erros."
+
+  desc "Setting up circleci"
   before_all do
     setup_circle_ci
   end
   
   lane :test do
-    # run_tests(project: "Example/ExamplePod.xcworkspace",
-    #   devices: ["iPhone 13 Pro"],
-    #   scheme: "ExampleUITests")
+    desc "Test ExamplePod"
+    run_tests(project: "Example/ExamplePod.xcworkspace",
+      devices: ["iPhone 13 Pro"],
+      scheme: "ExampleUITests")
     
+      desc "Test Example"
     run_tests(
       project: 'Example/Example.xcodeproj',
       devices: ["iPhone 13 Pro"],
@@ -33,10 +37,12 @@ platform :ios do
   end
   
   lane :screenshots do
-    # capture_screenshots(workspace: "Example/ExamplePod.xcworkspace",
-    #   scheme: "UITests",
-    #   sdk: "iphonesimulator")
+    desc "Screenshot ExamplePod"
+    capture_screenshots(workspace: "Example/ExamplePod.xcworkspace",
+      scheme: "UITests",
+      sdk: "iphonesimulator")
 
+    desc "Screenshot Example"
     capture_screenshots(project: "Example/Example.xcodeproj",
                         scheme: "UITests",
                         sdk: "iphonesimulator")
