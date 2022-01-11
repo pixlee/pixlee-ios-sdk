@@ -24,7 +24,6 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Installation](#Installation)
   - [Cocoapods](#cocoapods)
-  - [Carthage](#carthage)
   - [Swift Package Manager](#Swift-Package-Manager)
 - [Initiate the SDK](#Initiate-the-SDK)
   - [API Key](#api-key)
@@ -105,39 +104,6 @@ target 'MyApp' do
 end
 ```
 
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "pixlee/pixlee-ios-sdk" "<PixleeSDK version like 2.5.1>"
-```
-
-##### If you're building for iOS, tvOS, or watchOS
-
-1. Create a Cartfile that lists the frameworks you’d like to use in your project.
-1. Run `bin/setup`. This will fetch dependencies into a Carthage/Checkouts folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
-1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following content to the script area below the shell:
-
-   ```
-   sh
-   /usr/local/bin/carthage copy-frameworks
-   ```
-
-   and add the paths to the frameworks you want to use under “Input Files”, e.g.:
-
-   ```
-   $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
-   $(SRCROOT)/Carthage/Build/iOS/Nuke.framework
-   ```
-
-   This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
-
-   With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
-
-   When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
-
 ### Swift Package Manager
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Alamofire does support its use on supported platforms.
@@ -149,6 +115,10 @@ dependencies: [
     .package(url: "https://github.com/pixlee/pixlee-ios-sdk.git", .upToNextMajor(from: "<PixleeSDK version like 2.5.1>"))
 ]
 ```
+
+### Carthage (Deprecated)
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 # Initiate the SDK
 
