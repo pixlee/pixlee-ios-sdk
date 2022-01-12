@@ -36,6 +36,9 @@ xcuserdata
 # Carthage
 Carthage/Build
 
-Example/Example/PixleeCredentials.plist
+# projects that uses published pixlee-ios-sdk
 Example/ExampleSPMApp.xcodeproj
 Example/ExampleCarthageApp.xcodeproj
+
+# The credential file for running the demo app
+Example/Example/PixleeCredentials.plist

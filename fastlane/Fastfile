@@ -54,14 +54,14 @@ platform :ios do
   lane :carthage_sdk_test do
     desc "Test Carthage"
     run_tests(
-      workspace: 'Example/ExampleCarthage.xcworkspace',
+      workspace: 'Example/ExampleCarthage.xcodeproj',
       devices: ["iPhone 13 Pro"],
       scheme: "ExampleUITests")
   end
 
   lane :carthage_sdk_screenshot do
     desc "Screenshot Carthage"
-    capture_screenshots(workspace: "Example/ExampleCarthage.xcworkspace",
+    capture_screenshots(workspace: "Example/ExampleCarthage.xcodeproj",
                         scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
