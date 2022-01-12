@@ -1,0 +1,11 @@
+use_frameworks!
+platform :ios, '10.0'
+
+target 'InfiniteLayout_Example' do
+  pod 'InfiniteLayout', :path => '../'
+  pod 'InfiniteLayout/Rx', :path => '../'
+
+  target 'InfiniteLayout_Tests' do
+    inherit! :search_paths
+  end
+end

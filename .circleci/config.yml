@@ -84,12 +84,14 @@ commands:
   ui-tests:
     steps:
       - run:
+          name: Carthage SDK UI tests
+          command: bundle exe fastlane carthage_sdk_test
+      - run:
           name: Cocoapods SDK UI tests
           command: bundle exe fastlane cocoapods_sdk_test
       - run:
           name: SPM SDK UI tests
           command: bundle exe fastlane spm_sdk_test
-
   deploy-cooapods:
     steps:
       - run:

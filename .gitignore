@@ -30,8 +30,12 @@ xcuserdata
 .build/
 .idea/
 
+# Resolved files
+*.resolved
+
 # Carthage
 Carthage/Build
 
 Example/Example/PixleeCredentials.plist
 Example/ExampleSPMApp.xcodeproj
+Example/ExampleCarthageApp.xcodeproj

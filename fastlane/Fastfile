@@ -24,14 +24,14 @@ platform :ios do
   lane :spm_sdk_test do
     desc "Test Swift Package Manager"
       run_tests(
-        project: 'Example/Example.xcodeproj',
+        project: 'Example/ExampleSPM.xcodeproj',
         devices: ["iPhone 13 Pro"],
         scheme: "ExampleUITests")
   end
 
   lane :spm_sdk_screenshot do
     desc "Screenshot Swift Package Manager"
-    capture_screenshots(project: "Example/Example.xcodeproj",
+    capture_screenshots(project: "Example/ExampleSPM.xcodeproj",
                         scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
@@ -47,6 +47,21 @@ platform :ios do
   lane :cocoapods_sdk_screenshot do
     desc "Screenshot Cocoapods"
     capture_screenshots(workspace: "Example/ExamplePod.xcworkspace",
+                        scheme: "ExampleUITests",
+                        sdk: "iphonesimulator")
+  end
+
+  lane :carthage_sdk_test do
+    desc "Test Carthage"
+    run_tests(
+      workspace: 'Example/ExampleCarthage.xcworkspace',
+      devices: ["iPhone 13 Pro"],
+      scheme: "ExampleUITests")
+  end
+
+  lane :carthage_sdk_screenshot do
+    desc "Screenshot Carthage"
+    capture_screenshots(workspace: "Example/ExampleCarthage.xcworkspace",
                         scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
