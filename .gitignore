@@ -34,3 +34,4 @@ xcuserdata
 Carthage/Build
 
 Example/Example/PixleeCredentials.plist
+Example/ExampleSPMApp.xcodeproj
