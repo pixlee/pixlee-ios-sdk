@@ -17,7 +17,7 @@
                BlueprintIdentifier = "F24D431123C65BC00091E324"
                BuildableName = "ExampleUITests.xctest"
                BlueprintName = "ExampleUITests"
-               ReferencedContainer = "container:Example.xcodeproj">
+               ReferencedContainer = "container:ExampleSPM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "F24D431123C65BC00091E324"
                BuildableName = "ExampleUITests.xctest"
                BlueprintName = "ExampleUITests"
-               ReferencedContainer = "container:Example.xcodeproj">
+               ReferencedContainer = "container:ExampleSPM.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "F24D431123C65BC00091E324"
             BuildableName = "ExampleUITests.xctest"
             BlueprintName = "ExampleUITests"
-            ReferencedContainer = "container:Example.xcodeproj">
+            ReferencedContainer = "container:ExampleSPM.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

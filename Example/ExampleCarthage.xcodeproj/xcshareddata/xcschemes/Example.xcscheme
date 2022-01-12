@@ -17,7 +17,7 @@
                BlueprintIdentifier = "F24D42F023C65BBE0091E324"
                BuildableName = "Example.app"
                BlueprintName = "Example"
-               ReferencedContainer = "container:Example.xcodeproj">
+               ReferencedContainer = "container:ExampleCarthage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,15 +50,6 @@
             ReferencedContainer = "container:ExampleCarthage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F24D42F023C65BBE0091E324"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
-            ReferencedContainer = "container:Example.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
          <AdditionalOption
             key = "MallocStackLogging"
@@ -78,16 +69,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F24D42F023C65BBE0091E324"
             BuildableName = "Example.app"
             BlueprintName = "Example"
-            ReferencedContainer = "container:Example.xcodeproj">
+            ReferencedContainer = "container:ExampleCarthage.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

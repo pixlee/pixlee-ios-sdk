@@ -17,7 +17,7 @@
                BlueprintIdentifier = "F24D431123C65BC00091E324"
                BuildableName = "ExampleUITests.xctest"
                BlueprintName = "ExampleUITests"
-               ReferencedContainer = "container:Example.xcodeproj">
+               ReferencedContainer = "container:ExampleCarthage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F24D42F023C65BBE0091E324"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
-            ReferencedContainer = "container:ExampleCarthage.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -73,7 +63,7 @@
             BlueprintIdentifier = "F24D431123C65BC00091E324"
             BuildableName = "ExampleUITests.xctest"
             BlueprintName = "ExampleUITests"
-            ReferencedContainer = "container:Example.xcodeproj">
+            ReferencedContainer = "container:ExampleCarthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

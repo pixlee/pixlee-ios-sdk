@@ -18,7 +18,8 @@
 		5C8143902589F2AC00C1CC1A /* AutoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81438F2589F2AC00C1CC1A /* AutoPlayViewController.swift */; };
 		5C8143A32589F60600C1CC1A /* GetPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143A22589F60600C1CC1A /* GetPhotosViewController.swift */; };
 		5C8143AB2589FC4400C1CC1A /* GetPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8143AA2589FC4400C1CC1A /* GetPhotoViewController.swift */; };
-		5C936254278EA46900F2AB78 /* PixleeSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C936245278EA42F00F2AB78 /* PixleeSdk.framework */; };
+		5C936254278EA46900F2AB78 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C936245278EA42F00F2AB78 /* PixleeSDK.framework */; };
+		5C936282278EABC600F2AB78 /* PixleeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C936245278EA42F00F2AB78 /* PixleeSDK.framework */; };
 		5CA4833E264100AC008D1B99 /* ProductSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4833D264100AC008D1B99 /* ProductSectionCell.swift */; };
 		5CCE82F625A564390040B222 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE82F525A564390040B222 /* UIViewControllerExtension.swift */; };
 		5CE55183257E17B5009666C1 /* PixleeCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE55182257E17B5009666C1 /* PixleeCredentials.swift */; };
@@ -142,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C936254278EA46900F2AB78 /* PixleeSdk.framework in Frameworks */,
+				5C936254278EA46900F2AB78 /* PixleeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C936282278EABC600F2AB78 /* PixleeSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +205,7 @@
 		5C93623E278EA42F00F2AB78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C936245278EA42F00F2AB78 /* PixleeSdk.framework */,
+				5C936245278EA42F00F2AB78 /* PixleeSDK.framework */,
 				5C936247278EA42F00F2AB78 /* PixleeSdkTests.xctest */,
 				5C936249278EA42F00F2AB78 /* InfiniteLayout.framework */,
 				5C93624B278EA42F00F2AB78 /* CocoaProxy.framework */,
@@ -413,17 +415,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		5C936245278EA42F00F2AB78 /* PixleeSdk.framework */ = {
+		5C936245278EA42F00F2AB78 /* PixleeSDK.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = PixleeSdk.framework;
+			path = PixleeSDK.framework;
 			remoteRef = 5C936244278EA42F00F2AB78 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5C936247278EA42F00F2AB78 /* PixleeSdkTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = PixleeSdkTests.xctest;
+			path = PixleeSDKTests.xctest;
 			remoteRef = 5C936246278EA42F00F2AB78 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
