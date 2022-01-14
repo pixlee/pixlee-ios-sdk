@@ -102,9 +102,6 @@ commands:
       - run:
           name: Install CocoaPods dependencies
           command: pod install --project-directory=Example
-      - run:
-          name: Install Carthage dependencies
-          command: ./bin/setup
   download-carthage-dependencies:
     steps:
       - run:
