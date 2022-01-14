@@ -4,15 +4,31 @@ executors:
     docker:
       - image: cimg/base:2020.01
 workflows:
-  build-deploy:
+  test-deploy:
     jobs:
-      - build:
+      - test-spm:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+      - test-cocoapods:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+      - test-carthage:
           filters:
             tags:
               only: /.*/
             branches:
               only: /.*/
       - deploy:
+          requires:
+            - test-carthage
+            - test-spm
+            - test-cocoapods
           filters:
             tags:
               only: /.*/
@@ -20,12 +36,14 @@ workflows:
               ignore: /.*/
       - refresh-documentation:
           requires:
-            - build
+            - test-carthage
+            - test-spm
+            - test-cocoapods
           filters:
             branches:
               only: master
 jobs:
-  build:
+  test-spm:
     macos:
       xcode: 13.2.1
     environment:
@@ -33,20 +51,40 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
-#      - download-dependencies
       - add-pixlee-credentials
       - fastlane_preparation
-      - ui-tests
-      - store_test_results:
-          path: output/scan
-      - store_artifacts:
-          path: output
+      - spm-ui-tests
+  test-cocoapods:
+    macos:
+      xcode: 13.2.1
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
+    steps:
+      - checkout
+      - add-pixlee-credentials
+      - fastlane_preparation
+      - download-cocoapods-dependencies
+      - cocoapods-ui-tests
+  test-carthage:
+    macos:
+      xcode: 13.2.1
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
+    steps:
+      - checkout
+      - add-pixlee-credentials
+      - fastlane_preparation
+      - download-carthage-dependencies
+      - carthage-ui-tests
   deploy:
     macos:
       xcode: 13.2.1
     steps:
       - checkout
-#      - download-dependencies
+      - download-carthage-dependencies
+      - download-cocoapods-dependencies
       - deploy-cooapods
   refresh-documentation:
     executor: default
@@ -59,11 +97,16 @@ jobs:
               https://circleci.com/api/v1.1/project/github/pixlee/eng-docs/tree/master
 
 commands:
-  download-dependencies:
+  download-cocoapods-dependencies:
     steps:
       - run:
           name: Install CocoaPods dependencies
           command: pod install --project-directory=Example
+      - run:
+          name: Install Carthage dependencies
+          command: ./bin/setup
+  download-carthage-dependencies:
+    steps:
       - run:
           name: Install Carthage dependencies
           command: ./bin/setup
@@ -84,14 +127,18 @@ commands:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-  ui-tests:
+  carthage-ui-tests:
     steps:
       - run:
           name: Carthage SDK UI tests
           command: bundle exe fastlane carthage_sdk_test
+  cocoapods-ui-tests:
+    steps:
       - run:
           name: Cocoapods SDK UI tests
           command: bundle exe fastlane cocoapods_sdk_test
+  spm-ui-tests:
+    steps:
       - run:
           name: SPM SDK UI tests
           command: bundle exe fastlane spm_sdk_test
