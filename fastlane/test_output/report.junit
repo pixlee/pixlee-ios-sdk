@@ -1,10 +1,2 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='ExampleUITests.xctest' tests='5' failures='0'>
-  <testsuite name='ExampleUITests.ExampleUITests' tests='5' failures='0'>
-    <testcase classname='ExampleUITests.ExampleUITests' name='testAllAnalytics' time='12.280'/>
-    <testcase classname='ExampleUITests.ExampleUITests' name='testAllAnalyticsWhenTurnedOff' time='12.893'/>
-    <testcase classname='ExampleUITests.ExampleUITests' name='testOpenedLightbox' time='7.546'/>
-    <testcase classname='ExampleUITests.ExampleUITests' name='testOpenedWidget' time='6.858'/>
-    <testcase classname='ExampleUITests.ExampleUITests' name='testWidgetVisible' time='6.743'/>
-  </testsuite>
-</testsuites>
+<testsuites tests='0' failures='0'/>
