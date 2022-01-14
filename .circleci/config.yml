@@ -33,7 +33,7 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
-      - set-directory
+      - download-dependencies
       - add-pixlee-credentials
       - fastlane_preparation
       - ui-tests
@@ -46,7 +46,7 @@ jobs:
       xcode: 13.2.1
     steps:
       - checkout
-      - set-directory
+      - download-dependencies
       - deploy-cooapods
   refresh-documentation:
     executor: default
@@ -59,11 +59,14 @@ jobs:
               https://circleci.com/api/v1.1/project/github/pixlee/eng-docs/tree/master
 
 commands:
-  set-directory:
+  download-dependencies:
     steps:
       - run:
-          name: Install CocoaPods + set directory
+          name: Install CocoaPods dependencies
           command: pod install --project-directory=Example
+      - run:
+          name: Install Carthage dependencies
+          command: ./bin/setup
   add-pixlee-credentials:
     steps:
       - run:
