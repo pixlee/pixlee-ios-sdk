@@ -74,11 +74,17 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
 # Get Started with Demo App
 
 1. open **Example** folder in terminal.
+
 2. run this command. ( Don't have Pod installed on your computer? [Please look in to this link to install Pod before doing this](https://guides.cocoapods.org/using/getting-started.html) )
    ```
    pod install
    ```
-3. open Xcode by double clicking **Example/Example.xcworkspace** file in Finder of Mac.
+3. open the Xcode project file depending on your needs:
+
+   - [Option 1] Cocoapods: **Example/Example.xcworkspace**
+   - [Option 2] Carthage: **Example/ExampleCarthage.xcodeproj**
+   - [Option 3] Swift Package Manager: **Example/ExampleSPM.xcodeproj**
+
 4. create **PixleeCredentials.plist** in Example/Example/PixleeCredentials.plist
 
    - add these 4 elements to **PixleeCredentials.plist**
