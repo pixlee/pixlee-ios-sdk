@@ -33,8 +33,9 @@ xcuserdata
 # Resolved files
 *.resolved
 
-# Carthage
-Carthage/Build
+fastlane/report.xml
+fastlane/test_output
+fastlane/screenshots
 
 # projects that uses published pixlee-ios-sdk
 Example/ExampleSPMApp.xcodeproj
