@@ -76,7 +76,7 @@ jobs:
       - checkout
       - add-pixlee-credentials
       - fastlane_preparation
-      - download-carthage-dependencies
+#      - download-carthage-dependencies
       - carthage-ui-tests
   deploy:
     macos:
@@ -84,7 +84,7 @@ jobs:
     steps:
       - checkout
       - download-carthage-dependencies
-      - download-cocoapods-dependencies
+#      - download-cocoapods-dependencies
       - deploy-cooapods
   refresh-documentation:
     executor: default
