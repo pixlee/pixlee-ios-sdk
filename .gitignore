@@ -21,6 +21,7 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+.idea/
 
 ## Obj-C/Swift specific
 *.hmap
@@ -28,12 +29,10 @@ xcuserdata
 
 # Swift Package Manager
 .build/
-.idea/
+Package.resolved
 
-# Resolved files
-*.resolved
-
-fastlane/report.xml
+# Fastlane
+fastlane/report
 fastlane/test_output
 fastlane/screenshots
 
