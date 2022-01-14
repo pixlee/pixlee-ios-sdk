@@ -33,7 +33,7 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
-      - download-dependencies
+#      - download-dependencies
       - add-pixlee-credentials
       - fastlane_preparation
       - ui-tests
@@ -46,7 +46,7 @@ jobs:
       xcode: 13.2.1
     steps:
       - checkout
-      - download-dependencies
+#      - download-dependencies
       - deploy-cooapods
   refresh-documentation:
     executor: default
