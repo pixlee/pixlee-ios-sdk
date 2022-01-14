@@ -83,7 +83,6 @@ jobs:
       xcode: 13.2.1
     steps:
       - checkout
-      - download-carthage-dependencies
       - download-cocoapods-dependencies
       - deploy-cooapods
   refresh-documentation:
