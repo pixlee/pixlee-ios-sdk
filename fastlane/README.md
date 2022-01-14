@@ -31,22 +31,6 @@ Testing SDK's demo project to make sure PixleeSDK has no erros.
 
 
 
-### ios cocoapods_sdk_test
-
-```sh
-[bundle exec] fastlane ios cocoapods_sdk_test
-```
-
-
-
-### ios cocoapods_sdk_screenshot
-
-```sh
-[bundle exec] fastlane ios cocoapods_sdk_screenshot
-```
-
-
-
 ### ios carthage_sdk_test
 
 ```sh
@@ -59,6 +43,22 @@ Testing SDK's demo project to make sure PixleeSDK has no erros.
 
 ```sh
 [bundle exec] fastlane ios carthage_sdk_screenshot
+```
+
+
+
+### ios cocoapods_sdk_test
+
+```sh
+[bundle exec] fastlane ios cocoapods_sdk_test
+```
+
+
+
+### ios cocoapods_sdk_screenshot
+
+```sh
+[bundle exec] fastlane ios cocoapods_sdk_screenshot
 ```
 
 
