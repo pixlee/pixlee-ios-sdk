@@ -31,6 +31,9 @@ xcuserdata
 .build/
 Package.resolved
 
+# Carthage
+Carthage
+
 # Fastlane
 fastlane/report
 fastlane/test_output
