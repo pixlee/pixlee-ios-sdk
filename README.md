@@ -6,8 +6,8 @@ githubLink: https://github.com/pixlee/pixlee-ios-sdk
 ---
 
 [![Version](https://img.shields.io/cocoapods/v/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
-[![License](https://img.shields.io/cocoapods/l/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
-[![Platform](https://img.shields.io/cocoapods/p/PixleeSDK.svg?style=flat)](https://cocoapods.org/pods/PixleeSDK)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Pixlee-iOS-SDK-compatible-orange?style=flat-square)
 
 # pixlee-ios-sdk
 
@@ -24,6 +24,7 @@ This SDK makes it easy for Pixlee customers to easily include Pixlee albums in t
 - [Get Started with Demo App](#Get-Started-with-Demo-App)
 - [Installation](#Installation)
   - [Cocoapods](#cocoapods)
+  - [Carthage](#carthage)
   - [Swift Package Manager](#Swift-Package-Manager)
 - [Initiate the SDK](#Initiate-the-SDK)
   - [API Key](#api-key)
@@ -104,6 +105,14 @@ target 'MyApp' do
 end
 ```
 
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "pixlee/pixlee-ios-sdk" ~> <PixleeSDK version like 2.5.1>
+```
+
 ### Swift Package Manager
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Alamofire does support its use on supported platforms.
@@ -115,10 +124,6 @@ dependencies: [
     .package(url: "https://github.com/pixlee/pixlee-ios-sdk.git", .upToNextMajor(from: "<PixleeSDK version like 2.5.1>"))
 ]
 ```
-
-### Carthage (Deprecated)
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 # Initiate the SDK
 
