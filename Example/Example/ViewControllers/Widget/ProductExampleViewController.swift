@@ -66,7 +66,8 @@ class ProductExampleViewController: UIViewController {
             collectionView.isPagingEnabled = false
             collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-            let bundle = Bundle(for: PXLAdvancedProductCell.self)
+            let bundle = PXLDefaults.getBundleForApp(for: PXLAdvancedProductCell.self)
+            
             collectionView.register(UINib(nibName: "PXLAdvancedProductCell", bundle: bundle), forCellWithReuseIdentifier: PXLAdvancedProductCell.defaultIdentifier)
             collectionView.register(ProductSectionCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductSectionCell.defaultIdentifier)
 
@@ -115,8 +116,20 @@ class ProductExampleViewController: UIViewController {
             }
 
             self.isFreezingNetworking = false
-            if let photos = photos, let newProducts = photos.first?.products {
-                self.products = newProducts
+            if let photos = photos {
+                var newProducts = [PXLProduct]()
+                photos.forEach { itemPhoto in
+                    if !(itemPhoto.products?.isEmpty ?? true), let products = itemPhoto.products {
+                        newProducts.append(contentsOf: products)
+                    }
+                }
+                print("Locale.current.languageCode : \(Locale.current.languageCode )")
+                print("Locale.preferredLanguages : \(Locale.preferredLanguages )")
+                if let item = Locale.preferredLanguages.last {
+                    print("Locale.preferredLanguages.first.prefix(2): \(item.prefix(2))")
+                }
+                
+                self.products = newProducts.filter{product in product.salesStartDate != nil}
                 self.collectionView?.reloadData()
             }
         }

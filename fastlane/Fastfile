@@ -16,23 +16,55 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of before_all do"
+  desc "Testing SDK's demo project to make sure PixleeSDK has no erros."
   before_all do
     setup_circle_ci
   end
   
-  lane :test do
-    run_tests(workspace: "Example/Example.xcworkspace",
-                devices: ["iPhone 8"],
-                scheme: "ExampleUITests")
+  lane :spm_sdk_test do
+    desc "Test Swift Package Manager"
+      run_tests(
+        project: 'Example/ExampleSPM.xcodeproj',
+        devices: ["iPhone 13 Pro"],
+        scheme: "ExampleUITests")
   end
-  
-  lane :screenshots do
-    capture_screenshots(workspace: "Example/Example.xcworkspace",
-                        scheme: "UITests",
+
+  lane :spm_sdk_screenshot do
+    desc "Screenshot Swift Package Manager"
+    capture_screenshots(project: "Example/ExampleSPM.xcodeproj",
+                        scheme: "ExampleUITests",
                         sdk: "iphonesimulator")
   end
 
+  lane :carthage_sdk_test do
+    desc "Test Carthage"
+    run_tests(
+      project: 'Example/ExampleCarthage.xcodeproj',
+      devices: ["iPhone 13 Pro"],
+      scheme: "ExampleUITests")
+  end
+
+  lane :carthage_sdk_screenshot do
+    desc "Screenshot Carthage"
+    capture_screenshots(project: "Example/ExampleCarthage.xcodeproj",
+                        scheme: "ExampleUITests",
+                        sdk: "iphonesimulator")
+  end
+  
+  lane :cocoapods_sdk_test do
+    desc "Test Cocoapods"
+    run_tests(
+      workspace: 'Example/ExamplePod.xcworkspace',
+      devices: ["iPhone 13 Pro"],
+      scheme: "ExampleUITests")
+  end
+
+  lane :cocoapods_sdk_screenshot do
+    desc "Screenshot Cocoapods"
+    capture_screenshots(workspace: "Example/ExamplePod.xcworkspace",
+                        scheme: "ExampleUITests",
+                        sdk: "iphonesimulator")
+  end
 end
 
 

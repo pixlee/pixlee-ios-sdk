@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1320"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2E30F0423D8F70800CDD977"
+               BlueprintIdentifier = "5CB282A2278D61D00069C152"
                BuildableName = "PixleeSDK.framework"
                BlueprintName = "PixleeSDK"
                ReferencedContainer = "container:PixleeSDK.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2E30F0D23D8F70800CDD977"
+               BlueprintIdentifier = "5CB282A9278D61D00069C152"
                BuildableName = "PixleeSDKTests.xctest"
                BlueprintName = "PixleeSDKTests"
                ReferencedContainer = "container:PixleeSDK.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F2E30F0423D8F70800CDD977"
+            BlueprintIdentifier = "5CB282A2278D61D00069C152"
             BuildableName = "PixleeSDK.framework"
             BlueprintName = "PixleeSDK"
             ReferencedContainer = "container:PixleeSDK.xcodeproj">
