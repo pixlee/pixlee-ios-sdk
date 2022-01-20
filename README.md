@@ -81,7 +81,7 @@ You can load the PXLPhotos(content) via the `PXLClient`, You just have to use th
    ```
 3. open the Xcode project file depending on your needs:
 
-   - [Option 1] Cocoapods: **Example/Example.xcworkspace**
+   - [Option 1] Cocoapods: **Example/ExamplePod.xcworkspace**
    - [Option 2] Carthage: **Example/ExampleCarthage.xcodeproj**
    - [Option 3] Swift Package Manager: **Example/ExampleSPM.xcodeproj**
 
