@@ -8,39 +8,46 @@
 import Foundation
 import UIKit
 public enum WidgetSpec {
-    open class WidgetDefault {
-        public init(cellHeight: CGFloat) {
-            self.cellHeight = cellHeight
-        }
-        
-        let cellHeight: CGFloat
-    }
-    
-    open class List:WidgetDefault {
+    open class List {
         public init(cellHeight: CGFloat, isVideoMutted: Bool, autoVideoPlayEnabled: Bool, loadMore: LoadMore) {
             self.isVideoMutted = isVideoMutted
             self.autoVideoPlayEnabled = autoVideoPlayEnabled
             self.loadMore = loadMore
-            super.init(cellHeight: cellHeight)
+            self.cellHeight = cellHeight
         }
         
         let isVideoMutted: Bool
         let autoVideoPlayEnabled: Bool
         let loadMore: LoadMore
+        let cellHeight: CGFloat
     }
     
-    open class Grid: WidgetDefault {
+    open class Grid {
         public init(cellHeight: CGFloat, cellPadding: CGFloat, loadMore: LoadMore, header: Header?) {
             self.cellPadding = cellPadding
             self.loadMore = loadMore
             self.header = header
-            super.init(cellHeight: cellHeight)
+            self.cellHeight = cellHeight
         }
         
         let header: Header?
         let cellPadding: CGFloat
         let loadMore: LoadMore
+        let cellHeight: CGFloat
     }
+
+    
+//    open class Mosaic {
+//        public init(gridSpan: Int, cellPadding: CGFloat, loadMore: LoadMore) {
+//            self.gridSpan = gridSpan
+//            self.cellPadding = cellPadding
+//            self.loadMore = loadMore
+//        }
+//        
+//        let gridSpan: Int
+//        let cellPadding: CGFloat
+//        let loadMore: LoadMore
+//    }
 
     // Foot UI: LoadMore Button with an IndicatorView
     open class LoadMore {
@@ -115,4 +122,5 @@ public enum WidgetSpec {
     }
     case list(List)
     case grid(Grid)
+//    case mosaic(Mosaic)
 }

@@ -204,6 +204,7 @@ public class PXLWidgetView: UIView {
 
     override public init(frame: CGRect) {
         collectionView = InfiniteCollectionView(frame: frame)
+        collectionView?.collectionViewLayout = MosaicLayout()
 
         super.init(frame: frame)
 
@@ -390,7 +391,10 @@ extension PXLWidgetView: UICollectionViewDataSource {
                 loadMore = grid.loadMore
             case .list(let list):
                 loadMore = list.loadMore
+//            case .mosaic(let mosaic):
+//                loadMore = mosaic.loadMore
             }
+            
             footer.viewModel = .init(loadMoreType: loadMoreType,
                     width: collectionView.frame.size.width,
                     height: loadMore.cellHeight,
@@ -470,6 +474,8 @@ extension PXLWidgetView: UICollectionViewDelegateFlowLayout {
             loadMore = grid.loadMore
         case .list(let list):
             loadMore = list.loadMore
+//        case .mosaic(let mosaic):
+//            loadMore = mosiac.loadMore
         }
 
         return CGSize(width: collectionView.frame.width, height: loadMore.cellHeight)
