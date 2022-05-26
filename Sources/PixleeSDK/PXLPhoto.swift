@@ -17,12 +17,7 @@ public enum PXLPhotoSize {
     case original
 }
 
-public struct PXLPhoto: Equatable, Hashable {
-    let identifier = UUID()
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
-    
+public struct PXLPhoto: Equatable {
     public static func == (lhs: PXLPhoto, rhs: PXLPhoto) -> Bool {
         lhs.id == rhs.id
     }

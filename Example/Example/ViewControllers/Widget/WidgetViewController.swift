@@ -35,7 +35,7 @@ class WidgetViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height / 5)
+        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
 
     /*
@@ -96,20 +96,9 @@ extension WidgetViewController: PXLWidgetViewDelegate {
 //                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
         
         // An example of Mosaic
-//        WidgetSpec.mosaic(
-//            .init(
-//                mosaicSpan: .three,
-//                cellPadding: 1,
-//                loadMore: .init(cellHeight: 100.0,
-//                                cellPadding: 10.0,
-//                                text: "LoadMore",
-//                                textColor: UIColor.darkGray,
-//                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
-//                                loadingStyle: .gray)))
-        
-        // An example of Mosaic
-        WidgetSpec.horizontal(
+        WidgetSpec.mosaic(
             .init(
+                mosaicSpan: .three,
                 cellPadding: 1,
                 loadMore: .init(cellHeight: 100.0,
                                 cellPadding: 10.0,
@@ -117,6 +106,17 @@ extension WidgetViewController: PXLWidgetViewDelegate {
                                 textColor: UIColor.darkGray,
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
                                 loadingStyle: .gray)))
+        
+        // An example of Mosaic
+//        WidgetSpec.horizontal(
+//            .init(
+//                cellPadding: 1,
+//                loadMore: .init(cellHeight: 100.0,
+//                                cellPadding: 10.0,
+//                                text: "LoadMore",
+//                                textColor: UIColor.darkGray,
+//                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+//                                loadingStyle: .gray)))
     }
 
     func setWidgetType() -> String {
