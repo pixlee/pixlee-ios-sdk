@@ -52,13 +52,7 @@ public class PXLWidgetView: UIView {
                     collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: mosaic.mosaicSpan, cellPadding: CGFloat(mosaic.cellPadding)))
                 case .horizontal(let horizontal):
                     collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: nil, cellPadding: CGFloat(horizontal.cellPadding)))
-                    print("checking UICollectionViewFlowLayout")
-                    
-                    
-//                    collectionView?.isDirectionalLockEnabled = true
-//                    collectionView?.alwaysBounceVertical = false
-                    
-                    
+
                 default :
                     collectionView = InfiniteCollectionView(frame: frame)
                 }

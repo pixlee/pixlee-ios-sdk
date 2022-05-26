@@ -134,7 +134,6 @@
 		BE70DCA85965023729C003D68A3A5D40 /* PixleeSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F265EF7A0A07ACAF5D8CF475A739DA5D /* PixleeSDK-dummy.m */; };
 		BF5F46FD5BA893B3AA1A41B830F0D267 /* ImagePipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C889C2723171F7D426AD2507A0ADF /* ImagePipelineConfiguration.swift */; };
 		BFB3FF689ADEC6CE3A99F74A9FB6B5A8 /* PXLPhotoListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA376BB4D642E7C9FCEC9E75705D5F /* PXLPhotoListViewCell.swift */; };
-		BFE7135D3C421AC477A5A3BAD23F7A0A /* CGRectUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */; };
 		C176B0C579882973282FA848CBEBF3C6 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3587DF234DD82C38B441B51180B54 /* StringExtension.swift */; };
 		C2F7B05729193ABF3D3185603B6DC3BD /* Pods-ExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DBB735FB54499DF2C61DDED5F821C8 /* Pods-ExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C56D8064D2EB57557C642E262F4E696C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CCDAC6937E9CDD6A5C324342A51840 /* UIImageView.swift */; };
@@ -148,7 +147,6 @@
 		D6B4751CED01D53E4A1B6A571AAA2F83 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9154CFF4C4763614EF9B712B5422B3E4 /* HTTPMethod.swift */; };
 		D933A88DC49AE4B8EDD90D97F7FCE14A /* PXLPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717E150C0D9DE524063855A5AAF04A9 /* PXLPhotoListView.swift */; };
 		DA34899BEF0668D76CBCE8C4CE47B97B /* RequestTaskMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868207A01A602AD764DCEBBFE2D1485 /* RequestTaskMap.swift */; };
-		DBF321E0D8CBE767872885CBB31ED953 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */; };
 		DD1A54E98EA16A14AB6205111F76DE46 /* PXLPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A69E68ACDC093917F1B391E562D572 /* PXLPhotoDetailViewController.swift */; };
 		DD902FE8D6824681C929D028655AE121 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28731B58474AA69779A536BB0A000CA9 /* RequestInterceptor.swift */; };
 		E0CF3CB7F2703F06F58D90302B841483 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A416194F98A53FF953202A83B1CB610 /* ImageEncoding.swift */; };
@@ -327,7 +325,6 @@
 		3D7392D817D190373028C60B75AFD050 /* InfiniteDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteDataSource.swift; path = Sources/InfiniteLayout/InfiniteDataSource.swift; sourceTree = "<group>"; };
 		40E5F8D9277E714962AFA02550F15F8A /* Gifu */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gifu; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428606DCEB03D6A8FBCAB9B4926FDA6C /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Sources/Gifu/Classes/Animator.swift; sourceTree = "<group>"; };
-		43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 		43DB734C1B74D33B8659DDBBDBD7B811 /* AlamofireExtended.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamofireExtended.swift; path = Source/AlamofireExtended.swift; sourceTree = "<group>"; };
 		447577FD33637594A0A68568EC86995E /* Gifu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Gifu.modulemap; sourceTree = "<group>"; };
 		4598AB5E6E1A83A472A67D0FE4D04B38 /* Concurrency.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Concurrency.swift; path = Source/Concurrency.swift; sourceTree = "<group>"; };
@@ -440,7 +437,6 @@
 		B6E630E203FFB96BC0760AF5DE1554C7 /* PXLDefaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLDefaults.swift; path = Sources/PixleeSDK/PXLDefaults.swift; sourceTree = "<group>"; };
 		B6F9914EAB248A147EAC796E14E48B3C /* Gifu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gifu.release.xcconfig; sourceTree = "<group>"; };
 		B7A5412D2AB0DDB82E5333E3828EA777 /* PixleeSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PixleeSDK-prefix.pch"; sourceTree = "<group>"; };
-		BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGRectUtilities.swift; sourceTree = "<group>"; };
 		BC643DCC2E3464E552749C8D2BB867C7 /* PixleeSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = PixleeSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BD475238C878E0C3957BCDB19EC24D40 /* SwiftCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftCrypto.swift; sourceTree = "<group>"; };
 		C24E89A57672E8148933C135F748E12A /* ImageAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
@@ -628,7 +624,6 @@
 				3CE19939A1F047AEEB8298205BB01726 /* PXLPhotoView.swift */,
 				D22ECDA031A0FC6C0B0BE15FDAAA0B12 /* PXLWidgetView.swift */,
 				569665E74067F2D07600B145BC472909 /* Helpers */,
-				74BAC56EB1678B6EE4427D942A440181 /* Layouts */,
 				30C44570B22CF549FE05DA7F96ABE3B1 /* Utilities */,
 			);
 			name = Widgets;
@@ -654,7 +649,6 @@
 			isa = PBXGroup;
 			children = (
 				8681489A36D1FECDB537F708C23B5FAB /* MosaicLayoutUtil.swift */,
-				BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -831,14 +825,6 @@
 				3B6075513810D4D46595EA1B8AA9E4A8 /* Pods-ExampleTests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		74BAC56EB1678B6EE4427D942A440181 /* Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */,
-			);
-			path = Layouts;
 			sourceTree = "<group>";
 		};
 		7A49D84C14AAE06D49DFD7ACCB61B496 /* Converters */ = {
@@ -1543,14 +1529,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE7135D3C421AC477A5A3BAD23F7A0A /* CGRectUtilities.swift in Sources */,
 				837659667A2B7900C8344B7137DD8464 /* DateExtension.swift in Sources */,
 				60AB1E39FA959B907FDFF19750E67E8F /* HotspotReader.swift in Sources */,
 				A7ED74290F3B6BDDFFF71E3310E059C4 /* ImageExtension.swift in Sources */,
 				7DFEE3A897513A59321AB84B84D6DDA6 /* ImageSizeFetcher.swift in Sources */,
 				409DD0F84CE5B9E6674B051383BFDC03 /* ImageSizeFetcherOp.swift in Sources */,
 				C835ABBF268DAC433F58A9E0F4FB86B0 /* ImageSizeFetcherParser.swift in Sources */,
-				DBF321E0D8CBE767872885CBB31ED953 /* MosaicLayout.swift in Sources */,
 				AAFD5D3541D80D0682DE321908A389CA /* MosaicLayoutUtil.swift in Sources */,
 				09C9E9AE80A906052CD8BA83C48AFFE2 /* MultiLanguage.swift in Sources */,
 				BE70DCA85965023729C003D68A3A5D40 /* PixleeSDK-dummy.m in Sources */,
