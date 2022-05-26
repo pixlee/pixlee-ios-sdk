@@ -7,6 +7,13 @@
 
 import Foundation
 import UIKit
+
+public enum MosaicSpan{
+    case three
+    case four
+    case five;
+}
+
 public enum WidgetSpec {
     open class List {
         public init(cellHeight: CGFloat, isVideoMutted: Bool, autoVideoPlayEnabled: Bool, loadMore: LoadMore) {
@@ -37,17 +44,17 @@ public enum WidgetSpec {
     }
 
     
-//    open class Mosaic {
-//        public init(gridSpan: Int, cellPadding: CGFloat, loadMore: LoadMore) {
-//            self.gridSpan = gridSpan
-//            self.cellPadding = cellPadding
-//            self.loadMore = loadMore
-//        }
-//        
-//        let gridSpan: Int
-//        let cellPadding: CGFloat
-//        let loadMore: LoadMore
-//    }
+    open class Mosaic {
+        public init(mosaicSpan: MosaicSpan, cellPadding: CGFloat, loadMore: LoadMore) {
+            self.mosaicSpan = mosaicSpan
+            self.cellPadding = cellPadding
+            self.loadMore = loadMore
+        }
+        
+        let mosaicSpan: MosaicSpan
+        let cellPadding: CGFloat
+        let loadMore: LoadMore
+    }
 
     // Foot UI: LoadMore Button with an IndicatorView
     open class LoadMore {
@@ -122,5 +129,5 @@ public enum WidgetSpec {
     }
     case list(List)
     case grid(Grid)
-//    case mosaic(Mosaic)
+    case mosaic(Mosaic)
 }

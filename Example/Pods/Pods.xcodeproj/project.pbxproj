@@ -7,157 +7,160 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0023FE7DD5EFC5F81575AC74B5004FB9 /* ImageSizeFetcherParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F766DC5E24DCCB69309BC921F741C /* ImageSizeFetcherParser.swift */; };
-		00338865D922C7AF6A4345B3FD97FA05 /* PXLGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63467F6F3AF9B9885C710647FB3F6166 /* PXLGridViewCell.swift */; };
-		0047D6F8EE368CE53AE4E60800AA9FCF /* PXLAnalyticsEventConvertedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87314501A91B28CAA176FC2726688B0E /* PXLAnalyticsEventConvertedPhoto.swift */; };
 		005B319B494ED2DAA239B9939A504DFC /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D1121B63E7302CF0DDB102528C04640 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00A393B7BE79D8B9D02F622DF896C327 /* PXLPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC7C15147E46CF22E80C1DEB77C546 /* PXLPhotoListView.swift */; };
-		00BD7844552257BF9F692A8CC536F805 /* PXLAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356FD38889A1F49A7A8BB43CBB236B35 /* PXLAnalyticsService.swift */; };
 		0187A9DE27B04C1343F4AF975FDDD4EC /* Nuke-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E10292D93C24D1E833E0003581165D98 /* Nuke-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03AB24A03A5833EF6658FF449AD6746D /* PXLPhotoCropMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8217441FE158D62EBD9FE8023B06CC25 /* PXLPhotoCropMode.swift */; };
+		018A8AA35CA9631D35BF9CC9F14F44EE /* PXLAnalyticsEventAddCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392EF48292DCEAC0E2CA1B937CA60060 /* PXLAnalyticsEventAddCart.swift */; };
+		03C8C0CA56795CA90364E594AEBAC263 /* PXLAdvancedProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A50A35CC24F6A3043FB07BB132349 /* PXLAdvancedProductCell.swift */; };
 		03FC666BC7A6BD06DBD50C96548B5A43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
 		045DE6EBF9B2F63F60F5BE60C1198E06 /* RedirectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B54A21FDB8FCC6142D187090C228C3 /* RedirectHandler.swift */; };
 		04A896288CE3A59B530250337A5F8362 /* Result+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0CBAAE2024BA11034DE8D925BD31F7 /* Result+Alamofire.swift */; };
-		077B1DC984F8F5012B022E0FA5070A2F /* PXLProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CF39A9C2106C535E7701E136B02AA /* PXLProductDTO.swift */; };
+		09C9E9AE80A906052CD8BA83C48AFFE2 /* MultiLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0211B1377137175697FC3E4B63401 /* MultiLanguage.swift */; };
 		0D7473A685F040C5C488719F78B59421 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFACD0A05D015C3C0FCFB6BDCED18 /* DataLoader.swift */; };
 		0F1B92DB03D56860EB1188A22F400C7D /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C47F0008E54101C49993C47AA17E0C /* CGSize.swift */; };
 		0F4037DBF307AC8058BD0A3D35C7E7E9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
 		13E380A121E16DE58DE53F395E63500C /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4F36F13F9E818BEDF08CA90D9A4A43 /* Internal.swift */; };
-		188E7D939AAAE8B8BCED98ADE99FC983 /* PXLAnalyticsEventAddCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0331AE50A0D0135D13F40403FFF78D28 /* PXLAnalyticsEventAddCart.swift */; };
-		194410A7C1D4321978E6E6B6EF9C3B5D /* PXLPhotoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6607D3BEC99FD0A26D0D53A2C9B0BD69 /* PXLPhotoConverter.swift */; };
+		13FC775F9D33F3AC9F8A8A6C63C733E0 /* PXLAnalyticsEventWidgetVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48594C958E3C9CF7520F24B8D2F0F02B /* PXLAnalyticsEventWidgetVisible.swift */; };
+		1434BA5168DDBB0E9E2F8F8F07894FF6 /* PXLProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A025BF188D1F6FB8543F61417BCDA522 /* PXLProductCell.swift */; };
+		15C387496940B1E54C52E96862E41AF8 /* PXLProductConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CAAF57C901F652D1977FEC51837874 /* PXLProductConverter.swift */; };
 		1976BB7D7E26A12E29283E71154B63B3 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6AB0541760009BC4EEE2B9F4DF78C7 /* SessionDelegate.swift */; };
-		1D07F1F136DA9D197CFEC368F017CC8F /* PXLPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53AE2535A4F847F1E01E20A3578172 /* PXLPhotoView.swift */; };
+		1B02A1B3DC444495DDCD142F8584704E /* PXLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4665B017414B305356B1CDEA8E0BABB0 /* PXLClient.swift */; };
 		1E95E35B5189798873B416F0D7EBC5D1 /* FrameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A7396A6D4E8BBB3F58E37C14AC556E /* FrameStore.swift */; };
 		1EE44196E7BCE57AD96A2C751651EF40 /* AlamofireExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB734C1B74D33B8659DDBBDBD7B811 /* AlamofireExtended.swift */; };
 		20908FAD00F0AC1FD500B1D476FCFDE1 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398161B2D6D2DD89EBB9C251BFCD83C0 /* ImageSourceHelpers.swift */; };
 		2358ECACBD675FFBFDBA36A56A0F7CCA /* Pods-ExampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4DE105D59EBDFD32F7430EDE0B2410 /* Pods-ExampleTests-dummy.m */; };
-		2607DF607272AFCCB1E0A402241312E4 /* PXLGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661FD248C33C97E7975A72FF2F1B24D6 /* PXLGridView.swift */; };
-		2654CF60F8420AF56E4619BDDE6F1CBB /* PXLImageUploadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75939BD80A85143B9460FB5E82DC7527 /* PXLImageUploadResponseDTO.swift */; };
+		238226EC41EECB168C94390189E6851A /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4425F41871FC69D9B6B4D254DC69A7 /* PXLAnalyticsEventOpenedLightBox.swift */; };
+		27767DC5345A781E0D13593E89E285D8 /* PXLAnalyticsEventActionClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2AF696098AD6491F61D2218BC32373 /* PXLAnalyticsEventActionClicked.swift */; };
 		28281DD2E28728235BBCA3684D4840F3 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD034CF630AB014B28F9B31ABE1C8485 /* DataCache.swift */; };
-		28D229D4D1CCCB3DCB63F8B1EBA6BCCD /* PixleeSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F265EF7A0A07ACAF5D8CF475A739DA5D /* PixleeSDK-dummy.m */; };
-		2AF3047914912AFD9C9846AA84BD39D7 /* PXLAdvancedProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB64A2FB9800CCEA15060E674A4A76 /* PXLAdvancedProductCell.swift */; };
 		2CBE3651CA006E19F5D64A2DE9B9A028 /* CachedResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D294F31918A591987AEF9A8F1C0DC0 /* CachedResponseHandler.swift */; };
-		2CC50574B91EBBE7844C88C085CF4CB8 /* PXLGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857C6E4988AA75D9D675543980B1E112 /* PXLGridViewCell.xib */; };
 		2CCD13099063CD560E3067BD132914FA /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FDBBFA0F93C4C8F5C25132B4DCA30 /* Notifications.swift */; };
-		2F050F27874701456E4B6512065993DA /* PXLPlainErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635DBAB1188C670AC820F7AAA518B54E /* PXLPlainErrorDTO.swift */; };
-		336819412B358D3442A6A7F19FC545F7 /* PXLAnalyticsEventOpenedWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB0698C4484B5EAE139F0BF1E198E89 /* PXLAnalyticsEventOpenedWidget.swift */; };
-		3394D762C836CF06CB8F44A1D1A7A90C /* PXLPhotoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F4123FB116957715AD104A0DAEB13F /* PXLPhotoDetailViewController.xib */; };
+		32C628CAF7111996613AD2C9BF0742F1 /* PXLPhotoProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59DA773D827BD275526BA7809AF371F5 /* PXLPhotoProductView.xib */; };
 		33A7D0F2D03004CE256A75E03DF33C70 /* RetryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF40157EFB3FEB5D461ECB18AFE87A /* RetryPolicy.swift */; };
 		33D430B08836DE81CFBB547E10EE2F52 /* InfiniteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8566B009DA2F082E5A877BDCE78E7 /* InfiniteCollectionView.swift */; };
+		38A07937B773DA6B10C6C947734EB959 /* PXLErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5694D6B2861CE30B6C0A318D3133B4 /* PXLErrorDTO.swift */; };
 		3AB0F07E610A746FC1972D49EE2C5021 /* Pods-Example-ExampleUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF54E9A251968F8BF102DA9BFC40597 /* Pods-Example-ExampleUITests-dummy.m */; };
 		3C4059621E23842C19D4EB5D35B41989 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066A9ECD5F4030687C13C8D720774BC /* Validation.swift */; };
-		3D1DEFEF3209E0CA052A7D840EDBDD66 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3D271A8E88DB982CEC72A48F952114 /* ImageExtension.swift */; };
-		3DF6BECDEAF2B0D08076386CADEDA1DF /* SwiftCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A8263533E269FFA4C6525A8BA0313 /* SwiftCrypto.swift */; };
-		422E660611FFF0F79015ABA56DB79027 /* PXLPhotoProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE951857C43B3EB667EBCC17BF5676B /* PXLPhotoProductView.swift */; };
-		459B30FCC2DF003CAFDB62AC97987863 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867F5870971F4A647C33B878E568F57 /* DateExtension.swift */; };
+		409DD0F84CE5B9E6674B051383BFDC03 /* ImageSizeFetcherOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5CDFC5B675548C6E1F8E92BB6A3A8 /* ImageSizeFetcherOp.swift */; };
+		4120DEA9EE9417865B2CB3340EAACC02 /* PXLApiRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798292848E7396BD1037D7F771D331E8 /* PXLApiRequests.swift */; };
+		42E0DF20C1EA8596BE052B4A65817AD8 /* PXLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B49BCEA0B2433E82CCF3266EF4B60 /* PXLProductCell.xib */; };
+		431C13D09B592DBE0D1EBBE2E7664976 /* PXLGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481AC4FAF6034F2478DDC0D3360ACBA /* PXLGridViewCell.swift */; };
+		460E27B48234C60B239E6D9E8A7CB1F2 /* PXLProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B838E0B890360DB583D7F76AF2D36D8 /* PXLProduct.swift */; };
 		461AA3884DA2069F86303A6DFF786402 /* InfiniteCollectionViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5872C5C3DFADEB5FCBC0663D0DF /* InfiniteCollectionViewProxy.swift */; };
 		46A64A43AFA057B6B63C8F0C12F509B4 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7DB931573B815527296C27B238BD8F /* Combine.swift */; };
-		4844774EB3EC136AF76C652B0D08C532 /* PXLProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D975934E2EDBD2A31FD28F48AD3FC /* PXLProduct.swift */; };
+		47BDB6285712060CECE17C1D942151F6 /* PXLAlbumNexPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718CFAC64C258597F85B3B3A77F5DC5E /* PXLAlbumNexPageResponseDTO.swift */; };
 		48AA0B84D04D9D805AE5A92F252AF11F /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828126DC137BBFCED948FF4E17F1A5C0 /* UIImage.swift */; };
-		48ACFEAB7F549C8AF701EDDCA965BE3B /* MultiLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A7BAEEA858FDA8E6BAA0224E2013DB /* MultiLanguage.swift */; };
-		49DE7A5F01E57CD4162F80E13A03D263 /* PXLDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D18EA4D25216CDCC33FF8A3894101 /* PXLDefaults.swift */; };
 		4A0E4E446BEDFF8D0A790B77EC15FEA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
+		4AA5FAE6274B5DA042C2C474A9453677 /* SwiftCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD475238C878E0C3957BCDB19EC24D40 /* SwiftCrypto.swift */; };
 		4BF54D23B9A4F6A9731B2F1178D04196 /* ImageDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627FD6532D8EFD4BC9D8ADBB499A9AB1 /* ImageDecoding.swift */; };
 		4C443C571BBD142D5679402D52EA0A98 /* Pods-Example-ExampleUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2008F8A1CC62875424F7404BAF8D613C /* Pods-Example-ExampleUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CFEEA62FC2CF11477ADB7F844EC5467 /* PXLPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE19939A1F047AEEB8298205BB01726 /* PXLPhotoView.swift */; };
 		4E0945227E4DF90F804B35949BC4A589 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287393B68658F7524922C3550BD6E6E /* GIFImageView.swift */; };
 		4E81172E48C3EAB14F298FCA15911C83 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 234857B680050A66808E48F43626F6A4 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		546EAA629990D45B1C39EE23D9018E03 /* PXLAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752DA13D178C8ED2DE5C261AEFB8BB4 /* PXLAnalyticsEvent.swift */; };
+		4FE031887FE0DFAE79F444F2ED49FE7D /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D16FCDE4CC501A9B34DC465DAAD4FE /* WidgetSpec.swift */; };
+		4FEE9F261C4C886B48864D8ED776A869 /* PXLPhotoCropMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D71CAA2DA285B6A3FBD73137228C8A /* PXLPhotoCropMode.swift */; };
 		54DE6501CA0E5D2CB859F379E6537858 /* InfiniteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0A7335486EA1EBE56540A142AD863 /* InfiniteCollectionViewController.swift */; };
 		55AABB1FB38F61A3369ACC555FF3046D /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E11BF41C2E6C4D2208BE270D8DFCBD69 /* Alamofire-dummy.m */; };
-		5C0A5897282CBB7600122A1B /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A5896282CBB7600122A1B /* MosaicLayout.swift */; };
-		5C0A589A282CBC0500122A1B /* CGRectUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A5899282CBC0500122A1B /* CGRectUtilities.swift */; };
-		5CFEE2B08A1E6E7E86752F105BD9A4B5 /* ImageSizeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECD74D0DD5902873EE8A38328E3AE0 /* ImageSizeFetcher.swift */; };
+		58FF3ACBBE7BB0735F7B089FFFFAF69F /* PXLDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E630E203FFB96BC0760AF5DE1554C7 /* PXLDefaults.swift */; };
+		5C25A6744C5E18BC0DEC363996EDB864 /* PXLAnalyticsEventOpenedWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB0D9141075C3B3604AF8E02ADD34EE /* PXLAnalyticsEventOpenedWidget.swift */; };
+		5C5609EC283B3A2A0018D39C /* MosaicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5609EB283B3A2A0018D39C /* MosaicInfo.swift */; };
+		5C6637E813310B71141182D6B2C6012B /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24E89A57672E8148933C135F748E12A /* ImageAssets.xcassets */; };
+		60AB1E39FA959B907FDFF19750E67E8F /* HotspotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CACD0D90C29DC993D50F660CCBFE4 /* HotspotReader.swift */; };
+		60B3AB55D0285370F282EEDDDA8B4553 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C238672C25C1A045F9D24B11D6BD5C /* PXLAnalyticsEventConvertedPhoto.swift */; };
+		6506B7A862289FE74F4967BA18D1F10B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
 		68FB2DCB4C77DBCAF9A6037E470F2BDE /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574538B9AE8D5AD90761D2B5973BCAC /* ParameterEncoding.swift */; };
-		69A6547C73BA569C5AB034C9CFD6BCC8 /* PXLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D1A2CE0FB028E4C5165B3E01C11B32 /* PXLProductCell.xib */; };
-		6AFB4F0256B2ACD1A18410E7ED879515 /* PXLPhotoListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B412F0E7F751D11F79765A929EC5B4 /* PXLPhotoListViewCell.swift */; };
+		690766A60D244EA1E17C07A3E0E32620 /* PXLPhotoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C586CF6FCDB529ADEC8220850B7983 /* PXLPhotoConverter.swift */; };
+		6B64DA5047BCBBB14E0B9EC251F11BD5 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258402060A471BE7BD082B220A2A695 /* PXLAnalyticsEventLoadMoreClicked.swift */; };
 		6BDE6348880B6C64C34A53DC75D0A432 /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A30B9A1B68C15788A035EB2A9C3AE /* GIFAnimatable.swift */; };
-		74427850DB56E21C86CFA22B0B64E810 /* PXLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456ED2A8C88E9DE69B3AACB8921664D /* PXLClient.swift */; };
+		6C0FFEE5070BE813AB6447A6F1446A62 /* PXLAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F29AAA14006CA7560F799AE6D30CA7 /* PXLAlbumViewController.swift */; };
+		6DC4024A055FD43B92445AFAF994BF96 /* PixleeSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5969E55961CC129BDB3900EE05B5C413 /* PixleeSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		705CBD0599069CB5F5F7A169B4AC0F3B /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF0063FECDD9C66B070E69C8CB0BF7 /* UIImage+Gif.swift */; };
 		7483E5327027263F7E4B94A2997191C4 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D1D0F10B820CB16FE3E88AE14B4AFD /* AuthenticationInterceptor.swift */; };
 		75966A9262648D4647D764E3E76BC6AC /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0A272FA97718E0828C73AD82A6D2D /* Response.swift */; };
+		77B5F00BE6471F7696BAF9CFD29CA4BE /* PXLGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A81079D80365F86C8FE3ECCACE24FB /* PXLGridView.swift */; };
+		786BD6D30AFA9DB6453E2818FC9D147D /* PXLAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BA580299AB4E504BE1EF39110F5B1 /* PXLAlbum.swift */; };
 		78A51838DEBC5E83D94422265D34FA2D /* ImageProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C0A97267C2A02E65992646134F6AF0 /* ImageProcessing.swift */; };
 		7930C94414B4C661867AC4FBE82E996C /* URLEncodedFormEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC20FACEF7E2DDB36F154DE475B67D /* URLEncodedFormEncoder.swift */; };
-		79A052159B0674177FDA0512D6AD5B57 /* PXLPhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F769F80AD71E5C7C72271A6354F801 /* PXLPhotoResponseDTO.swift */; };
-		7AAA71F596B037A9B95C3EDB0F2B8CC0 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD4DF5BFA753D400A5E254EFD5A89 /* UIImage+Gif.swift */; };
 		7B068137A8925891446203B5D3D6A4ED /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3D57353834825F7B52B816066B7789 /* CFNetwork.framework */; };
+		7C088E21DAD2D3C44D2CBE524620610E /* PXLAlbumSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4A139A40CB0FE6CBCC9404C831A79 /* PXLAlbumSortOptions.swift */; };
+		7DFEE3A897513A59321AB84B84D6DDA6 /* ImageSizeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC246F9A46D53ECBACEC5A12A0BD788 /* ImageSizeFetcher.swift */; };
 		7E02F5B62BE00E97847DF549FFED2490 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79541E37DF233EDAE0421608154E19C4 /* HTTPHeaders.swift */; };
+		7EC34BAD5EFBB942D6737ABDAB270B10 /* PXLImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B391F081F5E3D38D740DD6CB9FDE6A /* PXLImageCell.swift */; };
 		7F1BB526AAE3ECDCE90127D9D0E10261 /* StringEncoding+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4774BB6D912DAAD2CC0139B123F7AA /* StringEncoding+Alamofire.swift */; };
-		7FB367A06D6FDBAC0339DD53C6F8A1B6 /* PXLAnalyticsEventWidgetVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E707BA06B6679BA6E081FAE686D9AE1 /* PXLAnalyticsEventWidgetVisible.swift */; };
 		7FE695DA8EE7FF1286556E06B692009B /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A1A251ACC6D8CF42C97E256005CA7 /* MultipartFormData.swift */; };
 		808C960C82D708FC1A42C581D6CB4940 /* URLSessionConfiguration+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1243D7E1589E028373B6375D7D2751 /* URLSessionConfiguration+Alamofire.swift */; };
-		80A3A836B7316B81B86C745D455B87DD /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B0ECFDF020E97A83907AE24441E353 /* ImageAssets.xcassets */; };
+		80B2D9072CB352563DCB3CF230EAF3D6 /* PXLAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C85071F815713CCD29A18E391E025E /* PXLAlbumViewModel.swift */; };
+		80C29D64A205BC1B728F6BD625F126D4 /* PXLAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA786E8C3C7035F5D0C069BF76132B /* PXLAlbumViewController.xib */; };
 		81B8D2B7CEB25C2448B0BC9B33591A65 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8981962BA0A5C15233B667BC4BBD50FC /* Session.swift */; };
 		824D816B1EE404F2DD400EE678695CBE /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29764416CAE7EE931C557CE52BA7F5E6 /* ResponseSerialization.swift */; };
 		8349B5E5FEAD4237E468F5390E3EE855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
-		84AD84ED787CD40481AB76D14761873F /* PXLAlbumNexPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3166BA5E299D58D5F7461CFA6440F0 /* PXLAlbumNexPageResponseDTO.swift */; };
+		8370B442DFF962286BB94E6B9CCDF963 /* PXLPhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754E3916CA4EBA4A8D02149C2E3EA8A7 /* PXLPhotoResponseDTO.swift */; };
+		837659667A2B7900C8344B7137DD8464 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9685AB2C546FC189A24FED086302D /* DateExtension.swift */; };
 		84CBE6F04686AEEE7F9050C584BD834B /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D5CD16051A6E8F77ACC2B5EC182F497 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		85D7091CFC5BC3BDA91DAF816F6F3378 /* PXLAlbumFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E125DF754CAF6AC3EB0B897BF286FE9D /* PXLAlbumFilterOptions.swift */; };
-		85E48281E3D2E6AE373CD242AB45C858 /* PixleeSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5969E55961CC129BDB3900EE05B5C413 /* PixleeSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		883D87EF203239EEF4C4753EEB177435 /* PXLNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A32949F6B00A5495F0D4115CA3EE27 /* PXLNewImage.swift */; };
 		895E1D120EEF464C420B0316D07F1418 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F09C03F2C6911A900DAE01A50C30FC /* Task.swift */; };
-		8AD518AF50794FAED65998F136D213B9 /* HotspotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52198B261246BE391986C2A4F00FF151 /* HotspotReader.swift */; };
+		8A118682EEDB9C07E28CAFCB4730C709 /* PXLAlbumFilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661090ECB88F00790DC93A7E1338BC31 /* PXLAlbumFilterOptions.swift */; };
 		8D75FC8D7476C9674234F39F1A820D8C /* URLConvertible+URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324A70861E6F0BB9831FBFAEB5DDDE /* URLConvertible+URLRequestConvertible.swift */; };
-		8E2F71713A9DD32F0A8B92F3849AAB37 /* PXLPhotoProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7225BBE25FC7AEF8E94117E10B120C /* PXLPhotoProductView.xib */; };
-		8FD4058A78BFCF596696A2390BFA4CDD /* PXLGridHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9206A22FB22C7DB455C0102D7DEBA2F9 /* PXLGridHeaderView.swift */; };
+		8F4E3951703DF22D67DF8E0B47AF41B1 /* PXLPhotoListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E726C47BED9A32EDC3C4B3CA822C6B /* PXLPhotoListViewCell.xib */; };
+		8FBCA6755F12FC0089E23F4DE74F4707 /* PXLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABCB60C449F615868818B2C7E0A0C6 /* PXLError.swift */; };
 		903808438D3116C07196D1AC78CE06E8 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9174FD2972F9DBCE433AA25F0677B6 /* Array.swift */; };
+		90BD65294E31BC1D9633B42BD082091C /* PXLGridHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1B04F5DD8606FBE405AABFB1931E4A /* PXLGridHeaderView.swift */; };
 		92B31A28677A93591820C93F4E8BC8A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
-		9764E87985B1E1D1BC38C9136DCD3204 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A013FABAC4EFB1E8FA2BBD52A3F92 /* PXLWidgetView.swift */; };
+		93EC29BB161AC488B7318CF82A987D4F /* PXLPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDE5CC54A0D5C9C9D027FB635EB4C /* PXLPhoto.swift */; };
+		94ABD4A0629FAD06941CB88D0184E4F2 /* PXLImageUploadResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A451AE7BAF376D48385784B3FC011 /* PXLImageUploadResponseDTO.swift */; };
 		979756D4DB9441CE42439784AE179907 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428606DCEB03D6A8FBCAB9B4926FDA6C /* Animator.swift */; };
 		98DE537E4100E87723A629E682C986FB /* ImagePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9E57FBED1494F782D937D7337DC42 /* ImagePipeline.swift */; };
 		99D058E53EFEE3AC4857CDE3DBA5C004 /* ParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251AA350B0C9766C8677CE1FE43F9AA1 /* ParameterEncoder.swift */; };
 		9C18544489CB744E330CB6BD6B63A674 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5851F1CDF23FA3C6495D8ED093C6C670 /* ImageViewExtensions.swift */; };
-		9C8CF0F44AC5482FB6545DAF8EBF81BB /* PXLAlbumSortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC71491A76280D75A66DE4F6FBB1051 /* PXLAlbumSortOptions.swift */; };
 		9C9030DEDB0DF955B16FE08C50892D57 /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598AB5E6E1A83A472A67D0FE4D04B38 /* Concurrency.swift */; };
+		9D1DC46A1D9649CCE4E84BE32B571FF3 /* PXLImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF54E2F54CB6EDE546F358737111325 /* PXLImageCell.xib */; };
 		9DCA114C38CB4534E2F255FA7D947C89 /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AEE186C492E67D6180E868432852AB /* AnimatedFrame.swift */; };
 		A09240E8818A1CA9E157C70FF63BC74B /* InfiniteLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 657FD11C82618A7419DB9FE6008337E7 /* InfiniteLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A29100AA1876DDEFF6F54694A51FDB0E /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5023615BCD72AB6DC8D54FF247D54B2C /* NetworkReachabilityManager.swift */; };
+		A29976974E122623FD6A2444CBE210D5 /* PXLLoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E10D33A35121AEACEEC96C30C95AA9C /* PXLLoadMoreFooterView.swift */; };
 		A35DCDCE5AD53594EEE4A8E89F91CFF8 /* Gifu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CCDE0D2F90C118FE32C848404666F7F6 /* Gifu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4D369984B00FE1D68A202F7398394A9 /* PXLGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C5833802D224B760B3AE4B4BE4743F /* PXLGridViewCell.xib */; };
 		A53BDE589BDD6483F3EEDCE5EA1DCCD3 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5F901A73E0586650F857C3D0CFE8D /* Protected.swift */; };
-		A58725A7E0B3EEE8803BFB8142038E01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
+		A5DD0240DB0AF0A1118EB8C1A8046C30 /* PXLPhotoProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078167F0F1C1F79CD36BD94981BB0F7F /* PXLPhotoProductView.swift */; };
+		A7ED74290F3B6BDDFFF71E3310E059C4 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EB3015C343ED4C48C2E8DBCACA270 /* ImageExtension.swift */; };
 		A91AC4CFA0E78C6A7D4C514FF63505E7 /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8FBC06CAAEF08C2C01DD809446573E3 /* Pods-Example-dummy.m */; };
-		AA6E3D2E37A61CA7D41874ED1504A253 /* PXLAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9957851FCD700EBAE6FBDFB0D9610CEE /* PXLAlbumViewController.xib */; };
-		ABCC3B706427A46DC564E6193EB99068 /* PXLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42EDC167F1EA38D099CA6284ABDF323 /* PXLError.swift */; };
-		AC1803896CFCD4DF505DA73A03137480 /* PXLImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42254E67A6252964C7C4D1C08ACBA9BC /* PXLImageCell.xib */; };
-		B1F60B65116A2718F0DA84089A7C987B /* PXLAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326865D18A324E1CF02FFFA5DBEF3B90 /* PXLAlbumViewModel.swift */; };
+		AAFD5D3541D80D0682DE321908A389CA /* MosaicLayoutUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8681489A36D1FECDB537F708C23B5FAB /* MosaicLayoutUtil.swift */; };
+		AE5449134C3E5296717CADE5698A4870 /* PXLPlainErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856CAA38978F22F0E1DBFC2F38066B9D /* PXLPlainErrorDTO.swift */; };
 		B3658C29BBDE1033F6269A92E612CB30 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36DA3D0FD163AE369A29A277D5A587 /* Request.swift */; };
-		B3C417C001DC1D1478A7432167955B98 /* WidgetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2F9C6CAEB47D53ED6B1E060715537 /* WidgetSpec.swift */; };
 		B704B198B9B520D449260877E300D821 /* ServerTrustEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4A8B552CEA46E5F3694E77A3D0901C /* ServerTrustEvaluation.swift */; };
+		B78AD78F43D6CB40B4415908F74560B3 /* PXLWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22ECDA031A0FC6C0B0BE15FDAAA0B12 /* PXLWidgetView.swift */; };
 		BAAD41DFE73112C928AAF018D94D1874 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894EB6EA00E814C9FAE8829164031AF9 /* ImageCache.swift */; };
 		BC0ECA8F22DEDE8886E189CD0EAA1197 /* URLRequest+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2CEC2FDA44E09D57741D1A1A554D3E /* URLRequest+Alamofire.swift */; };
+		BCE51D81585AD7A3635744EBB526617B /* PXLAnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD37BA0CC939BFB8819CC77CBE20B0 /* PXLAnalyticsEvent.swift */; };
 		BD433EEC14104281CF77C9C8ED814D06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
+		BE70DCA85965023729C003D68A3A5D40 /* PixleeSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F265EF7A0A07ACAF5D8CF475A739DA5D /* PixleeSDK-dummy.m */; };
 		BF5F46FD5BA893B3AA1A41B830F0D267 /* ImagePipelineConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C889C2723171F7D426AD2507A0ADF /* ImagePipelineConfiguration.swift */; };
-		BFE0BB78D31BD22DBD36096E1B5B6F88 /* PXLProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484B75EB7C87FB030F63C23918FCBA9A /* PXLProductCell.swift */; };
-		C06AD41333DC6966544C3D95516EF91C /* PXLLoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A5B99F057576D0FCE92809A980CA9 /* PXLLoadMoreFooterView.swift */; };
-		C231F7D514AC5F17AAA6875C8F4C169B /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBDC69AAEF8569A6A1350FFEC9596CB /* PXLAnalyticsEventLoadMoreClicked.swift */; };
-		C2BCA1593D0D820FD0E053D8934D09C6 /* ImageSizeFetcherOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FA0B9F74B0398076A7C6C68F47A91D /* ImageSizeFetcherOp.swift */; };
+		BFB3FF689ADEC6CE3A99F74A9FB6B5A8 /* PXLPhotoListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA376BB4D642E7C9FCEC9E75705D5F /* PXLPhotoListViewCell.swift */; };
+		BFE7135D3C421AC477A5A3BAD23F7A0A /* CGRectUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */; };
+		C176B0C579882973282FA848CBEBF3C6 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3587DF234DD82C38B441B51180B54 /* StringExtension.swift */; };
 		C2F7B05729193ABF3D3185603B6DC3BD /* Pods-ExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DBB735FB54499DF2C61DDED5F821C8 /* Pods-ExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C43CCA03DEDB243F43391423C9430C39 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C3FAED15D0023C96FAC41C22EDA4C /* StringExtension.swift */; };
-		C44B4C550F7957ED6BA0947737BC368A /* PXLNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97266C91C68D11EEAA522FA51C0FB116 /* PXLNewImage.swift */; };
 		C56D8064D2EB57557C642E262F4E696C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CCDAC6937E9CDD6A5C324342A51840 /* UIImageView.swift */; };
-		C574600183106021C2E79B5C762594A7 /* PXLAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70964E120017F2870E3FFBEE74C5CC /* PXLAlbum.swift */; };
+		C835ABBF268DAC433F58A9E0F4FB86B0 /* ImageSizeFetcherParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA46D161EA5FF97EB060E7C115AEA0E /* ImageSizeFetcherParser.swift */; };
 		CA02D0134963D1CF224066DF15A6EA44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */; };
 		CAB74902194A9D8C7F6C825E2E3A18D5 /* InfiniteLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05DAB8EC88A6924AE769B8139C4036 /* InfiniteLayout-dummy.m */; };
-		CB39F8B9F1A36B91304F10FE01009C5F /* PXLPhotoListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A3BDE9E80C3D43F8FDD16163358BE4 /* PXLPhotoListViewCell.xib */; };
-		CD139EC56F3C980A00772E8CAC5A2D35 /* PXLPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102F8F3C6BD6225762650DD3B5AA395C /* PXLPhoto.swift */; };
 		CEBFFEED65D877702B2F36102528CF6D /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71E12B9D4009967F08C5B5D7DB72D7 /* EventMonitor.swift */; };
-		D00210BF54A1FD7BD0F8639C7A746778 /* PXLImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40360CCC5B7DFF9CD62D9DE8E767470 /* PXLImageCell.swift */; };
+		D0C3F2605D7AF29B0EE01A03EEE814E4 /* PXLPhotoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7CA427ED217D7B06F7AD748E1A1F09B /* PXLPhotoDetailViewController.xib */; };
 		D0EA90FBF83350C49E6EF6C8A98D6F00 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC13EE854A2007CD30E2C3E7CD7D3DE /* AFError.swift */; };
 		D4DBF5936AEC493F995C21BE9036497A /* InfiniteLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61439DFF94B3F84DCAC317DAD97C2B3 /* InfiniteLayout.swift */; };
 		D6B4751CED01D53E4A1B6A571AAA2F83 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9154CFF4C4763614EF9B712B5422B3E4 /* HTTPMethod.swift */; };
-		D800AD88DAD56EC47ADF1AC89B761E93 /* PXLAnalyticsEventActionClicked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65467C52F74D4D0FFE9EEA37862B6A61 /* PXLAnalyticsEventActionClicked.swift */; };
+		D933A88DC49AE4B8EDD90D97F7FCE14A /* PXLPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717E150C0D9DE524063855A5AAF04A9 /* PXLPhotoListView.swift */; };
 		DA34899BEF0668D76CBCE8C4CE47B97B /* RequestTaskMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868207A01A602AD764DCEBBFE2D1485 /* RequestTaskMap.swift */; };
+		DBF321E0D8CBE767872885CBB31ED953 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */; };
+		DD1A54E98EA16A14AB6205111F76DE46 /* PXLPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A69E68ACDC093917F1B391E562D572 /* PXLPhotoDetailViewController.swift */; };
 		DD902FE8D6824681C929D028655AE121 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28731B58474AA69779A536BB0A000CA9 /* RequestInterceptor.swift */; };
-		E0B630006F6A6AA2122E11C7B49533E8 /* PXLAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2379ECE9590CFF46FA2261F8D720BFC5 /* PXLAlbumViewController.swift */; };
 		E0CF3CB7F2703F06F58D90302B841483 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A416194F98A53FF953202A83B1CB610 /* ImageEncoding.swift */; };
 		E54654D504A42C24F284A68F87F7671D /* OperationQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DAAFB1A49ACAF23EC72A2652F0E352 /* OperationQueue+Alamofire.swift */; };
-		E85FDA548778F6C0EA053D46B3353E65 /* PXLAdvancedProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B91BAF735726BA8EA109A7FAB841B8 /* PXLAdvancedProductCell.xib */; };
-		E8B7B3872AD3103CA9F618D1E8FBB3F7 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B71E0D14FD95D1ED87CECA5E1727C /* PXLAnalyticsEventOpenedLightBox.swift */; };
+		E79F5900F143143591231F1997169B0A /* PXLAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C34D4854AB47D5CA39CD4247DE733 /* PXLAnalyticsService.swift */; };
 		E9B4C89E7EB3B27D46AFCA452C3D426F /* MultipartUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC237CE3B92D5B451099AD7C82400B /* MultipartUpload.swift */; };
 		E9EF334182DB9C15C04801A4C59EDE81 /* Nuke-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E246765BE33EA630ABB6BF54DD23333 /* Nuke-dummy.m */; };
+		EBF6269045C108CB69857BEBE4A06940 /* PXLAdvancedProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8A2546EF071E2B2C878C8EC09A328C /* PXLAdvancedProductCell.xib */; };
+		ED207B36C1E0727C38F4E00A1E4A3D5F /* PXLProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD36CF497A9CC45F4145E641E8A7F3 /* PXLProductDTO.swift */; };
 		EE191766E49A7BC1CE9804D7266E99AB /* ImagePreheater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7979ED16AD62C156B83F3A2ECA027F /* ImagePreheater.swift */; };
-		EE91CA7B8BA04219E33CA04B3EF5DD26 /* PXLPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0213905E402913CD9436C4DF38BC8 /* PXLPhotoDetailViewController.swift */; };
 		EEC150B66BCCD6C80FDA7E4D1975166B /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E261882A07DA3AAF176C26B0CEFA18 /* DispatchQueue+Alamofire.swift */; };
-		F0CFA636C8C8A8617CD93E1173E5F5FA /* PXLProductConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A77659BCCC44884A0139A0D6BF865F /* PXLProductConverter.swift */; };
 		F17A4CA4664CABB331D39FE902E06843 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47247CF0E1373B9B5AC168E3E83057E /* Alamofire.swift */; };
-		F2464030FED094BC494343ED1C89CF7E /* PXLErrorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607F9EC1A13042742B5E3CA515A0C1D /* PXLErrorDTO.swift */; };
 		F24C238224E0CB8B40892B08ED14DD19 /* CocoaProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = EA039038DAE6A9A927E0E11F42D7A589 /* CocoaProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F24C6A6B13284042F677204B20071C51 /* CocoaProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA2DDF1A05C6452C77061AF926C9C2E /* CocoaProxy.m */; };
 		F31E85B1505D61013ED61E3BE948A674 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392D4170EB2DA7AD04823577DD373A5 /* ImageTask.swift */; };
@@ -165,130 +168,128 @@
 		F6B01E693132F36190B0CC43BAC43F53 /* Gifu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CC83F7AB9B82776BAECFDF892BF8FA95 /* Gifu-dummy.m */; };
 		F81270B3687074236812BC44E9987BFD /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C731E7A5E2BB073B69929118A35852A /* Deprecated.swift */; };
 		F94CCD4E67324B8B8B46C05C3E8363B2 /* InfiniteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7392D817D190373028C60B75AFD050 /* InfiniteDataSource.swift */; };
-		FD8788ADE35B06B7B8B8D81ABB74CF0D /* PXLApiRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14AC8A5B565F405103928391FEF1A2C /* PXLApiRequests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07909D0DE4CB71CC97B5734AA3B5B3CC /* PBXContainerItemProxy */ = {
+		1470690598B5CAD68AC87F89478C1300 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F431B0C3A1EBB813B423AB6806B500A6;
-			remoteInfo = InfiniteLayout;
+			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
+			remoteInfo = Gifu;
 		};
-		110254AAADC470396436D83424B7527B /* PBXContainerItemProxy */ = {
+		161B1F87187F608706019EEDF11BFDFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
+			remoteInfo = Gifu;
+		};
+		2CE274D438C4988838561A75A89B1DA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 237E6495AF7D5CEB369A40CB38EECE7D;
+			remoteInfo = PixleeSDK;
+		};
+		411E177BDE5DE78A5485ADB259B41B45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 062A64896E847A6749F58B6BA9A931B1;
 			remoteInfo = Nuke;
 		};
-		1ACF8510687275CCEDCB1C177348E1DD /* PBXContainerItemProxy */ = {
+		4320BFCBF55E4CFD7ACF7316B83D5A79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
 			remoteInfo = Alamofire;
 		};
-		2EC93F2E006AEBEBE4243123E5D54168 /* PBXContainerItemProxy */ = {
+		6DB46D3E8470ABDC93FF1627EBCC235C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
+		6DF564CFAFE88001FB552D7D2FA9B632 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 062A64896E847A6749F58B6BA9A931B1;
+			remoteInfo = Nuke;
+		};
+		74D5BCEDD3620CC816CDEBE71374F93B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
+		7D4B02E36FC4F47B0B9DCF34B7A2E8C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F431B0C3A1EBB813B423AB6806B500A6;
+			remoteInfo = InfiniteLayout;
+		};
+		896B0C82B4277C82C3A482FF48237014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0AEE99A309977BD12A049FF48AF9BA4B;
 			remoteInfo = "Pods-Example";
 		};
-		2F92420B1AA4A4B61BC3E2C0335B234B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
-			remoteInfo = Gifu;
-		};
-		325B5209D4E0328B42B5A67D9284E7A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 237E6495AF7D5CEB369A40CB38EECE7D;
-			remoteInfo = PixleeSDK;
-		};
-		350D84367E1BF7144FA6510D0BEC724B /* PBXContainerItemProxy */ = {
+		8B43CF9BC9FD3DBA70236474D7FBDD67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F431B0C3A1EBB813B423AB6806B500A6;
 			remoteInfo = InfiniteLayout;
 		};
-		3FA8EB1F9AC210D7E69C1BE3BA793C16 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
-			remoteInfo = Gifu;
-		};
-		58BD5EE84AC422EEBF6EB21A6F4423C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
-			remoteInfo = Alamofire;
-		};
-		650539C937D755996825907CDB2ED6F4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 062A64896E847A6749F58B6BA9A931B1;
-			remoteInfo = Nuke;
-		};
-		823B59F8E3D13CDCF04706581D65A837 /* PBXContainerItemProxy */ = {
+		9AC90C116FB1DDFEB473A0BA220D1548 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 237E6495AF7D5CEB369A40CB38EECE7D;
 			remoteInfo = PixleeSDK;
 		};
-		82413037846E23874E05012AF37F0AB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
-			remoteInfo = Gifu;
-		};
-		A254DFFD8D5F7D0AE38425AFF1E1DE10 /* PBXContainerItemProxy */ = {
+		AD567F8EDC878B4137302D48BF85A935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F431B0C3A1EBB813B423AB6806B500A6;
 			remoteInfo = InfiniteLayout;
 		};
-		BFFA0C3A07C67063EC2C2AA9CBE8D145 /* PBXContainerItemProxy */ = {
+		D27CAAC8EF040FB368D1CC5C019022DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 830B5AB9E16163B4A1BA339D625FE46C;
+			remoteInfo = Gifu;
+		};
+		FF87993DA56E93956CF1EEAAFE1F05BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 062A64896E847A6749F58B6BA9A931B1;
 			remoteInfo = Nuke;
-		};
-		D7CD8A1CFCEE9907031C7D94455AAD35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
-			remoteInfo = Alamofire;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		001A013FABAC4EFB1E8FA2BBD52A3F92 /* PXLWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
-		01B0ECFDF020E97A83907AE24441E353 /* ImageAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
-		0331AE50A0D0135D13F40403FFF78D28 /* PXLAnalyticsEventAddCart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventAddCart.swift; sourceTree = "<group>"; };
+		0481AC4FAF6034F2478DDC0D3360ACBA /* PXLGridViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridViewCell.swift; sourceTree = "<group>"; };
 		06DF40AC31BCDE82E11A89ACC5C33213 /* Pods-Example-ExampleUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Example-ExampleUITests.modulemap"; sourceTree = "<group>"; };
 		077FDBBFA0F93C4C8F5C25132B4DCA30 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		07BAD4DF5BFA753D400A5E254EFD5A89 /* UIImage+Gif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		078167F0F1C1F79CD36BD94981BB0F7F /* PXLPhotoProductView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoProductView.swift; sourceTree = "<group>"; };
 		083C15FCF1211B5435B3E42C182E7EE3 /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
+		0B838E0B890360DB583D7F76AF2D36D8 /* PXLProduct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLProduct.swift; path = Sources/PixleeSDK/PXLProduct.swift; sourceTree = "<group>"; };
 		0C731E7A5E2BB073B69929118A35852A /* Deprecated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecated.swift; path = Sources/Deprecated.swift; sourceTree = "<group>"; };
 		0D4F36F13F9E818BEDF08CA90D9A4A43 /* Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Internal.swift; path = Sources/Internal.swift; sourceTree = "<group>"; };
 		0E9A30B9A1B68C15788A035EB2A9C3AE /* GIFAnimatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFAnimatable.swift; path = Sources/Gifu/Classes/GIFAnimatable.swift; sourceTree = "<group>"; };
-		102F8F3C6BD6225762650DD3B5AA395C /* PXLPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLPhoto.swift; path = Sources/PixleeSDK/PXLPhoto.swift; sourceTree = "<group>"; };
 		168E30A406BEF02CC78C267AA5469BCF /* Pods-Example-ExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example-ExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		16E726C47BED9A32EDC3C4B3CA822C6B /* PXLPhotoListViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoListViewCell.xib; sourceTree = "<group>"; };
 		1A416194F98A53FF953202A83B1CB610 /* ImageEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageEncoding.swift; path = Sources/ImageEncoding.swift; sourceTree = "<group>"; };
 		1A48000F53DFC4BA3C999C5C38FF4F65 /* InfiniteLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = InfiniteLayout.debug.xcconfig; sourceTree = "<group>"; };
 		1BFDFACD0A05D015C3C0FCFB6BDCED18 /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataLoader.swift; path = Sources/DataLoader.swift; sourceTree = "<group>"; };
@@ -296,175 +297,181 @@
 		1D324A70861E6F0BB9831FBFAEB5DDDE /* URLConvertible+URLRequestConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLConvertible+URLRequestConvertible.swift"; path = "Source/URLConvertible+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		1F667CC0E19EAF34E5A4119E2121F585 /* Pods-Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Example"; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6AB0541760009BC4EEE2B9F4DF78C7 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		1FF54E2F54CB6EDE546F358737111325 /* PXLImageCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLImageCell.xib; sourceTree = "<group>"; };
 		2008F8A1CC62875424F7404BAF8D613C /* Pods-Example-ExampleUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Example-ExampleUITests-umbrella.h"; sourceTree = "<group>"; };
 		2066A9ECD5F4030687C13C8D720774BC /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		21F4123FB116957715AD104A0DAEB13F /* PXLPhotoDetailViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoDetailViewController.xib; sourceTree = "<group>"; };
+		2258402060A471BE7BD082B220A2A695 /* PXLAnalyticsEventLoadMoreClicked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventLoadMoreClicked.swift; sourceTree = "<group>"; };
 		22BCA2BE4DC2A2561F9A4E949116977E /* Pods-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		22C5833802D224B760B3AE4B4BE4743F /* PXLGridViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLGridViewCell.xib; sourceTree = "<group>"; };
 		234857B680050A66808E48F43626F6A4 /* Gifu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Gifu.h; path = Sources/Gifu.h; sourceTree = "<group>"; };
-		2379ECE9590CFF46FA2261F8D720BFC5 /* PXLAlbumViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewController.swift; sourceTree = "<group>"; };
-		2456ED2A8C88E9DE69B3AACB8921664D /* PXLClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLClient.swift; path = Sources/PixleeSDK/PXLClient.swift; sourceTree = "<group>"; };
 		24EC123E375238CFF81B1EC9FF3250ED /* InfiniteLayout */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = InfiniteLayout; path = InfiniteLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		251AA350B0C9766C8677CE1FE43F9AA1 /* ParameterEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoder.swift; path = Source/ParameterEncoder.swift; sourceTree = "<group>"; };
 		27B19A37BD3D5D026C2B3E0DE938E41D /* Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.release.xcconfig; sourceTree = "<group>"; };
+		27C85071F815713CCD29A18E391E025E /* PXLAlbumViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewModel.swift; sourceTree = "<group>"; };
 		28731B58474AA69779A536BB0A000CA9 /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
 		29764416CAE7EE931C557CE52BA7F5E6 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		2A2949F5E4AD3422778226041F73FA1D /* PixleeSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PixleeSDK.release.xcconfig; sourceTree = "<group>"; };
 		2ABE58E8EEAE960027B8953893FFF67E /* InfiniteLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InfiniteLayout-prefix.pch"; sourceTree = "<group>"; };
-		2B53AE2535A4F847F1E01E20A3578172 /* PXLPhotoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoView.swift; sourceTree = "<group>"; };
 		2D494FEE7C365297DD3691CEF1764F1D /* PixleeSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PixleeSDK.debug.xcconfig; sourceTree = "<group>"; };
 		2DAD7D76FC007F48AE48F2FD15BF01BB /* Nuke */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nuke; path = Nuke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DC71491A76280D75A66DE4F6FBB1051 /* PXLAlbumSortOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbumSortOptions.swift; path = Sources/PixleeSDK/PXLAlbumSortOptions.swift; sourceTree = "<group>"; };
-		2F9C3FAED15D0023C96FAC41C22EDA4C /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		326865D18A324E1CF02FFFA5DBEF3B90 /* PXLAlbumViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewModel.swift; sourceTree = "<group>"; };
-		356FD38889A1F49A7A8BB43CBB236B35 /* PXLAnalyticsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAnalyticsService.swift; path = Sources/PixleeSDK/PXLAnalyticsService.swift; sourceTree = "<group>"; };
+		2FB0D9141075C3B3604AF8E02ADD34EE /* PXLAnalyticsEventOpenedWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedWidget.swift; sourceTree = "<group>"; };
+		30B391F081F5E3D38D740DD6CB9FDE6A /* PXLImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLImageCell.swift; sourceTree = "<group>"; };
+		34C586CF6FCDB529ADEC8220850B7983 /* PXLPhotoConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoConverter.swift; sourceTree = "<group>"; };
 		37767CDB6517932834F2615A3E40766A /* Pods-Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-Info.plist"; sourceTree = "<group>"; };
+		392EF48292DCEAC0E2CA1B937CA60060 /* PXLAnalyticsEventAddCart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventAddCart.swift; sourceTree = "<group>"; };
 		398161B2D6D2DD89EBB9C251BFCD83C0 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageSourceHelpers.swift; path = Sources/Gifu/Helpers/ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		39AEE186C492E67D6180E868432852AB /* AnimatedFrame.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedFrame.swift; path = Sources/Gifu/Classes/AnimatedFrame.swift; sourceTree = "<group>"; };
 		39ECFFAEE4D2F9A34763392A4E42B689 /* Pods-Example-ExampleUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-ExampleUITests-Info.plist"; sourceTree = "<group>"; };
+		3CC246F9A46D53ECBACEC5A12A0BD788 /* ImageSizeFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcher.swift; sourceTree = "<group>"; };
+		3CE19939A1F047AEEB8298205BB01726 /* PXLPhotoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoView.swift; sourceTree = "<group>"; };
 		3D7392D817D190373028C60B75AFD050 /* InfiniteDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteDataSource.swift; path = Sources/InfiniteLayout/InfiniteDataSource.swift; sourceTree = "<group>"; };
-		3EBDC69AAEF8569A6A1350FFEC9596CB /* PXLAnalyticsEventLoadMoreClicked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventLoadMoreClicked.swift; sourceTree = "<group>"; };
 		40E5F8D9277E714962AFA02550F15F8A /* Gifu */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gifu; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42254E67A6252964C7C4D1C08ACBA9BC /* PXLImageCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLImageCell.xib; sourceTree = "<group>"; };
 		428606DCEB03D6A8FBCAB9B4926FDA6C /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Sources/Gifu/Classes/Animator.swift; sourceTree = "<group>"; };
+		43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 		43DB734C1B74D33B8659DDBBDBD7B811 /* AlamofireExtended.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamofireExtended.swift; path = Source/AlamofireExtended.swift; sourceTree = "<group>"; };
-		441CF39A9C2106C535E7701E136B02AA /* PXLProductDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductDTO.swift; sourceTree = "<group>"; };
 		447577FD33637594A0A68568EC86995E /* Gifu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Gifu.modulemap; sourceTree = "<group>"; };
 		4598AB5E6E1A83A472A67D0FE4D04B38 /* Concurrency.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Concurrency.swift; path = Source/Concurrency.swift; sourceTree = "<group>"; };
 		45E261882A07DA3AAF176C26B0CEFA18 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		4607F9EC1A13042742B5E3CA515A0C1D /* PXLErrorDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLErrorDTO.swift; sourceTree = "<group>"; };
+		4665B017414B305356B1CDEA8E0BABB0 /* PXLClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLClient.swift; path = Sources/PixleeSDK/PXLClient.swift; sourceTree = "<group>"; };
 		46B15502C60F7379BEB8A10A06A378E8 /* Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.debug.xcconfig; sourceTree = "<group>"; };
 		474D94DC7BB9F6F8AEFAE7ACC97AEF9D /* Nuke-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Nuke-Info.plist"; sourceTree = "<group>"; };
-		4752DA13D178C8ED2DE5C261AEFB8BB4 /* PXLAnalyticsEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEvent.swift; sourceTree = "<group>"; };
-		484B75EB7C87FB030F63C23918FCBA9A /* PXLProductCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductCell.swift; sourceTree = "<group>"; };
+		48594C958E3C9CF7520F24B8D2F0F02B /* PXLAnalyticsEventWidgetVisible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventWidgetVisible.swift; sourceTree = "<group>"; };
 		4868207A01A602AD764DCEBBFE2D1485 /* RequestTaskMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTaskMap.swift; path = Source/RequestTaskMap.swift; sourceTree = "<group>"; };
 		4A9DFFAED89609D1BBEB26F6B9E67146 /* Pods-ExampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4B61C481521A668DCAC8D421425D2C12 /* PixleeSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PixleeSDK.modulemap; sourceTree = "<group>"; };
+		4BCA376BB4D642E7C9FCEC9E75705D5F /* PXLPhotoListViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoListViewCell.swift; sourceTree = "<group>"; };
+		4EA46D161EA5FF97EB060E7C115AEA0E /* ImageSizeFetcherParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcherParser.swift; sourceTree = "<group>"; };
 		4FCC20FACEF7E2DDB36F154DE475B67D /* URLEncodedFormEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLEncodedFormEncoder.swift; path = Source/URLEncodedFormEncoder.swift; sourceTree = "<group>"; };
 		5023615BCD72AB6DC8D54FF247D54B2C /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		502B71E0D14FD95D1ED87CECA5E1727C /* PXLAnalyticsEventOpenedLightBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedLightBox.swift; sourceTree = "<group>"; };
+		50B4A139A40CB0FE6CBCC9404C831A79 /* PXLAlbumSortOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbumSortOptions.swift; path = Sources/PixleeSDK/PXLAlbumSortOptions.swift; sourceTree = "<group>"; };
 		50D1D0F10B820CB16FE3E88AE14B4AFD /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationInterceptor.swift; path = Source/AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		514FBD7923F997932E7D5F195E356165 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		52198B261246BE391986C2A4F00FF151 /* HotspotReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotspotReader.swift; sourceTree = "<group>"; };
+		53CA786E8C3C7035F5D0C069BF76132B /* PXLAlbumViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLAlbumViewController.xib; sourceTree = "<group>"; };
+		547A451AE7BAF376D48385784B3FC011 /* PXLImageUploadResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLImageUploadResponseDTO.swift; sourceTree = "<group>"; };
 		5574538B9AE8D5AD90761D2B5973BCAC /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		55A0A7335486EA1EBE56540A142AD863 /* InfiniteCollectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteCollectionViewController.swift; path = Sources/InfiniteLayout/InfiniteCollectionViewController.swift; sourceTree = "<group>"; };
 		573C889C2723171F7D426AD2507A0ADF /* ImagePipelineConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePipelineConfiguration.swift; path = Sources/ImagePipelineConfiguration.swift; sourceTree = "<group>"; };
+		57F29AAA14006CA7560F799AE6D30CA7 /* PXLAlbumViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumViewController.swift; sourceTree = "<group>"; };
 		5851F1CDF23FA3C6495D8ED093C6C670 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageViewExtensions.swift; path = Sources/ImageViewExtensions.swift; sourceTree = "<group>"; };
 		5969E55961CC129BDB3900EE05B5C413 /* PixleeSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PixleeSDK-umbrella.h"; sourceTree = "<group>"; };
+		59DA773D827BD275526BA7809AF371F5 /* PXLPhotoProductView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoProductView.xib; sourceTree = "<group>"; };
 		5A7E0C6A533BFE02D7A8D68257F8F310 /* InfiniteLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = InfiniteLayout.release.xcconfig; sourceTree = "<group>"; };
-		5C0A5896282CBB7600122A1B /* MosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
-		5C0A5899282CBC0500122A1B /* CGRectUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectUtilities.swift; sourceTree = "<group>"; };
+		5C2AF696098AD6491F61D2218BC32373 /* PXLAnalyticsEventActionClicked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventActionClicked.swift; sourceTree = "<group>"; };
+		5C5609EB283B3A2A0018D39C /* MosaicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicInfo.swift; sourceTree = "<group>"; };
 		5CC184D50431B6DB0D76DB07164D89A9 /* ImageRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageRequest.swift; path = Sources/ImageRequest.swift; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EC2F9C6CAEB47D53ED6B1E060715537 /* WidgetSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
-		5F6A5B99F057576D0FCE92809A980CA9 /* PXLLoadMoreFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLLoadMoreFooterView.swift; sourceTree = "<group>"; };
+		5E10D33A35121AEACEEC96C30C95AA9C /* PXLLoadMoreFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLLoadMoreFooterView.swift; sourceTree = "<group>"; };
+		605BA580299AB4E504BE1EF39110F5B1 /* PXLAlbum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbum.swift; path = Sources/PixleeSDK/PXLAlbum.swift; sourceTree = "<group>"; };
 		607A1A251ACC6D8CF42C97E256005CA7 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		6092FCA8C9801EF2266087578A590078 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		627FD6532D8EFD4BC9D8ADBB499A9AB1 /* ImageDecoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDecoding.swift; path = Sources/ImageDecoding.swift; sourceTree = "<group>"; };
 		630CABE8F692FCDBFD1B122A2D0CE388 /* Pods-ExampleTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ExampleTests"; path = Pods_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63467F6F3AF9B9885C710647FB3F6166 /* PXLGridViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridViewCell.swift; sourceTree = "<group>"; };
-		635DBAB1188C670AC820F7AAA518B54E /* PXLPlainErrorDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPlainErrorDTO.swift; sourceTree = "<group>"; };
-		643F766DC5E24DCCB69309BC921F741C /* ImageSizeFetcherParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcherParser.swift; sourceTree = "<group>"; };
 		65054D976DC0CD626FCA2E2CEC8E1A25 /* Pods-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		65467C52F74D4D0FFE9EEA37862B6A61 /* PXLAnalyticsEventActionClicked.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventActionClicked.swift; sourceTree = "<group>"; };
 		657FD11C82618A7419DB9FE6008337E7 /* InfiniteLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InfiniteLayout-umbrella.h"; sourceTree = "<group>"; };
-		6607D3BEC99FD0A26D0D53A2C9B0BD69 /* PXLPhotoConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoConverter.swift; sourceTree = "<group>"; };
-		661FD248C33C97E7975A72FF2F1B24D6 /* PXLGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridView.swift; sourceTree = "<group>"; };
-		682D975934E2EDBD2A31FD28F48AD3FC /* PXLProduct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLProduct.swift; path = Sources/PixleeSDK/PXLProduct.swift; sourceTree = "<group>"; };
+		661090ECB88F00790DC93A7E1338BC31 /* PXLAlbumFilterOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbumFilterOptions.swift; path = Sources/PixleeSDK/PXLAlbumFilterOptions.swift; sourceTree = "<group>"; };
 		68DC237CE3B92D5B451099AD7C82400B /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/MultipartUpload.swift; sourceTree = "<group>"; };
+		6A1B04F5DD8606FBE405AABFB1931E4A /* PXLGridHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridHeaderView.swift; sourceTree = "<group>"; };
 		6B5CBCD908C73EFCED61BD98460F05EF /* Pods-Example-ExampleUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-ExampleUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6DB584EFC3593935300301BA081440C2 /* InfiniteLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = InfiniteLayout.modulemap; sourceTree = "<group>"; };
 		6F7979ED16AD62C156B83F3A2ECA027F /* ImagePreheater.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePreheater.swift; path = Sources/ImagePreheater.swift; sourceTree = "<group>"; };
+		6FFD37BA0CC939BFB8819CC77CBE20B0 /* PXLAnalyticsEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEvent.swift; sourceTree = "<group>"; };
+		70ABCB60C449F615868818B2C7E0A0C6 /* PXLError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLError.swift; path = Sources/PixleeSDK/PXLError.swift; sourceTree = "<group>"; };
 		7147B925C66284250E9F6330EEDD4972 /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
-		75939BD80A85143B9460FB5E82DC7527 /* PXLImageUploadResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLImageUploadResponseDTO.swift; sourceTree = "<group>"; };
+		718CFAC64C258597F85B3B3A77F5DC5E /* PXLAlbumNexPageResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumNexPageResponseDTO.swift; sourceTree = "<group>"; };
+		71A32949F6B00A5495F0D4115CA3EE27 /* PXLNewImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLNewImage.swift; path = Sources/PixleeSDK/PXLNewImage.swift; sourceTree = "<group>"; };
+		754E3916CA4EBA4A8D02149C2E3EA8A7 /* PXLPhotoResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoResponseDTO.swift; sourceTree = "<group>"; };
 		79541E37DF233EDAE0421608154E19C4 /* HTTPHeaders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPHeaders.swift; path = Source/HTTPHeaders.swift; sourceTree = "<group>"; };
-		7DDB64A2FB9800CCEA15060E674A4A76 /* PXLAdvancedProductCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAdvancedProductCell.swift; sourceTree = "<group>"; };
+		798292848E7396BD1037D7F771D331E8 /* PXLApiRequests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLApiRequests.swift; path = Sources/PixleeSDK/PXLApiRequests.swift; sourceTree = "<group>"; };
+		7CAF0063FECDD9C66B070E69C8CB0BF7 /* UIImage+Gif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		7E4A8B552CEA46E5F3694E77A3D0901C /* ServerTrustEvaluation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustEvaluation.swift; path = Source/ServerTrustEvaluation.swift; sourceTree = "<group>"; };
-		7E707BA06B6679BA6E081FAE686D9AE1 /* PXLAnalyticsEventWidgetVisible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventWidgetVisible.swift; sourceTree = "<group>"; };
 		7ED9E57FBED1494F782D937D7337DC42 /* ImagePipeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePipeline.swift; path = Sources/ImagePipeline.swift; sourceTree = "<group>"; };
+		7F4425F41871FC69D9B6B4D254DC69A7 /* PXLAnalyticsEventOpenedLightBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedLightBox.swift; sourceTree = "<group>"; };
+		7F9A50A35CC24F6A3043FB07BB132349 /* PXLAdvancedProductCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAdvancedProductCell.swift; sourceTree = "<group>"; };
 		81DBB735FB54499DF2C61DDED5F821C8 /* Pods-ExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExampleTests-umbrella.h"; sourceTree = "<group>"; };
-		8217441FE158D62EBD9FE8023B06CC25 /* PXLPhotoCropMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLPhotoCropMode.swift; path = Sources/PixleeSDK/PXLPhotoCropMode.swift; sourceTree = "<group>"; };
 		828126DC137BBFCED948FF4E17F1A5C0 /* UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Sources/Gifu/Extensions/UIImage.swift; sourceTree = "<group>"; };
-		857C6E4988AA75D9D675543980B1E112 /* PXLGridViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLGridViewCell.xib; sourceTree = "<group>"; };
-		85A77659BCCC44884A0139A0D6BF865F /* PXLProductConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductConverter.swift; sourceTree = "<group>"; };
-		87314501A91B28CAA176FC2726688B0E /* PXLAnalyticsEventConvertedPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventConvertedPhoto.swift; sourceTree = "<group>"; };
-		88D1A2CE0FB028E4C5165B3E01C11B32 /* PXLProductCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLProductCell.xib; sourceTree = "<group>"; };
+		856CAA38978F22F0E1DBFC2F38066B9D /* PXLPlainErrorDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPlainErrorDTO.swift; sourceTree = "<group>"; };
+		8681489A36D1FECDB537F708C23B5FAB /* MosaicLayoutUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MosaicLayoutUtil.swift; sourceTree = "<group>"; };
 		894EB6EA00E814C9FAE8829164031AF9 /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Sources/ImageCache.swift; sourceTree = "<group>"; };
 		8981962BA0A5C15233B667BC4BBD50FC /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Session.swift; sourceTree = "<group>"; };
 		8AAFFFF03FE7D0FCEA61724821452BED /* Pods-ExampleTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleTests-Info.plist"; sourceTree = "<group>"; };
+		8AF5CDFC5B675548C6E1F8E92BB6A3A8 /* ImageSizeFetcherOp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcherOp.swift; sourceTree = "<group>"; };
 		8C71E12B9D4009967F08C5B5D7DB72D7 /* EventMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventMonitor.swift; path = Source/EventMonitor.swift; sourceTree = "<group>"; };
 		8D3D57353834825F7B52B816066B7789 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		8D9174FD2972F9DBCE433AA25F0677B6 /* Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Sources/Gifu/Extensions/Array.swift; sourceTree = "<group>"; };
+		8DA3587DF234DD82C38B441B51180B54 /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		8DF54E9A251968F8BF102DA9BFC40597 /* Pods-Example-ExampleUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-ExampleUITests-dummy.m"; sourceTree = "<group>"; };
-		8E3D271A8E88DB982CEC72A48F952114 /* ImageExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		8F44706E4B57CF36D06A180BB27F867C /* Pods-ExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ExampleTests.modulemap"; sourceTree = "<group>"; };
 		9154CFF4C4763614EF9B712B5422B3E4 /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = "<group>"; };
-		9206A22FB22C7DB455C0102D7DEBA2F9 /* PXLGridHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridHeaderView.swift; sourceTree = "<group>"; };
 		94A7396A6D4E8BBB3F58E37C14AC556E /* FrameStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameStore.swift; path = Sources/Gifu/Classes/FrameStore.swift; sourceTree = "<group>"; };
 		94D294F31918A591987AEF9A8F1C0DC0 /* CachedResponseHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CachedResponseHandler.swift; path = Source/CachedResponseHandler.swift; sourceTree = "<group>"; };
-		97266C91C68D11EEAA522FA51C0FB116 /* PXLNewImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLNewImage.swift; path = Sources/PixleeSDK/PXLNewImage.swift; sourceTree = "<group>"; };
 		97B54A21FDB8FCC6142D187090C228C3 /* RedirectHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RedirectHandler.swift; path = Source/RedirectHandler.swift; sourceTree = "<group>"; };
-		985D18EA4D25216CDCC33FF8A3894101 /* PXLDefaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLDefaults.swift; path = Sources/PixleeSDK/PXLDefaults.swift; sourceTree = "<group>"; };
-		9957851FCD700EBAE6FBDFB0D9610CEE /* PXLAlbumViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLAlbumViewController.xib; sourceTree = "<group>"; };
+		98C238672C25C1A045F9D24B11D6BD5C /* PXLAnalyticsEventConvertedPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventConvertedPhoto.swift; sourceTree = "<group>"; };
+		98CAAF57C901F652D1977FEC51837874 /* PXLProductConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductConverter.swift; sourceTree = "<group>"; };
+		98F0211B1377137175697FC3E4B63401 /* MultiLanguage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiLanguage.swift; path = Sources/PixleeSDK/MultiLanguage.swift; sourceTree = "<group>"; };
+		9A6B49BCEA0B2433E82CCF3266EF4B60 /* PXLProductCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLProductCell.xib; sourceTree = "<group>"; };
+		9B5694D6B2861CE30B6C0A318D3133B4 /* PXLErrorDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLErrorDTO.swift; sourceTree = "<group>"; };
 		9D1121B63E7302CF0DDB102528C04640 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		9D3166BA5E299D58D5F7461CFA6440F0 /* PXLAlbumNexPageResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAlbumNexPageResponseDTO.swift; sourceTree = "<group>"; };
 		9D5CD16051A6E8F77ACC2B5EC182F497 /* Pods-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Example-umbrella.h"; sourceTree = "<group>"; };
+		9D6CACD0D90C29DC993D50F660CCBFE4 /* HotspotReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotspotReader.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E246765BE33EA630ABB6BF54DD23333 /* Nuke-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nuke-dummy.m"; sourceTree = "<group>"; };
 		9E39412B83008719A9A884CB52892067 /* Gifu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gifu.debug.xcconfig; sourceTree = "<group>"; };
 		9E45CA55C37BF4C45DB90B3F19E8DCDB /* PixleeSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PixleeSDK-Info.plist"; sourceTree = "<group>"; };
+		A025BF188D1F6FB8543F61417BCDA522 /* PXLProductCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductCell.swift; sourceTree = "<group>"; };
 		A13F86C2DA2663ABB878E371BE754D25 /* InfiniteLayout-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "InfiniteLayout-Info.plist"; sourceTree = "<group>"; };
+		A2D16FCDE4CC501A9B34DC465DAAD4FE /* WidgetSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetSpec.swift; sourceTree = "<group>"; };
 		A2E8824A714A085051CE0BCCEDDFE2F3 /* Nuke-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nuke-prefix.pch"; sourceTree = "<group>"; };
+		A3A81079D80365F86C8FE3ECCACE24FB /* PXLGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLGridView.swift; sourceTree = "<group>"; };
 		A3B4C5872C5C3DFADEB5FCBC0663D0DF /* InfiniteCollectionViewProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteCollectionViewProxy.swift; path = Sources/InfiniteLayout/InfiniteCollectionViewProxy.swift; sourceTree = "<group>"; };
-		A45A8263533E269FFA4C6525A8BA0313 /* SwiftCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftCrypto.swift; sourceTree = "<group>"; };
 		A47247CF0E1373B9B5AC168E3E83057E /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		A867F5870971F4A647C33B878E568F57 /* DateExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		A8FC7C15147E46CF22E80C1DEB77C546 /* PXLPhotoListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoListView.swift; sourceTree = "<group>"; };
+		A717E150C0D9DE524063855A5AAF04A9 /* PXLPhotoListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoListView.swift; sourceTree = "<group>"; };
 		A9DAAFB1A49ACAF23EC72A2652F0E352 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		AA4EDE5CC54A0D5C9C9D027FB635EB4C /* PXLPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLPhoto.swift; path = Sources/PixleeSDK/PXLPhoto.swift; sourceTree = "<group>"; };
 		ABA0A272FA97718E0828C73AD82A6D2D /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		AC1243D7E1589E028373B6375D7D2751 /* URLSessionConfiguration+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLSessionConfiguration+Alamofire.swift"; path = "Source/URLSessionConfiguration+Alamofire.swift"; sourceTree = "<group>"; };
 		AC4774BB6D912DAAD2CC0139B123F7AA /* StringEncoding+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringEncoding+Alamofire.swift"; path = "Source/StringEncoding+Alamofire.swift"; sourceTree = "<group>"; };
 		AD034CF630AB014B28F9B31ABE1C8485 /* DataCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataCache.swift; path = Sources/DataCache.swift; sourceTree = "<group>"; };
-		AE70964E120017F2870E3FFBEE74C5CC /* PXLAlbum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbum.swift; path = Sources/PixleeSDK/PXLAlbum.swift; sourceTree = "<group>"; };
 		B00361A3B02BB5AAC17AB28B110CF107 /* Gifu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gifu-prefix.pch"; sourceTree = "<group>"; };
 		B0CCDAC6937E9CDD6A5C324342A51840 /* UIImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIImageView.swift; path = Sources/Gifu/Extensions/UIImageView.swift; sourceTree = "<group>"; };
 		B28A5543E8C2D4F1209EA7EDD028A7DA /* Gifu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Gifu-Info.plist"; sourceTree = "<group>"; };
+		B2A69E68ACDC093917F1B391E562D572 /* PXLPhotoDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		B4A31CBB45DDDEBA8FA40982BEC6791E /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		B5F09C03F2C6911A900DAE01A50C30FC /* Task.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Sources/Task.swift; sourceTree = "<group>"; };
+		B6E630E203FFB96BC0760AF5DE1554C7 /* PXLDefaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLDefaults.swift; path = Sources/PixleeSDK/PXLDefaults.swift; sourceTree = "<group>"; };
 		B6F9914EAB248A147EAC796E14E48B3C /* Gifu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gifu.release.xcconfig; sourceTree = "<group>"; };
 		B7A5412D2AB0DDB82E5333E3828EA777 /* PixleeSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PixleeSDK-prefix.pch"; sourceTree = "<group>"; };
-		BBF0213905E402913CD9436C4DF38BC8 /* PXLPhotoDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoDetailViewController.swift; sourceTree = "<group>"; };
+		BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGRectUtilities.swift; sourceTree = "<group>"; };
 		BC643DCC2E3464E552749C8D2BB867C7 /* PixleeSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = PixleeSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C0A3BDE9E80C3D43F8FDD16163358BE4 /* PXLPhotoListViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoListViewCell.xib; sourceTree = "<group>"; };
-		C1B412F0E7F751D11F79765A929EC5B4 /* PXLPhotoListViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoListViewCell.swift; sourceTree = "<group>"; };
-		C1B91BAF735726BA8EA109A7FAB841B8 /* PXLAdvancedProductCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLAdvancedProductCell.xib; sourceTree = "<group>"; };
+		BD475238C878E0C3957BCDB19EC24D40 /* SwiftCrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftCrypto.swift; sourceTree = "<group>"; };
+		C24E89A57672E8148933C135F748E12A /* ImageAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		C287393B68658F7524922C3550BD6E6E /* GIFImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFImageView.swift; path = Sources/Gifu/Classes/GIFImageView.swift; sourceTree = "<group>"; };
 		C3C0A97267C2A02E65992646134F6AF0 /* ImageProcessing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageProcessing.swift; path = Sources/ImageProcessing.swift; sourceTree = "<group>"; };
 		C4F8566B009DA2F082E5A877BDCE78E7 /* InfiniteCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteCollectionView.swift; path = Sources/InfiniteLayout/InfiniteCollectionView.swift; sourceTree = "<group>"; };
 		C54078A65F1E57154BA0DF9535462C54 /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5BD36CF497A9CC45F4145E641E8A7F3 /* PXLProductDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLProductDTO.swift; sourceTree = "<group>"; };
 		C61439DFF94B3F84DCAC317DAD97C2B3 /* InfiniteLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteLayout.swift; path = Sources/InfiniteLayout/InfiniteLayout.swift; sourceTree = "<group>"; };
 		C6C47F0008E54101C49993C47AA17E0C /* CGSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CGSize.swift; path = Sources/Gifu/Extensions/CGSize.swift; sourceTree = "<group>"; };
-		C7F769F80AD71E5C7C72271A6354F801 /* PXLPhotoResponseDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoResponseDTO.swift; sourceTree = "<group>"; };
 		C95EC10FE24AF269AED05F60E1F20F35 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		CA86459B834B286D472EF909A2AAD76D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CC36DA3D0FD163AE369A29A277D5A587 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		CC83F7AB9B82776BAECFDF892BF8FA95 /* Gifu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Gifu-dummy.m"; sourceTree = "<group>"; };
 		CCDE0D2F90C118FE32C848404666F7F6 /* Gifu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gifu-umbrella.h"; sourceTree = "<group>"; };
-		CD7225BBE25FC7AEF8E94117E10B120C /* PXLPhotoProductView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoProductView.xib; sourceTree = "<group>"; };
+		CD8A2546EF071E2B2C878C8EC09A328C /* PXLAdvancedProductCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLAdvancedProductCell.xib; sourceTree = "<group>"; };
 		CE05DAB8EC88A6924AE769B8139C4036 /* InfiniteLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "InfiniteLayout-dummy.m"; sourceTree = "<group>"; };
+		CF7EB3015C343ED4C48C2E8DBCACA270 /* ImageExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		D01F4C7BCBE74F68C0C06788351AB25D /* Pods-Example-ExampleUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-ExampleUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D0C2C30C622762D8C6870F740EB57F61 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		D14AC8A5B565F405103928391FEF1A2C /* PXLApiRequests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLApiRequests.swift; path = Sources/PixleeSDK/PXLApiRequests.swift; sourceTree = "<group>"; };
+		D22ECDA031A0FC6C0B0BE15FDAAA0B12 /* PXLWidgetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLWidgetView.swift; sourceTree = "<group>"; };
 		D4FE8F3E50AE4C4BB91C118C55D7CAFB /* Pods-ExampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D5D71CAA2DA285B6A3FBD73137228C8A /* PXLPhotoCropMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLPhotoCropMode.swift; path = Sources/PixleeSDK/PXLPhotoCropMode.swift; sourceTree = "<group>"; };
+		DA6C34D4854AB47D5CA39CD4247DE733 /* PXLAnalyticsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAnalyticsService.swift; path = Sources/PixleeSDK/PXLAnalyticsService.swift; sourceTree = "<group>"; };
+		DCF9685AB2C546FC189A24FED086302D /* DateExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E10292D93C24D1E833E0003581165D98 /* Nuke-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nuke-umbrella.h"; sourceTree = "<group>"; };
 		E11BF41C2E6C4D2208BE270D8DFCBD69 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		E125DF754CAF6AC3EB0B897BF286FE9D /* PXLAlbumFilterOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLAlbumFilterOptions.swift; path = Sources/PixleeSDK/PXLAlbumFilterOptions.swift; sourceTree = "<group>"; };
 		E1313B8D0A45FD7601514BBE5C0F1354 /* Nuke.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nuke.release.xcconfig; sourceTree = "<group>"; };
 		E1A363FA1ED7B40AFD0C11C78564E895 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		E2A7BAEEA858FDA8E6BAA0224E2013DB /* MultiLanguage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiLanguage.swift; path = Sources/PixleeSDK/MultiLanguage.swift; sourceTree = "<group>"; };
-		E42EDC167F1EA38D099CA6284ABDF323 /* PXLError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PXLError.swift; path = Sources/PixleeSDK/PXLError.swift; sourceTree = "<group>"; };
 		E51BF2F092CC81CC06BD9A7445EFC4EF /* Nuke.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nuke.debug.xcconfig; sourceTree = "<group>"; };
 		E5A8990B6200C07FBCB436D4F7700B41 /* Pods-Example-ExampleUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-ExampleUITests-frameworks.sh"; sourceTree = "<group>"; };
-		E5FA0B9F74B0398076A7C6C68F47A91D /* ImageSizeFetcherOp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcherOp.swift; sourceTree = "<group>"; };
 		E8E5A2DDEE01CA7716145CA1B033B7A3 /* Pods-Example-ExampleUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Example-ExampleUITests"; path = Pods_Example_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FF40157EFB3FEB5D461ECB18AFE87A /* RetryPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryPolicy.swift; path = Source/RetryPolicy.swift; sourceTree = "<group>"; };
 		EA039038DAE6A9A927E0E11F42D7A589 /* CocoaProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CocoaProxy.h; path = Sources/CocoaProxy/CocoaProxy.h; sourceTree = "<group>"; };
@@ -476,27 +483,16 @@
 		F0AD3CEF9CC44A5723E8990780C50955 /* PixleeSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PixleeSDK; path = PixleeSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F265EF7A0A07ACAF5D8CF475A739DA5D /* PixleeSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PixleeSDK-dummy.m"; sourceTree = "<group>"; };
 		F392D4170EB2DA7AD04823577DD373A5 /* ImageTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageTask.swift; path = Sources/ImageTask.swift; sourceTree = "<group>"; };
-		F3ECD74D0DD5902873EE8A38328E3AE0 /* ImageSizeFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageSizeFetcher.swift; sourceTree = "<group>"; };
-		F40360CCC5B7DFF9CD62D9DE8E767470 /* PXLImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLImageCell.swift; sourceTree = "<group>"; };
+		F7CA427ED217D7B06F7AD748E1A1F09B /* PXLPhotoDetailViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PXLPhotoDetailViewController.xib; sourceTree = "<group>"; };
 		F8C5F901A73E0586650F857C3D0CFE8D /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Source/Protected.swift; sourceTree = "<group>"; };
 		F8FBC06CAAEF08C2C01DD809446573E3 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
 		FBC13EE854A2007CD30E2C3E7CD7D3DE /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		FE701A3C3F479432B9ACCD94B36B4F83 /* Pods-Example-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FEA2DDF1A05C6452C77061AF926C9C2E /* CocoaProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CocoaProxy.m; path = Sources/CocoaProxy/CocoaProxy.m; sourceTree = "<group>"; };
-		FEE951857C43B3EB667EBCC17BF5676B /* PXLPhotoProductView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLPhotoProductView.swift; sourceTree = "<group>"; };
-		FFB0698C4484B5EAE139F0BF1E198E89 /* PXLAnalyticsEventOpenedWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PXLAnalyticsEventOpenedWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		04B3E3E3B62B208343427646FBD025C2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A58725A7E0B3EEE8803BFB8142038E01 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		15DC142A7EE833251AA37FC8E2B8E01F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +534,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE68654A55BEC2738136D625C9769C34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6506B7A862289FE74F4967BA18D1F10B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D06A7098A36B3BD92A91B2C67479D8DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,31 +561,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01379F8AD8772CFFFE2A5BDC4DC0A8E6 /* SDK */ = {
+		00683E8B18CBC6C5C883C8E40246207C /* PXLPhotoDetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E2A7BAEEA858FDA8E6BAA0224E2013DB /* MultiLanguage.swift */,
-				AE70964E120017F2870E3FFBEE74C5CC /* PXLAlbum.swift */,
-				E125DF754CAF6AC3EB0B897BF286FE9D /* PXLAlbumFilterOptions.swift */,
-				2DC71491A76280D75A66DE4F6FBB1051 /* PXLAlbumSortOptions.swift */,
-				356FD38889A1F49A7A8BB43CBB236B35 /* PXLAnalyticsService.swift */,
-				D14AC8A5B565F405103928391FEF1A2C /* PXLApiRequests.swift */,
-				2456ED2A8C88E9DE69B3AACB8921664D /* PXLClient.swift */,
-				985D18EA4D25216CDCC33FF8A3894101 /* PXLDefaults.swift */,
-				E42EDC167F1EA38D099CA6284ABDF323 /* PXLError.swift */,
-				97266C91C68D11EEAA522FA51C0FB116 /* PXLNewImage.swift */,
-				102F8F3C6BD6225762650DD3B5AA395C /* PXLPhoto.swift */,
-				8217441FE158D62EBD9FE8023B06CC25 /* PXLPhotoCropMode.swift */,
-				682D975934E2EDBD2A31FD28F48AD3FC /* PXLProduct.swift */,
-				EE73A4A5449493B176505134372CDBBA /* AnalyticsEvents */,
-				C9EF5F77FD4289B370B5C614B3AE5549 /* Converters */,
-				61C2DB56B862135397A1AF8432DE4BBF /* DTOs */,
-				4EA911DBFB4D6B3A0ADEC273911A59B1 /* Helpers */,
-				7FBE7BC2C7E0982410424EFE104392EC /* Resources */,
-				C134EBA1F014074223E78627129C106C /* ViewControllers */,
-				F1B39D60A1A493522B3C8120DB6022C0 /* Widgets */,
+				B2A69E68ACDC093917F1B391E562D572 /* PXLPhotoDetailViewController.swift */,
+				F7CA427ED217D7B06F7AD748E1A1F09B /* PXLPhotoDetailViewController.xib */,
 			);
-			name = SDK;
+			path = PXLPhotoDetailsViewController;
 			sourceTree = "<group>";
 		};
 		05889A1433961B5A2143AD84E065D24A /* Support Files */ = {
@@ -632,6 +618,23 @@
 			path = "../Target Support Files/Nuke";
 			sourceTree = "<group>";
 		};
+		23253C24A73D158AB54BF4C8F7C0DBE8 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				A3A81079D80365F86C8FE3ECCACE24FB /* PXLGridView.swift */,
+				A717E150C0D9DE524063855A5AAF04A9 /* PXLPhotoListView.swift */,
+				078167F0F1C1F79CD36BD94981BB0F7F /* PXLPhotoProductView.swift */,
+				59DA773D827BD275526BA7809AF371F5 /* PXLPhotoProductView.xib */,
+				3CE19939A1F047AEEB8298205BB01726 /* PXLPhotoView.swift */,
+				D22ECDA031A0FC6C0B0BE15FDAAA0B12 /* PXLWidgetView.swift */,
+				569665E74067F2D07600B145BC472909 /* Helpers */,
+				74BAC56EB1678B6EE4427D942A440181 /* Layouts */,
+				30C44570B22CF549FE05DA7F96ABE3B1 /* Utilities */,
+			);
+			name = Widgets;
+			path = Sources/PixleeSDK/Widgets;
+			sourceTree = "<group>";
+		};
 		2AEB887A1255C919995F0FFB802BE2EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,23 +650,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3207336EDDE91B148B645D0E39760FA1 /* Cells */ = {
+		30C44570B22CF549FE05DA7F96ABE3B1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				7DDB64A2FB9800CCEA15060E674A4A76 /* PXLAdvancedProductCell.swift */,
-				C1B91BAF735726BA8EA109A7FAB841B8 /* PXLAdvancedProductCell.xib */,
-				9206A22FB22C7DB455C0102D7DEBA2F9 /* PXLGridHeaderView.swift */,
-				63467F6F3AF9B9885C710647FB3F6166 /* PXLGridViewCell.swift */,
-				857C6E4988AA75D9D675543980B1E112 /* PXLGridViewCell.xib */,
-				F40360CCC5B7DFF9CD62D9DE8E767470 /* PXLImageCell.swift */,
-				42254E67A6252964C7C4D1C08ACBA9BC /* PXLImageCell.xib */,
-				5F6A5B99F057576D0FCE92809A980CA9 /* PXLLoadMoreFooterView.swift */,
-				C1B412F0E7F751D11F79765A929EC5B4 /* PXLPhotoListViewCell.swift */,
-				C0A3BDE9E80C3D43F8FDD16163358BE4 /* PXLPhotoListViewCell.xib */,
-				484B75EB7C87FB030F63C23918FCBA9A /* PXLProductCell.swift */,
-				88D1A2CE0FB028E4C5165B3E01C11B32 /* PXLProductCell.xib */,
+				8681489A36D1FECDB537F708C23B5FAB /* MosaicLayoutUtil.swift */,
+				BC5D0264C042F7E0CE32C33A47F3762B /* CGRectUtilities.swift */,
 			);
-			path = Cells;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		37E8A2E8A3400ADC0901103DCD66DA8F /* Pods-Example-ExampleUITests */ = {
@@ -712,7 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				AB55EC0558BF620894969313F29E49E1 /* Pod */,
-				01379F8AD8772CFFFE2A5BDC4DC0A8E6 /* SDK */,
+				B5C7322F9239031D1AC3CDBE1F027C29 /* SDK */,
 				05889A1433961B5A2143AD84E065D24A /* Support Files */,
 			);
 			name = PixleeSDK;
@@ -734,6 +727,16 @@
 			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
+		45C99056378160519F8C0864342AD368 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A13607AEE652F59208D1C348E0E0DE67 /* PXLAlbumViewController */,
+				00683E8B18CBC6C5C883C8E40246207C /* PXLPhotoDetailsViewController */,
+			);
+			name = ViewControllers;
+			path = Sources/PixleeSDK/ViewControllers;
+			sourceTree = "<group>";
+		};
 		465ECA96E8BD883A63B19ABD4DE678B2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,16 +749,27 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		4EA911DBFB4D6B3A0ADEC273911A59B1 /* Helpers */ = {
+		4BCADDD431034201EAC76E00AB14BAF1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A867F5870971F4A647C33B878E568F57 /* DateExtension.swift */,
-				8E3D271A8E88DB982CEC72A48F952114 /* ImageExtension.swift */,
-				2F9C3FAED15D0023C96FAC41C22EDA4C /* StringExtension.swift */,
-				A45A8263533E269FFA4C6525A8BA0313 /* SwiftCrypto.swift */,
+				C24E89A57672E8148933C135F748E12A /* ImageAssets.xcassets */,
 			);
-			name = Helpers;
-			path = Sources/PixleeSDK/Helpers;
+			name = Resources;
+			path = Sources/PixleeSDK/Resources;
+			sourceTree = "<group>";
+		};
+		569665E74067F2D07600B145BC472909 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9D6CACD0D90C29DC993D50F660CCBFE4 /* HotspotReader.swift */,
+				3CC246F9A46D53ECBACEC5A12A0BD788 /* ImageSizeFetcher.swift */,
+				8AF5CDFC5B675548C6E1F8E92BB6A3A8 /* ImageSizeFetcherOp.swift */,
+				4EA46D161EA5FF97EB060E7C115AEA0E /* ImageSizeFetcherParser.swift */,
+				7CAF0063FECDD9C66B070E69C8CB0BF7 /* UIImage+Gif.swift */,
+				A2D16FCDE4CC501A9B34DC465DAAD4FE /* WidgetSpec.swift */,
+				5C5609EB283B3A2A0018D39C /* MosaicInfo.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		597F12114401396FEC8EE02878D9C831 /* Nuke */ = {
@@ -781,36 +795,6 @@
 			path = Nuke;
 			sourceTree = "<group>";
 		};
-		5C0A5895282CBB4D00122A1B /* Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				5C0A5896282CBB7600122A1B /* MosaicLayout.swift */,
-			);
-			path = Layouts;
-			sourceTree = "<group>";
-		};
-		5C0A5898282CBBCD00122A1B /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				5C0A5899282CBC0500122A1B /* CGRectUtilities.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		61C2DB56B862135397A1AF8432DE4BBF /* DTOs */ = {
-			isa = PBXGroup;
-			children = (
-				9D3166BA5E299D58D5F7461CFA6440F0 /* PXLAlbumNexPageResponseDTO.swift */,
-				4607F9EC1A13042742B5E3CA515A0C1D /* PXLErrorDTO.swift */,
-				75939BD80A85143B9460FB5E82DC7527 /* PXLImageUploadResponseDTO.swift */,
-				C7F769F80AD71E5C7C72271A6354F801 /* PXLPhotoResponseDTO.swift */,
-				635DBAB1188C670AC820F7AAA518B54E /* PXLPlainErrorDTO.swift */,
-				441CF39A9C2106C535E7701E136B02AA /* PXLProductDTO.swift */,
-			);
-			name = DTOs;
-			path = Sources/PixleeSDK/DTOs;
-			sourceTree = "<group>";
-		};
 		61C8CC330A5CA84DA2F5F1D32AB07069 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +802,25 @@
 				FD0CE05D5D076B1B5190EE5DF97FD54E /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		6ED7F804DAAD1C3831AA67BE3FC104F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7F9A50A35CC24F6A3043FB07BB132349 /* PXLAdvancedProductCell.swift */,
+				CD8A2546EF071E2B2C878C8EC09A328C /* PXLAdvancedProductCell.xib */,
+				6A1B04F5DD8606FBE405AABFB1931E4A /* PXLGridHeaderView.swift */,
+				0481AC4FAF6034F2478DDC0D3360ACBA /* PXLGridViewCell.swift */,
+				22C5833802D224B760B3AE4B4BE4743F /* PXLGridViewCell.xib */,
+				30B391F081F5E3D38D740DD6CB9FDE6A /* PXLImageCell.swift */,
+				1FF54E2F54CB6EDE546F358737111325 /* PXLImageCell.xib */,
+				5E10D33A35121AEACEEC96C30C95AA9C /* PXLLoadMoreFooterView.swift */,
+				4BCA376BB4D642E7C9FCEC9E75705D5F /* PXLPhotoListViewCell.swift */,
+				16E726C47BED9A32EDC3C4B3CA822C6B /* PXLPhotoListViewCell.xib */,
+				A025BF188D1F6FB8543F61417BCDA522 /* PXLProductCell.swift */,
+				9A6B49BCEA0B2433E82CCF3266EF4B60 /* PXLProductCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		744EE5B2C2BCD8717193D237DC620516 /* Targets Support Files */ = {
@@ -830,26 +833,33 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7FBE7BC2C7E0982410424EFE104392EC /* Resources */ = {
+		74BAC56EB1678B6EE4427D942A440181 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				01B0ECFDF020E97A83907AE24441E353 /* ImageAssets.xcassets */,
+				43AEDF6A6967569E6B7015513DE4A8F6 /* MosaicLayout.swift */,
 			);
-			name = Resources;
-			path = Sources/PixleeSDK/Resources;
+			path = Layouts;
 			sourceTree = "<group>";
 		};
-		91FDD1DB36F9E5AADDD038C258609BBC /* Helpers */ = {
+		7A49D84C14AAE06D49DFD7ACCB61B496 /* Converters */ = {
 			isa = PBXGroup;
 			children = (
-				52198B261246BE391986C2A4F00FF151 /* HotspotReader.swift */,
-				F3ECD74D0DD5902873EE8A38328E3AE0 /* ImageSizeFetcher.swift */,
-				E5FA0B9F74B0398076A7C6C68F47A91D /* ImageSizeFetcherOp.swift */,
-				643F766DC5E24DCCB69309BC921F741C /* ImageSizeFetcherParser.swift */,
-				07BAD4DF5BFA753D400A5E254EFD5A89 /* UIImage+Gif.swift */,
-				5EC2F9C6CAEB47D53ED6B1E060715537 /* WidgetSpec.swift */,
+				34C586CF6FCDB529ADEC8220850B7983 /* PXLPhotoConverter.swift */,
+				98CAAF57C901F652D1977FEC51837874 /* PXLProductConverter.swift */,
 			);
-			path = Helpers;
+			name = Converters;
+			path = Sources/PixleeSDK/Converters;
+			sourceTree = "<group>";
+		};
+		A13607AEE652F59208D1C348E0E0DE67 /* PXLAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				57F29AAA14006CA7560F799AE6D30CA7 /* PXLAlbumViewController.swift */,
+				53CA786E8C3C7035F5D0C069BF76132B /* PXLAlbumViewController.xib */,
+				27C85071F815713CCD29A18E391E025E /* PXLAlbumViewModel.swift */,
+				6ED7F804DAAD1C3831AA67BE3FC104F0 /* Cells */,
+			);
+			path = PXLAlbumViewController;
 			sourceTree = "<group>";
 		};
 		AB55EC0558BF620894969313F29E49E1 /* Pod */ = {
@@ -870,35 +880,31 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		C134EBA1F014074223E78627129C106C /* ViewControllers */ = {
+		B5C7322F9239031D1AC3CDBE1F027C29 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CE00EEF788E5BB784E914D721A95BAE9 /* PXLAlbumViewController */,
-				F6E07BDBDCE0D7A16DF7F50B57F949CA /* PXLPhotoDetailsViewController */,
+				98F0211B1377137175697FC3E4B63401 /* MultiLanguage.swift */,
+				605BA580299AB4E504BE1EF39110F5B1 /* PXLAlbum.swift */,
+				661090ECB88F00790DC93A7E1338BC31 /* PXLAlbumFilterOptions.swift */,
+				50B4A139A40CB0FE6CBCC9404C831A79 /* PXLAlbumSortOptions.swift */,
+				DA6C34D4854AB47D5CA39CD4247DE733 /* PXLAnalyticsService.swift */,
+				798292848E7396BD1037D7F771D331E8 /* PXLApiRequests.swift */,
+				4665B017414B305356B1CDEA8E0BABB0 /* PXLClient.swift */,
+				B6E630E203FFB96BC0760AF5DE1554C7 /* PXLDefaults.swift */,
+				70ABCB60C449F615868818B2C7E0A0C6 /* PXLError.swift */,
+				71A32949F6B00A5495F0D4115CA3EE27 /* PXLNewImage.swift */,
+				AA4EDE5CC54A0D5C9C9D027FB635EB4C /* PXLPhoto.swift */,
+				D5D71CAA2DA285B6A3FBD73137228C8A /* PXLPhotoCropMode.swift */,
+				0B838E0B890360DB583D7F76AF2D36D8 /* PXLProduct.swift */,
+				D8014DF6AAA9FFA5B7C76E2D0A67B9A7 /* AnalyticsEvents */,
+				7A49D84C14AAE06D49DFD7ACCB61B496 /* Converters */,
+				F254ADB138B1A1ED7004A8F45C99DA21 /* DTOs */,
+				E28CDD43255DD6CE82C2F2407940C854 /* Helpers */,
+				4BCADDD431034201EAC76E00AB14BAF1 /* Resources */,
+				45C99056378160519F8C0864342AD368 /* ViewControllers */,
+				23253C24A73D158AB54BF4C8F7C0DBE8 /* Widgets */,
 			);
-			name = ViewControllers;
-			path = Sources/PixleeSDK/ViewControllers;
-			sourceTree = "<group>";
-		};
-		C9EF5F77FD4289B370B5C614B3AE5549 /* Converters */ = {
-			isa = PBXGroup;
-			children = (
-				6607D3BEC99FD0A26D0D53A2C9B0BD69 /* PXLPhotoConverter.swift */,
-				85A77659BCCC44884A0139A0D6BF865F /* PXLProductConverter.swift */,
-			);
-			name = Converters;
-			path = Sources/PixleeSDK/Converters;
-			sourceTree = "<group>";
-		};
-		CE00EEF788E5BB784E914D721A95BAE9 /* PXLAlbumViewController */ = {
-			isa = PBXGroup;
-			children = (
-				2379ECE9590CFF46FA2261F8D720BFC5 /* PXLAlbumViewController.swift */,
-				9957851FCD700EBAE6FBDFB0D9610CEE /* PXLAlbumViewController.xib */,
-				326865D18A324E1CF02FFFA5DBEF3B90 /* PXLAlbumViewModel.swift */,
-				3207336EDDE91B148B645D0E39760FA1 /* Cells */,
-			);
-			path = PXLAlbumViewController;
+			name = SDK;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -930,6 +936,22 @@
 				E46D6733F36D639536C64A91B0422B38 /* Support Files */,
 			);
 			path = Gifu;
+			sourceTree = "<group>";
+		};
+		D8014DF6AAA9FFA5B7C76E2D0A67B9A7 /* AnalyticsEvents */ = {
+			isa = PBXGroup;
+			children = (
+				6FFD37BA0CC939BFB8819CC77CBE20B0 /* PXLAnalyticsEvent.swift */,
+				5C2AF696098AD6491F61D2218BC32373 /* PXLAnalyticsEventActionClicked.swift */,
+				392EF48292DCEAC0E2CA1B937CA60060 /* PXLAnalyticsEventAddCart.swift */,
+				98C238672C25C1A045F9D24B11D6BD5C /* PXLAnalyticsEventConvertedPhoto.swift */,
+				2258402060A471BE7BD082B220A2A695 /* PXLAnalyticsEventLoadMoreClicked.swift */,
+				7F4425F41871FC69D9B6B4D254DC69A7 /* PXLAnalyticsEventOpenedLightBox.swift */,
+				2FB0D9141075C3B3604AF8E02ADD34EE /* PXLAnalyticsEventOpenedWidget.swift */,
+				48594C958E3C9CF7520F24B8D2F0F02B /* PXLAnalyticsEventWidgetVisible.swift */,
+			);
+			name = AnalyticsEvents;
+			path = Sources/PixleeSDK/AnalyticsEvents;
 			sourceTree = "<group>";
 		};
 		E007CA8A085F95D287F2EAFEC21B93D2 /* Alamofire */ = {
@@ -976,6 +998,18 @@
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
+		E28CDD43255DD6CE82C2F2407940C854 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DCF9685AB2C546FC189A24FED086302D /* DateExtension.swift */,
+				CF7EB3015C343ED4C48C2E8DBCACA270 /* ImageExtension.swift */,
+				8DA3587DF234DD82C38B441B51180B54 /* StringExtension.swift */,
+				BD475238C878E0C3957BCDB19EC24D40 /* SwiftCrypto.swift */,
+			);
+			name = Helpers;
+			path = Sources/PixleeSDK/Helpers;
+			sourceTree = "<group>";
+		};
 		E46D6733F36D639536C64A91B0422B38 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,22 +1053,6 @@
 			path = "Target Support Files/Pods-Example";
 			sourceTree = "<group>";
 		};
-		EE73A4A5449493B176505134372CDBBA /* AnalyticsEvents */ = {
-			isa = PBXGroup;
-			children = (
-				4752DA13D178C8ED2DE5C261AEFB8BB4 /* PXLAnalyticsEvent.swift */,
-				65467C52F74D4D0FFE9EEA37862B6A61 /* PXLAnalyticsEventActionClicked.swift */,
-				0331AE50A0D0135D13F40403FFF78D28 /* PXLAnalyticsEventAddCart.swift */,
-				87314501A91B28CAA176FC2726688B0E /* PXLAnalyticsEventConvertedPhoto.swift */,
-				3EBDC69AAEF8569A6A1350FFEC9596CB /* PXLAnalyticsEventLoadMoreClicked.swift */,
-				502B71E0D14FD95D1ED87CECA5E1727C /* PXLAnalyticsEventOpenedLightBox.swift */,
-				FFB0698C4484B5EAE139F0BF1E198E89 /* PXLAnalyticsEventOpenedWidget.swift */,
-				7E707BA06B6679BA6E081FAE686D9AE1 /* PXLAnalyticsEventWidgetVisible.swift */,
-			);
-			name = AnalyticsEvents;
-			path = Sources/PixleeSDK/AnalyticsEvents;
-			sourceTree = "<group>";
-		};
 		F17E9BCAFFF06AC18CE31730E9A7449F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,30 +1068,18 @@
 			path = "../Target Support Files/InfiniteLayout";
 			sourceTree = "<group>";
 		};
-		F1B39D60A1A493522B3C8120DB6022C0 /* Widgets */ = {
+		F254ADB138B1A1ED7004A8F45C99DA21 /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
-				5C0A5895282CBB4D00122A1B /* Layouts */,
-				5C0A5898282CBBCD00122A1B /* Utilities */,
-				661FD248C33C97E7975A72FF2F1B24D6 /* PXLGridView.swift */,
-				A8FC7C15147E46CF22E80C1DEB77C546 /* PXLPhotoListView.swift */,
-				FEE951857C43B3EB667EBCC17BF5676B /* PXLPhotoProductView.swift */,
-				CD7225BBE25FC7AEF8E94117E10B120C /* PXLPhotoProductView.xib */,
-				2B53AE2535A4F847F1E01E20A3578172 /* PXLPhotoView.swift */,
-				001A013FABAC4EFB1E8FA2BBD52A3F92 /* PXLWidgetView.swift */,
-				91FDD1DB36F9E5AADDD038C258609BBC /* Helpers */,
+				718CFAC64C258597F85B3B3A77F5DC5E /* PXLAlbumNexPageResponseDTO.swift */,
+				9B5694D6B2861CE30B6C0A318D3133B4 /* PXLErrorDTO.swift */,
+				547A451AE7BAF376D48385784B3FC011 /* PXLImageUploadResponseDTO.swift */,
+				754E3916CA4EBA4A8D02149C2E3EA8A7 /* PXLPhotoResponseDTO.swift */,
+				856CAA38978F22F0E1DBFC2F38066B9D /* PXLPlainErrorDTO.swift */,
+				C5BD36CF497A9CC45F4145E641E8A7F3 /* PXLProductDTO.swift */,
 			);
-			name = Widgets;
-			path = Sources/PixleeSDK/Widgets;
-			sourceTree = "<group>";
-		};
-		F6E07BDBDCE0D7A16DF7F50B57F949CA /* PXLPhotoDetailsViewController */ = {
-			isa = PBXGroup;
-			children = (
-				BBF0213905E402913CD9436C4DF38BC8 /* PXLPhotoDetailViewController.swift */,
-				21F4123FB116957715AD104A0DAEB13F /* PXLPhotoDetailViewController.xib */,
-			);
-			path = PXLPhotoDetailsViewController;
+			name = DTOs;
+			path = Sources/PixleeSDK/DTOs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1128,20 +1134,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83AE46E07B14B92FA18D5343063189E8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC4024A055FD43B92445AFAF994BF96 /* PixleeSDK-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7939B96B9B1DC67F78291DA41975688 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F24C238224E0CB8B40892B08ED14DD19 /* CocoaProxy.h in Headers */,
 				A09240E8818A1CA9E157C70FF63BC74B /* InfiniteLayout-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D39C480B134B5DD509275BCA5011645B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85E48281E3D2E6AE373CD242AB45C858 /* PixleeSDK-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,11 +1184,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				3382DCED101BE2816FE8F7AE7D148467 /* PBXTargetDependency */,
-				CADA3CD2FA66642DCB1143032375DA3D /* PBXTargetDependency */,
-				095032D0CECAB5002FB9FA07D561F197 /* PBXTargetDependency */,
-				19F334D56CB92F8E67E0FE68E53D1F4C /* PBXTargetDependency */,
-				6BFB038AD4B2800A2F55613F2D67303A /* PBXTargetDependency */,
+				7E1B3EBE3295BA6F41ABD28BECACCB33 /* PBXTargetDependency */,
+				22726DB74F4E032CBB3CBDCA1397A63E /* PBXTargetDependency */,
+				1EA49508AE0E39C3027A49B656B2592B /* PBXTargetDependency */,
+				E5227BD7A222DE3BA0946D54CAB9E74B /* PBXTargetDependency */,
+				EEB6EB7A8848E10127DABA4707F76E57 /* PBXTargetDependency */,
 			);
 			name = "Pods-Example";
 			productName = Pods_Example;
@@ -1191,20 +1197,20 @@
 		};
 		237E6495AF7D5CEB369A40CB38EECE7D /* PixleeSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 91DD7EF5B0ADF4396E7EB021D9223CAE /* Build configuration list for PBXNativeTarget "PixleeSDK" */;
+			buildConfigurationList = 2C8C503F32E9753F60BA8470A6C9DBFB /* Build configuration list for PBXNativeTarget "PixleeSDK" */;
 			buildPhases = (
-				D39C480B134B5DD509275BCA5011645B /* Headers */,
-				7551CB1205B0DFBC26F21A6A2BF0513D /* Sources */,
-				04B3E3E3B62B208343427646FBD025C2 /* Frameworks */,
-				7A9A021825D49125BE86E150C6200180 /* Resources */,
+				83AE46E07B14B92FA18D5343063189E8 /* Headers */,
+				FABD6EAEE787448EC473FFED72B53893 /* Sources */,
+				CE68654A55BEC2738136D625C9769C34 /* Frameworks */,
+				09AD1DB2DF570DC7273869EAE723BCAF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9BE19C1BBBFE8689C6474E0A7FFAEF9E /* PBXTargetDependency */,
-				311146B58DA7614C4A5110621F1C02CD /* PBXTargetDependency */,
-				7437A8275A87DF581BF27B16B6659C61 /* PBXTargetDependency */,
-				6253B731CB75BAC4C3E57B909E479688 /* PBXTargetDependency */,
+				14E51B20D2961FB646FB585531D4A7CD /* PBXTargetDependency */,
+				D8440B8DE8340598D7B54DD125614FA7 /* PBXTargetDependency */,
+				28AE7529958C42FAFA214D6C2915138C /* PBXTargetDependency */,
+				DCD780F2B6DFED15C7E48535F0F843BF /* PBXTargetDependency */,
 			);
 			name = PixleeSDK;
 			productName = PixleeSDK;
@@ -1223,7 +1229,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				80127C983C2E7B87A923E7D0CB9E158B /* PBXTargetDependency */,
+				9A18DF3856E2EC3FF6592DC76F1F3E83 /* PBXTargetDependency */,
 			);
 			name = "Pods-ExampleTests";
 			productName = Pods_ExampleTests;
@@ -1260,11 +1266,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				619826F249661A38C14BB40E1294DCC1 /* PBXTargetDependency */,
-				FB7CAD5B83EAE00DF984F835A7875B33 /* PBXTargetDependency */,
-				68C2A77D1CC95CDA6374152BC0CDC419 /* PBXTargetDependency */,
-				083C85F6DCC6A273F95128FBDDD739ED /* PBXTargetDependency */,
-				B255F8325C026CD20F5121943218FA81 /* PBXTargetDependency */,
+				D74217792CC9B0EFFCF03CAE84CE430D /* PBXTargetDependency */,
+				90D94965EA2F7C56B9BDD7B8E1DD5CCC /* PBXTargetDependency */,
+				8BDF0337A27CBC412792DF74599DAEBA /* PBXTargetDependency */,
+				C545929EF29CBD18E2ACC633A8BE1F55 /* PBXTargetDependency */,
+				6A027E565E0A38307CBB4A1E40729752 /* PBXTargetDependency */,
 			);
 			name = "Pods-Example-ExampleUITests";
 			productName = Pods_Example_ExampleUITests;
@@ -1342,6 +1348,22 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		09AD1DB2DF570DC7273869EAE723BCAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C6637E813310B71141182D6B2C6012B /* ImageAssets.xcassets in Resources */,
+				EBF6269045C108CB69857BEBE4A06940 /* PXLAdvancedProductCell.xib in Resources */,
+				80C29D64A205BC1B728F6BD625F126D4 /* PXLAlbumViewController.xib in Resources */,
+				A4D369984B00FE1D68A202F7398394A9 /* PXLGridViewCell.xib in Resources */,
+				9D1DC46A1D9649CCE4E84BE32B571FF3 /* PXLImageCell.xib in Resources */,
+				D0C3F2605D7AF29B0EE01A03EEE814E4 /* PXLPhotoDetailViewController.xib in Resources */,
+				8F4E3951703DF22D67DF8E0B47AF41B1 /* PXLPhotoListViewCell.xib in Resources */,
+				32C628CAF7111996613AD2C9BF0742F1 /* PXLPhotoProductView.xib in Resources */,
+				42E0DF20C1EA8596BE052B4A65817AD8 /* PXLProductCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0B5E483211D729BA2724F15F36F6A2CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1360,22 +1382,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A9A021825D49125BE86E150C6200180 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80A3A836B7316B81B86C745D455B87DD /* ImageAssets.xcassets in Resources */,
-				E85FDA548778F6C0EA053D46B3353E65 /* PXLAdvancedProductCell.xib in Resources */,
-				AA6E3D2E37A61CA7D41874ED1504A253 /* PXLAlbumViewController.xib in Resources */,
-				2CC50574B91EBBE7844C88C085CF4CB8 /* PXLGridViewCell.xib in Resources */,
-				AC1803896CFCD4DF505DA73A03137480 /* PXLImageCell.xib in Resources */,
-				3394D762C836CF06CB8F44A1D1A7A90C /* PXLPhotoDetailViewController.xib in Resources */,
-				CB39F8B9F1A36B91304F10FE01009C5F /* PXLPhotoListViewCell.xib in Resources */,
-				8E2F71713A9DD32F0A8B92F3849AAB37 /* PXLPhotoProductView.xib in Resources */,
-				69A6547C73BA569C5AB034C9CFD6BCC8 /* PXLProductCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1452,70 +1458,6 @@
 				13E380A121E16DE58DE53F395E63500C /* Internal.swift in Sources */,
 				E9EF334182DB9C15C04801A4C59EDE81 /* Nuke-dummy.m in Sources */,
 				895E1D120EEF464C420B0316D07F1418 /* Task.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7551CB1205B0DFBC26F21A6A2BF0513D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				459B30FCC2DF003CAFDB62AC97987863 /* DateExtension.swift in Sources */,
-				8AD518AF50794FAED65998F136D213B9 /* HotspotReader.swift in Sources */,
-				3D1DEFEF3209E0CA052A7D840EDBDD66 /* ImageExtension.swift in Sources */,
-				5CFEE2B08A1E6E7E86752F105BD9A4B5 /* ImageSizeFetcher.swift in Sources */,
-				C2BCA1593D0D820FD0E053D8934D09C6 /* ImageSizeFetcherOp.swift in Sources */,
-				0023FE7DD5EFC5F81575AC74B5004FB9 /* ImageSizeFetcherParser.swift in Sources */,
-				48ACFEAB7F549C8AF701EDDCA965BE3B /* MultiLanguage.swift in Sources */,
-				28D229D4D1CCCB3DCB63F8B1EBA6BCCD /* PixleeSDK-dummy.m in Sources */,
-				2AF3047914912AFD9C9846AA84BD39D7 /* PXLAdvancedProductCell.swift in Sources */,
-				C574600183106021C2E79B5C762594A7 /* PXLAlbum.swift in Sources */,
-				85D7091CFC5BC3BDA91DAF816F6F3378 /* PXLAlbumFilterOptions.swift in Sources */,
-				84AD84ED787CD40481AB76D14761873F /* PXLAlbumNexPageResponseDTO.swift in Sources */,
-				9C8CF0F44AC5482FB6545DAF8EBF81BB /* PXLAlbumSortOptions.swift in Sources */,
-				E0B630006F6A6AA2122E11C7B49533E8 /* PXLAlbumViewController.swift in Sources */,
-				B1F60B65116A2718F0DA84089A7C987B /* PXLAlbumViewModel.swift in Sources */,
-				546EAA629990D45B1C39EE23D9018E03 /* PXLAnalyticsEvent.swift in Sources */,
-				D800AD88DAD56EC47ADF1AC89B761E93 /* PXLAnalyticsEventActionClicked.swift in Sources */,
-				188E7D939AAAE8B8BCED98ADE99FC983 /* PXLAnalyticsEventAddCart.swift in Sources */,
-				0047D6F8EE368CE53AE4E60800AA9FCF /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
-				C231F7D514AC5F17AAA6875C8F4C169B /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */,
-				E8B7B3872AD3103CA9F618D1E8FBB3F7 /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
-				336819412B358D3442A6A7F19FC545F7 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
-				7FB367A06D6FDBAC0339DD53C6F8A1B6 /* PXLAnalyticsEventWidgetVisible.swift in Sources */,
-				5C0A5897282CBB7600122A1B /* MosaicLayout.swift in Sources */,
-				00BD7844552257BF9F692A8CC536F805 /* PXLAnalyticsService.swift in Sources */,
-				FD8788ADE35B06B7B8B8D81ABB74CF0D /* PXLApiRequests.swift in Sources */,
-				74427850DB56E21C86CFA22B0B64E810 /* PXLClient.swift in Sources */,
-				49DE7A5F01E57CD4162F80E13A03D263 /* PXLDefaults.swift in Sources */,
-				ABCC3B706427A46DC564E6193EB99068 /* PXLError.swift in Sources */,
-				F2464030FED094BC494343ED1C89CF7E /* PXLErrorDTO.swift in Sources */,
-				8FD4058A78BFCF596696A2390BFA4CDD /* PXLGridHeaderView.swift in Sources */,
-				2607DF607272AFCCB1E0A402241312E4 /* PXLGridView.swift in Sources */,
-				00338865D922C7AF6A4345B3FD97FA05 /* PXLGridViewCell.swift in Sources */,
-				D00210BF54A1FD7BD0F8639C7A746778 /* PXLImageCell.swift in Sources */,
-				2654CF60F8420AF56E4619BDDE6F1CBB /* PXLImageUploadResponseDTO.swift in Sources */,
-				C06AD41333DC6966544C3D95516EF91C /* PXLLoadMoreFooterView.swift in Sources */,
-				C44B4C550F7957ED6BA0947737BC368A /* PXLNewImage.swift in Sources */,
-				CD139EC56F3C980A00772E8CAC5A2D35 /* PXLPhoto.swift in Sources */,
-				194410A7C1D4321978E6E6B6EF9C3B5D /* PXLPhotoConverter.swift in Sources */,
-				5C0A589A282CBC0500122A1B /* CGRectUtilities.swift in Sources */,
-				03AB24A03A5833EF6658FF449AD6746D /* PXLPhotoCropMode.swift in Sources */,
-				EE91CA7B8BA04219E33CA04B3EF5DD26 /* PXLPhotoDetailViewController.swift in Sources */,
-				00A393B7BE79D8B9D02F622DF896C327 /* PXLPhotoListView.swift in Sources */,
-				6AFB4F0256B2ACD1A18410E7ED879515 /* PXLPhotoListViewCell.swift in Sources */,
-				422E660611FFF0F79015ABA56DB79027 /* PXLPhotoProductView.swift in Sources */,
-				79A052159B0674177FDA0512D6AD5B57 /* PXLPhotoResponseDTO.swift in Sources */,
-				1D07F1F136DA9D197CFEC368F017CC8F /* PXLPhotoView.swift in Sources */,
-				2F050F27874701456E4B6512065993DA /* PXLPlainErrorDTO.swift in Sources */,
-				4844774EB3EC136AF76C652B0D08C532 /* PXLProduct.swift in Sources */,
-				BFE0BB78D31BD22DBD36096E1B5B6F88 /* PXLProductCell.swift in Sources */,
-				F0CFA636C8C8A8617CD93E1173E5F5FA /* PXLProductConverter.swift in Sources */,
-				077B1DC984F8F5012B022E0FA5070A2F /* PXLProductDTO.swift in Sources */,
-				9764E87985B1E1D1BC38C9136DCD3204 /* PXLWidgetView.swift in Sources */,
-				C43CCA03DEDB243F43391423C9430C39 /* StringExtension.swift in Sources */,
-				3DF6BECDEAF2B0D08076386CADEDA1DF /* SwiftCrypto.swift in Sources */,
-				7AAA71F596B037A9B95C3EDB0F2B8CC0 /* UIImage+Gif.swift in Sources */,
-				B3C417C001DC1D1478A7432167955B98 /* WidgetSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,102 +1539,203 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FABD6EAEE787448EC473FFED72B53893 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFE7135D3C421AC477A5A3BAD23F7A0A /* CGRectUtilities.swift in Sources */,
+				837659667A2B7900C8344B7137DD8464 /* DateExtension.swift in Sources */,
+				60AB1E39FA959B907FDFF19750E67E8F /* HotspotReader.swift in Sources */,
+				A7ED74290F3B6BDDFFF71E3310E059C4 /* ImageExtension.swift in Sources */,
+				7DFEE3A897513A59321AB84B84D6DDA6 /* ImageSizeFetcher.swift in Sources */,
+				409DD0F84CE5B9E6674B051383BFDC03 /* ImageSizeFetcherOp.swift in Sources */,
+				C835ABBF268DAC433F58A9E0F4FB86B0 /* ImageSizeFetcherParser.swift in Sources */,
+				DBF321E0D8CBE767872885CBB31ED953 /* MosaicLayout.swift in Sources */,
+				AAFD5D3541D80D0682DE321908A389CA /* MosaicLayoutUtil.swift in Sources */,
+				09C9E9AE80A906052CD8BA83C48AFFE2 /* MultiLanguage.swift in Sources */,
+				BE70DCA85965023729C003D68A3A5D40 /* PixleeSDK-dummy.m in Sources */,
+				03C8C0CA56795CA90364E594AEBAC263 /* PXLAdvancedProductCell.swift in Sources */,
+				786BD6D30AFA9DB6453E2818FC9D147D /* PXLAlbum.swift in Sources */,
+				8A118682EEDB9C07E28CAFCB4730C709 /* PXLAlbumFilterOptions.swift in Sources */,
+				47BDB6285712060CECE17C1D942151F6 /* PXLAlbumNexPageResponseDTO.swift in Sources */,
+				7C088E21DAD2D3C44D2CBE524620610E /* PXLAlbumSortOptions.swift in Sources */,
+				6C0FFEE5070BE813AB6447A6F1446A62 /* PXLAlbumViewController.swift in Sources */,
+				80B2D9072CB352563DCB3CF230EAF3D6 /* PXLAlbumViewModel.swift in Sources */,
+				BCE51D81585AD7A3635744EBB526617B /* PXLAnalyticsEvent.swift in Sources */,
+				27767DC5345A781E0D13593E89E285D8 /* PXLAnalyticsEventActionClicked.swift in Sources */,
+				018A8AA35CA9631D35BF9CC9F14F44EE /* PXLAnalyticsEventAddCart.swift in Sources */,
+				60B3AB55D0285370F282EEDDDA8B4553 /* PXLAnalyticsEventConvertedPhoto.swift in Sources */,
+				6B64DA5047BCBBB14E0B9EC251F11BD5 /* PXLAnalyticsEventLoadMoreClicked.swift in Sources */,
+				238226EC41EECB168C94390189E6851A /* PXLAnalyticsEventOpenedLightBox.swift in Sources */,
+				5C25A6744C5E18BC0DEC363996EDB864 /* PXLAnalyticsEventOpenedWidget.swift in Sources */,
+				13FC775F9D33F3AC9F8A8A6C63C733E0 /* PXLAnalyticsEventWidgetVisible.swift in Sources */,
+				E79F5900F143143591231F1997169B0A /* PXLAnalyticsService.swift in Sources */,
+				4120DEA9EE9417865B2CB3340EAACC02 /* PXLApiRequests.swift in Sources */,
+				1B02A1B3DC444495DDCD142F8584704E /* PXLClient.swift in Sources */,
+				58FF3ACBBE7BB0735F7B089FFFFAF69F /* PXLDefaults.swift in Sources */,
+				8FBCA6755F12FC0089E23F4DE74F4707 /* PXLError.swift in Sources */,
+				38A07937B773DA6B10C6C947734EB959 /* PXLErrorDTO.swift in Sources */,
+				5C5609EC283B3A2A0018D39C /* MosaicInfo.swift in Sources */,
+				90BD65294E31BC1D9633B42BD082091C /* PXLGridHeaderView.swift in Sources */,
+				77B5F00BE6471F7696BAF9CFD29CA4BE /* PXLGridView.swift in Sources */,
+				431C13D09B592DBE0D1EBBE2E7664976 /* PXLGridViewCell.swift in Sources */,
+				7EC34BAD5EFBB942D6737ABDAB270B10 /* PXLImageCell.swift in Sources */,
+				94ABD4A0629FAD06941CB88D0184E4F2 /* PXLImageUploadResponseDTO.swift in Sources */,
+				A29976974E122623FD6A2444CBE210D5 /* PXLLoadMoreFooterView.swift in Sources */,
+				883D87EF203239EEF4C4753EEB177435 /* PXLNewImage.swift in Sources */,
+				93EC29BB161AC488B7318CF82A987D4F /* PXLPhoto.swift in Sources */,
+				690766A60D244EA1E17C07A3E0E32620 /* PXLPhotoConverter.swift in Sources */,
+				4FEE9F261C4C886B48864D8ED776A869 /* PXLPhotoCropMode.swift in Sources */,
+				DD1A54E98EA16A14AB6205111F76DE46 /* PXLPhotoDetailViewController.swift in Sources */,
+				D933A88DC49AE4B8EDD90D97F7FCE14A /* PXLPhotoListView.swift in Sources */,
+				BFB3FF689ADEC6CE3A99F74A9FB6B5A8 /* PXLPhotoListViewCell.swift in Sources */,
+				A5DD0240DB0AF0A1118EB8C1A8046C30 /* PXLPhotoProductView.swift in Sources */,
+				8370B442DFF962286BB94E6B9CCDF963 /* PXLPhotoResponseDTO.swift in Sources */,
+				4CFEEA62FC2CF11477ADB7F844EC5467 /* PXLPhotoView.swift in Sources */,
+				AE5449134C3E5296717CADE5698A4870 /* PXLPlainErrorDTO.swift in Sources */,
+				460E27B48234C60B239E6D9E8A7CB1F2 /* PXLProduct.swift in Sources */,
+				1434BA5168DDBB0E9E2F8F8F07894FF6 /* PXLProductCell.swift in Sources */,
+				15C387496940B1E54C52E96862E41AF8 /* PXLProductConverter.swift in Sources */,
+				ED207B36C1E0727C38F4E00A1E4A3D5F /* PXLProductDTO.swift in Sources */,
+				B78AD78F43D6CB40B4415908F74560B3 /* PXLWidgetView.swift in Sources */,
+				C176B0C579882973282FA848CBEBF3C6 /* StringExtension.swift in Sources */,
+				4AA5FAE6274B5DA042C2C474A9453677 /* SwiftCrypto.swift in Sources */,
+				705CBD0599069CB5F5F7A169B4AC0F3B /* UIImage+Gif.swift in Sources */,
+				4FE031887FE0DFAE79F444F2ED49FE7D /* WidgetSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		083C85F6DCC6A273F95128FBDDD739ED /* PBXTargetDependency */ = {
+		14E51B20D2961FB646FB585531D4A7CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Nuke;
-			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
-			targetProxy = BFFA0C3A07C67063EC2C2AA9CBE8D145 /* PBXContainerItemProxy */;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 6DB46D3E8470ABDC93FF1627EBCC235C /* PBXContainerItemProxy */;
 		};
-		095032D0CECAB5002FB9FA07D561F197 /* PBXTargetDependency */ = {
+		1EA49508AE0E39C3027A49B656B2592B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = InfiniteLayout;
 			target = F431B0C3A1EBB813B423AB6806B500A6 /* InfiniteLayout */;
-			targetProxy = A254DFFD8D5F7D0AE38425AFF1E1DE10 /* PBXContainerItemProxy */;
+			targetProxy = AD567F8EDC878B4137302D48BF85A935 /* PBXContainerItemProxy */;
 		};
-		19F334D56CB92F8E67E0FE68E53D1F4C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Nuke;
-			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
-			targetProxy = 650539C937D755996825907CDB2ED6F4 /* PBXContainerItemProxy */;
-		};
-		311146B58DA7614C4A5110621F1C02CD /* PBXTargetDependency */ = {
+		22726DB74F4E032CBB3CBDCA1397A63E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Gifu;
 			target = 830B5AB9E16163B4A1BA339D625FE46C /* Gifu */;
-			targetProxy = 2F92420B1AA4A4B61BC3E2C0335B234B /* PBXContainerItemProxy */;
+			targetProxy = D27CAAC8EF040FB368D1CC5C019022DC /* PBXContainerItemProxy */;
 		};
-		3382DCED101BE2816FE8F7AE7D148467 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
-			targetProxy = D7CD8A1CFCEE9907031C7D94455AAD35 /* PBXContainerItemProxy */;
-		};
-		619826F249661A38C14BB40E1294DCC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
-			targetProxy = 1ACF8510687275CCEDCB1C177348E1DD /* PBXContainerItemProxy */;
-		};
-		6253B731CB75BAC4C3E57B909E479688 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Nuke;
-			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
-			targetProxy = 110254AAADC470396436D83424B7527B /* PBXContainerItemProxy */;
-		};
-		68C2A77D1CC95CDA6374152BC0CDC419 /* PBXTargetDependency */ = {
+		28AE7529958C42FAFA214D6C2915138C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = InfiniteLayout;
 			target = F431B0C3A1EBB813B423AB6806B500A6 /* InfiniteLayout */;
-			targetProxy = 07909D0DE4CB71CC97B5734AA3B5B3CC /* PBXContainerItemProxy */;
+			targetProxy = 8B43CF9BC9FD3DBA70236474D7FBDD67 /* PBXContainerItemProxy */;
 		};
-		6BFB038AD4B2800A2F55613F2D67303A /* PBXTargetDependency */ = {
+		6A027E565E0A38307CBB4A1E40729752 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PixleeSDK;
 			target = 237E6495AF7D5CEB369A40CB38EECE7D /* PixleeSDK */;
-			targetProxy = 325B5209D4E0328B42B5A67D9284E7A3 /* PBXContainerItemProxy */;
+			targetProxy = 2CE274D438C4988838561A75A89B1DA1 /* PBXContainerItemProxy */;
 		};
-		7437A8275A87DF581BF27B16B6659C61 /* PBXTargetDependency */ = {
+		7E1B3EBE3295BA6F41ABD28BECACCB33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 4320BFCBF55E4CFD7ACF7316B83D5A79 /* PBXContainerItemProxy */;
+		};
+		8BDF0337A27CBC412792DF74599DAEBA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = InfiniteLayout;
 			target = F431B0C3A1EBB813B423AB6806B500A6 /* InfiniteLayout */;
-			targetProxy = 350D84367E1BF7144FA6510D0BEC724B /* PBXContainerItemProxy */;
+			targetProxy = 7D4B02E36FC4F47B0B9DCF34B7A2E8C9 /* PBXContainerItemProxy */;
 		};
-		80127C983C2E7B87A923E7D0CB9E158B /* PBXTargetDependency */ = {
+		90D94965EA2F7C56B9BDD7B8E1DD5CCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Gifu;
+			target = 830B5AB9E16163B4A1BA339D625FE46C /* Gifu */;
+			targetProxy = 161B1F87187F608706019EEDF11BFDFC /* PBXContainerItemProxy */;
+		};
+		9A18DF3856E2EC3FF6592DC76F1F3E83 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Example";
 			target = 0AEE99A309977BD12A049FF48AF9BA4B /* Pods-Example */;
-			targetProxy = 2EC93F2E006AEBEBE4243123E5D54168 /* PBXContainerItemProxy */;
+			targetProxy = 896B0C82B4277C82C3A482FF48237014 /* PBXContainerItemProxy */;
 		};
-		9BE19C1BBBFE8689C6474E0A7FFAEF9E /* PBXTargetDependency */ = {
+		C545929EF29CBD18E2ACC633A8BE1F55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Nuke;
+			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
+			targetProxy = FF87993DA56E93956CF1EEAAFE1F05BD /* PBXContainerItemProxy */;
+		};
+		D74217792CC9B0EFFCF03CAE84CE430D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
-			targetProxy = 58BD5EE84AC422EEBF6EB21A6F4423C3 /* PBXContainerItemProxy */;
+			targetProxy = 74D5BCEDD3620CC816CDEBE71374F93B /* PBXContainerItemProxy */;
 		};
-		B255F8325C026CD20F5121943218FA81 /* PBXTargetDependency */ = {
+		D8440B8DE8340598D7B54DD125614FA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Gifu;
+			target = 830B5AB9E16163B4A1BA339D625FE46C /* Gifu */;
+			targetProxy = 1470690598B5CAD68AC87F89478C1300 /* PBXContainerItemProxy */;
+		};
+		DCD780F2B6DFED15C7E48535F0F843BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Nuke;
+			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
+			targetProxy = 411E177BDE5DE78A5485ADB259B41B45 /* PBXContainerItemProxy */;
+		};
+		E5227BD7A222DE3BA0946D54CAB9E74B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Nuke;
+			target = 062A64896E847A6749F58B6BA9A931B1 /* Nuke */;
+			targetProxy = 6DF564CFAFE88001FB552D7D2FA9B632 /* PBXContainerItemProxy */;
+		};
+		EEB6EB7A8848E10127DABA4707F76E57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PixleeSDK;
 			target = 237E6495AF7D5CEB369A40CB38EECE7D /* PixleeSDK */;
-			targetProxy = 823B59F8E3D13CDCF04706581D65A837 /* PBXContainerItemProxy */;
-		};
-		CADA3CD2FA66642DCB1143032375DA3D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Gifu;
-			target = 830B5AB9E16163B4A1BA339D625FE46C /* Gifu */;
-			targetProxy = 3FA8EB1F9AC210D7E69C1BE3BA793C16 /* PBXContainerItemProxy */;
-		};
-		FB7CAD5B83EAE00DF984F835A7875B33 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Gifu;
-			target = 830B5AB9E16163B4A1BA339D625FE46C /* Gifu */;
-			targetProxy = 82413037846E23874E05012AF37F0AB8 /* PBXContainerItemProxy */;
+			targetProxy = 9AC90C116FB1DDFEB473A0BA220D1548 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		06C367C36CF41FB3BB1BB1D6DB545390 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D494FEE7C365297DD3691CEF1764F1D /* PixleeSDK.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PixleeSDK/PixleeSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PixleeSDK/PixleeSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PixleeSDK/PixleeSDK.modulemap";
+				PRODUCT_MODULE_NAME = PixleeSDK;
+				PRODUCT_NAME = PixleeSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		2109B82765415C044FAD6938C438315E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE701A3C3F479432B9ACCD94B36B4F83 /* Pods-Example-ExampleUITests.release.xcconfig */;
@@ -1874,42 +1917,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		6F2C70141D7D2C95DDAF9929EF04A95B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A2949F5E4AD3422778226041F73FA1D /* PixleeSDK.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PixleeSDK/PixleeSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PixleeSDK/PixleeSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/PixleeSDK/PixleeSDK.modulemap";
-				PRODUCT_MODULE_NAME = PixleeSDK;
-				PRODUCT_NAME = PixleeSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		79975F42C9F19916378765156F29ED94 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2254,6 +2261,42 @@
 			};
 			name = Debug;
 		};
+		AD7EE6F6B292962A3ADB6C6E772D8AC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A2949F5E4AD3422778226041F73FA1D /* PixleeSDK.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PixleeSDK/PixleeSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PixleeSDK/PixleeSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PixleeSDK/PixleeSDK.modulemap";
+				PRODUCT_MODULE_NAME = PixleeSDK;
+				PRODUCT_NAME = PixleeSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C3C32413428D472DD4D67FE4F5215DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C54078A65F1E57154BA0DF9535462C54 /* Pods-ExampleTests.release.xcconfig */;
@@ -2328,41 +2371,6 @@
 			};
 			name = Release;
 		};
-		DA73226D5FAA485A6C7808484DD3B90B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D494FEE7C365297DD3691CEF1764F1D /* PixleeSDK.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PixleeSDK/PixleeSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PixleeSDK/PixleeSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/PixleeSDK/PixleeSDK.modulemap";
-				PRODUCT_MODULE_NAME = PixleeSDK;
-				PRODUCT_NAME = PixleeSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F4B696BEEDFD9EE007B66DCB66E8108E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1A48000F53DFC4BA3C999C5C38FF4F65 /* InfiniteLayout.debug.xcconfig */;
@@ -2400,6 +2408,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C8C503F32E9753F60BA8470A6C9DBFB /* Build configuration list for PBXNativeTarget "PixleeSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06C367C36CF41FB3BB1BB1D6DB545390 /* Debug */,
+				AD7EE6F6B292962A3ADB6C6E772D8AC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3A449BD22D5BEC30E3D9832D7A3E7148 /* Build configuration list for PBXNativeTarget "Nuke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2450,15 +2467,6 @@
 			buildConfigurations = (
 				9E98C04A5FA16D8AD5D48C1861179497 /* Debug */,
 				90A4588B06F8745E7FCD1B00204D6241 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		91DD7EF5B0ADF4396E7EB021D9223CAE /* Build configuration list for PBXNativeTarget "PixleeSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA73226D5FAA485A6C7808484DD3B90B /* Debug */,
-				6F2C70141D7D2C95DDAF9929EF04A95B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

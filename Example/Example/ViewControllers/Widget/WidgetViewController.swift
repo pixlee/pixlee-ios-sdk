@@ -26,7 +26,7 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            album.filterOptions = PXLAlbumFilterOptions(hasProduct: true)
+            album.filterOptions = PXLAlbumFilterOptions()
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             album.perPage = 18
             widgetView.searchingAlbum = album
@@ -70,30 +70,42 @@ extension WidgetViewController: PXLPhotoViewDelegate {
 // MARK: Widget's UI settings and scroll events
 extension WidgetViewController: PXLWidgetViewDelegate {
     func setWidgetSpec() -> WidgetSpec {
-        // A example of List
-        /*WidgetSpec.list(.init(cellHeight: 350,
-                isVideoMutted: true,
-                autoVideoPlayEnabled: true,
+        // An example of List
+//        WidgetSpec.list(.init(cellHeight: 350,
+//                              isVideoMutted: true,
+//                              autoVideoPlayEnabled: true,
+//                              loadMore: .init(cellHeight: 100.0,
+//                                              cellPadding: 10.0,
+//                                              text: "LoadMore",
+//                                              textColor: UIColor.darkGray,
+//                                              textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+//                                              loadingStyle: .gray)))
+        // An example of Grid
+//        WidgetSpec.grid(
+//                .init(
+//                        cellHeight: 350,
+//                        cellPadding: 4,
+//                        loadMore: .init(cellHeight: 100.0,
+//                                cellPadding: 10.0,
+//                                text: "LoadMore",
+//                                textColor: UIColor.darkGray,
+//                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+//                                loadingStyle: .gray),
+//                        header: .image(.remotePath(.init(headerHeight: 200,
+//                                headerContentMode: .scaleAspectFill,
+//                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+        
+        // An example of Mosaic
+        WidgetSpec.mosaic(
+            .init(
+                mosaicSpan: .five,
+                cellPadding: 1,
                 loadMore: .init(cellHeight: 100.0,
-                        cellPadding: 10.0,
-                        text: "LoadMore",
-                        textColor: UIColor.darkGray,
-                        textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
-                        loadingStyle: .gray)))*/
-        // A example of Grid
-        WidgetSpec.grid(
-                .init(
-                        cellHeight: 350,
-                        cellPadding: 4,
-                        loadMore: .init(cellHeight: 100.0,
                                 cellPadding: 10.0,
                                 text: "LoadMore",
                                 textColor: UIColor.darkGray,
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
-                                loadingStyle: .gray),
-                        header: .image(.remotePath(.init(headerHeight: 200,
-                                headerContentMode: .scaleAspectFill,
-                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+                                loadingStyle: .gray)))
     }
 
     func setWidgetType() -> String {
@@ -106,7 +118,8 @@ extension WidgetViewController: PXLWidgetViewDelegate {
         }
         // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
 
-        cell.setupCell(photo: photo, title: "\(photo.id)", subtitle: "\(photo.id)", buttonTitle: "\(photo.id)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+//        cell.setupCell(photo: photo, title: "\(photo.id)", subtitle: "\(photo.id)", buttonTitle: "\(photo.id)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
+        cell.setupCell(photo: photo, title: nil, subtitle: nil, buttonTitle: nil, configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

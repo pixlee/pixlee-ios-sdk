@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
   spec.author           = { 'Sungjun Hong' => 'sungjun@pixleeteam.com' }
   spec.source           = { :git => 'https://github.com/pixlee/pixlee-ios-sdk.git', :tag => spec.version.to_s}
 
-  spec.ios.deployment_target = '10.0'
+  spec.ios.deployment_target = '13.0'
   spec.swift_version = '5.0'
 
   spec.default_subspec = 'SDK'
