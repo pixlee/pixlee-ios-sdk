@@ -10,15 +10,20 @@ import Foundation
 class MosaicLayoutUtil {
     var layout: UICollectionViewCompositionalLayout? = nil
     
-    func create (isLandscape: Bool = false, mosaicSpan: MosaicSpan = .four, cellPadding: CGFloat) -> UICollectionViewLayout {
+    func create (mosaicSpan: MosaicSpan? = .four, cellPadding: CGFloat) -> UICollectionViewLayout {
+        let isLandscape = mosaicSpan == nil
         let list: [MosaicInfo] = {
-            switch(mosaicSpan) {
-            case .three:
-                return get3SpanList(cellPadding: cellPadding)
-            case .four:
-                return get4SpanList(cellPadding: cellPadding)
-            case .five:
-                return get5SpanList(cellPadding: cellPadding)
+            if isLandscape {
+                return get1SpanHorizontalList(cellPadding: cellPadding)
+            } else {
+                switch(mosaicSpan!) {
+                case .three:
+                    return get3SpanList(cellPadding: cellPadding)
+                case .four:
+                    return get4SpanList(cellPadding: cellPadding)
+                case .five:
+                    return get5SpanList(cellPadding: cellPadding)
+                }
             }
         }()
         
@@ -35,20 +40,40 @@ class MosaicLayoutUtil {
             }
         }
         
-        let megaGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(heightRatio)),
-            subitems: array)
+        let megaGroup: NSCollectionLayoutGroup = {
+            if isLandscape {
+                return NSCollectionLayoutGroup.horizontal(
+                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(heightRatio), heightDimension: .fractionalHeight(1)),
+                    subitems: array)
+            } else {
+                return NSCollectionLayoutGroup.vertical(
+                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(heightRatio)),
+                    subitems: array)
+            }
+        }()
         
         
         let section = NSCollectionLayoutSection(group: megaGroup)
         section.contentInsets = NSDirectionalEdgeInsets(top: cellPadding, leading: cellPadding, bottom: cellPadding, trailing: cellPadding)
         
-        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100.0))
+        let headerFooterSize: NSCollectionLayoutSize = {
+            if isLandscape {
+                return NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalHeight(1))
+            } else {
+                return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100.0))
+            }
+        }()
         
         let footer = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerFooterSize,
             elementKind: UICollectionView.elementKindSectionFooter,
-            alignment: .bottom
+            alignment: {
+                if isLandscape{
+                    return NSRectAlignment.trailing
+                } else {
+                    return NSRectAlignment.bottom
+                }
+            }()
         )
         
         section.boundarySupplementaryItems = [footer]
@@ -60,6 +85,12 @@ class MosaicLayoutUtil {
             }
         }
         
+        if isLandscape {
+            let config = UICollectionViewCompositionalLayoutConfiguration()
+            config.scrollDirection = .horizontal
+            layout?.configuration = config
+        }
+        
         return layout!
         
     }
@@ -68,6 +99,17 @@ class MosaicLayoutUtil {
         return MosaicInfo(heightRatio: heightRatio , collectionLayoutGroup: NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(heightRatio)),
             subitems: subItems))
+    }
+    
+    func get1SpanHorizontalList(cellPadding: CGFloat) -> [MosaicInfo] {
+        let originalSizeItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalHeight(1)))
+        originalSizeItem.contentInsets = NSDirectionalEdgeInsets(top: cellPadding, leading: cellPadding, bottom: cellPadding, trailing: cellPadding)
+        
+        return [
+            MosaicInfo(heightRatio: 1 , collectionLayoutGroup: NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalHeight(1)),
+                subitems: [originalSizeItem])),
+        ]
     }
     
     func get3SpanList(cellPadding: CGFloat) -> [MosaicInfo] {

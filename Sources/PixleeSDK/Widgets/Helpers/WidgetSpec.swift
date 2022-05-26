@@ -55,6 +55,16 @@ public enum WidgetSpec {
         let cellPadding: CGFloat
         let loadMore: LoadMore
     }
+    
+    open class Horizontal {
+        public init(cellPadding: CGFloat, loadMore: LoadMore) {
+            self.cellPadding = cellPadding
+            self.loadMore = loadMore
+        }
+        let cellPadding: CGFloat
+        let loadMore: LoadMore
+    }
+
 
     // Foot UI: LoadMore Button with an IndicatorView
     open class LoadMore {
@@ -130,4 +140,5 @@ public enum WidgetSpec {
     case list(List)
     case grid(Grid)
     case mosaic(Mosaic)
+    case horizontal(Horizontal)
 }

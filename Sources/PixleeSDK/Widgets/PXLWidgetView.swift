@@ -50,12 +50,21 @@ public class PXLWidgetView: UIView {
                 switch widgetSpec {
                 case .mosaic(let mosaic):
                     collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: mosaic.mosaicSpan, cellPadding: CGFloat(mosaic.cellPadding)))
+                case .horizontal(let horizontal):
+                    collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: nil, cellPadding: CGFloat(horizontal.cellPadding)))
+                    print("checking UICollectionViewFlowLayout")
+                    
+                    
+//                    collectionView?.isDirectionalLockEnabled = true
+//                    collectionView?.alwaysBounceVertical = false
+                    
+                    
                 default :
                     collectionView = InfiniteCollectionView(frame: frame)
                 }
             }
             
-            if !isMosaic() {
+            if !isHorizontalOrMosaic() {
                 flowLayout.scrollDirection = .vertical
             }
             
@@ -149,7 +158,7 @@ public class PXLWidgetView: UIView {
 
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
-        let height = cellHeight
+        let height = cellSize
 
         if let widgetSpec = delegate?.setWidgetSpec() {
             switch widgetSpec {
@@ -175,10 +184,12 @@ public class PXLWidgetView: UIView {
                 debugPrint("setupCellSize() for list")
             case .mosaic(_):
                 debugPrint("setupCellSize() for mosaic")
+            case .horizontal(_):
+                debugPrint("setupCellSize() for horizontal")
             }
         }
 
-        guard width > 0, height > 0, !isMosaic() else {
+        guard width > 0, height > 0, !isHorizontalOrMosaic() else {
             return
         }
         if isMultipleColumnsEnabled {
@@ -200,6 +211,21 @@ public class PXLWidgetView: UIView {
             return false
         }
     }
+    
+    private func isHorizontalOrMosaic () -> Bool {
+        if let widgetSpec = delegate?.setWidgetSpec() {
+            switch widgetSpec {
+            case .mosaic(_):
+                return true
+            case .horizontal(_):
+                return true
+            default :
+                return false
+            }
+        } else {
+            return false
+        }
+    }
 
     private var cellPadding: CGFloat {
         guard case let .grid(grid) = delegate?.setWidgetSpec() else {
@@ -208,7 +234,7 @@ public class PXLWidgetView: UIView {
         return grid.cellPadding
     }
 
-    private var cellHeight: CGFloat {
+    private var cellSize: CGFloat {
         guard let widgetSpec = delegate?.setWidgetSpec() else {
             return 200.0
         }
@@ -218,6 +244,8 @@ public class PXLWidgetView: UIView {
         case .list(let list):
             return list.cellHeight
         case .mosaic(_):
+            return 0
+        case .horizontal(_):
             return 0
         }
     }
@@ -421,6 +449,8 @@ extension PXLWidgetView: UICollectionViewDataSource {
                 loadMore = list.loadMore
             case .mosaic(let mosaic):
                 loadMore = mosaic.loadMore
+            case .horizontal(let horizontal):
+                loadMore = horizontal.loadMore
             }
             
             footer.viewModel = .init(loadMoreType: loadMoreType,
@@ -464,7 +494,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
             let index = indexPath.row
             delegate?.setupPhotoCell(cell: cell, photo: items[index])
             cell.isHighlihtingEnabled = autoVideoPlayEnabled
-            if !isMosaic() {
+            if !isHorizontalOrMosaic() {
                 cell.cellWidth.constant = flowLayout.itemSize.width
                 cell.cellHeight.constant = flowLayout.itemSize.height
             }
@@ -506,6 +536,8 @@ extension PXLWidgetView: UICollectionViewDelegateFlowLayout {
             loadMore = list.loadMore
         case .mosaic(let mosaic):
             loadMore = mosaic.loadMore
+        case .horizontal(let horizontal):
+            loadMore = horizontal.loadMore
         }
 
         return CGSize(width: collectionView.frame.width, height: loadMore.cellHeight)
@@ -539,7 +571,7 @@ extension PXLWidgetView: UICollectionViewDelegate {
     }
 
     func adjustHighlight() {
-        guard let collectionView = collectionView, !isMosaic() else {
+        guard let collectionView = collectionView, !isHorizontalOrMosaic() else {
             return
         }
 
