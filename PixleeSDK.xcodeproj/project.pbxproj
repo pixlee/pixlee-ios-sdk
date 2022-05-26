@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C5CEF3E283F7F0200E6A1CA /* MosaicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5CEF2E283F7F0200E6A1CA /* MosaicInfo.swift */; };
+		5C5CEF41283F7F1A00E6A1CA /* MosaicLayoutUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5CEF40283F7F1A00E6A1CA /* MosaicLayoutUtil.swift */; };
 		5C93620D278EA1EF00F2AB78 /* InfiniteLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C93620C278EA1EF00F2AB78 /* InfiniteLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C93620E278EA20C00F2AB78 /* InfiniteLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C936205278EA1DA00F2AB78 /* InfiniteLayout.framework */; };
 		5C93620F278EA22E00F2AB78 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB2834C278D639F0069C152 /* Gifu.framework */; };
@@ -222,6 +224,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C5CEF2E283F7F0200E6A1CA /* MosaicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicInfo.swift; sourceTree = "<group>"; };
+		5C5CEF40283F7F1A00E6A1CA /* MosaicLayoutUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayoutUtil.swift; sourceTree = "<group>"; };
 		5C936205278EA1DA00F2AB78 /* InfiniteLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InfiniteLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C93620C278EA1EF00F2AB78 /* InfiniteLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteLayout.h; sourceTree = "<group>"; };
 		5C936210278EA2BE00F2AB78 /* InfiniteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteCollectionView.swift; sourceTree = "<group>"; };
@@ -343,6 +347,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C5CEF3F283F7F1A00E6A1CA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5C5CEF40283F7F1A00E6A1CA /* MosaicLayoutUtil.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		5C936206278EA1DA00F2AB78 /* InfiniteLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +522,7 @@
 				5CB282EF278D623C0069C152 /* PXLWidgetView.swift */,
 				5CB282F0278D623C0069C152 /* PXLGridView.swift */,
 				5CB282F1278D623C0069C152 /* Helpers */,
+				5C5CEF3F283F7F1A00E6A1CA /* Utilities */,
 				5CB282F8278D623C0069C152 /* PXLPhotoProductView.xib */,
 			);
 			name = Widgets;
@@ -519,6 +532,7 @@
 		5CB282F1278D623C0069C152 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5C5CEF2E283F7F0200E6A1CA /* MosaicInfo.swift */,
 				5CB282F2278D623C0069C152 /* UIImage+Gif.swift */,
 				5CB282F3278D623C0069C152 /* ImageSizeFetcherParser.swift */,
 				5CB282F4278D623C0069C152 /* HotspotReader.swift */,
@@ -948,6 +962,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB28309278D623C0069C152 /* PXLPhotoResponseDTO.swift in Sources */,
+				5C5CEF3E283F7F0200E6A1CA /* MosaicInfo.swift in Sources */,
 				5CB28307278D623C0069C152 /* PXLDefaults.swift in Sources */,
 				5CB28314278D623C0069C152 /* PXLAdvancedProductCell.swift in Sources */,
 				5CB28320278D623C0069C152 /* PXLAlbumViewModel.swift in Sources */,
@@ -995,6 +1010,7 @@
 				5CB28321278D623C0069C152 /* PXLPhotoDetailViewController.swift in Sources */,
 				5CB28331278D623C0069C152 /* PXLGridView.swift in Sources */,
 				5CB2833B278D623C0069C152 /* PXLProductConverter.swift in Sources */,
+				5C5CEF41283F7F1A00E6A1CA /* MosaicLayoutUtil.swift in Sources */,
 				5CB2831C278D623C0069C152 /* PXLProductCell.swift in Sources */,
 				5CB2831D278D623C0069C152 /* PXLPhotoListViewCell.swift in Sources */,
 				5CB28316278D623C0069C152 /* PXLGridViewCell.swift in Sources */,
@@ -1312,7 +1328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1369,7 +1385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -26,7 +26,7 @@ class WidgetViewController: UIViewController {
         if let pixleeCredentials = try? PixleeCredentials.create() {
             let albumId = pixleeCredentials.albumId
             let album = PXLAlbum(identifier: albumId)
-            album.filterOptions = PXLAlbumFilterOptions()
+            album.filterOptions = PXLAlbumFilterOptions(hasPermission: true)
             album.sortOptions = PXLAlbumSortOptions(sortType: .approvedTime, ascending: false)
             album.perPage = 18
             widgetView.searchingAlbum = album
@@ -35,19 +35,10 @@ class WidgetViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/5)
     }
 
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    var videoCell: PXLGridViewCell?
+    
 }
 
 // MARK: - Photo's click-event listeners
@@ -106,8 +97,8 @@ extension WidgetViewController: PXLWidgetViewDelegate {
                                 textColor: UIColor.darkGray,
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
                                 loadingStyle: .gray)))
-        
-        // An example of Mosaic
+
+        // An example of Horizontal
 //        WidgetSpec.horizontal(
 //            .init(
 //                cellPadding: 1,
@@ -124,9 +115,6 @@ extension WidgetViewController: PXLWidgetViewDelegate {
     }
 
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
-        if photo.isVideo {
-            videoCell = cell
-        }
         // Example(all elements) : cell.setupCell(photo: photo, title: "Title", subtitle: "subtitle", buttonTitle: "Button", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
 
 //        cell.setupCell(photo: photo, title: "\(photo.id)", subtitle: "\(photo.id)", buttonTitle: "\(photo.id)", configuration: PXLPhotoViewConfiguration(cropMode: .centerFill), delegate: self)
@@ -134,6 +122,6 @@ extension WidgetViewController: PXLWidgetViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // print("scrollViewDidScroll \(scrollView)")
+         print("scrollViewDidScroll \(scrollView)")
     }
 }

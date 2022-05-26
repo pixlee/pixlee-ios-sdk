@@ -5,7 +5,7 @@
 //  Created by Sungjun Hong on 5/23/22.
 //
 
-import Foundation
+import UIKit
 
 struct MosaicInfo {
     let heightRatio: CGFloat
