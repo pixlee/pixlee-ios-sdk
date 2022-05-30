@@ -629,12 +629,12 @@ For both Grid and List: load more UI (customizable color, font, text, height of 
     - Customizable text
 
 | Grid Mode | List Mode | Horizontal |
-| ------ | ------ |
-| <img src="https://i.ibb.co/YWxZfJ7/ezgif-com-gif-maker.gif" width="100%" /> | <img src="https://i.ibb.co/ZWjVyJp/ezgif-com-gif-maker-1.gif" width="100%" /> | <img src="https://i.ibb.co/L98KQp2/horizontal.gif" width="100%" />
+| ------ | ------ | ------ |
+| <img src="https://i.ibb.co/YWxZfJ7/ezgif-com-gif-maker.gif" width="200" /> | <img src="https://i.ibb.co/ZWjVyJp/ezgif-com-gif-maker-1.gif" width="200" /> | <img src="https://i.ibb.co/L98KQp2/horizontal.gif" width="200" /> |
 
 | Mosaic with mosaicSpan=.three | Mosaic with mosaicSpan=.four) | Mosaic with mosaicSpan=.five |
-| ------ | ------ || ------ |
-| <img src="https://i.ibb.co/HGtNHjB/mosaic3.gif" width="100%" /> | <img src="https://i.ibb.co/xXZPYfw/mosaic4.gif" width="100%" /> | <img src="https://i.ibb.co/F0zG6QC/mosaic5.gif" width="100%" /> |
+| ------ | ------ | ------ |
+| <img src="https://i.ibb.co/HGtNHjB/mosaic3.gif" width="200" /> | <img src="https://i.ibb.co/KWZtz9L/mosaic4.gif" width="200" /> | <img src="https://i.ibb.co/brsCdhg/mosaic5.gif" width="200" /> |
 #### Example
 
 ```swift
