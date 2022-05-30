@@ -76,8 +76,8 @@ class WidgetViewController: UIViewController {
         }()
         widgetView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: widgetViewHeight)
         
-        if let lable = label{
-            lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
+        if let label = label{
+            label.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
         }
     }
 
