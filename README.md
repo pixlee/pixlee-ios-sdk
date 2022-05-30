@@ -628,10 +628,13 @@ For both Grid and List: load more UI (customizable color, font, text, height of 
     - Image URL
     - Customizable text
 
-| Grid Mode                                                                | List Mode                                                                  |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| <img src="https://i.ibb.co/YWxZfJ7/ezgif-com-gif-maker.gif" width="200"> | <img src="https://i.ibb.co/ZWjVyJp/ezgif-com-gif-maker-1.gif" width="200"> |
+| Grid Mode | List Mode | Horizontal |
+| ------ | ------ |
+| <img src="https://i.ibb.co/YWxZfJ7/ezgif-com-gif-maker.gif" width="100%" /> | <img src="https://i.ibb.co/ZWjVyJp/ezgif-com-gif-maker-1.gif" width="100%" /> | <img src="https://i.ibb.co/L98KQp2/horizontal.gif" width="100%" />
 
+| Mosaic with mosaicSpan=.three | Mosaic with mosaicSpan=.four) | Mosaic with mosaicSpan=.five |
+| ------ | ------ || ------ |
+| <img src="https://i.ibb.co/HGtNHjB/mosaic3.gif" width="100%" /> | <img src="https://i.ibb.co/xXZPYfw/mosaic4.gif" width="100%" /> | <img src="https://i.ibb.co/F0zG6QC/mosaic5.gif" width="100%" /> |
 #### Example
 
 ```swift
@@ -707,19 +710,42 @@ extension WidgetViewController: PXLWidgetViewDelegate {
                         textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
                         loadingStyle: .gray)))*/
         // A example of Grid
-        WidgetSpec.grid(
-                .init(
-                        cellHeight: 350,
-                        cellPadding: 4,
-                        loadMore: .init(cellHeight: 100.0,
+//        WidgetSpec.grid(
+//                .init(
+//                        cellHeight: 350,
+//                        cellPadding: 4,
+//                        loadMore: .init(cellHeight: 100.0,
+//                                cellPadding: 10.0,
+//                                text: "LoadMore",
+//                                textColor: UIColor.darkGray,
+//                                textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+//                                loadingStyle: .gray),
+//                        header: .image(.remotePath(.init(headerHeight: 200,
+//                                headerContentMode: .scaleAspectFill,
+//                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+
+      // An example of Mosaic
+        WidgetSpec.mosaic(
+            .init(
+                mosaicSpan: .five,
+                cellPadding: 1,
+                loadMore: .init(cellHeight: 100.0,
                                 cellPadding: 10.0,
                                 text: "LoadMore",
                                 textColor: UIColor.darkGray,
                                 textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
-                                loadingStyle: .gray),
-                        header: .image(.remotePath(.init(headerHeight: 200,
-                                headerContentMode: .scaleAspectFill,
-                                headerGifUrl: "https://media0.giphy.com/media/CxQw7Rc4Fx4OBNBLa8/giphy.webp")))))
+                                loadingStyle: .gray)))
+
+      // An example of Horizontal
+//      WidgetSpec.horizontal(
+//              .init(
+//                      cellPadding: 1,
+//                      loadMore: .init(cellHeight: 100.0,
+//                              cellPadding: 10.0,
+//                              text: "LoadMore",
+//                              textColor: UIColor.darkGray,
+//                              textFont: UIFont.systemFont(ofSize: UIFont.buttonFontSize),
+//                              loadingStyle: .gray)))
     }
 
     func setWidgetType() -> String {
@@ -993,8 +1019,16 @@ Configuration options:
 
 # Troubleshooting
 
-If you get an error running `carthage update` on osx please clear your carthage cache by doing
+#### If you get an error running `carthage update` on osx please clear your carthage cache by doing
 `rm -rf ~/Library/Caches/org.carthage.CarthageKit`.
+
+### Re-Authorization of Cocoapods: If there's an error when deploying this SDK on CircleCI deploy. The error message is 'Authentication token is invalid or unverified. Either verify it with the email that was sent or register a new session.'.
+- Step 1: Open a terminal-> move to this directory and enter this command -> pod trunk register sungjun@pixleeteam.com 'Sungjun Hong'
+- Step 2: An email will be sent to sungjun@pixleeteam.com-> click the link to authorize it
+- Step 3: In the terminal , Enter this to get the password ->  grep -A2 'trunk.cocoapods.org' ~/.netrc
+  - (reference: https://fuller.li/posts/automated-cocoapods-releases-with-ci/)
+- Step 4: Copy the value of the password from **Step 4** and paste into [circle ci environment variable](https://app.circleci.com/settings/project/github/pixlee/pixlee-ios-sdk/environment-variables) with the key of COCOAPODS_TRUNK_TOKEN.
+- Step 5: go to [circle ci's failed deployment](https://app.circleci.com/pipelines/github/pixlee/pixlee-ios-sdk?filter=all) and rerun the failed `deploy`.
 
 # Libraries
 
