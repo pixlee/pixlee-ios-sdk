@@ -69,8 +69,8 @@ class AutoUIImageListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        if let lable = label{
-            lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
+        if let label = label{
+            label.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
         }
     }
     
