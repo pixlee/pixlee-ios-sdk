@@ -168,7 +168,7 @@ extension AutoUIImageListViewController: PXLGridViewDelegate {
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = pxlGridView.items.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "PXLPhotoProductView", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "LightBox", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
         }
     }
     
