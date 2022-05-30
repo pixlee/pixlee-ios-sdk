@@ -7,40 +7,64 @@
 
 import Foundation
 import UIKit
+
+public enum MosaicSpan{
+    case three
+    case four
+    case five;
+}
+
 public enum WidgetSpec {
-    open class WidgetDefault {
-        public init(cellHeight: CGFloat) {
-            self.cellHeight = cellHeight
-        }
-        
-        let cellHeight: CGFloat
-    }
-    
-    open class List:WidgetDefault {
+    open class List {
         public init(cellHeight: CGFloat, isVideoMutted: Bool, autoVideoPlayEnabled: Bool, loadMore: LoadMore) {
             self.isVideoMutted = isVideoMutted
             self.autoVideoPlayEnabled = autoVideoPlayEnabled
             self.loadMore = loadMore
-            super.init(cellHeight: cellHeight)
+            self.cellHeight = cellHeight
         }
         
         let isVideoMutted: Bool
         let autoVideoPlayEnabled: Bool
         let loadMore: LoadMore
+        let cellHeight: CGFloat
     }
     
-    open class Grid: WidgetDefault {
+    open class Grid {
         public init(cellHeight: CGFloat, cellPadding: CGFloat, loadMore: LoadMore, header: Header?) {
             self.cellPadding = cellPadding
             self.loadMore = loadMore
             self.header = header
-            super.init(cellHeight: cellHeight)
+            self.cellHeight = cellHeight
         }
         
         let header: Header?
         let cellPadding: CGFloat
         let loadMore: LoadMore
+        let cellHeight: CGFloat
     }
+
+    
+    open class Mosaic {
+        public init(mosaicSpan: MosaicSpan, cellPadding: CGFloat, loadMore: LoadMore) {
+            self.mosaicSpan = mosaicSpan
+            self.cellPadding = cellPadding
+            self.loadMore = loadMore
+        }
+        
+        let mosaicSpan: MosaicSpan
+        let cellPadding: CGFloat
+        let loadMore: LoadMore
+    }
+    
+    open class Horizontal {
+        public init(cellPadding: CGFloat, loadMore: LoadMore) {
+            self.cellPadding = cellPadding
+            self.loadMore = loadMore
+        }
+        let cellPadding: CGFloat
+        let loadMore: LoadMore
+    }
+
 
     // Foot UI: LoadMore Button with an IndicatorView
     open class LoadMore {
@@ -115,4 +139,6 @@ public enum WidgetSpec {
     }
     case list(List)
     case grid(Grid)
+    case mosaic(Mosaic)
+    case horizontal(Horizontal)
 }

@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "PixleeSDK",
     platforms: [
-        .iOS(.v10),
+        .iOS(.v13),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -17,9 +17,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.5.0")),
-        .package(url: "https://github.com/kean/Nuke.git", .upToNextMajor(from: "8.0.0")),
-        .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.2.2")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.1")),
+        .package(url: "https://github.com/kean/Nuke.git", .upToNextMajor(from: "8.4.0")),
+        .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.3.1")),
        .package(url: "https://github.com/arnauddorgans/InfiniteLayout.git", .upToNextMajor(from: "0.4.2")),
     ],
     targets: [

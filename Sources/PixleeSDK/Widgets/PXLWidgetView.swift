@@ -29,7 +29,8 @@ extension PXLWidgetViewDelegate {
 }
 
 public class PXLWidgetView: UIView {
-    open var collectionView: InfiniteCollectionView?
+    open var collectionView: UICollectionView?
+    
     public var flowLayout: InfiniteLayout! {
         return collectionView?.collectionViewLayout as? InfiniteLayout
     }
@@ -45,7 +46,62 @@ public class PXLWidgetView: UIView {
 
     public weak var delegate: PXLWidgetViewDelegate? {
         didSet {
-            collectionView?.infiniteLayout.isEnabled = false
+            if let widgetSpec = delegate?.setWidgetSpec() {
+                switch widgetSpec {
+                case .mosaic(let mosaic):
+                    collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: mosaic.mosaicSpan, cellPadding: CGFloat(mosaic.cellPadding)))
+                case .horizontal(let horizontal):
+                    collectionView = UICollectionView(frame: frame, collectionViewLayout: MosaicLayoutUtil().create(mosaicSpan: nil, cellPadding: CGFloat(horizontal.cellPadding)))
+
+                default :
+                    collectionView = InfiniteCollectionView(frame: frame)
+                }
+            }
+            
+            if !isHorizontalOrMosaic() {
+                flowLayout.scrollDirection = .vertical
+            }
+            
+            if isMultipleColumnsEnabled {
+                topRightCellIndex = IndexPath(item: 1, section: 0)
+            } else {
+                topRightCellIndex = nil
+            }
+            
+            if let collectionView = collectionView {
+                collectionView.dataSource = self
+                collectionView.isPrefetchingEnabled = true
+                collectionView.delegate = self
+                
+                #if SWIFT_PACKAGE
+                let bundle = Bundle.module
+                #else
+                let bundle = Bundle(for: PXLGridViewCell.self)
+                #endif
+                
+                collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: bundle), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
+                collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+                collectionView.register(PXLLoadMoreFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
+                
+                addSubview(collectionView)
+                backgroundColor = .clear
+                collectionView.backgroundColor = .clear
+                
+                collectionView.translatesAutoresizingMaskIntoConstraints = false
+                let constraints = [
+                    collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                    collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+                    collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                    collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                ]
+                NSLayoutConstraint.activate(constraints)
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.adjustHighlight()
+                }
+            }
+            
+            (collectionView as? InfiniteCollectionView)?.infiniteLayout?.isEnabled = false
             setupCellSize()
             if isMultipleColumnsEnabled {
                 topRightCellIndex = IndexPath(item: 1, section: 0)
@@ -96,7 +152,7 @@ public class PXLWidgetView: UIView {
 
     func setupCellSize() {
         let width = ((collectionView?.frame.size.width ?? frame.width) - cellPadding) / 2
-        let height = cellHeight
+        let height = cellSize
 
         if let widgetSpec = delegate?.setWidgetSpec() {
             switch widgetSpec {
@@ -119,17 +175,49 @@ public class PXLWidgetView: UIView {
 
                 flowLayout.footerReferenceSize = CGSize(width: frame.size.width, height: grid.loadMore.cellHeight + grid.loadMore.cellPadding)
             case .list(_):
-                debugPrint("")
+                debugPrint("setupCellSize() for list")
+            case .mosaic(_):
+                debugPrint("setupCellSize() for mosaic")
+            case .horizontal(_):
+                debugPrint("setupCellSize() for horizontal")
             }
         }
 
-        guard width > 0, height > 0 else {
+        guard width > 0, height > 0, !isHorizontalOrMosaic() else {
             return
         }
         if isMultipleColumnsEnabled {
             flowLayout.itemSize = CGSize(width: width, height: height)
         } else {
             flowLayout.itemSize = CGSize(width: collectionView?.frame.size.width ?? frame.width, height: height)
+        }
+    }
+    
+    private func isMosaic () -> Bool {
+        if let widgetSpec = delegate?.setWidgetSpec() {
+            switch widgetSpec {
+            case .mosaic(_):
+                return true
+            default :
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    private func isHorizontalOrMosaic () -> Bool {
+        if let widgetSpec = delegate?.setWidgetSpec() {
+            switch widgetSpec {
+            case .mosaic(_):
+                return true
+            case .horizontal(_):
+                return true
+            default :
+                return false
+            }
+        } else {
+            return false
         }
     }
 
@@ -140,7 +228,7 @@ public class PXLWidgetView: UIView {
         return grid.cellPadding
     }
 
-    private var cellHeight: CGFloat {
+    private var cellSize: CGFloat {
         guard let widgetSpec = delegate?.setWidgetSpec() else {
             return 200.0
         }
@@ -149,6 +237,10 @@ public class PXLWidgetView: UIView {
             return grid.cellHeight
         case .list(let list):
             return list.cellHeight
+        case .mosaic(_):
+            return 0
+        case .horizontal(_):
+            return 0
         }
     }
 
@@ -160,7 +252,7 @@ public class PXLWidgetView: UIView {
     }
 
     private var isMultipleColumnsEnabled: Bool {
-        guard case let .grid(grid) = delegate?.setWidgetSpec() else {
+        guard case let .grid(_) = delegate?.setWidgetSpec() else {
             return false
         }
         return true
@@ -188,7 +280,6 @@ public class PXLWidgetView: UIView {
     }
 
     public override func didMoveToWindow() {
-        let screenSize: CGRect = UIScreen.main.bounds
         if self.window == nil {
             // on destroyed
             do {
@@ -201,52 +292,11 @@ public class PXLWidgetView: UIView {
             fireOpenAndVisible()
         }
     }
+    
 
     override public init(frame: CGRect) {
-        collectionView = InfiniteCollectionView(frame: frame)
-
         super.init(frame: frame)
 
-        flowLayout.scrollDirection = .vertical
-
-        if isMultipleColumnsEnabled {
-            topRightCellIndex = IndexPath(item: 1, section: 0)
-        } else {
-            topRightCellIndex = nil
-        }
-
-        if let collectionView = collectionView {
-            collectionView.dataSource = self
-            collectionView.isPrefetchingEnabled = true
-            collectionView.delegate = self
-
-            #if SWIFT_PACKAGE
-            let bundle = Bundle.module
-            #else
-            let bundle = Bundle(for: PXLGridViewCell.self)
-            #endif
-            
-            collectionView.register(UINib(nibName: PXLGridViewCell.identifier, bundle: bundle), forCellWithReuseIdentifier: PXLGridViewCell.identifier)
-            collectionView.register(PXLGridHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
-            collectionView.register(PXLLoadMoreFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footer")
-
-            addSubview(collectionView)
-            backgroundColor = .clear
-            collectionView.backgroundColor = .clear
-
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-            let constraints = [
-                collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-                collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-                collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            ]
-            NSLayoutConstraint.activate(constraints)
-
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.adjustHighlight()
-            }
-        }
     }
 
     override public func layoutSubviews() {
@@ -344,7 +394,6 @@ extension PXLWidgetView: UICollectionViewDataSource {
         switch (kind) {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! PXLGridHeaderView
-            debugPrint("adding reusable header, indexPath:\(indexPath)")
             guard case let .grid(grid) = delegate?.setWidgetSpec(), let gridHeader = grid.header else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
             }
@@ -375,10 +424,12 @@ extension PXLWidgetView: UICollectionViewDataSource {
             }
             return header
         case UICollectionView.elementKindSectionFooter:
-            guard let loadMoreType = loadMoreType else {
-                return UICollectionReusableView()
-            }
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! PXLLoadMoreFooterView
+            guard let loadMoreType = loadMoreType else {
+                footer.frame.size.height = 0.0
+                footer.frame.size.width = 0.0
+                return footer
+            }
             debugPrint("adding reusable footer, indexPath:\(indexPath)")
             guard let widgetSpec = delegate?.setWidgetSpec() else {
                 fatalError("Needs to add the delegate and add WidgetSpec.Grid.Header")
@@ -390,7 +441,12 @@ extension PXLWidgetView: UICollectionViewDataSource {
                 loadMore = grid.loadMore
             case .list(let list):
                 loadMore = list.loadMore
+            case .mosaic(let mosaic):
+                loadMore = mosaic.loadMore
+            case .horizontal(let horizontal):
+                loadMore = horizontal.loadMore
             }
+            
             footer.viewModel = .init(loadMoreType: loadMoreType,
                     width: collectionView.frame.size.width,
                     height: loadMore.cellHeight,
@@ -429,12 +485,14 @@ extension PXLWidgetView: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PXLGridViewCell.identifier, for: indexPath) as? PXLGridViewCell {
-            let index = self.collectionView!.indexPath(from: indexPath).row
+            let index = indexPath.row
             delegate?.setupPhotoCell(cell: cell, photo: items[index])
             cell.isHighlihtingEnabled = autoVideoPlayEnabled
-            cell.cellWidth.constant = flowLayout.itemSize.width
-            cell.cellHeight.constant = flowLayout.itemSize.height
-
+            if !isHorizontalOrMosaic() {
+                cell.cellWidth.constant = flowLayout.itemSize.width
+                cell.cellHeight.constant = flowLayout.itemSize.height
+            }
+            
             if indexPath == topLeftCellIndex || indexPath == topRightCellIndex {
                 cell.highlightView(muted: isVideoMutted)
             } else {
@@ -444,7 +502,7 @@ extension PXLWidgetView: UICollectionViewDataSource {
         }
         fatalError()
     }
-
+    
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -458,7 +516,7 @@ extension PXLWidgetView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                referenceSizeForFooterInSection section: Int) -> CGSize {
-        guard let loadMoreType = loadMoreType else {
+        guard loadMoreType != nil else {
             return CGSize.zero
         }
         guard let widgetSpec = delegate?.setWidgetSpec() else {
@@ -470,11 +528,15 @@ extension PXLWidgetView: UICollectionViewDelegateFlowLayout {
             loadMore = grid.loadMore
         case .list(let list):
             loadMore = list.loadMore
+        case .mosaic(let mosaic):
+            loadMore = mosaic.loadMore
+        case .horizontal(let horizontal):
+            loadMore = horizontal.loadMore
         }
 
         return CGSize(width: collectionView.frame.width, height: loadMore.cellHeight)
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return flowLayout.itemSize
     }
@@ -503,7 +565,7 @@ extension PXLWidgetView: UICollectionViewDelegate {
     }
 
     func adjustHighlight() {
-        guard let collectionView = collectionView else {
+        guard let collectionView = collectionView, !isHorizontalOrMosaic() else {
             return
         }
 
