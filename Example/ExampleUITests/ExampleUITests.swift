@@ -139,18 +139,4 @@ class ExampleUITests: XCTestCase {
         waitForExpectations(timeout: 10, handler: nil)
         app.terminate()
     }
-    
-    func testOpenedLightbox() {
-        let app = createApp()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.buttons[buttonOfPXLGridViewWithAnalytics].tap()
-        
-        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
-        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
-        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["PXLPhotoProductView"].tap()
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
-        app.terminate()
-    }
 }
