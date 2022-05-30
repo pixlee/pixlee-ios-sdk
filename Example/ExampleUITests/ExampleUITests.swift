@@ -43,43 +43,33 @@ class ExampleUITests: XCTestCase {
         app.launch()
         return app
     }
-    
-    func testPXLGridViewWithNoAnalytics() {
-        let app = createApp()
 
-        PXLClient.sharedClient.autoAnalyticsEnabled = false
+    func testUIViewWithAnalytics(autoAnalyticsEnabled: Bool = true, menuName: String, viewMode: String?, button: String) {
+        let app = createApp(viewMode)
+
+        PXLClient.sharedClient.autoAnalyticsEnabled = autoAnalyticsEnabled
+
         let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.buttons[buttonOfPXLGridViewWithoutAnalytics].tap()
+        elementsQuery.buttons[menuName].tap()
 
-        
+        let openWidgetEvent:String = autoAnalyticsEnabled ? "openedWidget" : noEventsMessage
+        let widgetVisibleEvent:String = autoAnalyticsEnabled ? "widgetVisible" : noEventsMessage
+        let openedLightboxEvent:String = autoAnalyticsEnabled ? "openedLightbox" : noEventsMessage
+
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
-        expectation(for: NSPredicate(format: format, noEventsMessage), evaluatedWith: label, handler: nil)
+        expectation(for: NSPredicate(format: format, openWidgetEvent), evaluatedWith: label, handler: nil)
         waitForExpectations(timeout: 3, handler: nil)
         snapshot("openedWidget_widgetVisible")
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, noEventsMessage)).count>0)
-        
-        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["LightBox"].tap()
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, noEventsMessage)).count>0)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, widgetVisibleEvent)).count>0)
+
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons[button].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, openedLightboxEvent)).count>0)
         snapshot("openedLightbox")
         app.terminate()
     }
-    
-    func testUIViewWithAnalytics(menuName: String, viewMode: String?, button: String) {
-        let app = createApp(viewMode)
-        
-        let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.buttons[menuName].tap()
-        
-        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
-        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 3, handler: nil)
-        snapshot("openedWidget_widgetVisible")
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "widgetVisible")).count>0)
-        
-        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons[button].tap()
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
-        snapshot("openedLightbox")
-        app.terminate()
+
+    func testPXLGridViewWithNoAnalytics() {
+        testUIViewWithAnalytics(autoAnalyticsEnabled: false, menuName: buttonOfPXLGridViewWithoutAnalytics, viewMode: nil, button: "LightBox")
     }
 
     func testPXLGridViewAnalytics() {
@@ -137,6 +127,20 @@ class ExampleUITests: XCTestCase {
         let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
         expectation(for: NSPredicate(format: format, "widgetVisible"), evaluatedWith: label, handler: nil)
         waitForExpectations(timeout: 10, handler: nil)
+        app.terminate()
+    }
+    
+    func testOpenedLightbox() {
+        let app = createApp()
+        
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons[buttonOfPXLGridViewWithAnalytics].tap()
+        
+        let label = app.staticTexts.element(matching: .any, identifier: PXLAnalyticsService.TAG)
+        expectation(for: NSPredicate(format: format, "openedWidget"), evaluatedWith: label, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["LightBox"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, "openedLightbox")).count>0)
         app.terminate()
     }
 }
