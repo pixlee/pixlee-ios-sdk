@@ -1019,8 +1019,16 @@ Configuration options:
 
 # Troubleshooting
 
-If you get an error running `carthage update` on osx please clear your carthage cache by doing
+#### If you get an error running `carthage update` on osx please clear your carthage cache by doing
 `rm -rf ~/Library/Caches/org.carthage.CarthageKit`.
+
+### Re-Authorization of Cocoapods: If there's an error when deploying this SDK on CircleCI deploy. The error message is 'Authentication token is invalid or unverified. Either verify it with the email that was sent or register a new session.'.
+- Step 1: Open a terminal-> move to this directory and enter this command -> pod trunk register sungjun@pixleeteam.com 'Sungjun Hong'
+- Step 2: An email will be sent to sungjun@pixleeteam.com-> click the link to authorize it
+- Step 3: In the terminal , Enter this to get the password ->  grep -A2 'trunk.cocoapods.org' ~/.netrc
+  - (reference: https://fuller.li/posts/automated-cocoapods-releases-with-ci/)
+- Step 4: Copy the value of the password from **Step 4** and paste into [circle ci environment variable](https://app.circleci.com/settings/project/github/pixlee/pixlee-ios-sdk/environment-variables) with the key of COCOAPODS_TRUNK_TOKEN.
+- Step 5: go to [circle ci's failed deployment](https://app.circleci.com/pipelines/github/pixlee/pixlee-ios-sdk?filter=all) and rerun the failed `deploy`.
 
 # Libraries
 
