@@ -58,7 +58,7 @@ class ExampleUITests: XCTestCase {
         snapshot("openedWidget_widgetVisible")
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, noEventsMessage)).count>0)
         
-        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["openedLightbox"].tap()
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).buttons["LightBox"].tap()
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: format, noEventsMessage)).count>0)
         snapshot("openedLightbox")
         app.terminate()
