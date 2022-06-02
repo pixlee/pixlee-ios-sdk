@@ -69,8 +69,8 @@ class AutoUIImageListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pxlGridView.frame = CGRect(x: 8, y: 8, width: view.frame.size.width - 16, height: view.frame.size.height - 8)
-        if let lable = label{
-            lable.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
+        if let label = label{
+            label.frame = CGRect(x:0, y: view.frame.size.height - 100, width: view.frame.size.width, height: 100)
         }
     }
     
@@ -168,7 +168,7 @@ extension AutoUIImageListViewController: PXLGridViewDelegate {
     
     func setupPhotoCell(cell: PXLGridViewCell, photo: PXLPhoto) {
         if let index = pxlGridView.items.firstIndex(of: photo) {
-            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "PXLPhotoProductView", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
+            cell.setupCell(photo: photo, title: "[album photo id: \(photo.albumPhotoId)]\n[album id: \(photo.albumId)] in", subtitle: "Click to Open", buttonTitle: "LightBox", configuration: PXLPhotoViewConfiguration(enableVideoPlayback: true, cropMode: .centerFit), delegate: self)
         }
     }
     
