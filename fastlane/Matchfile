@@ -1,0 +1,4 @@
+git_url("https://${ENV['GIT_ACCESS_TOKEN']}@github.com/pixlee/ios_certs.git")
+storage_mode("git")
+team_id("Q28M29YQL8")
+username("vocalhong@gmail.com")
