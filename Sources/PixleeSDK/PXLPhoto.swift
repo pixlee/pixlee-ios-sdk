@@ -6,7 +6,6 @@
 //  Copyright © 2020. BitRaptors. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 import MapKit
 
@@ -152,11 +151,11 @@ public struct PXLPhoto: Equatable {
         }
     }
 
-    public func triggerEventActionClicked(actionLink: String, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventActionClicked(photo: self, actionLink: actionLink), completionHandler: completionHandler)
+    public func triggerEventActionClicked(actionLink: String, completionHandler: @escaping (Error?) -> Void) {
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventActionClicked(photo: self, actionLink: actionLink), completionHandler: completionHandler)
     }
 
-    public func triggerEventOpenedLightbox(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: self), completionHandler: completionHandler)
+    public func triggerEventOpenedLightbox(completionHandler: @escaping (Error?) -> Void) {
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedLightBox(photo: self), completionHandler: completionHandler)
     }
 }

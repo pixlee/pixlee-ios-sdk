@@ -65,7 +65,7 @@ class GetPhotosViewController: UIViewController {
     
     func loadPhotos(){
         if let album = album {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 if let photos = photos {
                     //self.photos = photos
                     self.pxlGridView.items = photos

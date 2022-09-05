@@ -271,7 +271,7 @@ public class PXLGridView: UIView {
         if !isAnalyticsOpenedWidgetFired {
             if !infiniteItems.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
                         self.isAnalyticsOpenedWidgetFired = false
                         print("🛑 There was an error \(error?.localizedDescription ?? "")")
@@ -291,7 +291,7 @@ public class PXLGridView: UIView {
         if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
             if !infiniteItems.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
                         self.isAnalyticsVisibleWidgetFired = false
                         print( "🛑 There was an error \(error?.localizedDescription ?? "")")

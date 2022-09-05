@@ -6,7 +6,6 @@
 //  Copyright © 2020. BitRaptors. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 class PXLApiRequests {
@@ -236,29 +235,89 @@ class PXLApiRequests {
 }
 
 extension PXLApiRequests {
-    private func urlRequest(_ method: Alamofire.HTTPMethod,
-                            _ url: URLConvertible,
+//    private func urlRequest(_ method: Alamofire.HTTPMethod,
+//                            _ url: URLConvertible,
+//                            parameters: [String: Any]? = nil,
+//                            encoding: ParameterEncoding = URLEncoding.default,
+//                            headers: [String: String]? = nil)
+//        throws -> Foundation.URLRequest {
+//        var mutableURLRequest = Foundation.URLRequest(url: try url.asURL())
+//        mutableURLRequest.httpMethod = method.rawValue
+//
+//        if let headers = headers {
+//            for (headerField, headerValue) in headers {
+//                mutableURLRequest.setValue(headerValue, forHTTPHeaderField: headerField)
+//            }
+//        }
+//
+//        if let parameters = parameters {
+//            mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
+//        }
+//
+//        if disableCaching {
+//            mutableURLRequest.cachePolicy = .reloadIgnoringCacheData
+//        }
+//
+//        return mutableURLRequest
+//    }
+    private func urlRequest(_ method: HTTP.Method,
+                            _ urlString: String,
                             parameters: [String: Any]? = nil,
-                            encoding: ParameterEncoding = URLEncoding.default,
                             headers: [String: String]? = nil)
-        throws -> Foundation.URLRequest {
-        var mutableURLRequest = Foundation.URLRequest(url: try url.asURL())
+    throws -> URLRequest? {
+        
+        
+        
+//        JSONEncoding.default
+//        val encoding: ParameterEncoding = URLEncoding.default,
+        var url = URL(string: "")
+        switch method {
+        case .get:
+            var urlComponents = URLComponents(string: urlString)
+            
+            // ✅ add uqery
+            let queryItemArray = parameters?.map {
+                URLQueryItem(name: $0.key, value: String(describing: $0.value ?? ""))
+            }
+            urlComponents?.queryItems = queryItemArray
+            
+            // add url + params
+            url = urlComponents?.url!
+            
+        case .post:
+            // add url only
+            url = URL(string: urlString)
+        }
+        
+        var mutableURLRequest = URLRequest(url: url!)
         mutableURLRequest.httpMethod = method.rawValue
-
+        
+        if method == .post {
+            mutableURLRequest.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        }
+        
         if let headers = headers {
             for (headerField, headerValue) in headers {
                 mutableURLRequest.setValue(headerValue, forHTTPHeaderField: headerField)
             }
         }
-
-        if let parameters = parameters {
-            mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
-        }
-
+        
+//        if let parameters = parameters {
+//            mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
+//        }
+        
         if disableCaching {
             mutableURLRequest.cachePolicy = .reloadIgnoringCacheData
         }
-
+        
         return mutableURLRequest
+    }
+
+}
+
+enum HTTP {
+    enum Method: String {
+        case get = "GET"
+        case post = "POST"
     }
 }

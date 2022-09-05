@@ -6,7 +6,6 @@
 //  Copyright © 2020. BitRaptors. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 public class PXLAlbum {
@@ -76,11 +75,11 @@ public class PXLAlbum {
                         filterOptions: filterOptions)
     }
 
-    public func triggerEventOpenedWidget(widget: PXLWidgetType, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
+    public func triggerEventOpenedWidget(widget: PXLWidgetType, completionHandler: @escaping (Error?) -> Void) {
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: self, widget: widget), completionHandler: completionHandler)
     }
 
-    public func triggerEventLoadMoreTapped(completionHandler: @escaping (Error?) -> Void) -> DataRequest {
-        return PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: self), completionHandler: completionHandler)
+    public func triggerEventLoadMoreTapped(completionHandler: @escaping (Error?) -> Void) {
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventLoadMoreClicked(album: self), completionHandler: completionHandler)
     }
 }

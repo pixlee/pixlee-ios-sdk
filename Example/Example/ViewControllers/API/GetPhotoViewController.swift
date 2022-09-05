@@ -57,7 +57,7 @@ class GetPhotoViewController: UIViewController {
     
     func loadPhotos(){
         if let album = album {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 if let photos = photos {
                     if let albumPhotoId = photos.shuffled().first?.albumPhotoId {
                         print("-----albumPhotoId: \(albumPhotoId)")

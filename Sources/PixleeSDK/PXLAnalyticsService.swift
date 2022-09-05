@@ -6,7 +6,6 @@
 //  Copyright © 2020. Pixlee. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
 public class PXLAnalyticsService {
@@ -18,10 +17,10 @@ public class PXLAnalyticsService {
         client = PXLClient.sharedClient
     }
 
-    public func logEvent(event: PXLAnalyticsEvent, completionHandler: @escaping (Error?) -> Void) -> DataRequest {
+    public func logEvent(event: PXLAnalyticsEvent, completionHandler: @escaping (Error?) -> Void) {
         NotificationCenter.default.post(name:NSNotification.Name(rawValue: PXLAnalyticsService.TAG), object:event.eventName)
         print("⚠️PIXLEE SDK - Logging event:\(event.eventName)")
-        return client.logAnalyticsEvent(event: event, completionHandler: completionHandler)
+        client.logAnalyticsEvent(event: event, completionHandler: completionHandler)
     }
 }
 

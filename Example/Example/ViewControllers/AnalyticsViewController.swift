@@ -30,7 +30,7 @@ class AnalyticsViewController: UIViewController {
 
         
         
-        _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
+        PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -41,7 +41,7 @@ class AnalyticsViewController: UIViewController {
 
     // Album events
     @IBAction func openedWidget(_ sender: Any) {
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -51,7 +51,7 @@ class AnalyticsViewController: UIViewController {
     }
 
     @IBAction func widgetVisible(_ sender: Any) {
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: "customWidgetName"))) { error in
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: "customWidgetName"))) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -66,7 +66,7 @@ class AnalyticsViewController: UIViewController {
     }
 
     @IBAction func loadMore(_ sender: Any) {
-        _ = album.triggerEventLoadMoreTapped { error in
+        album.triggerEventLoadMoreTapped { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -104,7 +104,7 @@ class AnalyticsViewController: UIViewController {
     }
 
     @IBAction func addToCart(_ sender: Any) {
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventAddCart(sku: "SL-BENJ", quantity: 1, price: "13.0", currency: "USD")) { error in
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventAddCart(sku: "SL-BENJ", quantity: 1, price: "13.0", currency: "USD")) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -114,7 +114,7 @@ class AnalyticsViewController: UIViewController {
     }
 
     @IBAction func conversion(_ sender: Any) {
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event:
+        PXLAnalyticsService.sharedAnalytics.logEvent(event:
             PXLAnalyticsEventConvertedPhoto(cartContents: [PXLAnalyticsCartContents(price: "13.0", productSKU: "SL-BENJ", quantity: 1),
                                                            PXLAnalyticsCartContents(price: "5.0", productSKU: "AD-1324S", quantity: 2)],
                                             cartTotal: "18.0",

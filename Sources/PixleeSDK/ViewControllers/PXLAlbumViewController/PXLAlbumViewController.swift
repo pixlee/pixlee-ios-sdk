@@ -78,14 +78,14 @@ public class PXLAlbumViewController: UIViewController {
         didSet {
             guard let viewModel = viewModel else { return }
             _ = view
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { _, error in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { _, error in
                 guard error == nil else {
                     print("There was an error during the loading \(String(describing: error))")
                     return
                 }
                 self.collectionView.reloadData()
 
-                _ = viewModel.album.triggerEventOpenedWidget(widget: .horizontal) { _ in
+                viewModel.album.triggerEventOpenedWidget(widget: .horizontal) { _ in
                     print("Logged")
                 }
             }
@@ -161,7 +161,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
             let offset = scrollView.contentOffset.y + scrollView.frame.height
             if offset > scrollView.contentSize.height * 0.7 {
                 if let viewModel = viewModel {
-                    _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { photos, error in
+                    PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: viewModel.album) { photos, error in
                         guard error == nil else {
                             print("Error while loading images:\(String(describing: error))")
                             return

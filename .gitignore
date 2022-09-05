@@ -45,3 +45,5 @@ Example/ExampleCarthageApp.xcodeproj
 
 # The credential file for running the demo app
 Example/Example/PixleeCredentials.plist
+
+AuthKey.p8

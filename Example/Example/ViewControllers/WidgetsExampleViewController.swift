@@ -32,7 +32,7 @@ class WidgetsExampleViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.register(UINib(nibName: "WidgetTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "widgetCell")
 
-        _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
+        PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: album, widget: .other(customValue: "customWidgetName"))) { error in
             guard error == nil else {
                 self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                 return
@@ -51,7 +51,7 @@ extension WidgetsExampleViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if widgetVisible(), !widgetVisibleFired {
             widgetVisibleFired = true
-            _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: "customWidgetName"))) { error in
+            PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: album, widget: .other(customValue: "customWidgetName"))) { error in
                 guard error == nil else {
                     self.printToConsole(log: "🛑 There was an error \(error?.localizedDescription ?? "")")
                     return

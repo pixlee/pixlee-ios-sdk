@@ -125,7 +125,7 @@ public class PXLWidgetView: UIView {
     func loadPhotos() {
         refreshFooter(loadMoreType: .loading)
         if let album = self.searchingAlbum {
-            _ = PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
                 var indexPaths = [IndexPath]()
                 if let photos = photos {
                     let firstIndex = self.items.count
@@ -342,7 +342,7 @@ public class PXLWidgetView: UIView {
         if !isAnalyticsOpenedWidgetFired {
             if !items.isEmpty {
                 isAnalyticsOpenedWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventOpenedWidget(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
                         self.isAnalyticsOpenedWidgetFired = false
                         print("🛑 There was an error \(error?.localizedDescription ?? "")")
@@ -363,7 +363,7 @@ public class PXLWidgetView: UIView {
         if !isAnalyticsVisibleWidgetFired, let customView = collectionView {
             if !items.isEmpty && isVisible(customView) {
                 isAnalyticsVisibleWidgetFired = true
-                _ = PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
+                PXLAnalyticsService.sharedAnalytics.logEvent(event: PXLAnalyticsEventWidgetVisible(album: autoAnalytics.album, widget: .other(customValue: autoAnalytics.widgetType))) { error in
                     guard error == nil else {
                         self.isAnalyticsVisibleWidgetFired = false
                         print("🛑 There was an error \(error?.localizedDescription ?? "")")

@@ -6,7 +6,6 @@
 //  Copyright © 2020. BitRaptors. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 import Nuke
 
@@ -85,7 +84,7 @@ public class PXLClient {
     }
 
     
-    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) -> DataRequest? {
+    public func loadNextPageOfPhotosForAlbum(album: PXLAlbum, completionHandler: (([PXLPhoto]?, Error?) -> Void)?) {
         if album.hasNextPage {
             debugPrint("album.lastPageFetched == NSNotFound: \(album.lastPageFetched == NSNotFound), page:\(album.lastPageFetched), NSNotFound: \(NSNotFound)")
             let nextPage = album.lastPageFetched == NSNotFound ? 1 : album.lastPageFetched + 1
