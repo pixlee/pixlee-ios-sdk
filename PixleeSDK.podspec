@@ -33,7 +33,6 @@ Pod::Spec.new do |spec|
     spec.subspec 'SDK' do |sdk|
       sdk.source_files = 'Sources/PixleeSDK/**/*{swift}'
       sdk.resources = "Sources/PixleeSDK/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
-      sdk.dependency 'Alamofire', '~> 5.0'
       sdk.dependency 'Nuke', '~> 8.0'
       sdk.dependency 'Gifu', '~> 3.3'
       sdk.dependency 'InfiniteLayout', '~> 0.4.2'
