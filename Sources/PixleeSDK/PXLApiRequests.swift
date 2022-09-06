@@ -9,7 +9,8 @@
 import Foundation
 
 class PXLApiRequests {
-    private let baseURL: String = "https://distillery.pixlee.com/"
+//    private let baseURL: String = "https://distillery.pixlee.com/"
+    private let baseURL: String = "https://fbd1-222-98-205-98.ngrok.io/"
     private let analyticsBaseURL: String = "https://inbound-analytics.pixlee.com/events/"
 
     var apiKey: String?
@@ -169,7 +170,7 @@ class PXLApiRequests {
         do {
             let parameters = defaultPostParameters().reduce(into: event.logParameters) { r, e in r[e.0] = e.1 }
             let postHeaders = self.postHeaders(isDistilleryServer: false, headers: [:], parameters: parameters)
-            let request = try urlRequest(.post, url, parameters: parameters, encoding: JSONEncoding.default, headers: postHeaders)
+            let request = try urlRequest(.post, url, parameters: parameters, headers: postHeaders)
             
             #if DEBUG
             print("request: \(request)")
@@ -181,52 +182,94 @@ class PXLApiRequests {
         }
     }
 
-    func addMedia(_ newMedia: PXLNewImage, progress: @escaping (Double) -> Void, uploadRequest: @escaping (UploadRequest?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
+    func addMedia(_ newMedia: PXLNewImage, urlSessionTaskDelegate: URLSessionTaskDelegate? = nil, uploadRequest: @escaping (URLSessionTask?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
         if let apiKey = apiKey {
             let url = baseURL + "api/v2/media/file?api_key=\(apiKey)"
 
             do {
-                let parameters = newMedia.parameters
-                let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-
-                let jsonString = String(data: jsonData, encoding: .utf8)!
-
-                let postHeaders = HTTPHeaders(self.postHeaders(isDistilleryServer: true, headers: [:], parameters: parameters))
-
-                var url = url
-                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-
                 if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
-                    uploadRequest(AF.upload(multipartFormData: { multipartFormData in
-                        multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
-                        multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
-                    }, to: url, headers: postHeaders).uploadProgress(queue: .main, closure: { progressDone in
-                        print("Upload progress done: \(progressDone.fractionCompleted)")
-                        progress(progressDone.fractionCompleted)
-                    }).responseJSON(completionHandler: { responseJSON in
-                        if let statusCode = responseJSON.response?.statusCode {
-                            if statusCode == 200 {
-                                switch responseJSON.result {
-                                case let .success(result):
-                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let connectedUserID = Int(connectedUserId) {
-                                        completion(photoID, connectedUserID, nil)
+                    let boundary = generateBoundaryString()
+                    let parameters = newMedia.parameters
+                    var request = try self.urlRequest(.post, url, headers: self.postHeaders(isDistilleryServer: true, headers: [:], parameters: parameters))
+                    
+                    // Mark the start of multi part
+                    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+                    
+                    var httpBody = NSMutableData()
+                    
+                    // upload an image
+                    httpBody.append(convertFileData(fieldName: "file", fileName: "uploadImage.png", mimeType: "image/png", fileData: imageData, using: boundary))
+                    
+                    // upload a json data
+                    let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+                    let jsonString = String(data: jsonData, encoding: .utf8)!
+                    httpBody.appendString(convertFormField(named: "json", value: jsonString, using: boundary))
+                    
+                    // Mark the end of multi part
+                    // Add final boundary with the two trailing dashes
+                    httpBody.appendString("--\(boundary)--")
+                    request.httpBody = httpBody as Data
+                    
+                    let urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: urlSessionTaskDelegate, delegateQueue: nil)
+                    var task = urlSession
+                        .dataTask(with: request, completionHandler: { data, response, error in
+                            if let error = error {
+                                DispatchQueue.main.async {
+                                    if let httpResponse = response as? HTTPURLResponse {
+                                        completion(nil, nil, PXLError(code: httpResponse.statusCode, message: "Unknown error", externalError: error))
+                                    } else {
+                                        completion(nil, nil, error)
                                     }
-                                case let .failure(err):
-                                    print("Failure")
-                                    completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: err))
+                                }
+                            } else {
+                                let json = try? JSONSerialization.jsonObject(with: data!, options:[])
+                                if let dict = json as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let connectedUserID = Int(connectedUserId) {
+                                    completion(photoID, connectedUserID, nil)
                                 }
                             }
-                        }
-                    }).response { response in
-                        switch response.result {
-                        case let .success(resut):
-                            print("upload success")
-                        case let .failure(err):
-                            print("upload err: \(err)")
-                            completion(nil, nil, err)
-                        }
-                    })
+                        })
+                    
+                    task.resume()
                 }
+                
+                
+                
+//                let postHeaders = HTTPHeaders(self.postHeaders(isDistilleryServer: true, headers: [:], parameters: parameters))
+//
+//                var url = url
+//                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+//
+//                if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
+//                    uploadRequest(AF.upload(multipartFormData: { multipartFormData in
+//                        multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
+//                        multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
+//                    }, to: url, headers: postHeaders).uploadProgress(queue: .main, closure: { progressDone in
+//                        print("Upload progress done: \(progressDone.fractionCompleted)")
+//                        progress(progressDone.fractionCompleted)
+//                    }).responseJSON(completionHandler: { responseJSON in
+//                        if let statusCode = responseJSON.response?.statusCode {
+//                            if statusCode == 200 {
+//                                switch responseJSON.result {
+//                                case let .success(result):
+//                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let connectedUserID = Int(connectedUserId) {
+//                                        completion(photoID, connectedUserID, nil)
+//                                    }
+//                                case let .failure(err):
+//                                    print("Failure")
+//                                    completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: err))
+//                                }
+//                            }
+//                        }
+//                    }).response { response in
+//                        switch response.result {
+//                        case let .success(resut):
+//                            print("upload success")
+//                        case let .failure(err):
+//                            print("upload err: \(err)")
+//                            completion(nil, nil, err)
+//                        }
+//                    })
+//                }
             } catch {
                 completion(nil, nil, PXLError(code: 1002, message: "Wrong url request", externalError: nil))
             }
@@ -235,84 +278,81 @@ class PXLApiRequests {
 }
 
 extension PXLApiRequests {
-//    private func urlRequest(_ method: Alamofire.HTTPMethod,
-//                            _ url: URLConvertible,
-//                            parameters: [String: Any]? = nil,
-//                            encoding: ParameterEncoding = URLEncoding.default,
-//                            headers: [String: String]? = nil)
-//        throws -> Foundation.URLRequest {
-//        var mutableURLRequest = Foundation.URLRequest(url: try url.asURL())
-//        mutableURLRequest.httpMethod = method.rawValue
-//
-//        if let headers = headers {
-//            for (headerField, headerValue) in headers {
-//                mutableURLRequest.setValue(headerValue, forHTTPHeaderField: headerField)
-//            }
-//        }
-//
-//        if let parameters = parameters {
-//            mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
-//        }
-//
-//        if disableCaching {
-//            mutableURLRequest.cachePolicy = .reloadIgnoringCacheData
-//        }
-//
-//        return mutableURLRequest
-//    }
     private func urlRequest(_ method: HTTP.Method,
                             _ urlString: String,
                             parameters: [String: Any]? = nil,
                             headers: [String: String]? = nil)
-    throws -> URLRequest? {
-        
-        
-        
-//        JSONEncoding.default
-//        val encoding: ParameterEncoding = URLEncoding.default,
+    throws -> URLRequest {
         var url = URL(string: "")
         switch method {
         case .get:
-            var urlComponents = URLComponents(string: urlString)
+            var urlComponents = URLComponents(string: urlString)!
             
             // ✅ add uqery
             let queryItemArray = parameters?.map {
                 URLQueryItem(name: $0.key, value: String(describing: $0.value ?? ""))
             }
-            urlComponents?.queryItems = queryItemArray
+            urlComponents.queryItems = queryItemArray
             
             // add url + params
-            url = urlComponents?.url!
+            url = urlComponents.url
             
         case .post:
             // add url only
             url = URL(string: urlString)
         }
         
-        var mutableURLRequest = URLRequest(url: url!)
-        mutableURLRequest.httpMethod = method.rawValue
+        var request = URLRequest(url: url!)
+        request.httpMethod = method.rawValue
         
-        if method == .post {
-            mutableURLRequest.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        if method == .post, let parameters = parameters {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
         }
         
         if let headers = headers {
             for (headerField, headerValue) in headers {
-                mutableURLRequest.setValue(headerValue, forHTTPHeaderField: headerField)
+                request.setValue(headerValue, forHTTPHeaderField: headerField)
             }
         }
         
-//        if let parameters = parameters {
-//            mutableURLRequest = try encoding.encode(mutableURLRequest, with: parameters)
-//        }
-        
         if disableCaching {
-            mutableURLRequest.cachePolicy = .reloadIgnoringCacheData
+            request.cachePolicy = .reloadIgnoringCacheData
         }
         
-        return mutableURLRequest
+        return request
     }
 
+    func convertFormField(named name: String, value: String, using boundary: String) -> String {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
+        fieldString += "\r\n"
+        fieldString += "\(value)\r\n"
+        
+        return fieldString
+    }
+    
+    func convertFileData(fieldName: String, fileName: String, mimeType: String, fileData: Data, using boundary: String) -> Data {
+        let data = NSMutableData()
+        data.appendString("--\(boundary)\r\n")
+        data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
+        data.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        data.append(fileData)
+        data.appendString("\r\n")
+        
+        return data as Data
+    }
+
+    private func generateBoundaryString() -> String {
+        return "Boundary-\(UUID().uuidString)"
+    }
+}
+
+extension NSMutableData {
+    func appendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            self.append(data)
+        }
+    }
 }
 
 enum HTTP {

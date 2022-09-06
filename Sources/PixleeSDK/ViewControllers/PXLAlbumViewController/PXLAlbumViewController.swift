@@ -189,7 +189,7 @@ extension PXLAlbumViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 }
 
-extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, URLSessionTaskDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true)
 
@@ -201,9 +201,7 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
         if let albumIdentifier = viewModel?.album.identifier, let albumID = Int(albumIdentifier) {
             PXLClient.sharedClient.uploadPhoto(photo:
                 PXLNewImage(image: image, albumId: albumID, title: "Sample image name", email: "csaba@bitraptors.com", username: "csacsi", approved: true, connectedUserId: nil, productSKUs: nil, connectedUser: nil),
-                progress: { percentage in
-                    self.applyUploadPercentage(percentage)
-                },
+                urlSessionTaskDelegate: self,
                 uploadRequest: { uploadReqest in
 
                     let doYouWantToCancelTheRequest = false
@@ -224,6 +222,15 @@ extension PXLAlbumViewController: UIImagePickerControllerDelegate, UINavigationC
                     print("⭐️ Upload completed: photoID:\(photoId), connectedUserID:\(connectedUserId)")
                 }
             )
+        }
+    }
+    
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)
+    {
+        var uploadProgress:Double = Double(totalBytesSent) / Double(totalBytesExpectedToSend)
+        print("uploadProgress: \(uploadProgress)")
+        DispatchQueue.main.async {
+            self.applyUploadPercentage(uploadProgress)
         }
     }
 }
