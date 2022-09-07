@@ -9,8 +9,7 @@
 import Foundation
 
 class PXLApiRequests {
-//    private let baseURL: String = "https://distillery.pixlee.com/"
-    private let baseURL: String = "https://fbd1-222-98-205-98.ngrok.io/"
+    private let baseURL: String = "https://distillery.pixlee.com/"
     private let analyticsBaseURL: String = "https://inbound-analytics.pixlee.com/events/"
 
     var apiKey: String?
@@ -182,10 +181,9 @@ class PXLApiRequests {
         }
     }
 
-    func addMedia(_ newMedia: PXLNewImage, urlSessionTaskDelegate: URLSessionTaskDelegate? = nil, uploadRequest: @escaping (URLSessionTask?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) {
+    func addMedia(_ newMedia: PXLNewImage, uploadRequest: @escaping (URLSessionTask?) -> Void, completion: @escaping (_ photoId: Int?, _ connectedUserId: Int?, _ error: Error?) -> Void) -> URLRequest? {
         if let apiKey = apiKey {
             let url = baseURL + "api/v2/media/file?api_key=\(apiKey)"
-
             do {
                 if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
                     let boundary = generateBoundaryString()
@@ -209,71 +207,13 @@ class PXLApiRequests {
                     // Add final boundary with the two trailing dashes
                     httpBody.appendString("--\(boundary)--")
                     request.httpBody = httpBody as Data
-                    
-                    let urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: urlSessionTaskDelegate, delegateQueue: nil)
-                    var task = urlSession
-                        .dataTask(with: request, completionHandler: { data, response, error in
-                            if let error = error {
-                                DispatchQueue.main.async {
-                                    if let httpResponse = response as? HTTPURLResponse {
-                                        completion(nil, nil, PXLError(code: httpResponse.statusCode, message: "Unknown error", externalError: error))
-                                    } else {
-                                        completion(nil, nil, error)
-                                    }
-                                }
-                            } else {
-                                let json = try? JSONSerialization.jsonObject(with: data!, options:[])
-                                if let dict = json as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let connectedUserID = Int(connectedUserId) {
-                                    completion(photoID, connectedUserID, nil)
-                                }
-                            }
-                        })
-                    
-                    task.resume()
+                    return request
                 }
-                
-                
-                
-//                let postHeaders = HTTPHeaders(self.postHeaders(isDistilleryServer: true, headers: [:], parameters: parameters))
-//
-//                var url = url
-//                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-//
-//                if let imageData = newMedia.image.jpegData(compressionQuality: 0.7) {
-//                    uploadRequest(AF.upload(multipartFormData: { multipartFormData in
-//                        multipartFormData.append(imageData, withName: "file", fileName: "uploadImage.png", mimeType: "image/png")
-//                        multipartFormData.append(jsonString.data(using: String.Encoding.utf8)!, withName: "json")
-//                    }, to: url, headers: postHeaders).uploadProgress(queue: .main, closure: { progressDone in
-//                        print("Upload progress done: \(progressDone.fractionCompleted)")
-//                        progress(progressDone.fractionCompleted)
-//                    }).responseJSON(completionHandler: { responseJSON in
-//                        if let statusCode = responseJSON.response?.statusCode {
-//                            if statusCode == 200 {
-//                                switch responseJSON.result {
-//                                case let .success(result):
-//                                    if let dict = result as? [String: Any], let photoId = dict["album_photo_id"] as? String, let connectedUserId = dict["connected_user_id"] as? String, let photoID = Int(photoId), let connectedUserID = Int(connectedUserId) {
-//                                        completion(photoID, connectedUserID, nil)
-//                                    }
-//                                case let .failure(err):
-//                                    print("Failure")
-//                                    completion(nil, nil, PXLError(code: statusCode, message: "Unknown error", externalError: err))
-//                                }
-//                            }
-//                        }
-//                    }).response { response in
-//                        switch response.result {
-//                        case let .success(resut):
-//                            print("upload success")
-//                        case let .failure(err):
-//                            print("upload err: \(err)")
-//                            completion(nil, nil, err)
-//                        }
-//                    })
-//                }
             } catch {
-                completion(nil, nil, PXLError(code: 1002, message: "Wrong url request", externalError: nil))
+                return nil
             }
         }
+        return nil
     }
 }
 

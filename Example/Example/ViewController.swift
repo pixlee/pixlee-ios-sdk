@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     
     func loadPhotos(){
         if let album = album {
-            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
                 if let photos = photos {
                     self.photos = photos
                 }
@@ -124,7 +124,7 @@ class ViewController: UIViewController {
                 return photos
             }
             
-            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, _ in
+            PXLClient.sharedClient.loadNextPageOfPhotosForAlbum(album: album) { photos, error in
                 if let photos = photos {
                     self.photos = photos
                 }
