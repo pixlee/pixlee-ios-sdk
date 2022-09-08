@@ -17,7 +17,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.1")),
         .package(url: "https://github.com/kean/Nuke.git", .upToNextMajor(from: "8.4.0")),
         .package(url: "https://github.com/kaishin/Gifu.git", .upToNextMajor(from: "3.3.1")),
        .package(url: "https://github.com/arnauddorgans/InfiniteLayout.git", .upToNextMajor(from: "0.4.2")),
@@ -28,7 +27,6 @@ let package = Package(
         .target(
             name: "PixleeSDK",
             dependencies: [
-                "Alamofire",
                 "Nuke",
                 "Gifu",
                 "InfiniteLayout",
